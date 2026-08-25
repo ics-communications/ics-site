@@ -9,12 +9,15 @@ stylesheet and one footer.
 index.html              landing page
 about/                  /about section
   index.html              About Us
+  academic-registrar.html job posting, linked from employment-opportunities
   accessibility-policy.html
   administrative-staff.html
   become-a-member.html
   employment-opportunities.html
   mission-educational-creed.html
   privacy-policy.html
+assets/images/          photos used by the pages
+docs/                   PDFs linked from the pages (job postings, etc.)
 css/
   styles.css            shared design system — tokens, buttons, hero, footer,
                         reveal, responsive rules. Every page links this.

@@ -1,0 +1,310 @@
+/* ============================================================
+   academic-registrar
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer, reveal). Only rules that differ from the shared
+   sheet live here.
+
+   The hero block matches employment-opportunities.css so the
+   posting reads as a child of that page.
+   ============================================================ */
+
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  position: relative;
+  padding: 5rem 0 4.5rem;
+  overflow: hidden;
+  align-items: initial;
+  display: block;
+  min-height: initial;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.08) 0%, transparent 50%), radial-gradient(ellipse at 85% 10%, rgba(190,11,40,0.15) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+/* overrides css/styles.css */
+.hero__inner {
+  position: relative;
+  max-width: 780px;
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1.1rem;
+  font-family: inherit;
+  opacity: initial;
+}
+/* overrides css/styles.css */
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  margin-bottom: 1.3rem;
+}
+.hero__sub {
+  font-weight: 300;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text-on-dark);
+  max-width: 640px;
+}
+
+/* ── Breadcrumb back to the listing ───────────────────────── */
+.hero__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  /* --text-on-dark clears 4.5:1 on the wine hero; --accent-light is only 3.4:1
+     and this one is a navigation control, not decoration. */
+  color: var(--text-on-dark);
+  margin-bottom: 1.4rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.hero__back:hover {
+  color: var(--cream);
+  border-bottom-color: var(--cream);
+}
+.hero__back::before {
+  content: '\2190';
+  font-size: 0.9rem;
+}
+
+/* ── At-a-glance chips ────────────────────────────────────── */
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.8rem;
+}
+.hero__fact {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 2px;
+  padding: 0.45rem 0.85rem;
+}
+
+/* ── Posting body ─────────────────────────────────────────── */
+.posting {
+  background: var(--cream);
+  padding: 4.5rem 0 5rem;
+}
+.posting__inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.posting__section + .posting__section {
+  margin-top: 3rem;
+}
+.posting__section .eyebrow {
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.posting__heading {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.25;
+  margin-bottom: 1.1rem;
+}
+.posting__section p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+}
+.posting__section p:last-child {
+  margin-bottom: 0;
+}
+.posting__lead {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--text-dark);
+  padding-left: 1.4rem;
+  border-left: 3px solid var(--accent);
+}
+.posting__list {
+  list-style: none;
+  margin: 0;
+}
+.posting__list li {
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  padding-left: 1.6rem;
+  margin-bottom: 0.85rem;
+}
+.posting__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.posting__list li:last-child {
+  margin-bottom: 0;
+}
+.posting a.inline-link {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.posting a.inline-link:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+
+/* ── How to apply ─────────────────────────────────────────── */
+.posting__apply {
+  background: var(--cream-warm);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+  padding: 2.2rem 2rem;
+  margin-top: 3rem;
+}
+.posting__apply-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.9rem;
+}
+.posting__apply .posting__heading {
+  margin-bottom: 0.9rem;
+}
+.posting__apply p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+}
+.posting__apply .btn {
+  margin-top: 0.4rem;
+}
+
+/* ── Attached PDF ─────────────────────────────────────────── */
+.posting__doc {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  background: var(--cream-warm);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--teal);
+  padding: 1.5rem 1.6rem;
+  margin-top: 3rem;
+}
+.posting__doc-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--wine);
+  color: var(--cream);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 3px;
+}
+.posting__doc-text {
+  flex: 1 1 260px;
+}
+.posting__doc-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.35;
+}
+.posting__doc-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+/* ── Equity statement ─────────────────────────────────────── */
+.posting__equity {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  text-align: center;
+  max-width: 680px;
+  margin: 3.5rem auto 0;
+}
+.posting__equity::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  margin: 0 auto 1.4rem;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 3.5rem 0 3rem;
+  }
+  .posting {
+    padding: 3rem 0 3.5rem;
+  }
+  .posting__section + .posting__section {
+    margin-top: 2.2rem;
+  }
+  .posting__apply,
+  .posting__doc {
+    margin-top: 2.2rem;
+    padding: 1.6rem 1.3rem;
+  }
+}
+@media (hover: none) {
+  /* overrides css/styles.css */
+  .btn:active {
+    transform: scale(0.97);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
