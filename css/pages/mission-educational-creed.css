@@ -1,0 +1,299 @@
+/* ============================================================
+   mission-educational-creed
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer, reveal). Only rules that differ from the shared
+   sheet live here.
+   ============================================================ */
+
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero {
+  position: relative;
+  background: linear-gradient(rgba(122,10,28,0.88), rgba(122,10,28,0.92)), url("https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d0E27qkBGt6DySSkGCkuUvTQz2vT_6svcqLx_EKi6SjrNC5woujC8f0sUpAaw9dTM-KkqxvyBN3vOGtBQGUWsvlRErUQxeCnzEqeO_ltD8AXSJvJMEY9z_Nj6Ua3pOrPuknPuNMDdyjJTQFCO9_dIkwg5bT8vwtkT3cZV1io3IzqBEKGdVry0ajw5Q8--w=w1600") right center / cover no-repeat;
+  background-color: var(--wine-deep);
+  color: var(--cream);
+  padding: 5rem 0 4.5rem;
+  overflow: hidden;
+  align-items: initial;
+  display: block;
+  min-height: initial;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.hero .container {
+  position: relative;
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+  font-family: inherit;
+  opacity: initial;
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  max-width: 22ch;
+  margin-bottom: 0;
+}
+.hero__sub {
+  margin-top: 1.4rem;
+  font-weight: 300;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--text-on-dark);
+  max-width: 56ch;
+}
+.mission {
+  background: var(--cream);
+  padding: 4.5rem 0 5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.mission__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.mission__header .eyebrow {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+.mission__lede {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 1.6;
+  max-width: 46ch;
+  margin: 0 auto 2.6rem;
+}
+.mission__points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  list-style: none;
+  counter-reset: mission-point;
+}
+.mission__point {
+  background: var(--cream-warm);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+  padding: 1.8rem 1.6rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  transition: all 0.4s var(--ease);
+  counter-increment: mission-point;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.mission__point::before {
+  content: counter(mission-point, lower-alpha) ")";
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+}
+.mission__point:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(155,13,36,0.07);
+  border-top-color: var(--wine-soft);
+}
+.mission__point strong {
+  font-family: var(--serif);
+  color: var(--wine);
+}
+.mission__point .keep-together {
+  white-space: nowrap;
+}
+.creed {
+  background: var(--cream-warm);
+  padding: 4.5rem 0 5rem;
+}
+.creed__header {
+  text-align: center;
+  margin-bottom: 2.2rem;
+}
+.creed__header .eyebrow {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+.creed__note {
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-body);
+  max-width: 62ch;
+  margin: 0 auto 1.6rem;
+  text-align: center;
+}
+.creed__note a {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.creed__note a:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+.creed__confess {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 1.65;
+  max-width: 50ch;
+  margin: 0 auto 3rem;
+}
+.creed__articles {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.creed-article {
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent);
+  padding: 1.7rem 1.9rem;
+  transition: all 0.4s var(--ease);
+}
+.creed-article:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(155,13,36,0.07);
+  border-left-color: var(--wine-soft);
+}
+.creed-article__term {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--wine);
+  margin-bottom: 0.5rem;
+}
+.creed-article__text {
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+.creed-article__list {
+  margin: 0.3rem 0 0 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.creed-article__list li {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  padding-left: 0.3rem;
+}
+.creed-article__list li::marker {
+  color: var(--accent-muted);
+  font-weight: 600;
+}
+.creed-summary {
+  position: relative;
+  background: var(--wine);
+  color: var(--cream);
+  margin-top: 3rem;
+  padding: 2.8rem 0;
+  overflow: hidden;
+}
+.creed-summary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.creed-summary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.creed-summary .container {
+  position: relative;
+}
+.creed-summary__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.creed-summary__text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+@media (max-width: 1024px) {
+  .hero {
+    padding: 3.5rem 0 3rem;
+  }
+  .mission, .creed {
+    padding: 3rem 0;
+  }
+  .mission__points {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .creed-article {
+    padding: 1.4rem 1.2rem;
+  }
+  .mission__point .keep-together {
+    white-space: normal;
+  }
+}
+@media (hover: none) {
+  .mission__point:hover, .creed-article:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .mission__point, .creed-article {
+    transition: none;
+  }
+}

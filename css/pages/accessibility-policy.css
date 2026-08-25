@@ -1,0 +1,171 @@
+/* ============================================================
+   accessibility-policy
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer, reveal). Only rules that differ from the shared
+   sheet live here.
+   ============================================================ */
+
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  padding: 4.5rem 0 3.5rem;
+  position: relative;
+  overflow: hidden;
+  align-items: initial;
+  display: block;
+  min-height: initial;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.hero .container {
+  position: relative;
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1.1rem;
+  font-family: inherit;
+  opacity: initial;
+}
+/* overrides css/styles.css */
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero__subtitle {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-on-dark);
+  max-width: 42rem;
+  margin-bottom: 0;
+}
+.policy {
+  background: var(--cream);
+  padding: 4rem 0 5rem;
+}
+.policy__doc {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+.policy__doc h2 {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.25;
+  margin: 2.8rem 0 1rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid var(--border-light);
+}
+.policy__doc section:first-child h2 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.policy__doc h3 {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: 0.02em;
+  margin: 1.6rem 0 0.5rem;
+}
+.policy__doc p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.policy__doc ul, .policy__doc ol {
+  margin: 0 0 1.2rem;
+  padding-left: 1.4rem;
+}
+.policy__doc li {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+.policy__doc ul li::marker {
+  color: var(--accent);
+}
+.policy__doc ol li::marker {
+  color: var(--accent-muted);
+  font-weight: 600;
+}
+.policy__doc a {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.policy__doc a:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+.policy__doc strong {
+  color: var(--text-dark);
+}
+.policy__note {
+  margin-top: 2.5rem;
+  background: var(--cream-warm);
+  border-left: 3px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  font-size: 0.9rem;
+}
+.policy__note p {
+  margin-bottom: 0;
+}
+.policy__doc section {
+  scroll-margin-top: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .hero {
+    padding: 3rem 0 2.5rem;
+  }
+  .policy {
+    padding: 2.5rem 0 3rem;
+  }
+}
+@media (hover: none) {
+  .policy__doc a:hover {
+    color: var(--accent-muted);
+    border-color: rgba(168,90,50,0.25);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}

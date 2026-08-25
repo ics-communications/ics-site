@@ -1,0 +1,391 @@
+/* ============================================================
+   about
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer, reveal). Only rules that differ from the shared
+   sheet live here.
+   ============================================================ */
+
+.section-head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-head .eyebrow {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+.text-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.3s ease, gap 0.3s ease;
+  min-height: 44px;
+}
+.text-link::after {
+  content: '→';
+  display: inline-block;
+}
+.text-link:hover {
+  color: var(--wine);
+  gap: 0.55rem;
+}
+.inline-link {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.inline-link:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  padding: 5.5rem 0 4.5rem;
+  position: relative;
+  overflow: hidden;
+  align-items: initial;
+  display: block;
+  min-height: initial;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.08) 0%, transparent 50%), radial-gradient(ellipse at 85% 10%, rgba(190,11,40,0.15) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+/* overrides css/styles.css */
+.hero__inner {
+  position: relative;
+  max-width: 780px;
+}
+.hero .eyebrow {
+  color: var(--accent-light);
+  display: block;
+  margin-bottom: 1rem;
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  margin-bottom: 0;
+}
+.hero__sub {
+  margin-top: 1.2rem;
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--text-on-dark);
+  max-width: 560px;
+}
+.reach {
+  padding: 4.5rem 0 5rem;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border-light);
+}
+.reach__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.reach__logo {
+  width: min(340px, 80%);
+  margin-bottom: 1.6rem;
+}
+.reach__address {
+  font-style: normal;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-body);
+  margin-bottom: 1.4rem;
+}
+.reach__address strong {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--wine);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.reach__phones {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  margin-bottom: 1.8rem;
+}
+.reach__phones span {
+  display: block;
+}
+.reach__phones .label {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.reach__map-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.contact-list__title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--wine);
+  margin-bottom: 1.4rem;
+}
+.contact-list {
+  list-style: none;
+  border-top: 1px solid var(--border-light);
+  margin-bottom: 2.4rem;
+}
+.contact-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.3rem 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.contact-list .contact-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+}
+.contact-list a {
+  font-size: 0.88rem;
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.3s ease, border-color 0.3s ease;
+  overflow-wrap: anywhere;
+}
+.contact-list a:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+.other-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-start;
+}
+.governance {
+  padding: 4.5rem 0 5rem;
+  background: var(--cream-warm);
+  border-bottom: 1px solid var(--border-light);
+}
+.gov-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.gov-grid + .gov-grid {
+  margin-top: 2rem;
+}
+.gov-grid--single {
+  grid-template-columns: 1fr;
+}
+.gov-card__feature {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.gov-card__portrait {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 12%;
+  border: 1px solid var(--border-light);
+}
+.gov-card {
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+  padding: 2.2rem 1.8rem 1.8rem;
+  transition: all 0.4s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.gov-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(155,13,36,0.07);
+  border-top-color: var(--wine-soft);
+}
+.gov-card--teal {
+  border-top-color: var(--teal);
+}
+.gov-card--teal:hover {
+  border-top-color: var(--teal-light);
+}
+.gov-card .eyebrow {
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.gov-card__title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.25;
+  margin-bottom: 1.1rem;
+}
+.gov-card__media {
+  margin: 0 0 1.2rem;
+  overflow: hidden;
+}
+.gov-card__media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.gov-card:hover .gov-card__media img {
+  transform: scale(1.03);
+}
+.gov-card__body {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  flex-grow: 1;
+  margin-bottom: 1.2rem;
+}
+.gov-card__body p + p {
+  margin-top: 0.8rem;
+}
+.gov-card__body em {
+  font-style: italic;
+}
+.gov-card__contact {
+  list-style: none;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  margin-top: 0.9rem;
+}
+.gov-card__contact .label {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.gov-card__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  margin-top: auto;
+}
+.learn-more {
+  background: var(--wine-deep);
+  color: var(--cream);
+  padding: 4rem 0 4.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.learn-more::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.learn-more::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.learn-more .section-head {
+  margin-bottom: 2.4rem;
+}
+.learn-more .eyebrow {
+  color: var(--accent-light);
+}
+.learn-more .section-title {
+  color: var(--cream);
+}
+.learn-more__grid {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.learn-more__grid .btn {
+  text-align: center;
+}
+@media (max-width: 1024px) {
+  .hero {
+    padding: 4rem 0 3.2rem;
+  }
+  .reach {
+    padding: 3rem 0;
+  }
+  .reach__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .governance {
+    padding: 3rem 0;
+  }
+  .gov-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .gov-grid + .gov-grid {
+    margin-top: 1.5rem;
+  }
+  .learn-more {
+    padding: 3rem 0;
+  }
+  .learn-more__grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .learn-more__grid .btn {
+    justify-content: center;
+  }
+}
+@media (max-width: 620px) {
+  .gov-card__feature {
+    grid-template-columns: 1fr;
+    gap: 1.3rem;
+  }
+  .gov-card__portrait {
+    width: min(210px, 65%);
+  }
+}
+@media (hover: none) {
+  .gov-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  /* overrides css/styles.css */
+  .btn:active {
+    transform: scale(0.97);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gov-card, .gov-card__media img, .btn {
+    transition: none;
+  }
+}

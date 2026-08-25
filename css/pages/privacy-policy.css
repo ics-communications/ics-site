@@ -1,0 +1,129 @@
+/* ============================================================
+   privacy-policy
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer, reveal). Only rules that differ from the shared
+   sheet live here.
+   ============================================================ */
+
+.page-hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  padding: 4rem 0 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.page-hero .container {
+  position: relative;
+}
+.page-hero__eyebrow {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+}
+.page-hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+}
+.page-hero__sub {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--text-on-dark);
+  margin-top: 1.1rem;
+  max-width: 44rem;
+  line-height: 1.75;
+}
+.policy {
+  background: var(--cream);
+  padding: 4.5rem 0 5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.policy__doc {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+.policy__intro {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+}
+.policy__heading {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.25;
+  margin: 2.8rem 0 1rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--border-light);
+}
+.policy__doc p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+}
+.policy__doc p:last-child {
+  margin-bottom: 0;
+}
+.policy__doc a {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.policy__doc a:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+.policy-contact {
+  background: var(--cream-warm);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent);
+  padding: 1.6rem 1.8rem;
+  margin-top: 3rem;
+}
+.policy-contact__eyebrow {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  margin-bottom: 0.6rem;
+}
+.policy-contact p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+@media (max-width: 1024px) {
+  .page-hero {
+    padding: 3rem 0 2.5rem;
+  }
+  .policy {
+    padding: 3rem 0;
+  }
+}

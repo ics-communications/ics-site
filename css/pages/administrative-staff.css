@@ -1,0 +1,240 @@
+/* ============================================================
+   administrative-staff
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer, reveal). Only rules that differ from the shared
+   sheet live here.
+   ============================================================ */
+
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  padding: 4.5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+  align-items: initial;
+  display: block;
+  min-height: initial;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.12) 0%, transparent 50%), radial-gradient(ellipse at 85% 10%, rgba(190,11,40,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.hero .container {
+  position: relative;
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+  font-family: inherit;
+  opacity: initial;
+}
+/* overrides css/styles.css */
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+.hero__sub {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-on-dark);
+  max-width: 620px;
+}
+.contact-strip {
+  background: var(--cream-warm);
+  border-bottom: 1px solid var(--border-light);
+  padding: 2.2rem 0;
+}
+.contact-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.contact-strip__item h3 {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  margin-bottom: 0.5rem;
+  font-family: var(--sans);
+}
+.contact-strip__item p, .contact-strip__item address {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  font-style: normal;
+  color: var(--text-body);
+}
+.contact-strip__item a {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.contact-strip__item a:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+.directory {
+  padding: 4.5rem 0 5rem;
+  background: var(--cream);
+}
+.directory__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.directory__header .eyebrow {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+.directory__intro {
+  max-width: 640px;
+  margin: 1.1rem auto 0;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-body);
+}
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.staff-card {
+  background: var(--cream-warm);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+  padding: 2.2rem 1.8rem 1.8rem;
+  transition: all 0.4s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.staff-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(155,13,36,0.07);
+  border-top-color: var(--wine-soft);
+}
+.staff-card__name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.3;
+  margin-bottom: 0.45rem;
+}
+.staff-card__role {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal-muted);
+  line-height: 1.6;
+  margin-bottom: 1.1rem;
+}
+.staff-card__contacts {
+  list-style: none;
+  margin-top: auto;
+  border-top: 1px solid var(--border-light);
+  padding-top: 0.9rem;
+}
+.staff-card__contacts li {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 0.35rem;
+  overflow-wrap: anywhere;
+}
+.staff-card__contacts li:last-child {
+  margin-bottom: 0;
+}
+.staff-card__contacts a {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.3s ease, border-color 0.3s ease;
+  display: inline-block;
+  padding: 0.1rem 0;
+}
+.staff-card__contacts a:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+.staff-card__ext {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.directory__back {
+  margin-top: 3rem;
+  text-align: center;
+}
+.directory__back a {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.3s ease, gap 0.3s ease;
+  min-height: 44px;
+}
+.directory__back a::before {
+  content: '←';
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+.directory__back a:hover {
+  color: var(--wine);
+  gap: 0.55rem;
+}
+@media (max-width: 1024px) {
+  .hero {
+    padding: 3rem 0 2.5rem;
+  }
+  .directory {
+    padding: 3rem 0;
+  }
+  .staff-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contact-strip__grid {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+}
+@media (max-width: 768px) {
+  .staff-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (hover: none) {
+  .staff-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
