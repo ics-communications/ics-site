@@ -25,6 +25,7 @@ css/
 js/
   footer.js             the site footer, injected where the tag sits
   reveal.js             scroll-reveal for elements with class="reveal"
+  extlinks.js           sends off-site links to a new tab (see Google Sites embed)
 SVG-Logos/              logo source files
 ```
 
@@ -41,11 +42,15 @@ At the end of `<body>`, where the footer should appear:
 
 ```html
 <script src="../js/footer.js"></script>
+<script src="../js/extlinks.js"></script>
 <script src="../js/reveal.js" defer></script>
 ```
 
+`extlinks.js` must come *after* `footer.js` so the injected footer links are
+covered.
+
 Drop `reveal.js` if the page has no `.reveal` elements, and drop the `../` from
-all four paths for a page at the repo root. If the page reveals on scroll, also
+all the paths for a page at the repo root. If the page reveals on scroll, also
 keep the no-JS fallback in `<head>`:
 
 ```html
@@ -65,3 +70,26 @@ keep the no-JS fallback in `<head>`:
   shared rule would otherwise impose. Don't delete them without checking.
 - **Footer content** lives in `js/footer.js` and nowhere else. Changing a link
   there changes it on every page.
+
+## The Google Sites embed
+
+These pages are published to GitHub Pages and pulled into Google Sites as
+full-page URL embeds (`icscanada.edu/about` frames `/ics-site/about/`). Two
+constraints follow, and both are easy to trip over:
+
+- **Every Google Sites host refuses to be framed.** `icscanada.edu`, `fics.`,
+  `faculty.` and `perspective.` all answer with `X-Frame-Options: DENY`. A plain
+  link to one of them tries to load inside the embed, is refused, and leaves the
+  visitor staring at a blank frame.
+- **The embed's sandbox has no `allow-top-navigation`.** `target="_top"` and
+  `target="_parent"` are therefore ignored outright — the click does nothing.
+  `allow-popups` *is* granted, so `target="_blank"` works.
+
+`js/extlinks.js` resolves this: every link to another origin gets
+`target="_blank" rel="noopener"`. Links within this site keep their default
+target and navigate inside the embed, which is what we want. `mailto:` and
+`tel:` are left alone — `allow-popups` covers them, and forcing `_blank` would
+leave stray empty tabs behind.
+
+So: **don't hand-write `target="_top"` anywhere**, and don't "fix" an off-site
+link by deleting its `target` — that brings the blank frame back.
