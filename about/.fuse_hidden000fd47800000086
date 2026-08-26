@@ -348,5 +348,5 @@
 <script src="../js/footer.js"></script>
 
 <script src="../js/reveal.js" defer></script>
-</body>
+<style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style></body>
 </html>
