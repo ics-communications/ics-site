@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<title>Academic Registrar — 4:5 social tile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* 1080x1350 = 4:5, the Instagram/Facebook portrait feed size.
+     Render with: node .render/render.mjs  (targets .canvas at 2x) */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --wine:        #9B0D24;
+    --wine-deep:   #7A0A1C;
+    --wine-mid:    #BE0B28;
+    --accent:      #A85A32;
+    --accent-light:#C87A52;
+    --cream:       #FDFBF7;
+    --cream-warm:  #F9F5ED;
+    --text-dark:   #2E1318;
+    --text-body:   #3A3330;
+    --text-muted:  #857E78;
+    --text-on-dark:#E8C2C2;
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans:  'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    background: #6b6b6b;            /* preview gutter only; not captured */
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    font-family: var(--sans);
+  }
+
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    flex-shrink: 0;                 /* the preview flexbox must never squeeze the canvas */
+    overflow: hidden;
+    background: var(--wine-deep);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Brand light: the same radial washes the site hero uses. */
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 12% 88%, rgba(168,90,50,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 88% 6%,  rgba(190,11,40,0.35) 0%, transparent 58%);
+    pointer-events: none;
+  }
+
+  /* Oversized dove mark bleeding off the right edge, as texture. */
+  /* Mark-only lockup (no wordmark) so the ghost reads as texture, not as
+     a second, half-legible logo. */
+  .watermark {
+    position: absolute;
+    top: 300px;
+    right: -215px;
+    width: 900px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .rule-top {
+    height: 10px;
+    flex-shrink: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light) 38%, rgba(200,122,82,0) 82%);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Upper field ─────────────────────────────────────── */
+  .top {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    padding: 72px 84px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo { width: 152px; display: block; }
+
+  .eyebrow {
+    margin-top: 62px;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+  }
+
+  .title {
+    font-family: var(--serif);
+    font-size: 104px;
+    font-weight: 700;
+    line-height: 1.04;
+    color: var(--cream);
+    margin-top: 26px;
+    letter-spacing: -0.01em;
+  }
+
+  .title em {
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-light);
+    font-size: 96px;
+  }
+
+  .lede {
+    margin-top: 30px;
+    max-width: 670px;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-on-dark);
+  }
+
+  .facts {
+    margin-top: auto;               /* anchor the chips to the foot of the wine field */
+    padding-top: 52px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .fact {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.22);
+    padding: 14px 22px;
+  }
+
+  /* ── Lower panel ─────────────────────────────────────── */
+  .panel {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    background: var(--cream);
+    border-top: 8px solid var(--accent);
+    padding: 54px 84px 58px;
+  }
+
+  .panel__label {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .panel__line {
+    margin-top: 18px;
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--wine);
+  }
+
+  .panel__meta {
+    margin-top: 16px;
+    font-size: 26px;
+    line-height: 1.55;
+    color: var(--text-body);
+  }
+
+  .panel__meta strong {
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  .panel__foot {
+    margin-top: 30px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(155,13,36,0.14);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .panel__url {
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--wine);
+  }
+
+  .panel__note {
+    font-size: 22px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+  <img class="watermark" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIgImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMCIgd2lkdGg9IjE0NDUuNzI4ODgxODM1OTM3NSIgaGVpZ2h0PSI4OTAuMzM5NjYwNjQ0NTMxMiIgdmlld0JveD0iMCAwIDE0NDUuNzI4ODU5IDg5MC4zMzk2NTgiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgo8bWV0YWRhdGE+CkNyZWF0ZWQgYnkgcG90cmFjZSAxLjE2LCB3cml0dGVuIGJ5IFBldGVyIFNlbGluZ2VyIDIwMDEtMjAxOQo8L21ldGFkYXRhPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjkuMDAwMDAwLDk0Ni44ODI2MjIpIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSI+CjxwYXRoIGQ9Ik03MTU1IDk0NjMgYy0xMzMgLTggLTMxMyAtMjYgLTQzMCAtNDMgLTEzMTYgLTE5MyAtMjQ3NyAtOTY4IC0zMTcxIC0yMTE2IC01MjIgLTg2NCAtNzMyIC0xODg4IC01OTMgLTI4OTkgMTA5IC03OTggNDMyIC0xNTQ0IDk0NSAtMjE4NCAxMjQgLTE1NCAzOTIgLTQzMyA1MzkgLTU2MCA3MTIgLTYxNCAxNTIzIC05NjkgMjQ3MCAtMTA3OCAxODYgLTIxIDY5MSAtMjQgODY1IC01IDU2NSA2MyAxMDU0IDIwNyAxNTM1IDQ1MiA1MDkgMjYwIDk1NyA2MTAgMTMzMSAxMDQxIGwzMSAzNiA5NCAtMjQgYzMyNSAtODIgNjcwIC0xMjkgMTEyNCAtMTU0IDI1OSAtMTQgNjMwIC03IDc5NSAxNiA3OTAgMTA2IDE0MTcgNDYwIDE3NzMgMTAwMCAyODUgNDM0IDM2MiA5OTkgMjAyIDE0ODIgLTY2IDE5OSAtMTY0IDM1OSAtMzE0IDUxNiAtMjYwIDI3MSAtNTA5IDQxNyAtMTIxMSA3MTIgLTU1NyAyMzQgLTc3NyAzNTQgLTkzOCA1MTMgLTE3NSAxNzMgLTIzOSAzMzUgLTIyOSA1ODIgMTAgMjI2IDY2IDM3MCAxOTMgNDk3IDE1NyAxNTYgMzU4IDIxMiA3MjkgMjAwIDIwNCAtNyAzNTEgLTI1IDQ1NSAtNTcgbDY1IC0xOSAyNiAtMTA4IGMxNSAtNTkgNDggLTE2NiA3NCAtMjM4IDQ3IC0xMzEgMTg2IC00MzAgMjI1IC00ODUgbDIyIC0zMCAyOTYgMiAyOTcgMyAzIDc5NiAyIDc5NyAtMTEyIDIxIGMtMTU5IDMwIC00MjQgNjcgLTYyOCA4OCAtMjU2IDI1IC05MDUgMjYgLTEwNzUgMCAtNTg5IC04OSAtMTAzMCAtMjg1IC0xMzcyIC02MTAgLTI1MiAtMjM5IC00MjEgLTU0MiAtNDkzIC04ODIgLTQyIC0xOTkgLTM4IC01MTcgMTEgLTcyMyAxMzAgLTU1NyA1MDAgLTkxMSAxMzE0IC0xMjU0IDk5IC00MiAyNjcgLTExMyAzNzQgLTE1OCA1NTAgLTIzMSA3OTkgLTQwNSA5MjkgLTY0OSA2OCAtMTI3IDg3IC0yMTEgODYgLTM4NiAtMSAtMTc2IC0xOSAtMjYwIC04NCAtMzg0IC0xMTggLTIyNiAtMzQzIC0zNjIgLTY4MiAtNDEyIC05NiAtMTQgLTQzNSAtMTMgLTU3MyAxIC03MTMgNzQgLTExMTEgMjc0IC0xMzA4IDY1OCAtNjggMTMxIC0xMDcgMjY3IC0xNjUgNTY3IGwtMTggOTAgLTkxOCAzIGMtNjIxIDEgLTkyMyAtMSAtOTM3IC04IC0xMCAtNiAtMTkgLTE5IC0xOSAtMjggMCAtMTAgOTggLTExNyAyMTggLTIzOCAzMDIgLTMwNCA0NzMgLTUyMyA2MDUgLTc3NCAxMjAgLTIyNiAxNjYgLTM4MyAxNzQgLTU4NiA2IC0xNjEgLTkgLTI2MiAtNTggLTM4MCAtMjYgLTYzIC0xMjcgLTIzMCAtMTM0IC0yMjIgLTEgMiAtNTggNzcgLTEyNiAxNjggLTI1NiAzNDIgLTQ1NCA0OTIgLTcxOSA1NDYgLTEwOSAyMiAtMjk5IDE1IC00MTUgLTE1IC0xMDcgLTI5IC0yNzggLTEwNCAtNDcwIC0yMDggLTYwMiAtMzI2IC03ODQgLTQwOSAtMTAyOCAtNDY4IC0zMzcgLTgyIC01NzcgLTQyIC04NTYgMTQzIC03NiA1MCAtMjgxIDIzNCAtMjgxIDI1MiAwIDQgMjI0IDEwNSA0OTcgMjI1IDI3NCAxMjAgNTEwIDIyNyA1MjYgMjM5IDM2IDI2IDYwIDcxIDUyIDk2IC0zIDEwIC0xOSAyMyAtMzYgMjkgLTI1IDkgLTkyIC01IC00NDkgLTk0IC01OTggLTE0OSAtNjQ4IC0xNTggLTc4NCAtMTUzIC0xMjcgNiAtMjI5IDM0IC0zNjEgMTAwIC0xMzYgNjggLTMzMSAyMDMgLTQ0OSAzMTAgbC00OSA0NCA5OCAxMyBjMTM5IDE4IDM0NCA3MCA1NjggMTQ1IDIzOSA3OSA1MDQgMTgzIDUyOCAyMDcgMjAgMjAgMjUgNjQgMTEgODcgLTUgNyAtMjMgMTcgLTQxIDIyIC0yNyA4IC01NSAzIC0xNTAgLTI2IC0yODUgLTg3IC01MzYgLTEzMyAtNzY2IC0xNDEgLTE4MSAtNiAtMjQ0IDQgLTM1MiA1OSAtMTY1IDgyIC0zMTMgMjg3IC0zNzIgNTEyIC0zMSAxMTkgLTM0IDExNCA1MiAxMDMgMTAxIC0xMyA0NDUgLTEgNjc3IDIzIDQ2MSA0OCA1MzAgNjUgNTMwIDEzNiAwIDIzIC02IDM3IC0xOSA0NCAtMTMgNiAtMTI1IDEwIC0zMDMgOSAtNDYxIC0xIC01ODkgMzQgLTcyMSAxOTYgLTEyNCAxNTMgLTIzNyA0ODIgLTIzNyA2OTIgbDAgNTEgMzAgLTE1IGMxNyAtOCA2NiAtMjEgMTA5IC0yOCAxNzEgLTMwIDM4OCAtMzggOTQ4IC0zMyA0OTEgNSA1NTUgNyA1NzggMjIgMzIgMjEgMzIgMjkgLTcgNzEgLTM4IDQwIC0xMDY5IDY1NiAtMTE2OSA2OTggLTg1IDM2IC0xMzMgNzcgLTE2NiAxNDEgLTQ1IDg2IC0zOSAxMjcgMzkgMjg2IDEzOCAyNzkgMjQwIDQ0MiA0MjcgNjc1IDMyOCA0MTEgNzU1IDcyOSAxMjI4IDkxMyAxMTkgNDcgMzE1IDEwOCA0MDMgMTI3IGwzNCA3IC0xNyAtMjMgYy00MiAtNTcgLTkwIC0xNzMgLTEwOSAtMjY1IC0xOCAtODEgLTIxIC0xMzQgLTIyIC0yOTQgMCAtMTA3IDYgLTI0NyAxMyAtMzEwIDM1IC0zMTMgMTI0IC03MzkgMjM3IC0xMTI1IDE4IC02MiA0MiAtNzMgNjMgLTI4IDE4IDM5IDk2IDQzOSAxMjUgNjQzIDYzIDQ0MCA4MSA3NDcgNzMgMTI3NSAtNiAzNzEgLTEzIDQ2MCAtNDggNjAzIC0xMSA0NiAtMTkgODUgLTE3IDg4IDkgOCAxNzUgLTE3IDI3MSAtNDIgMjcxIC02NyA1MDggLTIxNyA1ODEgLTM2NiA0NyAtOTYgNTkgLTE5NCA1OSAtNDYzIDAgLTIxOCAtOSAtMzcwIC00OCAtNzYyIC00IC00NCAtMiAtNTYgMTUgLTczIDM3IC0zNyA4MyAtMjAgMTEwIDQzIDIwIDQ1IDUxIDI1MSAxMDAgNjQ3IDQ0IDM2OCA2MiA1ODUgNjQgNzg3IDEgMTE3IDUgMTgzIDExIDE4MyAyOSAwIDE2NSAtNDUgMjI5IC03NSAxNTEgLTcyIDI3OSAtMTgyIDM0NiAtMjk4IDU4IC0xMDEgNzUgLTE3MCA3MyAtMjk3IC0yIC0yNDcgLTEyNiAtNzg5IC0yOTEgLTEyODAgLTMwIC04OSAtMzcgLTEyMiAtMzEgLTE0NSAxNiAtNTcgNjkgLTcyIDExMiAtMzIgNDcgNDIgMzM5IDg0OSA0NDEgMTIxNyAzMyAxMTcgNzEgMjkwIDc4IDM1MyAzIDI1IDEwIDE5IDg5IC04MCAzNzEgLTQ2NCA0MjMgLTY1MyAyOTIgLTEwNDMgLTU2IC0xNjUgLTE3NSAtNDg1IC0zMTcgLTg0OCAtNTkgLTE1MCAtMTEwIC0yODggLTExMyAtMzA2IC0xMCAtNjMgNTAgLTEzNiAxMTIgLTEzNiAyNSAwIDQ4IDEyIDkyIDQ5IDE4NiAxNTUgNjU3IDc2MSA4ODAgMTEzMSAyNTYgNDI1IDUzNSAxMDM1IDUzNSAxMTcyIDEgMTc0IC0yOTIgNDc4IC03NjcgNzk1IC0yNzkgMTg2IC00NTQgMjc3IC03MzAgMzgxIC02NzggMjU1IC0xMzAwIDM2OCAtMTg0MCAzMzV6Ii8+CjxwYXRoIGQ9Ik0yOTAgNzkyOCBsMCAtMjIzIDM4IC0yMSBjMjE2IC0xMjMgNDY4IC0yNDUgNjEyIC0yOTUgbDkwIC0zMiAwIC0yMjcxIDAgLTIyNzEgLTExOSAtMzkgYy0xMjUgLTQwIC0zNTAgLTE0NSAtNTIxIC0yNDEgbC0xMDAgLTU3IDAgLTIyOSAwIC0yMjkgMTM2MCAwIDEzNjAgMCAwIDIyOSAwIDIyOSAtMTAwIDU3IGMtMTcxIDk2IC0zOTYgMjAxIC01MjEgMjQxIGwtMTE5IDM5IDAgMjI3MiAwIDIyNzEgNTMgMTggYzEwOCAzNSAyNjkgMTA5IDQ3NCAyMTcgbDIxMyAxMTIgMCAyMjMgMCAyMjIgLTEzNjAgMCAtMTM2MCAwIDAgLTIyMnoiLz4KPHBhdGggZD0iTTkwOTUgMjgwNiBjLTQ2IC0yMSAtNjcgLTUxIC03MiAtMTAzIC02IC02NCAyNSAtMTEyIDg0IC0xMzEgMzcgLTEyIDQ2IC0xMSA4NiA2IDY3IDMwIDkyIDk2IDYzIDE2NSAtMjUgNjAgLTEwMiA5MCAtMTYxIDYzeiIvPgo8L2c+Cjwvc3ZnPg==" alt="">
+  <div class="rule-top"></div>
+
+  <div class="top">
+
+
+    <p class="eyebrow">We&rsquo;re Hiring</p>
+    <h1 class="title">Academic<br>Registrar</h1>
+    <p class="lede">Steward the student journey at ICS. </p>
+
+    <div class="facts">
+    
+    </div>
+  </div>
+
+  <div class="panel">
+    <p class="panel__label">Apply Now</p>
+    <p class="panel__line">Read the full posting and send your application to the Academic Dean.</p>
+   
+    <div class="panel__foot">
+      <span class="panel__url">icscanada.edu/about/employment-opportunities</span>
+      <span class="panel__note">Posted August 24, 2026</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
