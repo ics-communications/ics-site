@@ -224,9 +224,13 @@ depends on the reader's date, not on when the sync last ran.
 ## The course timetable
 
 `academics/course-timetable.html` is the site's second generated page, built the
-same way as the academic calendar and worth reading that section first. Courses
-live in a Google Sheet so the registrar can add, edit and pull them without
-touching this repository:
+same way as the academic calendar and worth reading that section first. It is
+the registrar's weekly timetable — slots down, weekdays across, one course to a
+square — and nothing more: **every course title links out to its entry on the
+[ICS Course Catalogue](https://courses.icscanada.edu/)**, which is where the
+description, the reading list, the prerequisites, the syllabus and how to
+register all live. Both pages are generated from the same sheet, so neither has
+to be kept in step with the other by hand:
 
 **[ICS Course Timetable — Website Source](https://docs.google.com/spreadsheets/d/1s4ynrR9GklFt0i5OvngqyonJIJ5QLgouP9eCkaojbjU/edit)**
 
@@ -234,8 +238,8 @@ touching this repository:
 Sheet edited  →  hourly GitHub Action  →  scripts/sync-timetable.mjs
                                              fetches the sheet as CSV,
                                              drops unpublished rows, groups
-                                             by term, renders the HTML,
-                                             splices it into the page
+                                             by term, lays each term out as
+                                             a weekly grid, splices it in
                                        →  commits, GitHub Pages redeploys
 ```
 
@@ -248,32 +252,59 @@ keeping Pages on "Deploy from a branch" applies here identically.
 
 ### Editing the sheet
 
-One row per course. The sync reads these columns and ignores the rest, so extra
-columns the registrar keeps for their own purposes (`enrolmentNotes`,
-`registrationEmail`, `lastDateToRegister`, `maxEnrolment`, `updatedAt`,
-`certificateTags`) are safe to keep and are not published.
+One row per course. The timetable reads **twelve** of the sheet's columns and
+ignores every other one, because everything else about a course is published by
+the catalogue instead. Editing `descriptionShort`, `requiredBooks`,
+`enrolmentNotes` or `syllabusUrl` changes the catalogue and leaves this page
+alone, which is the intended division of labour.
 
 | Column | Notes |
 | --- | --- |
-| `id` | Anything unique. Becomes the course's anchor (`#course-<id>`), so changing it breaks any link someone has saved. |
+| `id` | **This is the link.** Each title points at `courses.icscanada.edu/#course-<id>`, which is the anchor the catalogue gives that course's card. Change an id and the timetable link breaks — and so does any link anyone has saved. |
 | `published` | **`TRUE` or the row does not appear at all.** This is the switch for a cancelled or not-yet-announced course — it is dropped by the sync, not hidden by CSS, so it never reaches the page. |
-| `sectionOrder` | Optional. A number to force a course's position within its term. Blank everywhere means sheet order stands, which is usually what you want. |
-| `title` | The course title. |
+| `sectionOrder` | Optional. A number to force a course's position. Only affects the order of courses sharing one square, and the order of the list under the grid. |
+| `title` | Shown in the square, and linked. |
 | `code` | `260004`, or a pair as `120504 / 220504`. |
 | `term` | A season and a year: `fall26`, `winter27`, `summer26`. **This is what decides whether a term is current, upcoming or finished** — see below. |
-| `programs` | Space-separated, lowercase: `ma phd mws mael mwse cstc`. Drives both the tags on the course and the filter at the top of the page. An unrecognised slug still shows, spelled as typed. |
-| `credits` | Free text, e.g. `1 Credit`. |
-| `instructorName` / `instructorUrl` | The URL may be a faculty page or a `mailto:`. A bare `https://faculty.icscanada.edu` with no person on the end is printed as plain text rather than linked. |
-| `subtitle` | A line of facets under the title. Separate them with ` * ` — `MA-EL Instructional Concentration * CSTC Area 3` renders as `… · CSTC Area 3`. |
-| `descriptionShort` | The paragraph shown on the closed row. |
-| `descriptionMore` | The rest, behind the "Show the full description" disclosure. Optional. |
-| `tstCode` | Toronto School of Theology cross-listing code. Shown beside the course code. |
-| `format` | `Online Synchronous`, `Blended (…)`, `Online Intensive`… shown as typed. |
-| `meetingDay` / `meetingTime` | See "How meeting times are read" below. |
-| `syllabusUrl` | Linked as **Syllabus**. Off-site, so it opens in a new tab. |
-| `requiredBooks` | Free text, behind the disclosure. Blank lines start new paragraphs. |
-| `prerequisites` | Free text, behind the disclosure. |
-| `cstcArea` | `Area 3`, `Areas 2 and 4`… shown beside the course code. |
+| `programs` | Space-separated, lowercase: `ma phd mws mael mwse cstc`. Drives the filter at the top of the page. An unrecognised slug still gets a chip, spelled as typed. |
+| `instructorName` | Shown under the code. A leading `Dr.` is dropped — the squares are narrow and it is on every one of them. |
+| `format` | `Online Synchronous`, `Blended (…)`, `Online Intensive`. Only shown for courses that are *not* on the weekly grid, where it is the explanation for why they are not. |
+| `meetingDay` / `meetingTime` | **What puts a course in a square.** See below. |
+| `cstcArea` | `Area 3`, `Areas 2 and 4`… appended to the title as `(CSTC 3)` / `(CSTC 2, 4)`, the way the registrar's own timetable documents write it. |
+
+### What puts a course in a square
+
+A course gets a square only when **`meetingDay` is a bare weekday** — `Thursday`
+or `Thursdays`, and nothing else in the cell — **and `meetingTime` parses into a
+start and an end.** Everything else is listed under the grid, under the heading
+*No fixed weekly slot*, with its `format` and whatever `meetingDay` and
+`meetingTime` say.
+
+That rule is deliberately strict, and it is what the registrar's own timetable
+documents do: a blended course, an August intensive, or `Tuesdays July 14 - Aug
+10` has no weekly square, and inventing one would put a course on a grid it does
+not belong to.
+
+`meetingTime` is read loosely, because the sheet spells it a dozen ways. All of
+these work:
+
+| Typed | Read as |
+| --- | --- |
+| `3:00pm - 6:00pm ET` | 15:00 – 18:00 |
+| `10:00am - 1:00pm` | 10:00 – 13:00 |
+| `6:00-9:00pm ET` | 18:00 – 21:00 |
+| `7-9pm ET` | 19:00 – 21:00 |
+| `12-3pm ET` | 12:00 – 15:00 |
+
+Where only one end of the range carries `am`/`pm` the other inherits it, and a
+start that would land after its own end is read as the morning instead. Slot
+rows are then sorted by start time, and **only the weekdays a term actually uses
+get a column** — an empty Monday is dropped rather than printed five weeks
+running.
+
+An intensive that spells every session into `meetingDay` separated by semicolons
+gets those dates listed under the grid, joined with middots. Hyphens between
+numbers become en dashes on the page, so `6:00-9:00pm` is fine to type.
 
 ### How the term is worked out
 
@@ -297,37 +328,6 @@ A slug the sync cannot read (`autumn26`, `fall`, a typo) **fails the whole sync
 without writing**, rather than quietly filing the term in the wrong window where
 it would show as already finished.
 
-### How meeting times are read
-
-- `meetingDay` + `meetingTime` become one line: `Thursdays, 3:00pm – 6:00pm ET`.
-- Nothing in either column reads *No fixed meeting time*, which is the honest
-  answer for a blended or asynchronous course.
-- An intensive that spells every session into `meetingDay` **separated by
-  semicolons** gets `6 scheduled sessions` on the row and the dates themselves
-  in the disclosure. Two semicolon-separated parts are joined with a middot
-  instead.
-
-Hyphens between numbers become en dashes on the page, so `6:00-9:00pm` is fine
-to type.
-
-### Emphasis in the prose columns
-
-The registrar writes book and course titles between asterisks, and the sync
-turns a **matched pair on one line** into italics — `*Culture Making*` and
-`**Culture Making**` both work. Everything else is left as the character it is:
-a lone asterisk used as a footnote mark, the ` * ` separator in `subtitle`, and
-an opener with no closer (`**James Dunn, …` with the title running to the end of
-the line) all survive untouched.
-
-Two consequences worth knowing:
-
-- An asterisk typed tight against the *previous* word (`… to Practise* is a
-  course`) has no opener and stays on the page as a stray `*`. Two rows in the
-  sheet do this today.
-- The closing asterisk may sit tight against the next word or a bracket
-  (`*Time and Narrative*(Vols. I-III)`); only the opening one has to start a
-  word.
-
 ### Two things that will break the sync
 
 Identical to the calendar, and for the same reasons:
@@ -336,7 +336,7 @@ Identical to the calendar, and for the same reasons:
   signs in as nobody; without that the fetch gets a sign-in page (HTTP 200, not
   an error) and the workflow fails loudly rather than blanking the page.
 - **Don't rename or delete the header row.** The sync matches columns by name
-  and refuses to write if one is missing.
+  and refuses to write if one of the twelve is missing.
 
 It also refuses to write if fewer than six published courses come back, or if a
 term slug is unreadable — so a Google outage leaves the last good timetable in
@@ -345,19 +345,19 @@ place.
 ### Watch the plain-text columns
 
 Google Sheets rewrites anything that looks like a date the moment it is typed:
-`21-Jan 3` silently becomes `21-Jan 2003`. It has already done this to
-`lastDateToRegister`, where some cells read `2027-01-04 0:00:00` and others read
-`January 4`. That column is not published, so nothing is broken today — but set
-`code`, `meetingDay`, `meetingTime`, `credits` and `cstcArea` to
-*Format → Number → Plain text* and they cannot be caught by it. The sync prints
-a GitHub Actions `::warning::` naming any published cell that has been rewritten
-into a timestamp.
+`21-Jan 3` silently becomes `21-Jan 2003`. It has already done this elsewhere in
+this sheet — `lastDateToRegister` holds a mix of `2027-01-04 0:00:00` and
+`January 4` — so set `code`, `meetingDay`, `meetingTime` and `cstcArea` to
+*Format → Number → Plain text* before it reaches a column this page publishes.
+A rewritten `meetingTime` would quietly drop its course off the grid. The sync
+prints a GitHub Actions `::warning::` naming any published cell that has been
+turned into a timestamp.
 
 ### Keep a term ahead in the sheet
 
 Same rule as the calendar. Once the last term's window has passed there is no
-current or upcoming term left, and the page switches to a "courses for the
-coming term are not published yet" notice with the past terms opened below it.
+current or upcoming term left, and the page switches to a "timetable for the
+coming term is not published yet" notice with the past terms opened below it.
 The sync warns in the Actions log once the last term is **within 90 days** of
 ending, and again every run after it has ended.
 
@@ -365,8 +365,7 @@ ending, and again every run after it has ended.
 
 Everything between `<!-- TIMETABLE:START -->` and `<!-- TIMETABLE:END -->` is
 replaced on every sync — edit the sheet, not that markup. The hero and the
-"Registering and reading further" notes below the timetable are hand-written and
-safe to edit.
+"About this timetable" notes below the grids are hand-written and safe to edit.
 
 To preview a change without touching the live sheet:
 
@@ -378,23 +377,22 @@ TIMETABLE_CSV_FILE=./some-local.csv node scripts/sync-timetable.mjs
 
 `js/timetable.js` reorders what is already in the page — it never fetches. It
 pins the current term to the top, folds finished terms into the "past terms"
-disclosure, and does three things the calendar does not:
+disclosure, and adds the program filter:
 
-- **Reveals the program filter.** The filter ships with `hidden` in the markup
-  and is unhidden here, so with no JavaScript there is no dead control — every
-  course is visible, which is the answer the filter would have given. A link to
-  `…/course-timetable#mael` opens pre-filtered.
-- **States when a filter empties a term** rather than leaving a term heading
-  with nothing under it.
-- **Opens every course disclosure for a print** and closes again afterwards
-  (a `<details>` cannot be forced open from CSS). It deliberately leaves the
-  past-terms archive closed: that is the one disclosure a reader has chosen not
-  to see, and forcing it open turns a printout of the current term into thirty
-  pages.
+- **The filter ships with `hidden` in the markup** and is unhidden here, so with
+  no JavaScript there is no dead control — every course is visible, which is the
+  answer the filter would have given. A link to `…/course-timetable#mael` opens
+  pre-filtered.
+- Filtering a grid means more than hiding squares: **an emptied slot row and an
+  emptied day column come out too**, so the week never shrinks to a lattice of
+  blanks, and a term with nothing left says so instead of showing a bare
+  heading.
 
-### Why the layout is a list and not a weekly grid
+### Why it is a table, and why it scrolls on a phone
 
-The page it replaces was a Mon–Fri grid of time slots. Of the seminars in a
-given term, fewer than half have a day and a time at all — the rest are blended,
-intensive or asynchronous, and a grid has nowhere to put them. A ruled list
-holds all of them, reads the same at 390px and 1440px, and prints.
+A timetable is a table, and it is marked up as one — `<th scope="col">` for the
+day, `<th scope="row">` for the slot — so a screen reader can say "Wednesday,
+18:00 – 21:00" on any square. Five columns of course titles will not fit on a
+phone, so below about 46rem the grid scrolls sideways **inside its own box**
+while the page itself never scrolls horizontally, and the time column stays
+pinned to the left edge so no square is ever left without a time on it.

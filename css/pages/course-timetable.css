@@ -5,33 +5,47 @@
    footer). Only rules that differ from the shared sheet live
    here.
 
-   Sibling of academic-calendar.css and set in the same ledger:
-   ruled rows, one aligned column down the left, and a single
-   surface — the term actually running — lifted off the page
-   ground. Where the calendar's left column is a date, this
-   one is the catalogue label a registrar reads first and a
-   student quotes in an email: course code, credit, TST
-   cross-listing, certificate area. Everything a person reads
-   in prose sits in the wider column beside it.
+   The page is the registrar's weekly timetable, kept as a
+   timetable: time slots down the left, weekdays across, one
+   course to a square — title, code, instructor and nothing
+   else. Everything a reader might want beyond that (the
+   description, the reading list, the syllabus, how to
+   register) lives on the course catalogue, and every title
+   here is a link to its entry there.
 
-   Not a weekly grid: of the seminars in a given term, fewer
-   than half have a day and a time at all — the rest are
-   blended or asynchronous, and a grid has nowhere to put
-   them.
+   Sibling of academic-calendar.css: same hero, same sticky
+   term rail, same lift on the term actually running, same
+   past-terms archive. What the calendar sets as a ruled
+   ledger, this sets as a ruled grid.
    ============================================================ */
 
 :root {
   /* Dimmed-but-legible. Two duties, one tone: secondary text
-     (format, credit, counts) and the whole of a term that has
-     finished. The shared sheet's --text-muted lands at 3.9:1 on
-     --cream, under the 4.5 floor, and there is a lot of real
-     content on this page set at that size; this sits at 5.6. */
+     (codes, instructors, counts) and the whole of a term that
+     has finished. The shared sheet's --text-muted lands at
+     3.9:1 on --cream, under the 4.5 floor. This sits at 5.6. */
   --tt-quiet: #6B655F;
 
   /* Hairlines. Heavier than --border-light, which disappears
-     when it has to carry a whole ruled table. */
+     when it has to carry a whole ruled grid. */
   --tt-rule: rgba(155, 13, 36, 0.13);
   --tt-rule-soft: rgba(155, 13, 36, 0.07);
+}
+
+/* Reachable by a screen reader, invisible on screen. Used for
+   the table captions, which name each grid without repeating
+   the heading directly above it. */
+.tt-vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ---------------------------------------------------------- hero */
@@ -121,7 +135,7 @@
 
    Sits below the hero rather than in the sticky rail: it is a
    set-once choice, and two stacked sticky bars cost more of a phone
-   screen than the timetable can spare. */
+   screen than the grid can spare. */
 .tt-filter {
   background: var(--cream);
   border-bottom: 1px solid var(--tt-rule-soft);
@@ -191,7 +205,7 @@
 /* --------------------------------------------------- term rail */
 /* Sticky so the reader never loses the way back to another term while
    scrolling a long one. Solid rather than blurred: it has to stay legible
-   over ruled rows passing underneath. Sits outside .container and carries
+   over the grid passing underneath. Sits outside .container and carries
    its own, so the bar spans the viewport without a negative-margin bleed
    that would need re-tuning at every breakpoint. */
 .tt-jump {
@@ -246,6 +260,7 @@
 .tt-term__head {
   padding-bottom: 1.4rem;
   border-bottom: 2px solid var(--wine);
+  margin-bottom: 2rem;
 }
 .tt-term__code {
   font-size: 0.7rem;
@@ -300,302 +315,201 @@
   box-shadow: 0 14px 40px rgba(155, 13, 36, 0.06);
 }
 
-.tt-term__list {
-  list-style: none;
+/* ---------------------------------------------------------- grid */
+/* A timetable is a table, and it is marked up as one: the day is a
+   column header, the slot is a row header, so a screen reader can
+   say "Wednesday, 18:00 – 21:00" on any square. Below about 46rem
+   it scrolls sideways inside its own box rather than crushing five
+   columns of course titles into a phone — the page itself never
+   scrolls horizontally. */
+.tt-grid__scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  /* Shadows that appear only when there is something past the edge:
+     the two fixed layers sit under the two scrolling ones, so an
+     un-scrollable table shows neither. */
+  background:
+    linear-gradient(to right, var(--cream) 30%, rgba(253,251,247,0)) left center,
+    linear-gradient(to left, var(--cream) 30%, rgba(253,251,247,0)) right center,
+    radial-gradient(farthest-side at 0 50%, rgba(155,13,36,0.2), rgba(155,13,36,0)) left center,
+    radial-gradient(farthest-side at 100% 50%, rgba(155,13,36,0.2), rgba(155,13,36,0)) right center;
+  background-repeat: no-repeat;
+  background-size: 2.5rem 100%, 2.5rem 100%, 1rem 100%, 1rem 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+.tt-term--current .tt-grid__scroll {
+  background-image:
+    linear-gradient(to right, var(--cream-warm) 30%, rgba(249,245,237,0)),
+    linear-gradient(to left, var(--cream-warm) 30%, rgba(249,245,237,0)),
+    radial-gradient(farthest-side at 0 50%, rgba(155,13,36,0.2), rgba(155,13,36,0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(155,13,36,0.2), rgba(155,13,36,0));
 }
 
-/* -------------------------------------------------------- course */
-/* The rail carries the catalogue label; everything written in
-   sentences sits beside it. Ruled top and bottom like the calendar's
-   events, so a term reads as one continuous column rather than as a
-   stack of boxes. */
-.tt-course {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-  gap: 0 2rem;
-  padding: 1.7rem 0 1.5rem;
-  border-top: 1px solid var(--tt-rule-soft);
-}
-.tt-course:first-child {
-  border-top: 1px solid var(--tt-rule);
-}
-/* `display: grid` above would otherwise beat the user agent's rule for
-   [hidden], and the filter hides rows by setting that attribute. */
-.tt-course[hidden] {
-  display: none;
-}
-.tt-term__list > .tt-course:last-child {
-  border-bottom: 1px solid var(--tt-rule-soft);
+.tt-grid {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-.tt-course__rail {
-  padding-top: 0.15rem;
-}
-.tt-course__code {
-  font-family: var(--serif);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--wine);
-  font-variant-numeric: tabular-nums;
-  line-height: 1.4;
-  word-break: break-word;
-}
-/* A paired code ("120504 / 220504") breaks after the slash rather
-   than forcing the rail wider than the numbers need. */
-.tt-course__slash {
-  color: var(--tt-quiet);
-  font-weight: 400;
-}
-.tt-course__credits {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--tt-quiet);
-  margin-top: 0.35rem;
-}
-.tt-course__tst,
-.tt-course__area {
-  font-size: 0.7rem;
-  line-height: 1.5;
-  color: var(--accent-muted);
-  margin-top: 0.5rem;
-}
-.tt-course__tst abbr {
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  border: none;
-  cursor: help;
-}
-
-.tt-course__main {
-  min-width: 0;
-}
-
-/* Programs: letterforms in a row, not pills. A course belongs to up
-   to five programs at once, and five filled shapes above every title
-   would out-shout the title. */
-.tt-course__progs {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.3rem 0.7rem;
-  margin-bottom: 0.5rem;
-}
-/* Set as written — PhD is not PHD — so the tag row reads as the names of
-   degrees rather than as a row of acronyms shouting. */
-.tt-tag {
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--accent-deep);
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-  padding-bottom: 1px;
-  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
-}
-.tt-tag + .tt-tag {
-  border-left: 1px solid var(--tt-rule);
-  padding-left: 0.7rem;
-}
-/* Marked by js/timetable.js while a filter is on, so each row shows
-   why it survived the filter. */
-.tt-tag.is-match {
-  color: var(--wine);
-  border-bottom-color: var(--accent);
-}
-
-.tt-course__title {
-  font-family: var(--serif);
-  font-size: 1.12rem;
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--text-dark);
-  max-width: 46ch;
-}
-.tt-course__sub {
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--accent-muted);
-  margin-top: 0.35rem;
-}
-
-/* Who, how and when — the three answers a student wants before the
-   prose. Middots between, so it stays one line of reading. */
-.tt-course__meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.15rem 0.6rem;
-  margin-top: 0.6rem;
-  font-size: 0.82rem;
-  line-height: 1.6;
-}
-.tt-course__meta > * + *::before {
-  content: '·';
-  color: var(--tt-quiet);
-  margin-right: 0.6rem;
-}
-.tt-course__who {
-  font-weight: 600;
-  color: var(--wine);
-  border-bottom: 1px solid rgba(155, 13, 36, 0.22);
-  transition: border-color 0.25s ease;
-}
-a.tt-course__who:hover {
-  border-bottom-color: var(--wine);
-}
-.tt-course__format {
-  color: var(--tt-quiet);
-}
-.tt-course__when {
-  color: var(--text-body);
-  font-weight: 500;
-}
-.tt-course__when--open {
-  color: var(--tt-quiet);
-  font-weight: 400;
-  font-style: italic;
-}
-
-.tt-course__blurb {
-  font-size: 0.9rem;
-  line-height: 1.75;
-  color: var(--text-body);
-  max-width: 56ch;
-  margin-top: 0.85rem;
-}
-.tt-course__blurb + .tt-course__blurb {
-  margin-top: 0.6rem;
-}
-
-/* ---------------------------------------------------- disclosure */
-/* Same chevron and same show/hide pair as the calendar's archive
-   toggle, so the two pages open things the same way. The label names
-   what is inside rather than saying "more". */
-.tt-more {
-  margin-top: 0.9rem;
-}
-.tt-more__toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  list-style: none;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-muted);
-  padding: 0.55rem 0;
-  min-height: 44px;
-  transition: color 0.3s var(--ease);
-}
-.tt-more__toggle::-webkit-details-marker { display: none; }
-.tt-more__toggle:hover {
-  color: var(--wine);
-}
-.tt-more__toggle::after {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-2px) rotate(45deg);
-  transition: transform 0.3s var(--ease);
-}
-.tt-more[open] .tt-more__toggle::after {
-  transform: translateY(1px) rotate(-135deg);
-}
-.tt-more__hide,
-.tt-more[open] .tt-more__show { display: none; }
-.tt-more[open] .tt-more__hide { display: inline; }
-
-.tt-more__h {
+.tt-grid thead th {
   font-family: var(--sans);
-  font-size: 0.66rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent-muted);
-  margin: 1.4rem 0 0.6rem;
+  text-align: left;
+  vertical-align: bottom;
+  padding: 0 0 0.75rem 1.2rem;
+  border-bottom: 1px solid var(--wine);
 }
-.tt-more__p {
-  font-size: 0.88rem;
-  line-height: 1.8;
-  color: var(--text-body);
-  max-width: 56ch;
-  margin-bottom: 0.75rem;
-}
-.tt-more__p:last-child {
-  margin-bottom: 0;
-}
-.tt-more em {
-  font-style: italic;
+/* More specific than the thead rule above, so the corner can be quieter
+   than the day names without reaching for !important. */
+.tt-grid thead th.tt-grid__corner {
+  width: 9rem;
+  padding-left: 0;
+  color: var(--tt-quiet);
 }
 
-.tt-sessions {
-  list-style: none;
-  max-width: 56ch;
-}
-.tt-sessions li {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--text-body);
+/* The slot, set like the calendar's date column: serif, tabular,
+   standing in the margin — and pinned to the left edge, so scrolling
+   sideways on a phone never leaves a square without a time on it. */
+.tt-grid__time {
+  font-family: var(--serif);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--wine);
   font-variant-numeric: tabular-nums;
-  padding: 0.4rem 0 0.4rem 1.1rem;
-  border-top: 1px solid var(--tt-rule-soft);
-  position: relative;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+  padding: 1.25rem 1.2rem 1.4rem 0;
+  border-top: 1px solid var(--tt-rule);
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--cream);
 }
-.tt-sessions li:first-child {
+.tt-grid thead th.tt-grid__corner {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--cream);
+}
+.tt-term--current .tt-grid__time,
+.tt-term--current .tt-grid thead th.tt-grid__corner {
+  background: var(--cream-warm);
+}
+
+.tt-grid td {
+  vertical-align: top;
+  padding: 1.25rem 1.2rem 1.4rem;
+  border-top: 1px solid var(--tt-rule);
+  border-left: 1px solid var(--tt-rule-soft);
+}
+/* The header already draws the line above the first row. */
+.tt-grid tbody tr:first-child > * {
   border-top: none;
 }
-.tt-sessions li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.92rem;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
+.tt-grid tbody tr:last-child > * {
+  border-bottom: 1px solid var(--tt-rule);
 }
 
-/* -------------------------------------------------------- syllabus */
-.tt-course__actions {
-  margin-top: 0.9rem;
+/* ---------------------------------------------------------- cell */
+/* Title, code, instructor. Everything else about the course is one
+   click away, which is what the title is for. */
+.tt-cell + .tt-cell {
+  margin-top: 1.3rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--tt-rule-soft);
 }
-/* Both the toggle and the link carry a 44px touch target, so stacked
-   they would leave a hole between them. */
-.tt-more + .tt-course__actions {
-  margin-top: 0;
-}
-.tt-syllabus {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.72rem;
+
+.tt-cell__title {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 0.94rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--text-dark);
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.tt-cell__title:hover {
   color: var(--wine);
-  padding: 0.5rem 0;
-  min-height: 44px;
-  border-bottom: 1px solid var(--tt-rule);
-  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
-}
-.tt-syllabus__arrow {
-  transition: transform 0.3s var(--ease);
-}
-.tt-syllabus:hover {
-  color: var(--accent-deep);
   border-bottom-color: var(--accent);
 }
-.tt-syllabus:hover .tt-syllabus__arrow {
-  transform: translateX(3px);
+/* Keeps "(CSTC 2)" off a line of its own at the end of a long title. */
+.tt-cell__area {
+  white-space: nowrap;
+}
+.tt-cell__code {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent-muted);
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.45rem;
+}
+.tt-cell__who {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--tt-quiet);
+  margin-top: 0.15rem;
+}
+
+.tt-cell[hidden] {
+  display: none;
+}
+
+/* ------------------------------------------------- off the grid */
+/* Blended, intensive and asynchronous courses have no square. Rather
+   than inventing one, they are listed under the grid in the same
+   left-is-when, right-is-what shape, which is how the registrar's own
+   timetable documents handle them. */
+.tt-off {
+  margin-top: 2.8rem;
+}
+.tt-off__title {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--wine);
+}
+.tt-off__list {
+  list-style: none;
+}
+.tt-off__item {
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  gap: 0 2rem;
+  padding: 1.25rem 0 1.4rem;
+  border-top: 1px solid var(--tt-rule);
+}
+.tt-off__item:first-child {
+  border-top: none;
+}
+.tt-off__list > .tt-off__item:last-child {
+  border-bottom: 1px solid var(--tt-rule);
+}
+.tt-off__item[hidden] {
+  display: none;
+}
+.tt-off__format {
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--wine);
+}
+.tt-off__sched {
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--tt-quiet);
+  margin-top: 0.3rem;
 }
 
 /* ---------------------------------------------------- empty state */
@@ -687,14 +601,15 @@ a.tt-course__who:hover {
 }
 .tt-term--past .tt-term__name,
 .tt-term--past .tt-term__code,
-.tt-term--past .tt-course__code {
+.tt-term--past .tt-grid__time,
+.tt-term--past .tt-cell__title,
+.tt-term--past .tt-off__format {
   color: var(--tt-quiet);
 }
-.tt-term--past .tt-term__head {
+.tt-term--past .tt-term__head,
+.tt-term--past .tt-grid thead th,
+.tt-term--past .tt-off__title {
   border-bottom-color: var(--tt-rule);
-}
-.tt-term--past .tt-course__title {
-  color: var(--tt-quiet);
 }
 
 /* ---------------------------------------------------------- notes */
@@ -739,11 +654,11 @@ a.tt-course__who:hover {
 }
 
 /* ---------------------------------------------------------- motion */
-/* The page's one authored moment. Filtering is the only thing on this
-   page that happens because the reader did something, so it is the
-   only thing that moves: the surviving courses wipe back in from the
-   rail edge, a hair apart, so it reads as the list re-setting rather
-   than as rows blinking. */
+/* The page's one authored moment. Filtering is the only thing here that
+   happens because the reader did something, so it is the only thing that
+   moves: the courses that survive wipe back down out of their slot rule,
+   a hair apart, so it reads as the grid re-setting rather than as squares
+   blinking. */
 @keyframes tt-settle {
   from {
     opacity: 0;
@@ -754,7 +669,8 @@ a.tt-course__who:hover {
     clip-path: inset(0 0 0 0);
   }
 }
-.tt-course.is-settling {
+.tt-cell.is-settling,
+.tt-off__item.is-settling {
   animation: tt-settle 0.42s var(--ease) both;
   animation-delay: calc(var(--tt-i, 0) * 45ms);
 }
@@ -762,10 +678,9 @@ a.tt-course__who:hover {
 /* ------------------------------------------------------ focus ring */
 .tt-jump__list a:focus-visible,
 .tt-filter__chip:focus-visible,
-.tt-more__toggle:focus-visible,
+.tt-filter__clear:focus-visible,
 .tt-archive__toggle:focus-visible,
-.tt-syllabus:focus-visible,
-.tt-course__who:focus-visible,
+.tt-cell__title:focus-visible,
 .tt-notes a:focus-visible,
 .tt-empty a:focus-visible {
   outline: 2px solid var(--accent);
@@ -789,40 +704,33 @@ a.tt-course__who:hover {
   .tt-term--current {
     padding: 1.8rem 1.5rem 1.6rem;
   }
-  .tt-course {
-    grid-template-columns: 7.5rem 1fr;
+  .tt-off__item {
+    grid-template-columns: 13rem 1fr;
     gap: 0 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  /* The rail costs more than it gives at this width: the catalogue
-     label becomes a line above the title instead of a column beside
-     it, and the prose gets the full measure. */
-  .tt-course {
-    grid-template-columns: 1fr;
-    gap: 0;
-    padding: 1.5rem 0 1.3rem;
-  }
-  .tt-course__rail {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.2rem 0.8rem;
-    padding-top: 0;
-    margin-bottom: 0.6rem;
-  }
-  .tt-course__credits,
-  .tt-course__tst,
-  .tt-course__area {
-    margin-top: 0;
-  }
   .tt-term--current,
   .tt-empty {
     padding: 1.5rem 1rem 1.3rem;
   }
-  .tt-course__title {
-    font-size: 1.06rem;
+  .tt-grid__corner {
+    width: 7rem;
+  }
+  .tt-grid__time,
+  .tt-grid td {
+    padding-top: 1rem;
+    padding-bottom: 1.1rem;
+  }
+  /* The when-beside-the-what column costs more than it gives at this
+     width: the schedule becomes a line above its own course. */
+  .tt-off__item {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .tt-off__what {
+    margin-top: 0.55rem;
   }
   .tt-notes {
     margin-top: 3rem;
@@ -836,14 +744,8 @@ a.tt-course__who:hover {
   .tt-filter {
     padding: 1.2rem 0 1.1rem;
   }
-  .tt-course__meta {
-    /* Middots between three wrapped fragments read as noise once the
-       fragments are stacking anyway. */
-    flex-direction: column;
-    gap: 0.1rem;
-  }
-  .tt-course__meta > * + *::before {
-    content: none;
+  .tt-grid {
+    min-width: 40rem;
   }
 }
 
@@ -851,36 +753,29 @@ a.tt-course__who:hover {
   html {
     scroll-behavior: auto;
   }
-  .tt-course.is-settling {
+  .tt-cell.is-settling,
+  .tt-off__item.is-settling {
     animation: none;
-  }
-  .tt-syllabus:hover .tt-syllabus__arrow {
-    transform: none;
   }
 }
 
 /* --------------------------------------------------------- print */
-/* Students and the registrar print these. Everything opens, nothing
-   sticks, and a course does not break across two sheets. */
+/* Students and the registrar print these. Nothing sticks, nothing
+   scrolls sideways, and a slot does not break across two sheets. */
 @media print {
   .hero,
   .tt-jump,
   .tt-filter,
-  .site-footer,
-  .tt-syllabus__arrow {
+  .site-footer {
     display: none !important;
   }
   .timetable {
     padding: 0;
     background: #fff;
   }
-  /* js/timetable.js opens every course disclosure on beforeprint and
-     closes the ones it opened afterwards — a details element cannot be
-     forced open from CSS. It leaves the past-terms archive alone, so a
-     printout carries the terms the reader actually has open. An open
-     disclosure's toggle is a dead control on paper, so it prints not at
-     all. */
-  .tt-more[open] .tt-more__toggle,
+  /* js/timetable.js leaves the past-terms archive closed for a print,
+     so a printout is the terms the reader actually has open. An open
+     disclosure's toggle is a dead control on paper. */
   .tt-archive__box[open] .tt-archive__toggle {
     display: none !important;
   }
@@ -892,25 +787,37 @@ a.tt-course__who:hover {
     padding: 0;
     padding-top: 1rem;
   }
-  .tt-course,
+  .tt-grid__scroll {
+    overflow-x: visible;
+    background: none;
+  }
+  .tt-grid {
+    min-width: 0;
+  }
+  .tt-grid tbody tr,
+  .tt-off__item,
   .tt-term__head {
     break-inside: avoid;
     page-break-inside: avoid;
   }
-  .tt-course {
-    grid-template-columns: 8rem 1fr;
+  .tt-grid thead {
+    display: table-header-group;
   }
-  .tt-term--past .tt-course__title,
+  .tt-term--past .tt-cell__title,
   .tt-term--past .tt-term__name,
-  .tt-term--past .tt-course__code {
+  .tt-term--past .tt-grid__time {
     color: #000;
   }
-  /* A syllabus is a URL on paper or it is nothing. */
-  .tt-syllabus::after {
-    content: ' — ' attr(href);
-    font-weight: 400;
-    letter-spacing: 0;
-    text-transform: none;
-    word-break: break-all;
+  /* Printing each square's own catalogue URL was tried and dropped: a
+     hundred-character link under a three-line title swamped the grid, and
+     nobody is going to type a random anchor off paper anyway. One line per
+     term, naming the site, is the useful version. */
+  .tt-term__head::after {
+    content: 'Full descriptions, reading lists and syllabi: courses.icscanada.edu';
+    display: block;
+    margin-top: 0.8rem;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: #444;
   }
 }

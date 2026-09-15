@@ -87,7 +87,7 @@
   <div class="container">
     <p class="hero__eyebrow">Academics</p>
     <h1 class="hero__title">Course Timetable</h1>
-    <p class="hero__sub">Every seminar on offer, with its instructor, format, meeting times and syllabus. The term under way appears first; open a course for its full description, reading list and prerequisites.</p>
+    <p class="hero__sub">When each seminar meets, term by term, with the term under way first. Course titles link to the catalogue, where the description, syllabus and registration details live.</p>
   </div>
 </section>
 
@@ -100,6 +100,12 @@
 
      Only rows with `published` = TRUE are rendered at all: an unpublished
      or cancelled course is dropped by the sync and never reaches the page.
+
+     Each term is a weekly grid — slots down, weekdays across — carrying
+     the title, code and instructor and nothing else. Every title links to
+     that course's entry on courses.icscanada.edu, which holds the
+     description, the reading list, the syllabus and how to register. The
+     grid is deliberately not a second copy of the catalogue.
 
      Every published course ships in the HTML, oldest term first, so the
      page reads correctly with no JavaScript. js/timetable.js then pins the
@@ -144,780 +150,341 @@
     <header class="tt-term__head">
       <p class="tt-term__code">W26</p>
       <h2 class="tt-term__name">Winter Term 2026</h2>
-      <p class="tt-term__range">January 1 – April 30, 2026 · <span class="tt-term__count" data-count="7">7 courses</span></p>
+      <p class="tt-term__range">January 1 – April 30, 2026 · <span class="tt-term__count">7 courses</span></p>
     </header>
-    <ol class="tt-term__list">
-      <li class="tt-course" id="course-nietzsche-foucault-and-the-gen-a98b2" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">120406<span class="tt-course__slash"> / </span>220406</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICH5710</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">Nietzsche, Foucault, and the Genealogical Approach to the History of Philosophy</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/bsweetman">Dr. Bob Sweetman</a>
-            <span class="tt-course__format">Remote (Online Synchronous)</span>
-            <span class="tt-course__when">Thursdays, 10am – 1pm</span>
-          </p>
-          <p class="tt-course__blurb">This seminar examines that philosophical approach to the history of philosophy that travels under the name of “genealogy”. It does so in terms of selected texts of the tradition’s to major figures: its founder, Friederich Nietzsche and the presently ubiquitous Michel Foucault. It examines the role that genealogical study of the history of philosophy has in the philosophical construction of its practitioners and what they think is truly first and deepest in the history they so study.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show required reading</span>
-              <span class="tt-more__hide">Hide required reading</span>
-            </summary>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Friedrich Nietzsche, The Genealogy of Morals (any edition will do)</p>
-            <p class="tt-more__p">2. Paul Rabinow ed., The Foucault Reader (New York, Pantheon, 1984)</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vT3KuDvbQiZTh8D5k-qydNHASPElogMpiZ7Rzx_oUvmDIWpY189CY_Y2RuyjPhxWA/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-icsd-260005-w26-5e4c1" data-programs="mael">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">260005</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-          </ul>
-          <h3 class="tt-course__title">How to Coach A Strong Team: Leading People, Building Institutional Capacity, and Securing Accountability</h3>
-          <p class="tt-course__sub">MA-EL Administration Concentration</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/gstrauss">Dr. Gideon Strauss</a>
-            <span class="tt-course__format">Blended (Online Asynchronous/Synchronous)</span>
-            <span class="tt-course__when tt-course__when--open">No fixed meeting time</span>
-          </p>
-          <p class="tt-course__blurb"><em>How to Coach A Strong Team</em>is a course for current and aspiring school administrators who want to cultivate their people skills. The course will focus on the competencies involved in having crucial conversations and coaching colleagues for professional development purposes, while also providing opportunities for learning about the competencies relevant to talent acquisition and employment termination. The backbone of the course will be a series of meditations (in the Reformational philosophical tradition) on being human: imaging God in the world.<em>How to Coach A Strong Team</em> is a remote learning course consisting of six synchronous sessions including three school visits and a debriefing session with an expert practitioner, thirteen weeks of asynchronous online interaction, and the writing of a playbook by each student taking the course for credit. All of the synchronous sessions will be by means of online video, with the possible exception of one of the school visits. The exception may include an on-site, in-person option as part of a hybrid package, depending on circumstances. Team auditors will have access to five of the six synchronous sessions (including the school visits and the expert practitioner debriefing) and a team audit study guide for reading and talking through the course materials in their team contexts.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show required reading</span>
-              <span class="tt-more__hide">Hide required reading</span>
-            </summary>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">Kaye, B., &amp; Giulioni, J. W. (2019). Help Them Grow Or Watch Them Go: Career Conversations Organizations Need and Employees Want (2nd ed.). Berrett-Koehler Publishers.</p>
-            <p class="tt-more__p">Grenny, J., Patterson, K., McMillan, R., Switzler, A., &amp; Gregory, E. (2022). Crucial conversations (3rd ed.). McGraw Hill.</p>
-            <p class="tt-more__p">Levy, S., &amp; Cook, J. (2021). Beautiful Work notecatcher [Unpublished manuscript].</p>
-            <p class="tt-more__p">Stanier, M. B. (2016). The coaching habit: Say less, ask more &amp; change the way you lead forever. Box of Crayons Press.</p>
-            <p class="tt-more__p"><em>One further required book (Seerveld, C. (1988). On Being Human: Imaging God in a Modern World. Welch Publishing Co.) will be mailed from the ICS library due to limited availability</em></p>
-          </details>
-        </div>
-      </li>
-      <li class="tt-course" id="course-icsd-260006-w26-0f8b9" data-programs="mael cstc">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">260006</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__area">Area 2</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-            <li class="tt-tag" data-program="cstc">CSTC</li>
-          </ul>
-          <h3 class="tt-course__title">Transformative Teaching: The Practice of Christ-Centred Education</h3>
-          <p class="tt-course__sub">MA-EL Instructional Concentration</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/evanderboom">Dr. Edith van der Boom</a>
-            <span class="tt-course__format">Blended (Online Asynchronous/Synchronous)</span>
-            <span class="tt-course__when tt-course__when--open">No fixed meeting time</span>
-          </p>
-          <p class="tt-course__blurb"><em>Transformative Teaching</em> is a course for instructional leaders as they consider their roles as Christian educators called to be transformers of society and culture by seeking justice for those who are marginalized and disenfranchised. In this course we will consider constructivism (a dominant educational theory in the twenty-first century that informs student-centred pedagogies such as Project Based Learning) through the lens of Scripture and investigate the assumptions that it makes. We will explore our calling as Christian educators to transform culture in our schools, local community, and the world.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description and required reading</span>
-              <span class="tt-more__hide">Hide the full description and required reading</span>
-            </summary>
-            <p class="tt-more__p">This course seeks to help Christian educators find clarity in answers to the following questions:<br>- Context: Who am I called to be as a Christian educator in my particular place and time?<br>- Constructivism: How does constructivism inform my practice?<br>- Culture: What role does education play in creating culture?</p>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">- Palmer, P. J. (1993). To know as we are known: Education as a spiritual journey.</p>
-            <p class="tt-more__p">HarperOne.</p>
-            <p class="tt-more__p">Amazon CA, Barnes &amp; Noble.<br>- Smith, D. I. (2025). Everyday Christian Teaching: A Guide to Practicing Faith in the Classroom. Wm. B. Eerdmans Publishing Co.</p>
-            <p class="tt-more__p">Amazon CA, Barnes &amp; Noble.</p>
-          </details>
-        </div>
-      </li>
-      <li class="tt-course" id="course-pragmatism-race-and-religion-7adc5" data-programs="ma mws phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">120501<span class="tt-course__slash"> / </span>220501</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICT3771/ICT6771</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-            <li class="tt-tag" data-program="mws" title="Master of Worldview Studies">MWS</li>
-          </ul>
-          <h3 class="tt-course__title">Pragmatism, Race, and Religion</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/rkuipers">Dr. Ron Kuipers</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Thursdays, 2pm – 5pm ET</span>
-          </p>
-          <p class="tt-course__blurb">Pragmatism is a philosophical tradition born in the United States and now influential worldwide. At its core, it is a way of thinking about the human condition between past and future: we inherit the traditions that shape us, yet remain open to creative and hopeful new possibilities. This course examines how Pragmatism has interacted with—and been shaped by—the religious traditions that form part of its cultural context.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description and required reading</span>
-              <span class="tt-more__hide">Hide the full description and required reading</span>
-            </summary>
-            <p class="tt-more__p">Students will explore questions such as:<br>- How do the passions and moral commitments of Pragmatism connect with religious concerns?<br>- How does the pragmatic claim that ideas are measured by their practical consequences relate to religious belief, moral life, and community?<br>- How does Pragmatism’s suspicion of traditional “supernaturalist” theology influence how we think about God, religion, and human responsibility?<br>- What have pragmatists proposed as faithful and responsible ways for religious communities to live within a democratic society?</p>
-            <p class="tt-more__p">A central focus of the course will be the question of race. We will study how the Black experience in America has shaped the evolution of Pragmatist thought, especially through the tragic, absurdist, and hopeful tones of the Blues. The course will explore how Black Pragmatists both affirm and challenge the melioristic hope often associated with American Pragmatism.</p>
-            <p class="tt-more__p">By the end of the course, students will be able to:<br>- Analyze key texts from major Pragmatist thinkers—both White and Black—and explain their views on religion and democratic life;<br>- Explain how race has influenced the development of Pragmatism as a philosophical tradition;<br>- Evaluate the strengths and limitations of Pragmatism for understanding religious belief and practice;<br>- Reflect critically on the relationship between White and Black Christianity in America;<br>- Discuss how Pragmatism sheds light on issues such as colonialism, White supremacy, and identity in pluralistic democracies.</p>
-            <p class="tt-more__p">Ultimately, this course invites students to consider how Pragmatism can help us navigate divided societies, imagine more just futures, and attend to the stories that shape human communities.</p>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Dewey, John. 1934. A Common Faith. New Haven: Yale University Press (120 pages). Students are required to purchase a copy of this book for the course. Please note that online copies do exist for free, including this one. For students who wish to buy a print or eBook copy, Amazon CA sells the paperback for $30 CAD, or the Kindle edition for $13 CAD. Indigo also sells the paperback for $25.</p>
-            <p class="tt-more__p">2. Du Bois, W.E.B. 2017. The Souls of Black Folk, with The Talented Tenth” and “The Souls of White Folk.” New York: Penguin. (272 pages). Students must purchase a copy of this text. Please note it is widely available online, including on the Internet Archive and Project Gutenberg. Students will also readily find used paperback copies of this text at bookshops.</p>
-            <p class="tt-more__p">For students wishing to purchase copies, Indigo sells several different editions, including the 2008 paperback for $15 CAD. Amazon CA sells both Kindle and paperback; the paperback edition is $10 CAD. Students will also readily find used paperback copies of this text at bookshops.</p>
-            <p class="tt-more__p">3. James, William. 1956. The Will to Believe: Human Immortality and Other Essays in Popular Philosophy. New York: Dover. (70 pages). Students must purchase a copy of this text. Please note it is widely available online, including at the Internet Archive or Project Gutenberg. Amazon CA sells the print edition for $14 CAD. Indigo sells the print edition for $16 CAD. Both Amazon and Indigo sell eBook versions as well.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vT1toA7HjWjzetjjQRMSUrcqAiNFH9w3IiJ5Efe7pAa8EFwmIS0ZvPl26emSEAL-w/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-ids-the-post-truth-the-un-trut-5dbc8" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">2400AC</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">IDS: The Post-Truth, the Un/Truth, and Nothing but the Truth: Contemporary Anxieties and Present Possibilities</h3>
-          <p class="tt-course__meta">
-            <span class="tt-course__who">Dr. Neal DeRoo and Dr. Nik Ansell</span>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Tuesdays, 6pm – 9pm</span>
-          </p>
-          <p class="tt-course__blurb">From what was the Oxford Dictionary’s “international word of the year” in 2016 to a term that allegedly defines an era in which we now live, this course will seek to understand and evaluate the phenomenon that is “post-truth” and the anxieties—but also the possibilities—that it represents. We will take a close look at works in the Western philosophical tradition often thought to be responsible for the undermining of “truth” alongside key texts that some believe can help us think critically about truth once again—even as their critics worry that these same works “thin out” our view of truth thereby contributing to the problems we face!</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description and required reading</span>
-              <span class="tt-more__hide">Hide the full description and required reading</span>
-            </summary>
-            <p class="tt-more__p">Figures and approaches covered include: Parmenides, Plato, Kierkegaard, Nietzsche, Heidegger, Derrida, Baudrillard, feminist theory, the Gospel of John, Jeff Dudiak, Hendrik Hart, Michel Henry, and Lambert Zuidervaart.</p>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Walt Anderson, <em>The Truth about Truth: De-Confusing and Re-Constructing the Postmodern World</em></p>
-            <p class="tt-more__p">Amazon CA (paperback) | Indigo (paperback) | Barnes &amp; Noble (paperback)</p>
-            <p class="tt-more__p">2. Jeffery Dudiak, <em>Post-Truth? Facts and Faithfulness</em></p>
-            <p class="tt-more__p">Amazon CA (paperback, Kindle) | Indigo (paperback, Kobo) | Wipf &amp; Stock (publisher website) | Barnes &amp; Noble (paperback)</p>
-            <p class="tt-more__p">3. Michel Henry, <em>I Am the Truth: Toward a Philosophy of Christianity</em></p>
-            <p class="tt-more__p">Amazon CA (paperback) | Indigo (paperback) | Barnes &amp; Noble (paperback)</p>
-          </details>
-        </div>
-      </li>
-      <li class="tt-course" id="course-ics-223001-w26-ede6c" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">223001</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICT5791</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">Issues in Phenomenology: Life</h3>
-          <p class="tt-course__sub">Phenomenology Seminar · Topic: Life</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/neal-deroo">Dr. Neal DeRoo</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Wednesdays, 4pm – 7pm ET</span>
-          </p>
-          <p class="tt-course__blurb">The theme of this year’s “Issues in Phenomenology” seminar will be ‘life’. As a concept, life figures prominently in the most basic tenets of phenomenological thought (lived experience; lifeworld; etc.). Yet it is itself rarely thematized as a key phenomenological concept. This course will examine this theme–the meaning of life (in phenomenology)-- drawing especially on the works of Renaud Barbaras, Jacques Derrida, and Michel Henry. The goal will be to uncover how to talk about what lies at the very basis of our experiencing of the world, and ultimately to put that into conversation with related themes from Reformational thought like spirituality, ground motives, and world view.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description and required reading</span>
-              <span class="tt-more__hide">Hide the full description and required reading</span>
-            </summary>
-            <p class="tt-more__p">Note: This course does not require any prior familiarity with phenomenology.</p>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Jacques Derrida, <em>Voice and Phenomenon: Introduction to the Problem of the Sign in Husserl's Phenomenology</em> \-<br>- Amazon CA, print and Kindle editions available.<br>- Publisher website, paperback and ebook options available.</p>
-            <p class="tt-more__p">2. Renaud Barbaras, <em>Introduction to a Phenomenology of Life</em><br>- Amazon CA has both paperback and Kindle editions available.<br>- Publisher website, paperback and ebook options available.</p>
-            <p class="tt-more__p">3. Vernon W. Cisney, <em>Derrida’s Voice and Phenomenon</em><br>- Amazon CA has both paperback and Kindle editions available — please note, there may be shipping delays if purchasing the print edition.<br>- Publisher website, paperback and ebook options available.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vS7Wte-qP6y8M2JgXKtg2OSzQn_gGJlFBqevktx74_IIsSeAl2cP9K83H4c_lMeol9VOOSzd12eUHWM/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-ics-2105ac-w26-be0ac" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">2105AC</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">Meaning/Being/Knowing: The Disciplinary and Interdisciplinary Implications of a Christian Ontology</h3>
-          <p class="tt-course__sub">In Partnership with Calvin University</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/nansell">Dr. Nik Ansell</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Wednesday, 6:00–9:00pm ET</span>
-          </p>
-          <p class="tt-course__blurb">“Meaning is the being of all that has been created and the nature even of our selfhood.” With these enigmatic words, which form part of the introduction to his magisterial New Critique of Theoretical Thought, the neo-Calvinist philosopher Herman Dooyeweerd signals his intention to de-centre the central concern of Ontology by relativizing (which is to say thoroughly relating) the philosophical notion of Being to Meaning, even to the point of (re-)defining creation’s being as meaning—all in the conviction that this will enable us to engage in (rather than circumvent or supersede) the work of Ontology (and thus Epistemology) in a truly systematic, integrally Christian, way. Although it might seem as though Dooyeweerd is merely substituting one metaphysical idea for another, his reference to the nature of our selfhood here indicates that, for all its theoretical import for Philosophical Anthropology, this highly suggestive proposal also has profound implications for how we might both appreciate and pull upon our deepest (religious) self-knowledge, which takes shape before the face of God as we face the world. To do the work of Ontology well—to gain genuine insight into the “nature of things” and to identify the contours and coherence of the world’s general structures without undermining investigation or denaturing experience—will require that we also draw upon a pre-theoretical form of Knowing, and a spiritual grounding and hope, that will always precede and exceed our understanding.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description, required reading and prerequisites</span>
-              <span class="tt-more__hide">Hide the full description, required reading and prerequisites</span>
-            </summary>
-            <p class="tt-more__p">Implicit in Dooyeweerd’s vision of and for Ontology, we might say, is the provocative claim that creation does not “have” meaning but “is” meaning (a paraphrase that, tellingly, uses the language of Being to relativize Being). But what does Dooyeweerd mean by “meaning”? And what difference might this systematically relational, spiritually open, with-reference-to-self-and-beyond re-centering make (a) to the detailed, nitty-gritty work that needs to be done in any given academic field, and (b) to the theoretical integration that requires both intra- and inter-disciplinary reflection? After an opening discussion about the phenomenon of “post-truth,” to which we shall return at the end of the course, we shall explore the inter-play between Meaning, Being, and Knowing via a close reading of Hendrik Hart’s Understanding Our World: An Integral Ontology, paying careful attention to the ways in which his interpretation of Dooyeweerd’s ideas—not least the discussion of “meaning” that occurs at the midpoint of his Appendix (see 8.1.4) and in a pivotal section within his central chapter (see 4.4 and 405–406n37)—might deepen our insight into how what is known in faith and articulated via our web of beliefs can help us identify and evaluate the core concepts and the conceptual-ontological connections that play such an integral, influential role in the scholarly disciplines with which we are engaged. In paying attention to develop ments in Hart’s Ontology and Epistemology since the publication of this work, we shall also ask whether the broadly Dooyeweerdian position he initially adopts is as post-metaphysical as it may first appear.</p>
-            <p class="tt-more__p">In this iteration of the course, we shall pay special attention to the central concerns of political theory and aesthetics, including their respective interests in the way we posit societal principles and protect, reveal, expand, and find ourselves via the symbols that make up the fabric of our life, history, and society. In further probing the relationship between the aesthetic and political dimensions of created meaning, and between the mystery of our selfhood and the structural contours of reality, we shall also be asking what the development of an Ontology in the Reformational tradition might offer to the scholarly search for disciplinary integrity and interdisciplinary integration—this being a neo-Calvinism in which the unity and diversity we rightly seek are typically seen as covenantally, rather than ontotheologically, grounded.</p>
-            <p class="tt-more__p">Given this relational emphasis, we may well wonder what might happen if “Being” were to make way for—or make a way for—“Loving.” Perhaps, following Dooyeweerd’s (post-metaphysical?) turn to “Meaning,” we may find that a Christian scholarly approach to knowing and understanding our world and ourselves “after Being” may have something new to say to the peril and promise of life “post-truth”!</p>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Jeffrey Dudiak, <em>Post-Truth? Facts and Faithfulness</em> (Eugene, OR: Wipf and Stock, 2022).</p>
-            <p class="tt-more__p">Amazon CA, Barnes &amp; Noble.</p>
-            <p class="tt-more__p">2. Henk Hart, <em>Understanding Our World: An Integral Ontology</em> (Lanham, MD: University Press of</p>
-            <p class="tt-more__p">America, 1984).</p>
-            <p class="tt-more__p">Amazon CA has some used copies in hardcover that are more affordable than the paperback. If ordering a print copy, please order this book as soon as possible because there will be shipping delays both due to the upcoming holiday season as well as shipping from outside of Canada. Thriftbooks may sell copies. Abebooks sells used copies.</p>
-            <h4 class="tt-more__h">Prerequisites</h4>
-            <p class="tt-more__p">NOTE: Completion of 1107AC or 2107AC is a prerequisite for enrolling in this course.</p>
-          </details>
-        </div>
-      </li>
-    </ol>
+    <div class="tt-grid__scroll">
+      <table class="tt-grid">
+        <caption class="tt-vh">Weekly schedule, Winter Term 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="tt-grid__corner">Time</th>
+            <th scope="col" data-day="tuesday">Tuesday</th>
+            <th scope="col" data-day="wednesday">Wednesday</th>
+            <th scope="col" data-day="thursday">Thursday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-slot="600-780">
+            <th scope="row" class="tt-grid__time">10:00 – 13:00 ET</th>
+            <td data-day="tuesday"></td>
+            <td data-day="wednesday"></td>
+            <td data-day="thursday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-nietzsche-foucault-and-the-gen-a98b2">Nietzsche, Foucault, and the Genealogical Approach to the History of Philosophy</a>
+                <p class="tt-cell__code">120406 / 220406</p>
+                <p class="tt-cell__who">Bob Sweetman</p>
+              </div>
+            </td>
+          </tr>
+          <tr data-slot="840-1020">
+            <th scope="row" class="tt-grid__time">14:00 – 17:00 ET</th>
+            <td data-day="tuesday"></td>
+            <td data-day="wednesday"></td>
+            <td data-day="thursday">
+              <div class="tt-cell" data-programs="ma mws phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-pragmatism-race-and-religion-7adc5">Pragmatism, Race, and Religion</a>
+                <p class="tt-cell__code">120501 / 220501</p>
+                <p class="tt-cell__who">Ron Kuipers</p>
+              </div>
+            </td>
+          </tr>
+          <tr data-slot="960-1140">
+            <th scope="row" class="tt-grid__time">16:00 – 19:00 ET</th>
+            <td data-day="tuesday"></td>
+            <td data-day="wednesday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-ics-223001-w26-ede6c">Issues in Phenomenology: Life</a>
+                <p class="tt-cell__code">223001</p>
+                <p class="tt-cell__who">Neal DeRoo</p>
+              </div>
+            </td>
+            <td data-day="thursday"></td>
+          </tr>
+          <tr data-slot="1080-1260">
+            <th scope="row" class="tt-grid__time">18:00 – 21:00 ET</th>
+            <td data-day="tuesday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-ids-the-post-truth-the-un-trut-5dbc8">IDS: The Post-Truth, the Un/Truth, and Nothing but the Truth: Contemporary Anxieties and Present Possibilities</a>
+                <p class="tt-cell__code">2400AC</p>
+                <p class="tt-cell__who">Neal DeRoo and Nik Ansell</p>
+              </div>
+            </td>
+            <td data-day="wednesday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-ics-2105ac-w26-be0ac">Meaning/Being/Knowing: The Disciplinary and Interdisciplinary Implications of a Christian Ontology</a>
+                <p class="tt-cell__code">2105AC</p>
+                <p class="tt-cell__who">Nik Ansell</p>
+              </div>
+            </td>
+            <td data-day="thursday"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tt-off">
+      <h3 class="tt-off__title">No fixed weekly slot</h3>
+      <ul class="tt-off__list">
+        <li class="tt-off__item" data-programs="mael">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Blended (Online Asynchronous/Synchronous)</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-icsd-260005-w26-5e4c1">How to Coach A Strong Team: Leading People, Building Institutional Capacity, and Securing Accountability</a>
+            <p class="tt-cell__code">260005</p>
+            <p class="tt-cell__who">Gideon Strauss</p>
+          </div>
+        </li>
+        <li class="tt-off__item" data-programs="mael cstc">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Blended (Online Asynchronous/Synchronous)</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-icsd-260006-w26-0f8b9">Transformative Teaching: The Practice of Christ-Centred Education <span class="tt-cell__area">(CSTC 2)</span></a>
+            <p class="tt-cell__code">260006</p>
+            <p class="tt-cell__who">Edith van der Boom</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
   <section class="tt-term" id="term-S26"
            data-term="S26" data-start="2026-05-01" data-end="2026-08-31">
     <header class="tt-term__head">
       <p class="tt-term__code">S26</p>
       <h2 class="tt-term__name">Sprummer Term 2026</h2>
-      <p class="tt-term__range">May 1 – August 31, 2026 · <span class="tt-term__count" data-count="4">4 courses</span></p>
+      <p class="tt-term__range">May 1 – August 31, 2026 · <span class="tt-term__count">4 courses</span></p>
     </header>
-    <ol class="tt-term__list">
-      <li class="tt-course" id="course-enrique-dussel-and-the-philosoph-a696e" data-programs="ma mws phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">122904<span class="tt-course__slash"> / </span>222904</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-            <li class="tt-tag" data-program="mws" title="Master of Worldview Studies">MWS</li>
-          </ul>
-          <h3 class="tt-course__title">Enrique Dussel and the Philosophy and Ethics of Liberation</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="mailto:ddettloff@icscanada.edu">Dr. Dean Dettloff</a>
-            <span class="tt-course__format">Online Intensive</span>
-            <span class="tt-course__when">Dates June 8 to July 13 · Mondays and Wednesdays, 7–9pm ET</span>
-          </p>
-          <p class="tt-course__blurb">Dubbed the “Hegel of Coyoacán,” referring to the Nahuatl name for a neighborhood in Mexico City, Enrique Dussel (1934-2023) produced an impressive body of work in dialogue with a wide range of philosophical, theological, and other voices across history and geography. Thinking from the context of Latin America, Dussel grounds his philosophy and ethics in the materiality of human beings, specifically those who are excluded from the world system of capitalist globalization, modernity, and Eurocentric epistemology. Critically engaging traditions from phenomenology and Critical Theory to pragmatism and communitarianism, Dussel consistently identifies how European and Anglophone philosophy, even in its progressive and radical voices, routinely fail to account for colonialism as a distinct, world-defining process, holding back their ability to authentically understand or philosophize about the realities of people outside their geographical contexts, the majority of the global population. For Dussel, philosophy must contribute to the liberation of oppressed people, dismantling systems of domination and contributing to material alternatives. This course explores two foundational texts in Dussel’s oeuvre, Philosophy of Liberation, published in 1977 shortly after his exile from Argentina to Mexico, and Ethics of Liberation, his magnum opus, both of which provide opportunities to also critically examine other philosophers including Karl Marx, Rosa Luxemburg, Charles Taylor, Emmanuel Levinas, Alisdair MacIntyre, and more.</p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-1107ac-2107ac-s26-8cf84" data-programs="mael mwse cstc">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">1107AC<span class="tt-course__slash"> / </span>2107AC</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__area">Area 2</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-            <li class="tt-tag" data-program="mwse" title="Master of Worldview Studies in Education">MWS-E</li>
-            <li class="tt-tag" data-program="cstc">CSTC</li>
-          </ul>
-          <h3 class="tt-course__title">What's Christian About Christian Education?: Reformational Philosophy</h3>
-          <p class="tt-course__sub">Reformational Philosophy of Education</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/neal-deroo">Dr. Neal DeRoo</a>
-            <span class="tt-course__format">Remote (Online Synchronous/Asynchronous)</span>
-            <span class="tt-course__when">6 scheduled sessions</span>
-          </p>
-          <p class="tt-course__blurb">This course will offer you an opportunity to reflect about what it means to teach or educate “Christianly.” It will situate a Reformational understanding of Christian education within two distinct types of “context”: first, the “spirits of the age” that are at work influencing our shared modern, Canadian society; and second, the local context of the school you work at. The ‘spiritual’ context will help us see Christian education as an alternative, not simply to “secular” education, but to other patterns of spiritual formation, like consumerist education or workaholic education. The ‘local’ context will then allow us to discuss how Christian education can be ‘put to work’ in your day-to-day activities as a teacher or administrator. The goal is to give you time, space, and resources to develop a clearer understanding of how faith impacts education in general, and how your faith shapes what you do as an educator more specifically.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show session dates</span>
-              <span class="tt-more__hide">Hide session dates</span>
-            </summary>
-            <h4 class="tt-more__h">Session dates</h4>
-            <ol class="tt-sessions">
-              <li>Thursday, April 23, 2026, 6:15–9:15 pm ET</li>
-              <li>Thursday, May 7, 2026, 6:15–9:15 pm ET</li>
-              <li>Thursday, May 21, 2026, 6:15–9:15 pm ET</li>
-              <li>Tuesday, August 11, 2026, 1–4 pm ET</li>
-              <li>Wednesday, August 12, 2026, 1–4 pm ET</li>
-              <li>Thursday, August 13, 2026, 1–4 pm ET</li>
-            </ol>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vSWEAAI6XIAU9H8nJORN9zRMTlJfkUwJ5SolL-2nuWK_ZMzzG80txTkztguhQFsZg/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-132504-260003-s26-74fc2" data-programs="mael mwse cstc">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">132504<span class="tt-course__slash"> / </span>260003</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__area">Areas 2 and 4</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-            <li class="tt-tag" data-program="mwse" title="Master of Worldview Studies in Education">MWS-E</li>
-            <li class="tt-tag" data-program="cstc">CSTC</li>
-          </ul>
-          <h3 class="tt-course__title">Lead From Where You Are: Making a Difference in the Face of Tough Problems, Big Questions, and Organizational Politics</h3>
-          <p class="tt-course__sub">MA-EL Administration Concentration</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/gstrauss">Dr. Gideon Strauss</a>
-            <span class="tt-course__format">Blended (Online Asynchronous/Synchronous)</span>
-            <span class="tt-course__when">6 scheduled sessions</span>
-          </p>
-          <p class="tt-course__blurb">Leadership is not about personality, authority, position, influence, or power as such. Leadership is an art, a craft, a practice, to which everyone is called sometime or other, in widely different situations. Leadership can be practiced with varying degrees of authority, from any position, at varying scales of influence, and with varying access to different sources of power. Leadership is the work of motivating a group of people to act in certain ways as they shape what they share.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description, session dates and required reading</span>
-              <span class="tt-more__hide">Hide the full description, session dates and required reading</span>
-            </summary>
-            <p class="tt-more__p">In this course we will explore how to contribute leadership when we have a particular, recognized position of authority in a group, and also regardless of our position in a group. We will learn how to contribute leadership when our group has clear, commonly agreed-upon procedures and goals, and when there are not (or not yet) clear, commonly agreed-upon procedures and goals (so that we must practice imaginative discernment). We will learn how to contribute leadership both to make beneficial change happen and to ensure needed maintenance.</p>
-            <h4 class="tt-more__h">Session dates</h4>
-            <ol class="tt-sessions">
-              <li>Thursday, April 23, 2026, 6:30–9:30 pm ET</li>
-              <li>Thursday, May 7, 2026, 6:30–9:30 pm ET</li>
-              <li>Thursday, May 21, 2026, 6:30–9:30 pm ET</li>
-              <li>Tuesday, August 11, 2026, 1–4 pm ET</li>
-              <li>Wednesday, August 12, 2026, 1–4 pm ET</li>
-              <li>Thursday, August 13, 2026, 1–4 pm ET</li>
-            </ol>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Crouch, A. <em>Strong and Weak: Embracing a Life of Love, Risk&amp; True Flourishing.</em>2. Heifetz, R.A., Grashow, A. &amp; Linsky, M.<em>The Practice of Adaptive Leadership: Tools and Tactics for Changing Your Organization and the World</em>.</p>
-            <p class="tt-more__p">3. Lencioni, P. <em>The Advantage: Why Organizational Health Trumps Everything Else in Business</em>.</p>
-            <p class="tt-more__p">4. Williams, D. <em>Real Leadership: Helping People and Organizations Face Their Toughest Challenges</em>.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vSsGdf9Vt6teVn2P7FjXx1Go5Ll905SwKgKCfPX0s1dBwVfaeqq-9NONezfy7nIjR14dc4ngbIIjZqA/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-260004-s26-73624" data-programs="mael mwse cstc">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">260004</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__area">Area 3</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-            <li class="tt-tag" data-program="mwse" title="Master of Worldview Studies in Education">MWS-E</li>
-            <li class="tt-tag" data-program="cstc">CSTC</li>
-          </ul>
-          <h3 class="tt-course__title">Christian Deeper Learning: From Wonder to Inquiry to Practise</h3>
-          <p class="tt-course__sub">MA-EL Instructional Concentration</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/evanderboom">Dr. Edith van der Boom</a>
-            <span class="tt-course__format">Blended (Online Asynchronous/Synchronous)</span>
-            <span class="tt-course__when">Tuesdays July 14 – Aug 10, 12–3pm ET</span>
-          </p>
-          <p class="tt-course__blurb">Christian Deeper Learning: From Wonder to Inquiry to Practise* is a course that seeks to help Christian educators develop their understanding and application of deeper learning. We will consider what it means to be image-bearers of God called to care for our neighbours and to be engaged in real work that is part of God’s story. Considering these ideas will inform classroom practices and signature pedagogies in apparent, unintended, and even transformative ways. Together we will examine the importance of global citizenship as a form of Christian Deeper Learning and the impact it has on developing a caring and just world.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show required reading</span>
-              <span class="tt-more__hide">Hide required reading</span>
-            </summary>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Crouch, A. (2008). Culture Making: Recovering our Creative Calling. InterVarsity Press.</p>
-            <p class="tt-more__p">Google Books sells it as an eBook</p>
-            <p class="tt-more__p">Students can buy the book directly through the publisher, InterVarsity Press.</p>
-            <p class="tt-more__p">Barnes and Noble also sells the book.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vRRa8qrt8UAyey5SwUZjg8F1_xfoJdpZoCXNSnoS7k8rxA_H_7uuhF3_WHWqnq9sbhebl8zaHA89ykj/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-    </ol>
+    <div class="tt-off">
+      <h3 class="tt-off__title">No fixed weekly slot</h3>
+      <ul class="tt-off__list">
+        <li class="tt-off__item" data-programs="ma mws phd">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Online Intensive</p>
+            <p class="tt-off__sched">Dates June 8 to July 13 · Mondays and Wednesdays, 7–9pm ET</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-enrique-dussel-and-the-philosoph-a696e">Enrique Dussel and the Philosophy and Ethics of Liberation</a>
+            <p class="tt-cell__code">122904 / 222904</p>
+            <p class="tt-cell__who">Dean Dettloff</p>
+          </div>
+        </li>
+        <li class="tt-off__item" data-programs="mael mwse cstc">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Remote (Online Synchronous/Asynchronous)</p>
+            <p class="tt-off__sched">Thursday, April 23, 2026, 6:15–9:15 pm ET · Thursday, May 7, 2026, 6:15–9:15 pm ET · Thursday, May 21, 2026, 6:15–9:15 pm ET · Tuesday, August 11, 2026, 1–4 pm ET · Wednesday, August 12, 2026, 1–4 pm ET · Thursday, August 13, 2026, 1–4 pm ET</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-1107ac-2107ac-s26-8cf84">What's Christian About Christian Education?: Reformational Philosophy <span class="tt-cell__area">(CSTC 2)</span></a>
+            <p class="tt-cell__code">1107AC / 2107AC</p>
+            <p class="tt-cell__who">Neal DeRoo</p>
+          </div>
+        </li>
+        <li class="tt-off__item" data-programs="mael mwse cstc">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Blended (Online Asynchronous/Synchronous)</p>
+            <p class="tt-off__sched">Thursday, April 23, 2026, 6:30–9:30 pm ET · Thursday, May 7, 2026, 6:30–9:30 pm ET · Thursday, May 21, 2026, 6:30–9:30 pm ET · Tuesday, August 11, 2026, 1–4 pm ET · Wednesday, August 12, 2026, 1–4 pm ET · Thursday, August 13, 2026, 1–4 pm ET</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-132504-260003-s26-74fc2">Lead From Where You Are: Making a Difference in the Face of Tough Problems, Big Questions, and Organizational Politics <span class="tt-cell__area">(CSTC 2, 4)</span></a>
+            <p class="tt-cell__code">132504 / 260003</p>
+            <p class="tt-cell__who">Gideon Strauss</p>
+          </div>
+        </li>
+        <li class="tt-off__item" data-programs="mael mwse cstc">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Blended (Online Asynchronous/Synchronous)</p>
+            <p class="tt-off__sched">Tuesdays July 14 – Aug 10, 12–3pm ET</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-260004-s26-73624">Christian Deeper Learning: From Wonder to Inquiry to Practise <span class="tt-cell__area">(CSTC 3)</span></a>
+            <p class="tt-cell__code">260004</p>
+            <p class="tt-cell__who">Edith van der Boom</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
   <section class="tt-term" id="term-F26"
            data-term="F26" data-start="2026-09-01" data-end="2026-12-31">
     <header class="tt-term__head">
       <p class="tt-term__code">F26</p>
       <h2 class="tt-term__name">Fall Term 2026</h2>
-      <p class="tt-term__range">September 1 – December 31, 2026 · <span class="tt-term__count" data-count="6">6 courses</span></p>
+      <p class="tt-term__range">September 1 – December 31, 2026 · <span class="tt-term__count">6 courses</span></p>
     </header>
-    <ol class="tt-term__list">
-      <li class="tt-course" id="course-223501-f26-b1ef0" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">223501</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">Attention in the Age of Distraction</h3>
-          <p class="tt-course__sub">Philosophy of Attention &amp; Practice</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/jacob-benjamins/">Dr. Jacob Benjamins</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Thursdays, 6pm – 9pm ET</span>
-          </p>
-          <p class="tt-course__blurb">What is happening to attention in the age of digital distraction? What are the consequences of viewing attention as a monetized and commodified resource? And how are habits of attention entangled with spiritual life and practice? This course explores these questions by considering attention as one part of a broader way of inhabiting the world. Major topics covered include the phenomenology of attention, the impact of digital technologies on attention, socio-political implications of living in an attention economy, and the cultivation of contemplative forms of attention. A key component of this course is an opportunity for students to consider their own habits of attention. Alongside weekly readings, students will engage spiritual practices that aim to cultivate contemplative forms attention (broadly construed) and resist negative forms of fragmentation and distraction of digital life—silence, stillness, digital fasting, time in nature, slow reading, ethical listening, engaging the arts, hospitality, and more.</p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-120107-220107-f26-65aeb" data-programs="ma mws phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">120107<span class="tt-course__slash"> / </span>220107</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICH3761H / ICH6761H L6201</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-            <li class="tt-tag" data-program="mws" title="Master of Worldview Studies">MWS</li>
-          </ul>
-          <h3 class="tt-course__title">Reconsidering Kant's Aesthetics</h3>
-          <p class="tt-course__sub">Modern Aesthetics Seminar</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/rsmick">Dr. Rebekah Smick</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Thursdays, 10am – 1pm ET</span>
-          </p>
-          <p class="tt-course__blurb">Until recently, it was customary to regard Kant as the thinker who definitively separated aesthetic knowledge from the domains of reason and morality by identifying its core epistemological activity as a kind of judgment that he qualified as a matter of taste. The postmodern rejection of the “modernist” practice of aesthetic theory, however, has done much to undermine Kant’s position in both the arts and in philosophy. This course aims to re-examine Kant’s aesthetic theory as set out in his <em>Critique of Judgment</em> of 1790 from the vantage point of the art theoretical literature that preceded it vis a vis the integral place of the aesthetic in both premodern ethics and theology. In an effort to better understand Kant’s contribution to the history of thought about art and its purposes, it will seek to contextualize such “Kantian” themes as judgment, taste, genius, beauty, sublimity and purposiveness. It will also consider to what degree our understanding of Kant has been shaped by later modernist assumptions about the character of his contribution.</p>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vQ9Zgqs2Jz8lfdVqWUvnqZLqYEOM0odNJvdf6tp379TNEbvMdjttlA7IPwaRrlrMWT8VmfW2dpf9Zi4/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-the-craft-of-reflective-practice-99acb" data-programs="mael cstc mwse">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">132501<span class="tt-course__slash"> / </span>232501</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__area">Area 2</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-            <li class="tt-tag" data-program="mwse" title="Master of Worldview Studies in Education">MWS-E</li>
-            <li class="tt-tag" data-program="cstc">CSTC</li>
-          </ul>
-          <h3 class="tt-course__title">The Craft of Reflective Practice</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/gstrauss">Dr. Gideon Strauss</a>
-            <span class="tt-course__format">Blended (Online Asynchronous/Synchronous)</span>
-            <span class="tt-course__when tt-course__when--open">No fixed meeting time</span>
-          </p>
-          <p class="tt-course__blurb">We humans make sense of things by telling stories. In this course we will learn how to do critical reflective practice, primarily by telling stories about our everyday professional lives. We will zoom in on the story of an ordinary day at work, and then zoom out to the story of our career to date, zoom out further to the story of our work community, and zoom out even further to the overarching story of God’s world. In the process we will learn qualitative research skills, receive an introduction to phenomenology (the philosophical study of lived experience), develop our own approach to praxis (that is, the craft of morally-oriented, theoretically-informed, and theory-generating critically reflective practice), and, most significantly, come to terms with who we are in what we do.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show required reading</span>
-              <span class="tt-more__hide">Hide required reading</span>
-            </summary>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">Britzman, D. P. (2003). Practice makes practice: A critical study of learning to teach</p>
-            <p class="tt-more__p">Amazon CA (print), Thriftbooks, Abebooks</p>
-            <p class="tt-more__p"><em>students should order a copy as soon as possible, because this book is only available in used format, and shipping may take a long time, so they'll need to make sure they have the book arrive in time before the course starts in the second week of September.</em></p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vRSm8fFoLIpO3JBofF_JKoOif45ecwFfjI7-_eriPoywrMBUn2Fcnbtp3iaR4DA78GX5pfEtGa4A29N/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-god-sex-word-flesh-gender-theo-58266" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">220804</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICT5220HS L0101 / L9101</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">God/Sex/Word/Flesh: Gender, Theology, and the Body</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/nansell">Dr. Nik Ansell</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Tuesdays, 10am – 1pm</span>
-          </p>
-          <p class="tt-course__blurb">How is our agenda for theology related to our gender? Is “God” a male word? Is the “Word made Flesh” a male God? Does the experience of women change how God is (made) known? Is sexuality—are sexualities—embraced by the resurrection? Attentive to the work of feminist theologians, biblical scholars, and philosophers, we will attempt to develop an “embodied” theology open to the biblical vision that God will be “all in all.”</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description</span>
-              <span class="tt-more__hide">Hide the full description</span>
-            </summary>
-            <p class="tt-more__p">In addition to engaging several well-established works of theoretical and textual liberation (by Rosemary Radford Ruether, Phyllis Trible, Susan Bordo, and others), participants in this iteration of God/Sex/Word/Flesh will also have the opportunity to respond to a recent fictional or autobiographical contribution to the discussion, such as Naomi Alderman’s The Power or Janet Mock’s Redefining Realness.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vRjppk4NrknIQAzQWVjLIUwzxx7sd-MYzi92A3FaVf47H4vNdb-ZnHhNJQ-gMOxEuDBfLzNPp00yB_1/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-1108ac-2108ac-f26-53408" data-programs="ma mael mwse phd cstc">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">1108AC<span class="tt-course__slash"> / </span>2108AC</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICB2010H L6201</p>
-          <p class="tt-course__area">Area 1</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-            <li class="tt-tag" data-program="mwse" title="Master of Worldview Studies in Education">MWS-E</li>
-            <li class="tt-tag" data-program="cstc">CSTC</li>
-          </ul>
-          <h3 class="tt-course__title">Biblical Foundations: Narrative, Wisdom, and the Art of Interpretation</h3>
-          <p class="tt-course__sub">Hermeneutics for Christian Practice</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/nansell">Dr. Nik Ansell</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Wednesdays, 6:00–9:00pm ET</span>
-          </p>
-          <p class="tt-course__blurb">How can we read and experience the Scriptures as the Word of Life in the midst of an Academy that believes the biblical witness will restrict human freedom and thwart our maturity? How may we pursue biblical wisdom as we “re-think the world” when our Christian traditions seem convinced that biblical truth may be disconnected from—or simply applied to—the most pressing and perplexing issues of our time?</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description</span>
-              <span class="tt-more__hide">Hide the full description</span>
-            </summary>
-            <p class="tt-more__p">This course will explore the Bible—from Genesis to Revelation—as the ongoing story of and for God and all God’s creatures, paying special attention to the way in which humanity’s attempt to find its way is interwoven with the story of the Divine presence and with the wisdom and promise of creation-new creation. In asking whether and how the biblical story may find its future in our ongoing narratives, we will attempt to identify which hermeneutical methods and sensitivities might help us discern its significance for present day life, including the academic enterprise. If Jesus is the Living Word at the heart of Scripture, does that change our understanding of where biblical truth is coming from and where it is going? Does the Bible have an implicit, sapiential pedagogy that we have misconstrued? Can the familiar Reformed themes of creation and covenant, election and eschaton speak to us in new, reformational ways? These are some of the questions we shall explore together as we reintroduce ourselves to the biblical writings.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vSpJCas4uEu-9dMdbY4QgaxzsYaZ4TwHGMVGW38ELA5xLtENw3fFVc4kimRhYzBI9WGGf5zDUSvrblE/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-1107ac-2107ac-f26-aa35b" data-programs="ma mws phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">1107AC<span class="tt-course__slash"> / </span>2107AC</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-            <li class="tt-tag" data-program="mws" title="Master of Worldview Studies">MWS</li>
-          </ul>
-          <h3 class="tt-course__title">Religion, Life and Society: Reformational Philosophy</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/neal-deroo">Dr. Neal DeRoo</a>
-            <span class="tt-course__format">Remote (Online Synchronous)</span>
-            <span class="tt-course__when">Tuesdays, 6:00–9:00pm ET</span>
-          </p>
-          <p class="tt-course__blurb">An exploration of central issues in philosophy, as addressed by Herman Dooyeweerd, Dirk Vollenhoven, and the “Amsterdam School” of neoCalvinian thought. The course tests the relevance of this tradition for recent developments in Western philosophy. Special attention is given to critiques of foundationalism, metaphysics, and modernity within reformational philosophy and in other schools of thought.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show required reading</span>
-              <span class="tt-more__hide">Hide required reading</span>
-            </summary>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">Vollenhoven, D. H. T. Introduction to Philosophy. Sioux Center, Iowa: Dordt College Press, 2005. ISBN 978-0-932914-65-1. [ICS Library Reserve Shelf: BD28.V65a 2005]. Must be purchased.<br>Purchasing links: Amazon CA<br>- Also available through 21five website, or<br>- Chapters/Indigo website.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vTGfwncC2XAk-EpJMw1wiHEcx9WJRmkJgLshTDifepxBiITX7mBM-Bnsm7tVol0fg/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-    </ol>
+    <div class="tt-grid__scroll">
+      <table class="tt-grid">
+        <caption class="tt-vh">Weekly schedule, Fall Term 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="tt-grid__corner">Time</th>
+            <th scope="col" data-day="tuesday">Tuesday</th>
+            <th scope="col" data-day="wednesday">Wednesday</th>
+            <th scope="col" data-day="thursday">Thursday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-slot="600-780">
+            <th scope="row" class="tt-grid__time">10:00 – 13:00 ET</th>
+            <td data-day="tuesday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-god-sex-word-flesh-gender-theo-58266">God/Sex/Word/Flesh: Gender, Theology, and the Body</a>
+                <p class="tt-cell__code">220804</p>
+                <p class="tt-cell__who">Nik Ansell</p>
+              </div>
+            </td>
+            <td data-day="wednesday"></td>
+            <td data-day="thursday">
+              <div class="tt-cell" data-programs="ma mws phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-120107-220107-f26-65aeb">Reconsidering Kant's Aesthetics</a>
+                <p class="tt-cell__code">120107 / 220107</p>
+                <p class="tt-cell__who">Rebekah Smick</p>
+              </div>
+            </td>
+          </tr>
+          <tr data-slot="1080-1260">
+            <th scope="row" class="tt-grid__time">18:00 – 21:00 ET</th>
+            <td data-day="tuesday">
+              <div class="tt-cell" data-programs="ma mws phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-1107ac-2107ac-f26-aa35b">Religion, Life and Society: Reformational Philosophy</a>
+                <p class="tt-cell__code">1107AC / 2107AC</p>
+                <p class="tt-cell__who">Neal DeRoo</p>
+              </div>
+            </td>
+            <td data-day="wednesday">
+              <div class="tt-cell" data-programs="ma mael mwse phd cstc">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-1108ac-2108ac-f26-53408">Biblical Foundations: Narrative, Wisdom, and the Art of Interpretation <span class="tt-cell__area">(CSTC 1)</span></a>
+                <p class="tt-cell__code">1108AC / 2108AC</p>
+                <p class="tt-cell__who">Nik Ansell</p>
+              </div>
+            </td>
+            <td data-day="thursday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-223501-f26-b1ef0">Attention in the Age of Distraction</a>
+                <p class="tt-cell__code">223501</p>
+                <p class="tt-cell__who">Jacob Benjamins</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tt-off">
+      <h3 class="tt-off__title">No fixed weekly slot</h3>
+      <ul class="tt-off__list">
+        <li class="tt-off__item" data-programs="mael cstc mwse">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Blended (Online Asynchronous/Synchronous)</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-the-craft-of-reflective-practice-99acb">The Craft of Reflective Practice <span class="tt-cell__area">(CSTC 2)</span></a>
+            <p class="tt-cell__code">132501 / 232501</p>
+            <p class="tt-cell__who">Gideon Strauss</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
   <section class="tt-term" id="term-W27"
            data-term="W27" data-start="2027-01-01" data-end="2027-04-30">
     <header class="tt-term__head">
       <p class="tt-term__code">W27</p>
       <h2 class="tt-term__name">Winter Term 2027</h2>
-      <p class="tt-term__range">January 1 – April 30, 2027 · <span class="tt-term__count" data-count="7">7 courses</span></p>
+      <p class="tt-term__range">January 1 – April 30, 2027 · <span class="tt-term__count">7 courses</span></p>
     </header>
-    <ol class="tt-term__list">
-      <li class="tt-course" id="course-260004-w27-ec9bf" data-programs="mael cstc mwse">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">260004</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__area">Area 3</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-            <li class="tt-tag" data-program="mwse" title="Master of Worldview Studies in Education">MWS-E</li>
-            <li class="tt-tag" data-program="cstc">CSTC</li>
-          </ul>
-          <h3 class="tt-course__title">Christian Deeper Learning: From Wonder to Inquiry to Practice</h3>
-          <p class="tt-course__sub">MA-EL Instructional Concentration · CSTC Area 3</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/evanderboom">Dr. Edith van der Boom</a>
-            <span class="tt-course__format">Blended (Online Asynchronous/Synchronous)</span>
-            <span class="tt-course__when tt-course__when--open">No fixed meeting time</span>
-          </p>
-          <p class="tt-course__blurb"><em>Christian Deeper Learning: From Wonder to Inquiry to Practice</em> is a course which seeks to help Christian educators develop deeper learning. We will consider what it means to be image-bearers of God called to care for our neighbours and to be engaged in real work that is part of God’s story. Our consideration of these ideas will inform classroom practices and signature pedagogies in apparent, unintended, and even transformative ways. Together we will examine the importance of global citizenship as a form of deeper learning and the impact it has on developing a caring and just world.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show required reading</span>
-              <span class="tt-more__hide">Hide required reading</span>
-            </summary>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Crouch, A. (2008). Culture Making: Recovering our Creative Calling. InterVarsity Press.</p>
-            <p class="tt-more__p">Google Books sells it as an eBook</p>
-            <p class="tt-more__p">Students can buy the book directly through the publisher, InterVarsity Press.</p>
-            <p class="tt-more__p">Barnes and Noble also sells the book.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vT7tquK4SkiNYQVfGTspZ-hsC6VTHtfIhSuhnUzzkhwFl35RNYUjdaPCCn8v64teQ/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-how-to-finance-a-vision-setting-2a265" data-programs="mael mws mwse">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">260007</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="mws" title="Master of Worldview Studies">MWS</li>
-            <li class="tt-tag" data-program="mael" title="MA (Phil) in Educational Leadership">MA-EL</li>
-            <li class="tt-tag" data-program="mwse" title="Master of Worldview Studies in Education">MWS-E</li>
-          </ul>
-          <h3 class="tt-course__title">How to Finance a Vision: Setting Direction and Managing Change within Financial Limitations</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/gstrauss">Dr. Gideon Strauss</a>
-            <span class="tt-course__format">Blended (Online Asynchronous/Synchronous)</span>
-            <span class="tt-course__when tt-course__when--open">No fixed meeting time</span>
-          </p>
-          <p class="tt-course__blurb"><em>How to Finance a Vision</em> is a course for new and aspiring principals and leadership teams. The course provides frameworks and tools for leadership in making the connections between the vision of a school, the budgeting process, and fundraising.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description</span>
-              <span class="tt-more__hide">Hide the full description</span>
-            </summary>
-            <p class="tt-more__p">The course starts with an introduction to Henri Nouwen’s spirituality of fundraising. It continues with an introduction to the basic financial documents that a principal should be able to read. It explores the art of communicating the story told by school budgets as a necessary element of fundraising. It concludes with the processes necessary to gain competency in working with both school boards and staffs (with an emphasis on financial and advancement staff) on the financial aspects of school management.</p>
-            <p class="tt-more__p"><em>How to Finance a Vision</em> is a remote learning course consisting of three synchronous discussions and three virtual school visits using online video and thirteen weeks of asynchronous online interaction.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vSrdAbUPVMtYG_lhBmde5ga0ldWhVuyoF3mAUqwtHPB43QpQ6mj4V8JYrdk1j6xK4Sa-N3BpNw6BmUW/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-imagining-the-world-with-ricoeur-525af" data-programs="ma mws phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">120504<span class="tt-course__slash"> / </span>220504</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICT3732HS / ICT6732HS L0101</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-            <li class="tt-tag" data-program="mws" title="Master of Worldview Studies">MWS</li>
-          </ul>
-          <h3 class="tt-course__title">Imagining the World with Ricoeur: Narrative, Action, and the Sacred in Ricoeur's Hermeneutic Phenomenology</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/rkuipers">Dr. Ron Kuipers</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Thursdays, 3:00pm – 6:00pm ET</span>
-          </p>
-          <p class="tt-course__blurb">This course will focus primarily on two essay collections by Paul Ricoeur: <em>From Text to Action: Essays in Hermeneutics, II</em>, as well as <em>Figuring the Sacred: Religion, Narrative, and Imagination</em>. These collections cover (roughly) a period from the early 1970’s to the early 1990’s. Together, they form an excellent introduction to Ricoeur’s hermeneutical phenomenology, which he developed as an alternative to those theoretical options, such as psychoanalysis and semiotics, with which he struggled throughout the 1960’s.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description</span>
-              <span class="tt-more__hide">Hide the full description</span>
-            </summary>
-            <p class="tt-more__p">In addition to exploring Ricoeur’s evolving thoughts on such topics as textual interpretation, action, imagination, revelation, and a religious imaginary, these essays will also serve seminar participants as an effective springboard into Ricoeur’s larger thematic works, such as <em>Rule of Metaphor, Time and Narrative</em>(Vols. I-III), <em>Oneself as Another, or Memory, History, Forgetting</em>. Beginning with <em>From Text to Action</em>, the seminar will explore the general shape of Ricoeur’s hermeneutical phenomenology, including such themes as text, action, explanation, understanding, ideology, and utopia. With this basic grasp of Ricoeur’s hermeneutical phenomenology in hand, we will go on to explore his understanding of the disclosive force of religious texts and uses of language in the anthology <em>Figuring the Sacred</em>. Among other things, Ricoeur there ponders how Christian communities might best face the task of appropriating a textual heritage from which time has distanced them, and concerning which they have lost a certain original naivety. This seminar will explore Ricoeur’s recommendation that Christians risk assuming a “second naivety” as they take up the responsibility of receiving and interpreting their religious tradition for a new generation. Imagining the world with Ricoeur, we will discuss how his recommendations on this score might help or hinder our effort to find meaning and inspiration amidst the crises and fragmentations that run through contemporary life.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vQMjVjX2uY7JVogglm7EvbWp-Mw8thlyueTbHUH1HF26PtFeDkyV99tPFk193cfvg/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-albert-the-great-meister-eckhar-1ae3e" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">220409</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICH5155HS L0101</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">Albert the Great, Meister Eckhart, and Women’s Spirituality</h3>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/bsweetman">Dr. Robert (Bob) Sweetman</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Thursdays, 10:00am – 1:00pm</span>
-          </p>
-          <p class="tt-course__blurb">This seminar examines Meister Eckhart’s mystical discourse and its conceptual configuration as a ‘contradictory monism’ against the backdrop of the “Dionysian” tradition of Albert the Great (and Thomas Aquinas) and the current efflorenscence of women’s mysticism represented by Marguerite Porete.</p>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vQXFaDeBx8NB9bWoKSiKon-xgtKHF6V-Hce-x5-A_bupXtFy8EK8L5qCTEmjFpU2nQ1RqpVZ06lGa70/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-240811-w27-33cf2" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">240811</p>
-          <p class="tt-course__credits">1 Credit</p>
-          <p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ICT3201H / ICT6201 L6201</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">God in Flesh and Blood: Revolutions in Christology</h3>
-          <p class="tt-course__sub">Biblical Theology Seminar · TST Cross-Listed</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/nansell">Dr. Nik Ansell</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Tuesdays, 10am – 1pm ET</span>
-          </p>
-          <p class="tt-course__blurb">Although theologians often approach “Christology” by asking how Jesus of Nazareth might be best understood in terms of certain systematic concerns or doctrinal positions—a perspective that gives rise to questions such as: How are the divine and human natures of Christ related?, What are the merits of, or alternatives to, substitutionary atonement?, and How might a virginal conception thwart the transmission of original sin?—those who are more oriented to the discipline of “biblical theology” are more likely to prioritize how the New Testament portrayal of Jesus is related to the narrative movement—or movements—of the Hebrew Bible. This leads either to a different set of questions or (just as importantly) to a different angle on the kinds of questions asked above. This course, on potential revolutions in Christological thinking, will draw on contemporary NT scholarship in order to explore this latter approach.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description, required reading and prerequisites</span>
-              <span class="tt-more__hide">Hide the full description, required reading and prerequisites</span>
-            </summary>
-            <p class="tt-more__p">To what extent do the OT themes of exile and return, old age and new age, help deepen our understanding of the birth and crucifixion of the Messiah? If the NT portrays the first followers of Jesus as worshipping him (and as doing so before and not just after the Resurrection), is it implicitly or explicitly calling us to worship Jesus’s humanity as well as his divinity? Does Mary’s encounter with Gabriel, who is a named presence in the Hebrew Bible/Old Testament only in the Book of Daniel, indicate that her conception of Jesus is to be read apocalyptically? Is it significant that Elizabeth initially greets Mary with words otherwise associated with Jael and Judith? These are some of the exegetical and theological questions we will consider in this engagement with issues at the edge, and at the heart, of contemporary Christology. Conversation partners will include: James Dunn (<em>Did the First Christians Worship Jesus?</em>), Jane Schaberg (<em>The Illegitimacy of Jesus)</em>, and N.T. Wright (<em>The Day the Revolution Began</em>).</p>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. *N.T. Wright, The Day the Revolution Began: Reconsidering the Meaning of Jesus’s Crucifixion (San Francisco: HarperOne, 2016).<br>Students can also buy the book directly from the publisher, HarperCollins.</p>
-            <p class="tt-more__p">As well, our US-based students can buy the book from Barnes &amp; Noble.</p>
-            <p class="tt-more__p">2. &quot;Students must purchase one of the following books but do not need to purchase both.&quot;<br>OPTION A: **James Dunn, Did the First Christians Worship Jesus? The New Testament Evidence (Louisville, NJ: Westminster John Knox Press, 2010).<br>They can also buy the eBook for $10 from Google Books.<br>Chapters/Indigo sells both the print book and eBook ($15.99, Kobo).<br>Barnes and Noble also sells both the print and eBook versions.<br>OPTION B: **Jane Schaberg, The Illegitimacy of Jesus: A Feminist Theological Interpretation of the Infancy Narratives. Expanded Twentieth Anniversary Edition (Sheffield: Sheffield Phoenix Press, 2006).<br>Thriftbooks is another option.<br>Abebooks is another option.<br>Barnes and Noble also sells the print version.</p>
-            <h4 class="tt-more__h">Prerequisites</h4>
-            <p class="tt-more__p">NOTE: Completion of 1108AC or 2108AC is a prerequisite for enrolling in this course.</p>
-          </details>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vTaitMzLwsFvvOtrMivY-JEDtUm673hDCWKT7O91uTA-gP2AOhr3pZGVlTaijathnACRft5rbYNf3Ym/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-223001-w27-322e6" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">223001</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">Material Spirituality: Rethinking Religion</h3>
-          <p class="tt-course__sub">Phenomenology of Religion</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/neal-deroo">Dr. Neal DeRoo</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Wednesday, 2pm – 5pm ET</span>
-          </p>
-          <p class="tt-course__blurb">This course will make the case that religion must be understood as shaping how we experience the world and not simply as a distinct kind of experience (e.g., religious experience v. artistic experience v. ethical experience). In doing so, the course will bring together work in religious studies, phenomenology of religion, phenomenological philosophy, secularism studies, and Continental philosophy of religion to show that religion is both constituted within historical and material conditions and is partly constitutive of those conditions. In that way, what it offers is not simply a materialist account of religion, but an account of material spirituality in which religion can be located and contextualized. Please note that the course will not assume prior familiarity with phenomenology.</p>
-          <p class="tt-course__actions"><a class="tt-syllabus" href="https://docs.google.com/document/d/e/2PACX-1vQtLs7H0M6PdngUjxu3_uGb29IqHfyzg01siRR6Geao2LI4HDn790oCdxpraPj87i18MvlN1Ftczy-n/pub">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>
-        </div>
-      </li>
-      <li class="tt-course" id="course-2105ac-w27-be0ac" data-programs="ma phd">
-        <div class="tt-course__rail">
-          <p class="tt-course__code">2105AC</p>
-          <p class="tt-course__credits">1 Credit</p>
-        </div>
-        <div class="tt-course__main">
-          <ul class="tt-course__progs" aria-label="Programs">
-            <li class="tt-tag" data-program="ma" title="MA in Philosophy">MA</li>
-            <li class="tt-tag" data-program="phd" title="PhD in Philosophy">PhD</li>
-          </ul>
-          <h3 class="tt-course__title">Meaning/Being/Knowing: The Disciplinary and Interdisciplinary Implications of a Christian Ontology</h3>
-          <p class="tt-course__sub">In Partnership with Calvin University</p>
-          <p class="tt-course__meta">
-            <a class="tt-course__who" href="https://faculty.icscanada.edu/nansell">Dr. Nik Ansell</a>
-            <span class="tt-course__format">Online Synchronous</span>
-            <span class="tt-course__when">Wednesday, 6:00–9:00pm ET</span>
-          </p>
-          <p class="tt-course__blurb">“Meaning is the being of all that has been created and the nature even of our selfhood.” With these enigmatic words, which form part of the introduction to his magisterial New Critique of Theoretical Thought, the neo-Calvinist philosopher Herman Dooyeweerd signals his intention to de-centre the central concern of Ontology by relativizing (which is to say thoroughly relating) the philosophical notion of Being to Meaning, even to the point of (re-)defining creation’s being as meaning—all in the conviction that this will enable us to engage in (rather than circumvent or supersede) the work of Ontology (and thus Epistemology) in a truly systematic, integrally Christian, way. Although it might seem as though Dooyeweerd is merely substituting one metaphysical idea for another, his reference to the nature of our selfhood here indicates that, for all its theoretical import for Philosophical Anthropology, this highly suggestive proposal also has profound implications for how we might both appreciate and pull upon our deepest (religious) self-knowledge, which takes shape before the face of God as we face the world. To do the work of Ontology well—to gain genuine insight into the “nature of things” and to identify the contours and coherence of the world’s general structures without undermining investigation or denaturing experience—will require that we also draw upon a pre-theoretical form of Knowing, and a spiritual grounding and hope, that will always precede and exceed our understanding.</p>
-          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show the full description, required reading and prerequisites</span>
-              <span class="tt-more__hide">Hide the full description, required reading and prerequisites</span>
-            </summary>
-            <p class="tt-more__p">Implicit in Dooyeweerd’s vision of and for Ontology, we might say, is the provocative claim that creation does not “have” meaning but “is” meaning (a paraphrase that, tellingly, uses the language of Being to relativize Being). But what does Dooyeweerd mean by “meaning”? And what difference might this systematically relational, spiritually open, with-reference-to-self-and-beyond re-centering make (a) to the detailed, nitty-gritty work that needs to be done in any given academic field, and (b) to the theoretical integration that requires both intra- and inter-disciplinary reflection? After an opening discussion about the phenomenon of “post-truth,” to which we shall return at the end of the course, we shall explore the inter-play between Meaning, Being, and Knowing via a close reading of Hendrik Hart’s Understanding Our World: An Integral Ontology, paying careful attention to the ways in which his interpretation of Dooyeweerd’s ideas—not least the discussion of “meaning” that occurs at the midpoint of his Appendix (see 8.1.4) and in a pivotal section within his central chapter (see 4.4 and 405–406n37)—might deepen our insight into how what is known in faith and articulated via our web of beliefs can help us identify and evaluate the core concepts and the conceptual-ontological connections that play such an integral, influential role in the scholarly disciplines with which we are engaged. In paying attention to develop ments in Hart’s Ontology and Epistemology since the publication of this work, we shall also ask whether the broadly Dooyeweerdian position he initially adopts is as post-metaphysical as it may first appear.</p>
-            <p class="tt-more__p">In this iteration of the course, we shall pay special attention to the central concerns of political theory and aesthetics, including their respective interests in the way we posit societal principles and protect, reveal, expand, and find ourselves via the symbols that make up the fabric of our life, history, and society. In further probing the relationship between the aesthetic and political dimensions of created meaning, and between the mystery of our selfhood and the structural contours of reality, we shall also be asking what the development of an Ontology in the Reformational tradition might offer to the scholarly search for disciplinary integrity and interdisciplinary integration—this being a neo-Calvinism in which the unity and diversity we rightly seek are typically seen as covenantally, rather than ontotheologically, grounded.</p>
-            <p class="tt-more__p">Given this relational emphasis, we may well wonder what might happen if “Being” were to make way for—or make a way for—“Loving.” Perhaps, following Dooyeweerd’s (post-metaphysical?) turn to “Meaning,” we may find that a Christian scholarly approach to knowing and understanding our world and ourselves “after Being” may have something new to say to the peril and promise of life “post-truth”!</p>
-            <h4 class="tt-more__h">Required reading</h4>
-            <p class="tt-more__p">1. Jeffrey Dudiak, <em>Post-Truth? Facts and Faithfulness</em> (Eugene, OR: Wipf and Stock, 2022).</p>
-            <p class="tt-more__p">Amazon CA, Barnes &amp; Noble.</p>
-            <p class="tt-more__p">2. Henk Hart, <em>Understanding Our World: An Integral Ontology</em> (Lanham, MD: University Press of</p>
-            <p class="tt-more__p">America, 1984).</p>
-            <p class="tt-more__p">Amazon CA has some used copies in hardcover that are more affordable than the paperback. If ordering a print copy, please order this book as soon as possible because there will be shipping delays both due to the upcoming holiday season as well as shipping from outside of Canada. Thriftbooks may sell copies. Abebooks sells used copies.</p>
-            <h4 class="tt-more__h">Prerequisites</h4>
-            <p class="tt-more__p">NOTE: Completion of 1107AC or 2107AC is a prerequisite for enrolling in this course.</p>
-          </details>
-        </div>
-      </li>
-    </ol>
+    <div class="tt-grid__scroll">
+      <table class="tt-grid">
+        <caption class="tt-vh">Weekly schedule, Winter Term 2027</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="tt-grid__corner">Time</th>
+            <th scope="col" data-day="tuesday">Tuesday</th>
+            <th scope="col" data-day="wednesday">Wednesday</th>
+            <th scope="col" data-day="thursday">Thursday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-slot="600-780">
+            <th scope="row" class="tt-grid__time">10:00 – 13:00 ET</th>
+            <td data-day="tuesday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-240811-w27-33cf2">God in Flesh and Blood: Revolutions in Christology</a>
+                <p class="tt-cell__code">240811</p>
+                <p class="tt-cell__who">Nik Ansell</p>
+              </div>
+            </td>
+            <td data-day="wednesday"></td>
+            <td data-day="thursday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-albert-the-great-meister-eckhar-1ae3e">Albert the Great, Meister Eckhart, and Women’s Spirituality</a>
+                <p class="tt-cell__code">220409</p>
+                <p class="tt-cell__who">Robert (Bob) Sweetman</p>
+              </div>
+            </td>
+          </tr>
+          <tr data-slot="840-1020">
+            <th scope="row" class="tt-grid__time">14:00 – 17:00 ET</th>
+            <td data-day="tuesday"></td>
+            <td data-day="wednesday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-223001-w27-322e6">Material Spirituality: Rethinking Religion</a>
+                <p class="tt-cell__code">223001</p>
+                <p class="tt-cell__who">Neal DeRoo</p>
+              </div>
+            </td>
+            <td data-day="thursday"></td>
+          </tr>
+          <tr data-slot="900-1080">
+            <th scope="row" class="tt-grid__time">15:00 – 18:00 ET</th>
+            <td data-day="tuesday"></td>
+            <td data-day="wednesday"></td>
+            <td data-day="thursday">
+              <div class="tt-cell" data-programs="ma mws phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-imagining-the-world-with-ricoeur-525af">Imagining the World with Ricoeur: Narrative, Action, and the Sacred in Ricoeur's Hermeneutic Phenomenology</a>
+                <p class="tt-cell__code">120504 / 220504</p>
+                <p class="tt-cell__who">Ron Kuipers</p>
+              </div>
+            </td>
+          </tr>
+          <tr data-slot="1080-1260">
+            <th scope="row" class="tt-grid__time">18:00 – 21:00 ET</th>
+            <td data-day="tuesday"></td>
+            <td data-day="wednesday">
+              <div class="tt-cell" data-programs="ma phd">
+                <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-2105ac-w27-be0ac">Meaning/Being/Knowing: The Disciplinary and Interdisciplinary Implications of a Christian Ontology</a>
+                <p class="tt-cell__code">2105AC</p>
+                <p class="tt-cell__who">Nik Ansell</p>
+              </div>
+            </td>
+            <td data-day="thursday"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tt-off">
+      <h3 class="tt-off__title">No fixed weekly slot</h3>
+      <ul class="tt-off__list">
+        <li class="tt-off__item" data-programs="mael cstc mwse">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Blended (Online Asynchronous/Synchronous)</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-260004-w27-ec9bf">Christian Deeper Learning: From Wonder to Inquiry to Practice <span class="tt-cell__area">(CSTC 3)</span></a>
+            <p class="tt-cell__code">260004</p>
+            <p class="tt-cell__who">Edith van der Boom</p>
+          </div>
+        </li>
+        <li class="tt-off__item" data-programs="mael mws mwse">
+          <div class="tt-off__when">
+            <p class="tt-off__format">Blended (Online Asynchronous/Synchronous)</p>
+          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="https://courses.icscanada.edu/#course-how-to-finance-a-vision-setting-2a265">How to Finance a Vision: Setting Direction and Managing Change within Financial Limitations</a>
+            <p class="tt-cell__code">260007</p>
+            <p class="tt-cell__who">Gideon Strauss</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
   </div>
 <!-- TIMETABLE:END -->
@@ -928,13 +495,12 @@
     <div class="tt-archive" hidden></div>
 
     <aside class="tt-notes">
-      <h2 class="tt-notes__title">Registering and reading further</h2>
+      <h2 class="tt-notes__title">About this timetable</h2>
       <ul class="tt-notes__list">
-        <li><strong>To register for a course</strong>, or to ask whether one still has room, write to <a href="mailto:academic-registrar@icscanada.edu" class="inline-link">academic-registrar@icscanada.edu</a>. Registration deadlines for each term are on the <a href="academic-calendar.html" class="inline-link">Academic Calendar</a>.</li>
-        <li>Courses listed here are offered <strong>subject to sufficient enrolment</strong>, and a seminar can be withdrawn or rescheduled. The Registrar confirms the final offering for a term.</li>
-        <li>A course marked <strong>TST</strong> is cross-listed with the <a href="https://www.tst.edu" class="inline-link">Toronto School of Theology</a> under the code shown. TST students must contact the ICS Registrar to complete a registration.</li>
-        <li>An <strong>Area</strong> on a course is its area within the <a href="https://www.icscanada.edu/academics/educational-leadership/christian-educator-certificates" class="inline-link">Christian Educator Certificates</a> (CSTC).</li>
-        <li>Syllabi open in a new tab and are the authoritative version of a course's requirements; the description here is a summary.</li>
+        <li><strong>Every course title links to the <a href="https://courses.icscanada.edu/" class="inline-link">course catalogue</a></strong>, where you will find the full description, the required reading, prerequisites and the syllabus.</li>
+        <li><strong>To register</strong>, or to ask whether a course still has room, write to <a href="mailto:academic-registrar@icscanada.edu" class="inline-link">academic-registrar@icscanada.edu</a>. Registration deadlines for each term are on the <a href="academic-calendar.html" class="inline-link">Academic Calendar</a>.</li>
+        <li>Times are <strong>Eastern</strong>. Courses listed here are offered subject to sufficient enrolment, and a seminar can be withdrawn or rescheduled.</li>
+        <li>A <strong>CSTC</strong> number after a title is the course's area within the <a href="https://www.icscanada.edu/academics/educational-leadership/christian-educator-certificates" class="inline-link">Christian Educator Certificates</a>.</li>
       </ul>
     </aside>
 

@@ -14,16 +14,14 @@
        hidden and is revealed here, because a control that cannot do
        anything is worse than no control at all.
 
-   Without this file the visitor still gets every course in chronological
-   order with no dead controls — worse, but never broken. Nothing here
-   fetches.
+   Without this file the visitor still gets every term's grid in
+   chronological order with no dead controls — worse, but never broken.
+   Nothing here fetches.
 
    Usage: <script src="../js/timetable.js" defer></script>, after
    footer.js and extlinks.js. */
 (function () {
   'use strict';
-
-  var MS_PER_DAY = 86400000;
 
   /* Midnight today, in the reader's own timezone. Comparing dates rather
      than instants is what keeps "the term ending today has not ended"
@@ -97,7 +95,7 @@
   function empty(host) {
     var box = el('div', 'tt-empty');
     box.appendChild(el('h2', 'tt-empty__title',
-      'Courses for the coming term are not published yet'));
+      'The timetable for the coming term is not published yet'));
     box.appendChild(el('p', 'tt-empty__body',
       'Every term listed here has finished. The timetable for the term ahead ' +
       'is usually posted a few months in advance — past terms are below, and ' +
@@ -180,23 +178,37 @@
     if (!bar) return;
 
     var chips = bar.querySelectorAll('.tt-filter__chip');
-    var status = bar.querySelector('.tt-filter__status');
-    var courses = root.querySelectorAll('.tt-course');
     var terms = root.querySelectorAll('.tt-term');
+    var courses = root.querySelectorAll('.tt-cell, .tt-off__item');
+    var status = bar.querySelector('.tt-filter__status');
     if (!chips.length || !courses.length) return;
 
     var known = {};
     each(chips, function (chip) { known[chip.getAttribute('data-program')] = chip.textContent.trim(); });
 
     /* Every term gets its own "nothing here" line up front, shown only
-       while a filter has emptied that term. A heading with nothing under
-       it reads as a page that broke. */
+       while a filter has emptied that term. A term heading with nothing
+       under it reads as a page that broke. */
     each(terms, function (term) {
       var note = el('p', 'tt-term__none');
       note.hidden = true;
-      var list = term.querySelector('.tt-term__list');
-      if (list && list.parentNode) list.parentNode.insertBefore(note, list.nextSibling);
+      term.appendChild(note);
     });
+
+    /* A day column with nothing left in it is a column of nothing, so the
+       header and every square under it go together. */
+    function trimColumns(table) {
+      var days = {};
+      each(table.querySelectorAll('td[data-day]'), function (td) {
+        var day = td.getAttribute('data-day');
+        var live = td.querySelector('.tt-cell:not([hidden])');
+        days[day] = days[day] || !!live;
+      });
+
+      each(table.querySelectorAll('[data-day]'), function (node) {
+        node.hidden = !days[node.getAttribute('data-day')];
+      });
+    }
 
     function apply(program, animate) {
       var total = 0;
@@ -209,29 +221,35 @@
 
         total++;
         course.hidden = !match;
-
-        each(course.querySelectorAll('.tt-tag'), function (tag) {
-          tag.classList.toggle('is-match',
-            program !== 'all' && tag.getAttribute('data-program') === program);
-        });
-
         if (!match) return;
         shown++;
 
         if (animate) {
           course.classList.remove('is-settling');
           course.style.setProperty('--tt-i', String(Math.min(i++, 9)));
-          /* Reading offsetWidth restarts the animation on a row that was
-             already visible before this click. */
+          /* Reading offsetWidth restarts the animation on a course that
+             was already visible before this click. */
           void course.offsetWidth;
           course.classList.add('is-settling');
         }
       });
 
       each(terms, function (term) {
-        var live = term.querySelectorAll('.tt-course:not([hidden])').length;
+        var live = term.querySelectorAll('.tt-cell:not([hidden]), .tt-off__item:not([hidden])').length;
         var count = term.querySelector('.tt-term__count');
         var note = term.querySelector('.tt-term__none');
+        var table = term.querySelector('.tt-grid');
+        var grid = term.querySelector('.tt-grid__scroll');
+        var off = term.querySelector('.tt-off');
+
+        if (table) {
+          each(table.querySelectorAll('tbody tr'), function (tr) {
+            tr.hidden = !tr.querySelector('.tt-cell:not([hidden])');
+          });
+          trimColumns(table);
+        }
+        if (grid) grid.hidden = !term.querySelector('.tt-grid .tt-cell:not([hidden])');
+        if (off) off.hidden = !term.querySelector('.tt-off__item:not([hidden])');
 
         if (count) count.textContent = courseWord(live);
         if (note) {
@@ -280,58 +298,9 @@
     bar.hidden = false;
 
     /* A link to /academics/course-timetable#mael opens on that program.
-       Anything else in the hash — a term anchor, a course anchor — is
-       left to the browser. */
+       Anything else in the hash — a term anchor — is left to the browser. */
     var fromHash = window.location.hash.replace(/^#/, '');
     apply(known[fromHash] ? fromHash : 'all', false);
-  }
-
-  /* ------------------------------------------------------------ print */
-
-  /* A details element cannot be forced open from CSS, and paper cannot be
-     clicked, so every course disclosure opens for the print and anything
-     this opened closes again afterwards — the screen is left as the reader
-     had it.
-
-     The past-terms archive is deliberately not opened. It is the one
-     disclosure whose contents a reader has actively chosen not to see, and
-     forcing it open turns a two-page printout of the current term into
-     thirty pages of terms that have finished. Open it on screen and it
-     prints; leave it closed and it does not. */
-  function setUpPrint(root) {
-    var opened = [];
-    var printing = false;
-
-    function expand() {
-      /* Chromium fires beforeprint and flips the print media query, so
-         without this guard the second call would record an empty list and
-         nothing would ever close again. */
-      if (printing) return;
-      printing = true;
-      opened = [];
-      each(root.querySelectorAll('.tt-more:not([open])'), function (d) {
-        d.open = true;
-        opened.push(d);
-      });
-    }
-
-    function restore() {
-      if (!printing) return;
-      printing = false;
-      opened.forEach(function (d) { d.open = false; });
-      opened = [];
-    }
-
-    window.addEventListener('beforeprint', expand);
-    window.addEventListener('afterprint', restore);
-
-    /* Safari fires neither event; it answers the media query instead. */
-    if (window.matchMedia) {
-      var mq = window.matchMedia('print');
-      var onChange = function (e) { (e.matches ? expand : restore)(); };
-      if (mq.addEventListener) mq.addEventListener('change', onChange);
-      else if (mq.addListener) mq.addListener(onChange);
-    }
   }
 
   /* ------------------------------------------------------------- main */
@@ -388,7 +357,6 @@
     /* After the archive has moved terms, so the filter counts and the
        per-term notes cover the past terms too. */
     setUpFilter(document);
-    setUpPrint(document);
   }
 
   if (document.readyState === 'loading') {

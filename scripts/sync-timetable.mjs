@@ -53,6 +53,10 @@ const MIN_COURSES = 6;
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
+/* The grid is Monday to Friday, like the timetable it replaces. A course
+   scheduled on a weekend would fall off the grid into the list below it. */
+const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
 /* Term slug → the window it covers and the words shown for it. These are
    the boundaries the academic calendar sheet already uses, so a term is
    "current" on the same days on both pages. Change them in one place and
@@ -116,13 +120,14 @@ function parseCSV(text) {
   return rows.filter(r => r.some(cell => cell.trim() !== ''));
 }
 
-/* The sheet carries more columns than the page renders (enrolment notes,
-   registration email, last date to register, maximum enrolment). Only
-   the ones listed here are read; the rest are left to the registrar. */
+/* The sheet carries far more than the grid shows — descriptions, reading
+   lists, prerequisites, syllabus links, enrolment notes. All of that lives
+   on the course catalogue, which every title here links to, so only these
+   columns are read. The rest are the registrar's, and the sync neither
+   requires nor publishes them. */
 const COLUMNS = ['id', 'published', 'sectionorder', 'title', 'code', 'term',
-  'programs', 'credits', 'instructorname', 'instructorurl', 'subtitle',
-  'descriptionshort', 'descriptionmore', 'tstcode', 'format', 'meetingday',
-  'meetingtime', 'syllabusurl', 'requiredbooks', 'prerequisites', 'cstcarea'];
+  'programs', 'instructorname', 'format', 'meetingday', 'meetingtime',
+  'cstcarea'];
 
 function toRecords(rows) {
   const header = rows[0].map(h => h.trim().toLowerCase());
@@ -144,21 +149,12 @@ function toRecords(rows) {
     code: cell(r, 'code'),
     term: cell(r, 'term').toLowerCase(),
     programs: cell(r, 'programs').toLowerCase().split(/\s+/).filter(Boolean),
-    credits: cell(r, 'credits'),
     instructor: cell(r, 'instructorname'),
-    instructorUrl: cell(r, 'instructorurl'),
-    subtitle: cell(r, 'subtitle'),
-    blurb: cell(r, 'descriptionshort'),
-    more: cell(r, 'descriptionmore'),
-    tstCode: cell(r, 'tstcode'),
     format: cell(r, 'format'),
     meetingDay: cell(r, 'meetingday'),
     meetingTime: cell(r, 'meetingtime'),
-    syllabusUrl: cell(r, 'syllabusurl'),
-    books: cell(r, 'requiredbooks'),
-    prerequisites: cell(r, 'prerequisites'),
     cstcArea: cell(r, 'cstcarea')
-  })).filter(c => c.title && c.term);
+  })).filter(c => c.id && c.title && c.term);
 }
 
 /* ------------------------------------------------------------ ordering */
@@ -233,38 +229,6 @@ function esc(s) {
     .replace(/"/g, '&quot;');
 }
 
-/* The registrar writes book and course titles between asterisks. Only a
-   matched pair on one line becomes emphasis, and the opening one has to
-   start a word: the sheet is also full of lone asterisks used as footnote
-   marks, doubled ones (`**James Dunn`) that open nothing, and a ` * `
-   separator inside `subtitle` — all of which must survive as the
-   characters they are. Closing asterisks are taken wherever they fall,
-   because the sheet has plenty typed tight against the next word
-   (`*Time and Narrative*(Vols. I-III)`). */
-function emphasise(escaped) {
-  return escaped
-    /* Doubled asterisks first, so `**Title**` does not get read as an
-       empty pair of single ones. */
-    .replace(/(^|[\s(\[.,;:])\*\*(?=\S)([^*\n]*[^\s*])\*\*/g, '$1<em>$2</em>')
-    .replace(/(^|[\s(\[.,;:])\*(?=\S)([^*\n]*[^\s*])\*/g, '$1<em>$2</em>');
-}
-
-/* Sheet prose → paragraphs. A blank line starts a new one; a single
-   newline is a line break, which is how the reading lists are written. */
-function prose(text, className, pad) {
-  return text.split(/\n\s*\n/)
-    .map(p => p.trim())
-    .filter(Boolean)
-    .map(p => `${pad}<p class="${className}">${emphasise(esc(p)).replace(/\n/g, '<br>')}</p>`)
-    .join('\n');
-}
-
-/* Hyphens typed as range dashes become en dashes. Bounded to digits and
-   spaced hyphens so hyphenated words are left alone. */
-function dashes(s) {
-  return s.replace(/(\d)\s*-\s*(\d)/g, '$1–$2').replace(/ - /g, ' – ');
-}
-
 function formatRange(start, end) {
   const s = new Date(`${start}T00:00:00Z`);
   const e = new Date(`${end}T00:00:00Z`);
@@ -273,159 +237,195 @@ function formatRange(start, end) {
     `${MONTHS[e.getUTCMonth()]} ${e.getUTCDate()}, ${e.getUTCFullYear()}`;
 }
 
-/* `subtitle` packs several facets into one cell separated by " * "
-   ("MA-EL Instructional Concentration * CSTC Area 3"). Middots read as
-   the list it actually is. */
-function subtitle(s) {
-  return esc(s.split(/\s+\*\s+/).map(p => p.trim()).filter(Boolean).join(' · '));
+/* Hyphens typed as range dashes become en dashes. Bounded to digits and
+   spaced hyphens so hyphenated words are left alone. */
+function dashes(s) {
+  return s.replace(/(\d)\s*-\s*(\d)/g, '$1–$2').replace(/ - /g, ' – ');
 }
 
-/* When a course meets, in one line where that is honest and in a list
-   where it is not. The intensives spell every session into `meetingDay`
-   separated by semicolons; six dates squashed onto one row is unreadable,
-   so the row says how many there are and the dates go in the disclosure. */
-function meeting(c) {
-  const day = c.meetingDay.trim();
+/* --------------------------------------------------------- the grid */
+
+/* A course earns a square on the weekly grid only when `meetingDay` is a
+   bare weekday and `meetingTime` parses into a slot. Anything else —
+   blank, an intensive's list of session dates, "Tuesdays July 14 - Aug 10"
+   — is listed under the grid instead, which is what the registrar's own
+   timetable documents do. Guessing a square for a course that does not
+   have one would be worse than saying so. */
+function weekday(meetingDay) {
+  const m = /^(monday|tuesday|wednesday|thursday|friday)s?$/i.exec(meetingDay.trim());
+  return m ? m[1][0].toUpperCase() + m[1].slice(1).toLowerCase() : null;
+}
+
+/* "6:00-9:00pm ET" → { start: 1080, end: 1260 }, in minutes past midnight.
+   The sheet spells these a dozen different ways. Where only one end of the
+   range carries am/pm the other inherits it, and a start that lands after
+   its own end is read as the morning instead — which is what turns
+   "10 - 1pm" into 10:00-13:00 rather than 22:00-13:00. */
+function parseSlot(meetingTime) {
+  const m = /(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*(?:-|–|—|to)\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i
+    .exec(meetingTime);
+  if (!m) return null;
+
+  const to24 = (h, mer) => {
+    h = parseInt(h, 10);
+    if (!mer) return h;
+    mer = mer.toLowerCase();
+    if (mer === 'pm' && h < 12) return h + 12;
+    if (mer === 'am' && h === 12) return 0;
+    return h;
+  };
+
+  const endMer = m[6] ? m[6].toLowerCase() : null;
+  let startMer = m[3] ? m[3].toLowerCase() : endMer;
+
+  let start = to24(m[1], startMer) * 60 + parseInt(m[2] || '0', 10);
+  const end = to24(m[4], endMer) * 60 + parseInt(m[5] || '0', 10);
+
+  if (start >= end && startMer === 'pm' && !m[3]) {
+    start = to24(m[1], 'am') * 60 + parseInt(m[2] || '0', 10);
+  }
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start >= end) return null;
+
+  return { start, end };
+}
+
+function clock(mins) {
+  return `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
+}
+
+/* --------------------------------------------------------- one course */
+
+/* The registrar's own timetables append the certificate area to the
+   title — "The Craft of Reflective Practice (CSTC 2)". `cstcArea` holds
+   it as "Area 2" or "Areas 2 and 4". */
+function titleOf(c) {
+  if (!c.cstcArea) return esc(c.title);
+  const nums = c.cstcArea.match(/\d+/g);
+  const area = nums ? `CSTC ${nums.join(', ')}` : c.cstcArea;
+  return `${esc(c.title)} <span class="tt-cell__area">(${esc(area)})</span>`;
+}
+
+/* Cells are narrow and the honorific is the same on every one of them. */
+function instructorOf(c) {
+  return c.instructor.replace(/\bDrs?\.?\s+/g, '').trim();
+}
+
+const CATALOGUE = 'https://courses.icscanada.edu/#course-';
+
+/* Title, code, instructor — the three things the old grid carried. The
+   title is a link out to the course catalogue, which holds the
+   description, the syllabus and how to register; every card there is
+   anchored on this same id. */
+function renderCourse(c, indent) {
+  const pad = ' '.repeat(indent);
+  return `${pad}<div class="tt-cell" data-programs="${esc(c.programs.join(' '))}">
+${pad}  <a class="tt-cell__title" href="${CATALOGUE}${encodeURIComponent(c.id)}">${titleOf(c)}</a>
+${pad}  <p class="tt-cell__code">${esc(c.code || '—')}</p>
+${pad}  <p class="tt-cell__who">${esc(instructorOf(c))}</p>
+${pad}</div>`;
+}
+
+function renderGrid(term, placed) {
+  if (!placed.length) return '';
+
+  /* Only the days and slots this term actually uses. An empty Monday
+     column is a column of nothing, five weeks running. */
+  const days = DAYS.filter(d => placed.some(p => p.day === d));
+  const slots = [...new Map(placed.map(p =>
+    [`${p.slot.start}-${p.slot.end}`, p.slot])).values()]
+    .sort((a, b) => a.start - b.start || a.end - b.end);
+
+  const head = days.map(d =>
+    `            <th scope="col" data-day="${d.toLowerCase()}">${d}</th>`).join('\n');
+
+  const rows = slots.map(slot => {
+    const key = `${slot.start}-${slot.end}`;
+    const cells = days.map(day => {
+      const here = placed.filter(p =>
+        p.day === day && p.slot.start === slot.start && p.slot.end === slot.end);
+      return here.length
+        ? `            <td data-day="${day.toLowerCase()}">\n${here.map(p => renderCourse(p.course, 14)).join('\n')}\n            </td>`
+        : `            <td data-day="${day.toLowerCase()}"></td>`;
+    }).join('\n');
+
+    return `          <tr data-slot="${key}">
+            <th scope="row" class="tt-grid__time">${clock(slot.start)} – ${clock(slot.end)} ET</th>
+${cells}
+          </tr>`;
+  }).join('\n');
+
+  return `    <div class="tt-grid__scroll">
+      <table class="tt-grid">
+        <caption class="tt-vh">Weekly schedule, ${esc(term.name)}</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="tt-grid__corner">Time</th>
+${head}
+          </tr>
+        </thead>
+        <tbody>
+${rows}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+/* When a course meets, for the ones with no square on the grid. The
+   intensives spell every session into `meetingDay` separated by
+   semicolons; middots read as the list it is. */
+function scheduleOf(c) {
+  const day = c.meetingDay.split(';').map(p => dashes(p.trim())).filter(Boolean).join(' · ');
   const time = dashes(c.meetingTime.trim());
-  const parts = day ? day.split(';').map(p => p.trim()).filter(Boolean) : [];
-
-  if (parts.length >= 3) {
-    return { line: `${parts.length} scheduled sessions`, sessions: parts.map(dashes) };
-  }
-
-  const when = parts.map(dashes).join(' · ');
-  if (when && time) return { line: `${when}, ${time}`, sessions: null };
-  if (when) return { line: when, sessions: null };
-  if (time) return { line: time, sessions: null };
-  return { line: null, sessions: null };
+  if (day && time) return `${day}, ${time}`;
+  return day || time || '';
 }
 
-function programTags(slugs) {
-  const items = PROGRAMS
-    .filter(([slug]) => slugs.includes(slug))
-    .map(([slug, short, full]) => {
-      const title = full ? ` title="${esc(full)}"` : '';
-      return `<li class="tt-tag" data-program="${slug}"${title}>${esc(short)}</li>`;
-    });
+function renderOffGrid(loose) {
+  if (!loose.length) return '';
 
-  /* A slug the sheet has that this script does not know about still
-     shows, spelled as it was typed, rather than disappearing. */
-  const extra = slugs
-    .filter(s => !PROGRAMS.some(([slug]) => slug === s))
-    .map(s => `<li class="tt-tag" data-program="${esc(s)}">${esc(s.toUpperCase())}</li>`);
+  const items = loose.map(c => {
+    const when = scheduleOf(c);
+    return `        <li class="tt-off__item" data-programs="${esc(c.programs.join(' '))}">
+          <div class="tt-off__when">
+${c.format ? `            <p class="tt-off__format">${esc(c.format)}</p>\n` : ''}${when ? `            <p class="tt-off__sched">${esc(when)}</p>\n` : ''}          </div>
+          <div class="tt-off__what">
+            <a class="tt-cell__title" href="${CATALOGUE}${encodeURIComponent(c.id)}">${titleOf(c)}</a>
+            <p class="tt-cell__code">${esc(c.code || '—')}</p>
+            <p class="tt-cell__who">${esc(instructorOf(c))}</p>
+          </div>
+        </li>`;
+  }).join('\n');
 
-  return items.concat(extra);
-}
-
-/* Names what opening the disclosure will actually show, rather than
-   saying "more" and leaving the reader to find out. */
-function summarise(parts) {
-  if (parts.length === 1) return parts[0];
-  return `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}`;
-}
-
-function renderCourse(c) {
-  const when = meeting(c);
-  const tags = programTags(c.programs);
-
-  /* Everything that belongs behind the disclosure, in reading order. */
-  const panels = [];
-  const named = [];
-
-  if (c.more) {
-    named.push('the full description');
-    panels.push(prose(c.more, 'tt-more__p', '            '));
-  }
-  if (when.sessions) {
-    named.push('session dates');
-    panels.push(`            <h4 class="tt-more__h">Session dates</h4>
-            <ol class="tt-sessions">
-${when.sessions.map(s => `              <li>${esc(s)}</li>`).join('\n')}
-            </ol>`);
-  }
-  if (c.books) {
-    named.push('required reading');
-    panels.push(`            <h4 class="tt-more__h">Required reading</h4>
-${prose(c.books, 'tt-more__p', '            ')}`);
-  }
-  if (c.prerequisites) {
-    named.push('prerequisites');
-    panels.push(`            <h4 class="tt-more__h">Prerequisites</h4>
-${prose(c.prerequisites, 'tt-more__p', '            ')}`);
-  }
-
-  /* Both labels ship; CSS shows whichever matches the open state, so the
-     control always names what the next click does. */
-  const named_ = esc(summarise(named));
-  const details = panels.length ? `          <details class="tt-more">
-            <summary class="tt-more__toggle">
-              <span class="tt-more__show">Show ${named_}</span>
-              <span class="tt-more__hide">Hide ${named_}</span>
-            </summary>
-${panels.join('\n')}
-          </details>` : '';
-
-  /* The instructor's own page, or their address when the sheet gives one
-     instead. A bare faculty.icscanada.edu with no person on the end is
-     not a link to anybody, so it is dropped. */
-  const url = c.instructorUrl;
-  const linkable = url && !/^https?:\/\/faculty\.icscanada\.edu\/?$/i.test(url);
-  const byline = c.instructor
-    ? (linkable
-      ? `<a class="tt-course__who" href="${esc(url)}">${esc(c.instructor)}</a>`
-      : `<span class="tt-course__who">${esc(c.instructor)}</span>`)
-    : '';
-
-  const meta = [
-    byline,
-    c.format ? `<span class="tt-course__format">${esc(c.format)}</span>` : '',
-    when.line ? `<span class="tt-course__when">${esc(when.line)}</span>`
-      : `<span class="tt-course__when tt-course__when--open">No fixed meeting time</span>`
-  ].filter(Boolean).join('\n            ');
-
-  /* The rail: what a registrar reads first and a student quotes in an
-     email. Codes can be a pair ("120504 / 220504") — one per line, so the
-     column stays narrow. */
-  const codes = c.code
-    ? c.code.split('/').map(p => p.trim()).filter(Boolean)
-    : [];
-
-  const rail = [
-    codes.length
-      ? `<p class="tt-course__code">${codes.map(esc).join('<span class="tt-course__slash"> / </span>')}</p>`
-      : '',
-    c.credits ? `<p class="tt-course__credits">${esc(c.credits)}</p>` : '',
-    c.tstCode ? `<p class="tt-course__tst"><abbr title="Cross-listed with the Toronto School of Theology">TST</abbr> ${esc(c.tstCode)}</p>` : '',
-    c.cstcArea ? `<p class="tt-course__area">${esc(c.cstcArea)}</p>` : ''
-  ].filter(Boolean).join('\n          ');
-
-  return `      <li class="tt-course" id="course-${esc(c.id)}" data-programs="${esc(c.programs.join(' '))}">
-        <div class="tt-course__rail">
-          ${rail}
-        </div>
-        <div class="tt-course__main">
-${tags.length ? `          <ul class="tt-course__progs" aria-label="Programs">
-${tags.map(t => `            ${t}`).join('\n')}
-          </ul>\n` : ''}          <h3 class="tt-course__title">${esc(c.title)}</h3>
-${c.subtitle ? `          <p class="tt-course__sub">${subtitle(c.subtitle)}</p>\n` : ''}          <p class="tt-course__meta">
-            ${meta}
-          </p>
-${c.blurb ? prose(c.blurb, 'tt-course__blurb', '          ') + '\n' : ''}${details ? details + '\n' : ''}${c.syllabusUrl ? `          <p class="tt-course__actions"><a class="tt-syllabus" href="${esc(c.syllabusUrl)}">Syllabus<span class="tt-syllabus__arrow" aria-hidden="true">→</span></a></p>\n` : ''}        </div>
-      </li>`;
+  return `    <div class="tt-off">
+      <h3 class="tt-off__title">No fixed weekly slot</h3>
+      <ul class="tt-off__list">
+${items}
+      </ul>
+    </div>`;
 }
 
 function renderTerm(term) {
+  const placed = [];
+  const loose = [];
+
+  for (const c of term.courses) {
+    const day = weekday(c.meetingDay);
+    const slot = day ? parseSlot(c.meetingTime) : null;
+    if (day && slot) placed.push({ course: c, day, slot });
+    else loose.push(c);
+  }
+
   const n = term.courses.length;
+  const body = [renderGrid(term, placed), renderOffGrid(loose)].filter(Boolean).join('\n');
+
   return `  <section class="tt-term" id="term-${esc(term.code)}"
            data-term="${esc(term.code)}" data-start="${esc(term.start)}" data-end="${esc(term.end)}">
     <header class="tt-term__head">
       <p class="tt-term__code">${esc(term.code)}</p>
       <h2 class="tt-term__name">${esc(term.name)}</h2>
-      <p class="tt-term__range">${esc(formatRange(term.start, term.end))} · <span class="tt-term__count" data-count="${n}">${n} ${n === 1 ? 'course' : 'courses'}</span></p>
+      <p class="tt-term__range">${esc(formatRange(term.start, term.end))} · <span class="tt-term__count">${n} ${n === 1 ? 'course' : 'courses'}</span></p>
     </header>
-    <ol class="tt-term__list">
-${term.courses.map(renderCourse).join('\n')}
-    </ol>
+${body}
   </section>`;
 }
 
@@ -530,7 +530,7 @@ function warnCoerced(courses) {
   const hits = [];
 
   for (const c of courses) {
-    for (const field of ['code', 'meetingDay', 'meetingTime', 'credits', 'cstcArea']) {
+    for (const field of ['title', 'code', 'meetingDay', 'meetingTime', 'cstcArea']) {
       if (SUSPECT.test(c[field])) hits.push(`${c.term} "${c.title}" → ${field} reads "${c[field]}"`);
     }
   }
