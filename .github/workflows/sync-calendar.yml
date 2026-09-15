@@ -1,0 +1,59 @@
+# Rebuild the Academic Calendar page from the Google Sheet.
+#
+# The registrar edits the sheet; this brings the site along. It commits
+# academics/academic-calendar.html only when the rendered calendar has
+# actually changed, so a quiet week leaves no commits behind.
+#
+# Two things worth knowing about GitHub's scheduler:
+#   - `schedule` is best-effort. A run can arrive 10-20 minutes late at
+#     peak times. Fine for a calendar; use "Run workflow" when it isn't.
+#   - GitHub disables scheduled workflows after 60 days with no activity
+#     in the repository, and emails the owner first. A push, or a manual
+#     run, resets that clock.
+
+name: Sync academic calendar
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour, on the hour (UTC)
+  workflow_dispatch:       # "Run workflow" button, for an urgent edit
+  push:
+    # Re-run when the sync itself changes, so a fix takes effect at once.
+    paths:
+      - 'scripts/sync-calendar.mjs'
+      - '.github/workflows/sync-calendar.yml'
+
+# Never let two syncs write the page at the same time.
+concurrency:
+  group: sync-calendar
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Fails loudly without writing if the sheet is unreachable, empty,
+      # or missing columns — a bad fetch must never blank the calendar.
+      - name: Rebuild the page from the sheet
+        run: node scripts/sync-calendar.mjs
+
+      - name: Commit if the calendar changed
+        run: |
+          if git diff --quiet -- academics/academic-calendar.html; then
+            echo "Calendar unchanged."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add academics/academic-calendar.html
+          git commit -m "Sync academic calendar from Google Sheet"
+          git push

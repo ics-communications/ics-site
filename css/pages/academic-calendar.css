@@ -1,0 +1,705 @@
+/* ============================================================
+   academic-calendar
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer, reveal). Only rules that differ from the shared
+   sheet live here.
+
+   The page is set as a ledger rather than a grid of cards: a
+   ruled date column, month names standing in the margin, and
+   one surface — the term actually running — lifted off the
+   page ground. A reader scanning for a single deadline should
+   find it by running a finger down one aligned column.
+   ============================================================ */
+
+:root {
+  /* Height of the sticky term rail, so month headings can park
+     underneath it instead of behind it. */
+  --cal-rail: 3.35rem;
+
+  /* Dimmed-but-legible: dates that have already passed. Sits at
+     4.9:1 on --cream, where --text-muted would fall under 4.5. */
+  --cal-past: #6B655F;
+
+  /* Hairlines. Heavier than --border-light, which disappears
+     when it has to carry a whole ruled table. */
+  --cal-rule: rgba(155, 13, 36, 0.13);
+  --cal-rule-soft: rgba(155, 13, 36, 0.07);
+}
+
+/* ---------------------------------------------------------- hero */
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  position: relative;
+  padding: 4.5rem 0 4rem;
+  overflow: hidden;
+  align-items: initial;
+  display: block;
+  min-height: initial;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 10%, rgba(190,11,40,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.hero .container {
+  position: relative;
+}
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+  font-family: inherit;
+  opacity: initial;
+}
+/* overrides css/styles.css */
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+.hero__sub {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-on-dark);
+  max-width: 620px;
+}
+
+/* ------------------------------------------------------ section */
+.calendar {
+  background: var(--cream);
+  padding: 0 0 5rem;
+}
+
+.inline-link {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.inline-link:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+
+/* --------------------------------------------------- term rail */
+/* Sticky so the reader never loses the way back to another term while
+   scrolling a long one. Solid rather than blurred: it has to stay legible
+   over ruled rows passing underneath. Sits outside .container and carries
+   its own, so the bar spans the viewport without a negative-margin bleed
+   that would need re-tuning at every breakpoint. */
+.cal-jump {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--cream-warm);
+  border-bottom: 1px solid var(--cal-rule);
+}
+.cal-jump__list {
+  list-style: none;
+  display: flex;
+  gap: 1.9rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 0 0.05rem;
+}
+.cal-jump__list::-webkit-scrollbar { display: none; }
+
+.cal-jump__list a {
+  display: block;
+  white-space: nowrap;
+  padding: 1.05rem 0 0.95rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.cal-jump__list a:hover {
+  color: var(--wine);
+}
+.cal-jump__list a.is-current {
+  color: var(--wine);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------------------------------------------------------- term */
+.cal-terms {
+  padding-top: 3.5rem;
+}
+
+.cal-term {
+  margin-bottom: 4.5rem;
+}
+.cal-term:last-of-type {
+  margin-bottom: 0;
+}
+
+.cal-term__head {
+  padding-bottom: 1.4rem;
+  border-bottom: 2px solid var(--wine);
+  margin-bottom: 0;
+}
+.cal-term__code {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  margin-bottom: 0.5rem;
+}
+.cal-term__name {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.2;
+}
+.cal-term__range {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+/* The status badge is written in by js/calendar.js, so it is only
+   ever present when the page knows the reader's date. */
+.cal-term__status {
+  display: inline-block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  margin-bottom: 0.9rem;
+  color: #fff;
+  background: var(--text-muted);
+}
+.cal-term__status--current  { background: var(--wine); }
+.cal-term__status--next     { background: var(--accent-deep); }
+.cal-term__status--upcoming { background: var(--teal-deep); }
+.cal-term__status--past     { background: var(--cal-past); }
+
+/* The one surface lifted off the page ground: the term actually
+   running. Uses the site's card idiom — hairline box, 3px accent
+   rule along the top — so it reads as part of the same family. */
+.cal-term--current {
+  background: var(--cream-warm);
+  border: 1px solid var(--cal-rule-soft);
+  border-top: 3px solid var(--accent);
+  padding: 2.4rem 2.2rem 2.2rem;
+  box-shadow: 0 14px 40px rgba(155, 13, 36, 0.06);
+}
+
+/* ------------------------------------------------------- next up */
+/* The single thing on this page that changes between visits, so it
+   gets the page's one authored entrance. */
+.cal-term__next {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.85rem;
+  background: var(--accent-pale);
+  padding: 0.95rem 1.2rem;
+  margin-top: 1.6rem;
+  border-left: 1px solid var(--accent);
+  animation: cal-next-in 0.75s var(--ease) both;
+}
+@keyframes cal-next-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+.cal-term__next-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+.cal-term__next-date {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--wine);
+}
+.cal-term__next-title {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+  flex: 1 1 14rem;
+}
+.cal-term__next-rel {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------- month */
+.cal-term__body {
+  margin-top: 0;
+}
+
+.cal-month {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 0 2rem;
+  padding-top: 1.6rem;
+}
+.cal-month__name {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.3;
+  /* Stands in the margin like a running head, and rides along
+     while its own events scroll past. */
+  position: sticky;
+  top: calc(var(--cal-rail) + 1.1rem);
+  align-self: start;
+  padding-top: 0.75rem;
+}
+.cal-month__name::before {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.cal-month__list {
+  list-style: none;
+}
+
+/* ---------------------------------------------------------- event */
+.cal-ev {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0 1.2rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--cal-rule-soft);
+  transition: background-color 0.25s ease;
+}
+.cal-ev:first-child {
+  border-top: 1px solid var(--cal-rule);
+}
+.cal-month__list > .cal-ev:last-child {
+  border-bottom: 1px solid var(--cal-rule-soft);
+}
+.cal-ev:hover {
+  background: rgba(155, 13, 36, 0.022);
+}
+
+.cal-ev__day {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.cal-ev__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1.2rem;
+}
+.cal-ev__title {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-body);
+  flex: 1 1 18rem;
+}
+
+.cal-ev__tentative {
+  text-decoration: none;
+  border: none;
+  color: var(--accent-muted);
+  font-weight: 700;
+  cursor: help;
+}
+
+/* Category: a dot plus a word. Deliberately not a coloured bar down
+   the side of every row — at this row count that reads as noise. */
+.cal-ev__cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.cal-ev__cat::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.cal-ev--deadline .cal-ev__cat          { color: var(--wine); }
+.cal-ev--deadline .cal-ev__cat::before  { background: var(--wine-mid); }
+.cal-ev--classes  .cal-ev__cat          { color: var(--accent-deep); }
+.cal-ev--classes  .cal-ev__cat::before  { background: var(--accent); }
+.cal-ev--event    .cal-ev__cat          { color: var(--teal-deep); }
+.cal-ev--event    .cal-ev__cat::before  { background: var(--teal); }
+.cal-ev--holiday  .cal-ev__cat          { color: var(--text-body); }
+.cal-ev--holiday  .cal-ev__cat::before  { background: var(--text-muted); }
+
+/* A deadline is the row with consequences, so it is the only one
+   that gets weight in the date column. */
+.cal-ev--deadline .cal-ev__day {
+  color: var(--wine);
+}
+
+/* Passed, but still readable — a student may be checking what a
+   deadline was, not only when the next one is. */
+.cal-ev.is-past .cal-ev__day,
+.cal-ev.is-past .cal-ev__title {
+  color: var(--cal-past);
+}
+.cal-ev.is-past .cal-ev__cat {
+  color: var(--cal-past);
+}
+.cal-ev.is-past .cal-ev__cat::before {
+  background: var(--cal-past);
+  opacity: 0.5;
+}
+
+.cal-ev.is-next .cal-ev__title {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* --------------------------------------------------- today's line */
+.cal-today {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0 1.2rem;
+  align-items: center;
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--accent);
+}
+.cal-today__label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+.cal-today::after {
+  content: '';
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent 85%);
+}
+
+/* ---------------------------------------------------- empty state */
+/* Written in by js/calendar.js only when every term in the sheet has
+   ended. Sized and ruled like a term header so the page still has a
+   shape, rather than collapsing to a bare archive toggle. */
+.cal-empty {
+  border-top: 3px solid var(--accent);
+  background: var(--cream-warm);
+  padding: 2.4rem 2.2rem 2.2rem;
+  max-width: 62ch;
+}
+.cal-empty__title {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.8vw, 1.7rem);
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+.cal-empty__body {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-body);
+  margin-bottom: 0.7rem;
+}
+.cal-empty__body:last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------- archive */
+.cal-archive {
+  margin-top: 4rem;
+  border-top: 1px solid var(--cal-rule);
+  padding-top: 2rem;
+}
+.cal-archive__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  padding: 0.7rem 0;
+  min-height: 44px;
+  transition: color 0.3s var(--ease);
+}
+.cal-archive__toggle::-webkit-details-marker { display: none; }
+.cal-archive__hide,
+.cal-archive__box[open] .cal-archive__show { display: none; }
+.cal-archive__box[open] .cal-archive__hide { display: inline; }
+.cal-archive__toggle::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.3s var(--ease);
+}
+.cal-archive__box[open] .cal-archive__toggle::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+.cal-archive__toggle:hover {
+  color: var(--wine);
+}
+.cal-archive__body {
+  padding-top: 1.5rem;
+}
+.cal-term--past {
+  margin-bottom: 3.5rem;
+}
+.cal-term--past .cal-term__name,
+.cal-term--past .cal-term__code {
+  color: var(--cal-past);
+}
+.cal-term--past .cal-term__head {
+  border-bottom-color: var(--cal-rule);
+}
+
+/* ---------------------------------------------------------- notes */
+.cal-notes {
+  margin-top: 4rem;
+  border-top: 1px solid var(--cal-rule);
+  padding-top: 2rem;
+  max-width: 68ch;
+}
+.cal-notes__title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  margin-bottom: 1rem;
+  font-family: var(--sans);
+}
+.cal-notes__list {
+  list-style: none;
+}
+.cal-notes__list li {
+  font-size: 0.86rem;
+  line-height: 1.75;
+  color: var(--text-body);
+  padding-left: 1.1rem;
+  position: relative;
+  margin-bottom: 0.7rem;
+}
+.cal-notes__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.cal-notes__list li:last-child {
+  margin-bottom: 0;
+}
+.cal-notes__star {
+  color: var(--accent-muted);
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------ focus ring */
+.cal-jump__list a:focus-visible,
+.cal-archive__toggle:focus-visible,
+.cal-notes a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ----------------------------------------------------- responsive */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 3rem 0 2.5rem;
+  }
+  .calendar {
+    padding-bottom: 3.5rem;
+  }
+  .cal-terms {
+    padding-top: 2.5rem;
+  }
+  .cal-term {
+    margin-bottom: 3.5rem;
+  }
+  .cal-term--current {
+    padding: 1.8rem 1.5rem 1.6rem;
+  }
+  .cal-month {
+    grid-template-columns: 7rem 1fr;
+    gap: 0 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* The margin rail costs more than it gives at this width: the month
+     becomes a plain heading over its own rows. */
+  .cal-month {
+    grid-template-columns: 1fr;
+    padding-top: 1.9rem;
+  }
+  .cal-month__name {
+    position: static;
+    padding-top: 0;
+    margin-bottom: 0.7rem;
+  }
+  .cal-term--current,
+  .cal-empty {
+    padding: 1.5rem 1rem 1.3rem;
+  }
+  .cal-ev {
+    grid-template-columns: 4.2rem 1fr;
+    gap: 0 0.9rem;
+  }
+  .cal-today {
+    grid-template-columns: 4.2rem 1fr;
+    gap: 0 0.9rem;
+  }
+  .cal-ev__main {
+    /* Category under the title rather than squeezed beside it. */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .cal-ev__title {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .cal-jump__list {
+    gap: 1.3rem;
+  }
+  .cal-ev {
+    grid-template-columns: 3.6rem 1fr;
+  }
+  .cal-today {
+    grid-template-columns: 3.6rem 1fr;
+  }
+  .cal-ev__day {
+    font-size: 0.9rem;
+  }
+  .cal-term__next {
+    padding: 0.85rem 1rem;
+  }
+}
+
+@media (hover: none) {
+  .cal-ev:hover {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .cal-term__next {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------- print */
+/* Registrars and students print this. Everything opens, nothing
+   sticks, and a month does not break across two sheets. */
+@media print {
+  .hero,
+  .cal-jump,
+  .site-footer,
+  .cal-term__next {
+    display: none !important;
+  }
+  .calendar {
+    padding: 0;
+    background: #fff;
+  }
+  .cal-archive[hidden] {
+    display: block !important;
+  }
+  .cal-archive__body {
+    display: block !important;
+  }
+  .cal-month__name {
+    position: static;
+  }
+  .cal-term--current {
+    background: #fff;
+    box-shadow: none;
+    border: none;
+    border-top: 2px solid #000;
+    padding: 0;
+    padding-top: 1rem;
+  }
+  .cal-term,
+  .cal-month {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .cal-ev.is-past .cal-ev__day,
+  .cal-ev.is-past .cal-ev__title,
+  .cal-ev.is-past .cal-ev__cat {
+    color: #000;
+  }
+}
