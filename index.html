@@ -38,46 +38,63 @@
 
 
 <!-- ═══════════════════════════════════════════
-     ANNOUNCEMENT BANNER — F2BF Fall 2026 Course
+     ANNOUNCEMENT BANNER — F2BF Fall 2026 Big Read
      ═══════════════════════════════════════════ -->
-<section class="announce">
+<!-- data-expires: the banner removes itself after this moment (the Big Read
+     ends ~8:30 PM ET; 9 PM gives the livestream a margin). Update or drop
+     the attribute when swapping in the next announcement. -->
+<section class="announce" data-expires="2026-10-08T21:00:00-04:00" aria-labelledby="announce-heading">
   <div class="announce__accent-top"></div>
   <div class="announce__inner container">
 
-    <div class="announce__photo-col">
+    <a class="announce__book" href="https://f2bf.icscanada.edu/big-read" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
       <img
-        class="announce__photo"
-        src="assets/images/jim-olthuis.jpg"
-        alt="Jim Olthuis"
-        width="420" height="420"
+        class="announce__cover"
+        src="assets/images/defying-tyrants-cover.jpg"
+        alt=""
+        width="400" height="600"
       >
-      <div class="announce__photo-info">
-        <p class="announce__photo-name">Jim Olthuis</p>
-        <p class="announce__photo-title">Course Instructor &middot; Professor Emeritus of Philosophical Theology, ICS</p>
-      </div>
-    </div>
+    </a>
 
     <div class="announce__text-col">
-      <p class="announce__date">Now Enrolling &middot; Free to be Faithful</p>
-      <h2 class="announce__heading">Take a Course: Spirals of Love and Healing</h2>
+      <p class="announce__date">Fall Big Read &middot; Free to be Faithful</p>
+      <h2 class="announce__heading" id="announce-heading">
+        Defying Tyrants
+        <span class="announce__subhead">An evening with Matthew D. Taylor</span>
+      </h2>
+
+      <ul class="announce__facts">
+        <li>Thursday, October&nbsp;8</li>
+        <li>7:00&nbsp;PM ET</li>
+        <li>Online</li>
+        <li class="announce__facts-free">Free</li>
+      </ul>
+
       <p class="announce__body">
-        Empathy, Re-stor(y)-ing, Re-connecting, Transforming. Over six weeks, psychotherapist Jim Olthuis traces personal healing as an inter-relational dance of trust and attunement &mdash; a four-stage spiral of letting-in, letting-go, letting-out, and letting-transform. Tuesdays at 6:30&nbsp;PM ET, September 15 to October 20, 2026. Online; $400 non-credit, or $1,500 for ICS credit.
+        Christian fixation with political power is the theological emergency of our time. In his new book, Matthew D. Taylor traces how Christian supremacy took hold of the church, from the Crusades to colonialism, and recovers a countertradition of believers who stood up to tyrants. Join him for ninety minutes of live conversation, and bring your questions.
       </p>
 
-      <div class="announce__quote">
-        <p class="announce__quote-text">
-          A sacred healing space of love opens up with its own unique rhythm and energy where love engages, heals and transforms.
-        </p>
-        <p class="announce__quote-attr">&mdash; Jim Olthuis</p>
-      </div>
+      <blockquote class="announce__quote">
+        <p class="announce__quote-text">Quite simply, <cite>Defying Tyrants</cite> is a book every Christian should read.</p>
+        <p class="announce__quote-attr">Kristin Kobes Du Mez, author of <cite>Jesus and John Wayne</cite></p>
+      </blockquote>
 
-      <a class="announce__cta" href="https://f2bf.icscanada.edu/f2bf-courses" target="_blank">
-        Register for This Course
-        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
+      <div class="announce__action">
+        <a class="announce__cta" href="https://f2bf.icscanada.edu/big-read" target="_blank" rel="noopener">
+          Save Your Free Seat
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <p class="announce__note">Registration includes a free excerpt from the book, emailed right away.</p>
+      </div>
     </div>
   </div>
 </section>
+<script>
+  // Inline so an expired banner is gone before first paint.
+  document.querySelectorAll('.announce[data-expires]').forEach(function (el) {
+    if (Date.now() > Date.parse(el.dataset.expires)) el.remove();
+  });
+</script>
 
 
 <!-- ═══════════════════════════════════════════
