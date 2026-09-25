@@ -10,7 +10,7 @@
    pin back values the shared rule would otherwise impose */
 .hero {
   position: relative;
-  background: linear-gradient(rgba(122,10,28,0.88), rgba(122,10,28,0.92)), url("https://lh7-us.googleusercontent.com/sitesv-images-rt/ACHe0d0E27qkBGt6DySSkGCkuUvTQz2vT_6svcqLx_EKi6SjrNC5woujC8f0sUpAaw9dTM-KkqxvyBN3vOGtBQGUWsvlRErUQxeCnzEqeO_ltD8AXSJvJMEY9z_Nj6Ua3pOrPuknPuNMDdyjJTQFCO9_dIkwg5bT8vwtkT3cZV1io3IzqBEKGdVry0ajw5Q8--w=w1600") right center / cover no-repeat;
+  background: linear-gradient(rgba(122,10,28,0.88), rgba(122,10,28,0.92));
   background-color: var(--wine-deep);
   color: var(--cream);
   padding: 5rem 0 4.5rem;
