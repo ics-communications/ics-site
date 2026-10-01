@@ -14,7 +14,7 @@ academics/
                           Google Sheet, see "The course timetable" below
 about/                  /about section
   index.html              About Us
-  academic-registrar.html job posting, linked from employment-opportunities
+  academic-registrar.html filled job posting, kept so old links still land
   accessibility-policy.html
   administrative-staff.html
   become-a-member.html
@@ -22,7 +22,6 @@ about/                  /about section
   mission-educational-creed.html
   privacy-policy.html
 assets/images/          photos used by the pages
-docs/                   PDFs linked from the pages (job postings, etc.)
 css/
   styles.css            shared design system — tokens, buttons, hero, footer,
                         reveal, responsive rules. Every page links this.
