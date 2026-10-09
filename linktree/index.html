@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Institute for Christian Studies</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --wine: #9B0D24; --wine-deep: #7A0A1C; --wine-mid: #BE0B28;
+  --accent: #A85A32; --accent-light: #C87A52; --accent-muted: #8E4A28;
+  --accent-pale: #EEDACA; --accent-deep: #7A4020;
+  --teal: #7A5C3A; --teal-pale: #E6D9C6;
+  --cream: #FDFBF7;
+  --text-on-dark: #E8C2C2;
+  --text-muted: #E2B6BB;
+  --serif: 'Libre Baskerville', Georgia, serif;
+  --sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans); background: var(--wine-deep);
+  -webkit-font-smoothing: antialiased; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+a { text-decoration: none; color: inherit; }
+
+.page {
+  width: 100%; max-width: 760px; padding: 1.5rem 1rem;
+  display: flex; flex-direction: column; gap: 1.2rem;
+}
+
+/* ── HEADER ── */
+.header { text-align: center; padding: 0.5rem 0 0.2rem; }
+.header__logo {
+  display: block; width: 60px; height: 60px; margin: 0 auto 0.85rem;
+  border-radius: 50%;
+}
+.header__title {
+  font-family: var(--serif); font-size: 1.35rem; font-weight: 700;
+  color: var(--cream); line-height: 1.25; margin-bottom: 0.75rem; text-wrap: balance;
+}
+.header__tagline {
+  font-family: var(--serif); font-size: 0.68rem; font-style: italic;
+  color: var(--accent-light); opacity: 0.85; margin-bottom: 0.7rem;
+}
+.social { display: flex; gap: 0.45rem; justify-content: center; }
+.social a {
+  width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.14); border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-on-dark); transition: all 0.2s ease;
+}
+.social a:hover { border-color: var(--accent-light); color: var(--accent-light); background: rgba(200,122,82,0.08); }
+
+/* ── TWO-COLUMN BODY ── */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+/* ── LINKS (left) ── */
+.links { display: flex; flex-direction: column; gap: 0.5rem; }
+.link {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px; padding: 0.65rem 0.85rem; min-height: 56px;
+  transition: all 0.25s var(--ease); cursor: pointer; color: var(--cream);
+}
+.link:hover { background: rgba(255,255,255,0.1); border-color: rgba(200,122,82,0.25); transform: translateY(-1px); }
+.link:active { transform: scale(0.98); }
+.link__icon {
+  width: 34px; height: 34px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.link__icon--wine { background: rgba(190,11,40,0.28); color: #F49AA8; }
+.link__icon--accent { background: rgba(168,90,50,0.15); color: var(--accent-light); }
+.link__icon--teal { background: rgba(122,92,58,0.15); color: var(--teal-pale); }
+.link__icon--sub { background: rgba(255,106,0,0.12); color: #FF8C42; }
+.link__icon--yt { background: rgba(255,48,48,0.14); color: #FF5A50; }
+.link__text { flex-grow: 1; min-width: 0; }
+.link__label {
+  font-size: 0.69rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-muted); line-height: 1.2; margin-bottom: 0.2rem;
+}
+.link__title { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; color: var(--cream); line-height: 1.25; }
+.link__arrow { display: flex; color: rgba(255,255,255,0.35); flex-shrink: 0; transition: transform 0.2s ease, color 0.2s ease; }
+.link:hover .link__arrow { transform: translateX(2px); color: var(--accent-light); }
+
+/* ── EVENTS (right) ── */
+.events {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 5px; overflow: hidden;
+  display: flex; flex-direction: column;
+  /* match links column height naturally, scroll inside */
+  max-height: 390px;
+}
+.events__header {
+  padding: 0.4rem 0.85rem; display: flex; align-items: center;
+  justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+.events__header-left { display: flex; align-items: center; gap: 0.55rem; }
+.events__icon {
+  width: 26px; height: 26px; background: var(--wine);
+  display: flex; align-items: center; justify-content: center; border-radius: 4px; color: var(--accent-light);
+}
+.events__label { font-size: 0.9rem; font-weight: 600; color: var(--cream); }
+.events__all {
+  font-size: 0.69rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent-pale); opacity: 0.85;
+  transition: opacity 0.2s; min-height: 40px; display: inline-flex; align-items: center;
+}
+.events__all:hover { opacity: 1; }
+.events__scroll {
+  overflow-y: auto; flex: 1; scrollbar-width: thin;
+  scrollbar-color: rgba(200,122,82,0.15) transparent; -webkit-overflow-scrolling: touch;
+}
+.events__scroll::-webkit-scrollbar { width: 3px; }
+.events__scroll::-webkit-scrollbar-track { background: transparent; }
+.events__scroll::-webkit-scrollbar-thumb { background: rgba(200,122,82,0.15); border-radius: 3px; }
+.events__loading, .events__empty { text-align: center; padding: 2rem 0.8rem; color: var(--text-muted); font-size: 0.85rem; }
+.events__spinner {
+  width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.08);
+  border-top-color: var(--accent-light); border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin: 0 auto 0.4rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.ev-month {
+  padding: 0.35rem 0.85rem 0.25rem; font-size: 0.69rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted);
+  background: #7E1426; border-bottom: 1px solid rgba(255,255,255,0.04);
+  position: sticky; top: 0; z-index: 1;
+}
+.ev {
+  display: grid; grid-template-columns: 40px 1fr; gap: 0.75rem; align-items: center;
+  padding: 0.55rem 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.03);
+  transition: background 0.15s; cursor: pointer; text-decoration: none; color: inherit;
+}
+.ev:last-child { border-bottom: none; }
+.ev:hover { background: rgba(200,122,82,0.06); }
+.ev__badge {
+  width: 40px; height: 40px; background: var(--wine);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 4px; position: relative; overflow: hidden;
+}
+.ev__badge::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); }
+.ev__mon { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-pale); margin-top: 1px; }
+.ev__day { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1; }
+.ev__info { min-width: 0; }
+.ev__title { font-family: var(--serif); font-size: 0.85rem; font-weight: 700; color: var(--cream); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ev__meta { font-size: 0.75rem; margin-top: 0.1rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ev--today .ev__badge { background: var(--accent); }
+
+/* ── FOOTER ROW ── */
+.foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.2rem 0 0.5rem;
+}
+.foot__left { min-width: 0; }
+.foot__name { font-family: var(--serif); font-size: 0.8rem; color: var(--text-muted); }
+.foot__addr { font-size: 0.75rem; color: var(--text-muted); font-style: normal; }
+.foot__addr a { color: var(--accent-pale); text-decoration: underline; text-decoration-color: rgba(238,218,202,0.35); text-underline-offset: 2px; transition: text-decoration-color 0.2s; }
+.foot__addr a:hover { text-decoration-color: var(--accent-pale); }
+.donate__btn {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; padding: 0.6rem 1.3rem;
+  background: rgba(168,90,50,0.22); color: var(--accent-pale);
+  border: 1px solid rgba(200,122,82,0.35); border-radius: 5px;
+  cursor: pointer; transition: all 0.25s var(--ease); min-height: 44px; white-space: nowrap; flex-shrink: 0;
+}
+.donate__btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── BROWSER SURFACES ── */
+::selection { background: var(--accent); color: var(--cream); }
+a:focus-visible { outline: 2px solid var(--accent-pale); outline-offset: 2px; }
+
+/* ── RESPONSIVE: stack on mobile ── */
+@media (max-width: 600px) {
+  body { justify-content: flex-start; }
+  .page { max-width: 100%; padding: 1.2rem 1rem; }
+  .body { grid-template-columns: 1fr; }
+  .events { max-height: 380px; }
+  .foot { flex-direction: column; text-align: center; gap: 0.6rem; }
+}
+@media (max-width: 400px) {
+  .header__title { font-size: 1.2rem; }
+  .link { padding: 0.6rem 0.75rem; gap: 0.65rem; }
+  .link__icon { width: 32px; height: 32px; }
+}
+@media (hover: none) { .link:hover { transform: none; } .link:active { transform: scale(0.98); opacity: 0.9; } }
+@supports (padding: env(safe-area-inset-bottom)) { .page { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); padding-top: calc(1.5rem + env(safe-area-inset-top)); } }
+@media (prefers-reduced-motion: reduce) { .events__spinner { animation: none; } .link, .donate__btn { transition: none; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <img class="header__logo" src="ics-mark-bw.png" width="60" height="60" alt="">
+    <h1 class="header__title">Institute for Christian Studies</h1>
+    <div class="social">
+      <a href="https://www.facebook.com/instituteforchristianstudies" target="_blank" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14A28 28 0 0 0 14.64 2C11.93 2 10 3.66 10 6.7v2.8H7v4h3V22h4z"/></svg></a>
+      <a href="https://twitter.com/InsChr" target="_blank" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78zm-1.08 16.18h1.7L7.4 4.73H5.58z"/></svg></a>
+      <a href="https://www.instagram.com/instituteforchristianstudies/" target="_blank" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+      <a href="https://www.linkedin.com/school/icscanada" target="_blank" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg></a>
+      <a href="https://www.youtube.com/user/ChristianStudies" target="_blank" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+      <a href="https://instituteforchristianstudies.substack.com" target="_blank" aria-label="Substack"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24l9.54-5.58L20.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+    </div>
+  </header>
+
+  <div class="body">
+    <nav class="links">
+      <a href="https://www.icscanada.edu" target="_blank" class="link"><div class="link__icon link__icon--wine"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="link__text"><div class="link__label">Main Website</div><div class="link__title">icscanada.edu</div></div><span class="link__arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="https://f2bf.icscanada.edu" target="_blank" class="link"><div class="link__icon link__icon--accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="link__text"><div class="link__label">Community Learning</div><div class="link__title">Free to be Faithful</div></div><span class="link__arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="https://education.icscanada.edu" target="_blank" class="link"><div class="link__icon link__icon--teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="link__text"><div class="link__label">Teacher Education</div><div class="link__title">Educational Leadership at ICS</div></div><span class="link__arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="https://courses.icscanada.edu" target="_blank" class="link"><div class="link__icon link__icon--wine"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="link__text"><div class="link__label">Philosophical Apprenticeship</div><div class="link__title">Courses at ICS</div></div><span class="link__arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="https://instituteforchristianstudies.substack.com" target="_blank" class="link"><div class="link__icon link__icon--sub"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24l9.54-5.58L20.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></div><div class="link__text"><div class="link__label">Newsletter</div><div class="link__title">ICS on Substack</div></div><span class="link__arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="https://www.youtube.com/user/ChristianStudies" target="_blank" class="link"><div class="link__icon link__icon--yt"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></div><div class="link__text"><div class="link__label">Lectures &amp; Talks</div><div class="link__title">ICS on YouTube</div></div><span class="link__arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+
+    <div class="events" id="eventsWidget">
+      <div class="events__header">
+        <div class="events__header-left">
+          <div class="events__icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <span class="events__label">Upcoming Events</span>
+        </div>
+        <a href="https://www.icscanada.edu/events" id="calendarLink" target="_blank" class="events__all">All Events</a>
+      </div>
+      <div class="events__scroll" id="eventsScroll">
+        <div class="events__loading" id="eventsLoading"><div class="events__spinner"></div>Loading…</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="foot__left">
+      <p class="foot__name">Institute for Christian Studies</p>
+      <address class="foot__addr">59 St. George St · Toronto, ON · <a href="mailto:info@icscanada.edu">info@icscanada.edu</a></address>
+    </div>
+    <a href="https://www.icscanada.edu/donate" target="_blank" class="donate__btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>Support ICS</a>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var CID='c_69d54f953052b91b0291db43e425f6a6d3fc4d132761d91188ea8aa25dec5880@group.calendar.google.com';
+  var KEY='AIzaSyAFbb-BksOHBDNdCa7f5YP8g__ajn3NUJM';
+  var s=document.getElementById('eventsScroll'),l=document.getElementById('eventsLoading'),cl=document.getElementById('calendarLink');
+  cl.href='https://calendar.google.com/calendar/embed?src='+encodeURIComponent(CID);
+  var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var MOF=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function fmt(x){if(!x)return'All day';var d=new Date(x),h=d.getHours(),m=d.getMinutes(),a=h>=12?'PM':'AM';h=h%12||12;return m===0?h+' '+a:h+':'+String(m).padStart(2,'0')+' '+a;}
+  function td(x){if(!x)return false;var d=new Date(x),n=new Date();return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();}
+
+  function render(ev){
+    l.remove();
+    if(!ev||!ev.length){s.innerHTML='<div class="events__empty">No upcoming events.</div>';return;}
+    var cm='';
+    ev.forEach(function(e){
+      // This is the updated line that fixes the timezone shift for all-day events
+      var sr=e.start.dateTime||e.start.date,sd=sr.length===10?new Date(sr.split('-')[0],sr.split('-')[1]-1,sr.split('-')[2]):new Date(sr),mk=sd.getFullYear()+'-'+sd.getMonth();
+
+      if(mk!==cm){cm=mk;var dv=document.createElement('div');dv.className='ev-month';dv.textContent=MOF[sd.getMonth()]+' '+sd.getFullYear();s.appendChild(dv);}
+      var tc=td(sr)?' ev--today':'',ts=e.start.dateTime?fmt(e.start.dateTime):'All day',lo=e.location||'',mt=ts+(lo?' · '+lo:'');
+      var c=document.createElement('a');c.className='ev'+tc;c.href=e.htmlLink||'#';c.target='_blank';c.style.textDecoration='none';
+      c.innerHTML='<div class="ev__badge"><span class="ev__mon">'+MO[sd.getMonth()]+'</span><span class="ev__day">'+sd.getDate()+'</span></div><div class="ev__info"><div class="ev__title">'+(e.summary||'Untitled')+'</div><div class="ev__meta">'+mt+'</div></div>';
+      s.appendChild(c);
+    });
+  }
+
+  function fb(){
+    l.remove();var now=new Date(),evs=[
+    {summary:'Free to be Faithful: Public Lecture',da:3,time:'7 PM',loc:'59 St. George St'},
+    {summary:'Critical Faith Podcast: Live Recording',da:8,time:'6:30 PM',loc:'ICS Campus'},
+    {summary:'MWS-E Information Session',da:14,time:'12 PM',loc:'Online'},
+    {summary:'Scripture, Faith & Scholarship Series',da:18,time:'7 PM',loc:'ICS Campus'},
+    {summary:'PhD Colloquium: Philosophy of Education',da:24,time:'3 PM',loc:'Seminar Room'},
+    {summary:'Edvance Conference Workshop',da:32,time:'9 AM',loc:'Ancaster, ON'},
+    {summary:'Ground Motive Forum',da:40,time:'7:30 PM',loc:'Online'},
+    {summary:'Spring Convocation',da:55,time:'2 PM',loc:'59 St. George St'}];
+    var cm='';evs.forEach(function(ev){var d=new Date(now);d.setDate(d.getDate()+ev.da);var mk=d.getFullYear()+'-'+d.getMonth();
+    if(mk!==cm){cm=mk;var dv=document.createElement('div');dv.className='ev-month';dv.textContent=MOF[d.getMonth()]+' '+d.getFullYear();s.appendChild(dv);}
+    var c=document.createElement('div');c.className='ev';
+    c.innerHTML='<div class="ev__badge"><span class="ev__mon">'+MO[d.getMonth()]+'</span><span class="ev__day">'+d.getDate()+'</span></div><div class="ev__info"><div class="ev__title">'+ev.summary+'</div><div class="ev__meta">'+ev.time+' · '+ev.loc+'</div></div>';
+    s.appendChild(c);});
+  }
+
+  fetch('https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CID)+'/events?key='+KEY+'&timeMin='+new Date().toISOString()+'&maxResults=15&singleEvents=true&orderBy=startTime')
+    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){render(d.items);}).catch(function(){fb();});
+})();
+</script>
+</body>
+</html>
