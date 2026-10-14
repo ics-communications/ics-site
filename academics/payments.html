@@ -54,10 +54,17 @@
           <h2 class="rsvp-form__section-title">About you</h2>
           <div class="rsvp-form__row">
             <div class="rsvp-form__field">
-              <label class="rsvp-form__label" for="pay-name">Full name<span class="req" aria-hidden="true">*</span></label>
-              <input class="rsvp-form__input" type="text" id="pay-name" name="name" autocomplete="name" maxlength="100" required aria-describedby="pay-name-error">
-              <p class="rsvp-form__field-error" id="pay-name-error"></p>
+              <label class="rsvp-form__label" for="pay-first">First name<span class="req" aria-hidden="true">*</span></label>
+              <input class="rsvp-form__input" type="text" id="pay-first" name="firstName" autocomplete="given-name" maxlength="60" required aria-describedby="pay-first-error">
+              <p class="rsvp-form__field-error" id="pay-first-error"></p>
             </div>
+            <div class="rsvp-form__field">
+              <label class="rsvp-form__label" for="pay-last">Last name<span class="req" aria-hidden="true">*</span></label>
+              <input class="rsvp-form__input" type="text" id="pay-last" name="lastName" autocomplete="family-name" maxlength="60" required aria-describedby="pay-last-error">
+              <p class="rsvp-form__field-error" id="pay-last-error"></p>
+            </div>
+          </div>
+          <div class="rsvp-form__row rsvp-form__row--full">
             <div class="rsvp-form__field">
               <label class="rsvp-form__label" for="pay-email">Email<span class="req" aria-hidden="true">*</span></label>
               <input class="rsvp-form__input" type="email" id="pay-email" name="email" autocomplete="email" inputmode="email" maxlength="254" spellcheck="false" required aria-describedby="pay-email-help pay-email-error">

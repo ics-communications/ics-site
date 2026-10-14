@@ -1,6 +1,6 @@
 /* Make a Payment — the student payment form on academics/payments.html.
 
-   The student enters their name, email, what the payment is for and how
+   The student enters their first and last name, email, what the payment is for and how
    much, then pays through PayPal (with a PayPal account or as a guest by
    card). After PayPal captures the payment, this file posts the details
    to a Google Apps Script web app (_scripts/student-payments.gs), which
@@ -63,7 +63,8 @@
   if (!layout || !form || !result) return;
 
   var el = {
-    name: $('pay-name'),
+    firstName: $('pay-first'),
+    lastName: $('pay-last'),
     email: $('pay-email'),
     purpose: $('pay-purpose'),
     detail: $('pay-detail'),
@@ -138,6 +139,10 @@
   };
 
   /* ── Validation ────────────────────────────────────────────────── */
+  function fullName(r) {
+    return r.firstName ? r.firstName + ' ' + r.lastName : (r.name || '');
+  }
+
   function purposeLabel(purpose, detail) {
     return purpose === 'Other' ? 'Other: ' + detail : purpose;
   }
@@ -145,8 +150,10 @@
   function checkField(key) {
     var v = el[key].value.trim();
     switch (key) {
-      case 'name':
-        return v ? '' : 'Enter your full name.';
+      case 'firstName':
+        return v ? '' : 'Enter your first name.';
+      case 'lastName':
+        return v ? '' : 'Enter your last name.';
       case 'email':
         if (!v) return 'Enter your email address, so we can send your receipt.';
         return EMAIL_RE.test(v) ? '' : 'Enter an email address like name@example.com.';
@@ -163,7 +170,7 @@
   }
 
   /* Page order, so the error summary reads top to bottom. */
-  var ORDER = ['name', 'email', 'purpose', 'amount', 'detail'];
+  var ORDER = ['firstName', 'lastName', 'email', 'purpose', 'amount', 'detail'];
 
   function setFieldError(key, message) {
     var input = el[key];
@@ -188,7 +195,8 @@
     var amount = parseAmount(el.amount.value);
     var purpose = el.purpose.value;
     return {
-      name: el.name.value.trim(),
+      firstName: el.firstName.value.trim(),
+      lastName: el.lastName.value.trim(),
       email: el.email.value.trim(),
       purpose: purpose,
       detail: purpose === 'Other' ? el.detail.value.trim() : '',
@@ -401,7 +409,9 @@
       amount: record.amount,
       fee: record.fee,
       total: record.total,
-      name: record.name,
+      firstName: record.firstName,
+      lastName: record.lastName,
+      name: record.firstName ? undefined : record.name,   // saved by the page before names were split
       email: record.email,
       purpose: record.purpose,
       detail: record.detail || '',
@@ -467,7 +477,7 @@
       'PayPal fee: ' + money(valueToCents(record.fee)) + '\n' +
       'Total paid: ' + money(valueToCents(record.total)) + '\n' +
       'For: ' + purposeLabel(record.purpose, record.detail) + '\n' +
-      'Name: ' + record.name + '\n' +
+      'Name: ' + fullName(record) + '\n' +
       'Email: ' + record.email + '\n\nThank you.';
     var a = node('a', 'inline-link pay-result__link', label);
     a.href = 'mailto:' + REGISTRAR + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
@@ -522,7 +532,7 @@
       result.hidden = true;
       layout.hidden = false;
       start();
-      el.name.focus();
+      el.firstName.focus();
     });
 
     showResult('warn', 'warn', 'Your payment went through, but we couldn’t record it yet.', [
@@ -639,7 +649,8 @@
             captureId: capture.id || '',
             captureStatus: capture.status,
             payerEmail: (order.payer && order.payer.email_address) || '',
-            name: attempt.name,
+            firstName: attempt.firstName,
+            lastName: attempt.lastName,
             email: attempt.email,
             purpose: attempt.purpose,
             detail: attempt.detail,

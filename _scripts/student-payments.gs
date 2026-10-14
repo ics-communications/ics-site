@@ -37,7 +37,7 @@ var CONFIG = {
 };
 
 var HEADERS = [
-  'Received', 'Reference', 'Name', 'Email', 'Purpose', 'Purpose detail',
+  'Received', 'Reference', 'First name', 'Last name', 'Email', 'Purpose', 'Purpose detail',
   'Amount (CAD)', 'PayPal fee (CAD)', 'Total charged (CAD)', 'Note', 'Payment status', 'PayPal order ID',
   'PayPal capture ID', 'PayPal payer email'
 ];
@@ -118,7 +118,8 @@ function doGet() {
     service: CONFIG.SERVICE,
     storage: props.getProperty('SHEET_ID') ? 'ready' : 'not set up: run setup()',
     paypal: props.getProperty('PAYPAL_SECRET') ? 'checked automatically' : 'not checked automatically',
-    feePercent: CONFIG.FEE_PERCENT
+    feePercent: CONFIG.FEE_PERCENT,
+    names: 'first and last'
   });
 }
 
@@ -202,7 +203,8 @@ function validate_(d) {
   function fail(field, message) { return { ok: false, field: field, message: message }; }
   function text(v) { return typeof v === 'string' ? v.trim() : ''; }
 
-  var name = text(d.name);
+  var firstName = text(d.firstName);
+  var lastName = text(d.lastName);
   var email = text(d.email);
   var purpose = text(d.purpose);
   var detail = text(d.detail);
@@ -213,7 +215,7 @@ function validate_(d) {
   var captureId = text(d.captureId);
   var payerEmail = text(d.payerEmail);
 
-  var strings = [d.name, d.email, d.purpose, d.amount, d.orderId, d.ref];
+  var strings = [d.email, d.purpose, d.amount, d.orderId, d.ref];
   for (var i = 0; i < strings.length; i++) {
     if (typeof strings[i] !== 'string') return fail('request', 'A required field is missing.');
   }
@@ -222,7 +224,19 @@ function validate_(d) {
     if (optional[j] != null && typeof optional[j] !== 'string') return fail('request', 'A field has the wrong type.');
   }
 
-  if (!name || name.length > 100 || LINE_RE.test(name)) return fail('name', 'Name is missing or too long.');
+  /* First and last name, from the current page. A page cached from before
+     the split sends one `name`; it is kept whole as the first name. */
+  if (d.firstName != null || d.lastName != null) {
+    if (typeof d.firstName !== 'string' || typeof d.lastName !== 'string') return fail('request', 'A field has the wrong type.');
+    if (!firstName || firstName.length > 60 || LINE_RE.test(firstName)) return fail('firstName', 'First name is missing or too long.');
+    if (!lastName || lastName.length > 60 || LINE_RE.test(lastName)) return fail('lastName', 'Last name is missing or too long.');
+  } else {
+    if (typeof d.name !== 'string') return fail('request', 'A required field is missing.');
+    firstName = text(d.name);
+    lastName = '';
+    if (!firstName || firstName.length > 100 || LINE_RE.test(firstName)) return fail('name', 'Name is missing or too long.');
+  }
+  var name = lastName ? firstName + ' ' + lastName : firstName;
   if (!email || email.length > 254 || !EMAIL_RE.test(email)) return fail('email', 'Email address is not valid.');
   if (CONFIG.PURPOSES.indexOf(purpose) === -1) return fail('purpose', 'Purpose is not one of the choices.');
   if (purpose === 'Other') {
@@ -250,7 +264,7 @@ function validate_(d) {
   return {
     ok: true,
     value: {
-      name: name, email: email, purpose: purpose, detail: detail,
+      firstName: firstName, lastName: lastName, name: name, email: email, purpose: purpose, detail: detail,
       amount: amount, cents: cents, feeCents: feeCents, totalCents: cents + feeCents, note: note, orderId: orderId, ref: ref,
       captureId: captureId, payerEmail: payerEmail
     }
@@ -434,7 +448,10 @@ function appendPayment_(sheet, cols, p) {
   function put(h, v) { row[cols[h] - 1] = v; }
   put('Received', p.received);
   put('Reference', p.ref);
-  put('Name', safeCell_(p.name));
+  put('First name', safeCell_(p.firstName));
+  put('Last name', safeCell_(p.lastName));
+  /* A sheet made before the name was split keeps its Name column filled. */
+  if (cols['Name']) put('Name', safeCell_(p.name));
   put('Email', safeCell_(p.email));
   put('Purpose', p.purpose);
   put('Purpose detail', safeCell_(p.detail));
@@ -499,12 +516,12 @@ function sendReceipts_(p, sheetUrl) {
     subject: 'Your ICS payment receipt (' + p.ref + ')',
     htmlBody: receiptHtml_({
       title: 'Payment receipt',
-      intro: 'Thank you, ' + p.name + '. We’ve received your payment of ' + paidLine + '.',
+      intro: 'Thank you, ' + p.firstName + '. We’ve received your payment of ' + paidLine + '.',
       rows: common,
       notes: studentNotes,
       footer: 'Questions? Reply to this email to reach the Academic Registrar.'
     }),
-    body: receiptText_('Thank you, ' + p.name + '. We’ve received your payment of ' + paidLine + '.', common, studentNotes)
+    body: receiptText_('Thank you, ' + p.firstName + '. We’ve received your payment of ' + paidLine + '.', common, studentNotes)
   });
 
   /* To the Registrar */

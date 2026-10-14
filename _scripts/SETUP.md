@@ -120,12 +120,17 @@ PayPal live accounts have no test mode, so test with a real, small payment.
    **Issue a refund**.
 7. In the Sheet, write `Test (refunded)` in the **Payment status** cell of that row.
 
-## Day to day: the PayPal fee
+## Day to day: the Sheet and the PayPal fee
 
 Students pay the invoice amount plus a 2% PayPal fee. For example, a CAD $1,250.00
 invoice is charged CAD $1,275.00. The page shows the fee before they pay, with a note
 that they can avoid it by paying by Interac e-Transfer to hdekker@icscanada.edu or
 through Bill Payment.
+
+The Sheet has separate **First name** and **Last name** columns. A Sheet made before
+the split also keeps its old **Name** column, still filled in with the full name; you can
+delete that column or move any column. The program finds columns by their heading, not
+their position.
 
 The Sheet has three money columns: **Amount (CAD)**, **PayPal fee (CAD)** and
 **Total charged (CAD)**. Credit the student with **Amount**, the invoice amount.
