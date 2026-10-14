@@ -6,7 +6,7 @@
 <title>Make a Payment — Institute for Christian Studies</title>
 <link rel="icon" href="../assets/logos/ics-favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/logos/ics-favicon.png">
-<meta name="description" content="Pay tuition or a program fee to the Institute for Christian Studies by PayPal or by card. You and the Academic Registrar each get a receipt by email.">
+<meta name="description" content="Pay tuition or a program fee to the Institute for Christian Studies by PayPal or by card. A 2% PayPal fee applies. You and the Academic Registrar each get a receipt by email.">
 <!-- Unlisted for now: kept out of search, the navigation and the sitemap
      until ICS is ready to announce it. Drop this line to list it. -->
 <meta name="robots" content="noindex">
@@ -87,7 +87,7 @@
                 <span class="pay-form__currency" aria-hidden="true">CAD $</span>
                 <input class="rsvp-form__input" type="text" id="pay-amount" name="amount" inputmode="decimal" autocomplete="off" maxlength="14" required aria-describedby="pay-amount-help pay-amount-error">
               </div>
-              <p class="rsvp-form__help" id="pay-amount-help">In Canadian dollars, from $5 to $20,000.</p>
+              <p class="rsvp-form__help" id="pay-amount-help">The amount on your invoice, in Canadian dollars, from $5 to $20,000. A 2% PayPal fee is added on top.</p>
               <p class="rsvp-form__field-error" id="pay-amount-error"></p>
             </div>
           </div>
@@ -129,8 +129,13 @@
             <dt>Amount</dt>
             <dd id="pay-slip-amount">Not entered yet</dd>
           </div>
+          <div class="pay-slip__line">
+            <dt>PayPal fee</dt>
+            <dd id="pay-slip-fee">2% of the amount</dd>
+          </div>
         </dl>
         <p class="pay-slip__total" id="pay-summary">Fill in the form and your total appears here.</p>
+        <p class="pay-slip__fee-note">The 2% fee covers PayPal’s transaction cost. To avoid it, pay by Interac e-Transfer to <strong>hdekker@icscanada.edu</strong> or through Bill Payment in your online banking.</p>
 
         <div class="pay-slip__buttons" id="paypal-buttons"></div>
         <noscript><p class="pay-slip__fine">Online payment needs JavaScript. Turn it on and reload the page, or write to the Academic Registrar at <a class="inline-link" href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a>.</p></noscript>

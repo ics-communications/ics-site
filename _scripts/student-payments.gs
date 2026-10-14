@@ -15,14 +15,15 @@
      FOLDER_ID,
      SHEET_ID       written by setup(). Don't edit.
 
-   CURRENCY, MIN_AMOUNT and MAX_AMOUNT must match CONFIG in
+   CURRENCY, MIN_AMOUNT, MAX_AMOUNT and FEE_PERCENT must match CONFIG in
    js/payments.js. If you change one, change both. */
 
 var CONFIG = {
   SERVICE: 'ICS payment',
   CURRENCY: 'CAD',
   MIN_AMOUNT: 5,
-  MAX_AMOUNT: 20000,
+  MAX_AMOUNT: 20000,           // limits apply to the invoice amount, before the fee
+  FEE_PERCENT: 2,              // PayPal fee added on top; the charge is amount + fee
   PAYPAL_CLIENT_ID: 'AdZ0cWK3Bl7wjgmrmgk_On-ac13XCdpZxx8te_4IPlRDVoYx3ZNoGG8vK7mb8VXdKH2L-TM1M3sMj6oI',
   PAYPAL_API: 'https://api-m.paypal.com',
   REGISTRAR: 'academic-registrar@icscanada.edu',
@@ -37,7 +38,7 @@ var CONFIG = {
 
 var HEADERS = [
   'Received', 'Reference', 'Name', 'Email', 'Purpose', 'Purpose detail',
-  'Amount (CAD)', 'Note', 'Payment status', 'PayPal order ID',
+  'Amount (CAD)', 'PayPal fee (CAD)', 'Total charged (CAD)', 'Note', 'Payment status', 'PayPal order ID',
   'PayPal capture ID', 'PayPal payer email'
 ];
 var TEXT_COLUMNS = ['Reference', 'PayPal order ID', 'PayPal capture ID'];
@@ -116,7 +117,8 @@ function doGet() {
     ok: true,
     service: CONFIG.SERVICE,
     storage: props.getProperty('SHEET_ID') ? 'ready' : 'not set up: run setup()',
-    paypal: props.getProperty('PAYPAL_SECRET') ? 'checked automatically' : 'not checked automatically'
+    paypal: props.getProperty('PAYPAL_SECRET') ? 'checked automatically' : 'not checked automatically',
+    feePercent: CONFIG.FEE_PERCENT
   });
 }
 
@@ -215,7 +217,7 @@ function validate_(d) {
   for (var i = 0; i < strings.length; i++) {
     if (typeof strings[i] !== 'string') return fail('request', 'A required field is missing.');
   }
-  var optional = [d.detail, d.note, d.captureId, d.payerEmail];
+  var optional = [d.detail, d.note, d.captureId, d.payerEmail, d.fee, d.total];
   for (var j = 0; j < optional.length; j++) {
     if (optional[j] != null && typeof optional[j] !== 'string') return fail('request', 'A field has the wrong type.');
   }
@@ -231,6 +233,14 @@ function validate_(d) {
   if (!AMOUNT_RE.test(amount)) return fail('amount', 'Amount is not in the form 1250.00.');
   var cents = toCents_(amount);
   if (cents < CONFIG.MIN_AMOUNT * 100 || cents > CONFIG.MAX_AMOUNT * 100) return fail('amount', 'Amount is out of range.');
+  /* The fee must be exactly what the page computes. A page cached from
+     before the fee existed sends neither field: that payment carried no fee. */
+  var feeCents = 0;
+  if (d.fee != null || d.total != null) {
+    feeCents = feeFor_(cents);
+    if (text(d.fee) !== centsToValue_(feeCents)) return fail('fee', 'PayPal fee does not match.');
+    if (text(d.total) !== centsToValue_(cents + feeCents)) return fail('total', 'Total does not match.');
+  }
   if (note.length > 500 || CONTROL_RE.test(note.replace(/[\r\n\t]/g, ''))) return fail('note', 'Note is too long.');
   if (!ORDER_ID_RE.test(orderId)) return fail('orderId', 'PayPal order ID is not valid.');
   if (!REF_RE.test(ref)) return fail('ref', 'Reference is not valid.');
@@ -241,7 +251,7 @@ function validate_(d) {
     ok: true,
     value: {
       name: name, email: email, purpose: purpose, detail: detail,
-      amount: amount, cents: cents, note: note, orderId: orderId, ref: ref,
+      amount: amount, cents: cents, feeCents: feeCents, totalCents: cents + feeCents, note: note, orderId: orderId, ref: ref,
       captureId: captureId, payerEmail: payerEmail
     }
   };
@@ -251,6 +261,16 @@ function validate_(d) {
 function toCents_(value) {
   var m = /^(\d+)\.(\d{2})$/.exec(String(value));
   return m ? parseInt(m[1], 10) * 100 + parseInt(m[2], 10) : NaN;
+}
+
+function centsToValue_(cents) {
+  return Math.floor(cents / 100) + '.' + ('0' + (cents % 100)).slice(-2);
+}
+
+/* The PayPal fee on an amount, rounded to the nearest cent. Same
+   formula as feeFor() in js/payments.js. */
+function feeFor_(cents) {
+  return Math.round(cents * CONFIG.FEE_PERCENT / 100);
 }
 
 function formatMoney_(cents) {
@@ -307,8 +327,8 @@ function verifyPayment_(p) {
 
   if (order.status !== 'COMPLETED') return { state: 'rejected', reason: 'Order status is ' + order.status };
   if (amount.currency_code !== CONFIG.CURRENCY) return { state: 'rejected', reason: 'Currency is ' + amount.currency_code };
-  if (Math.round(parseFloat(amount.value) * 100) !== p.cents) {
-    return { state: 'rejected', reason: 'Amount is ' + amount.value + ', not ' + p.amount };
+  if (Math.round(parseFloat(amount.value) * 100) !== p.totalCents) {
+    return { state: 'rejected', reason: 'Amount is ' + amount.value + ', not ' + centsToValue_(p.totalCents) };
   }
   if (unit.custom_id !== p.ref) return { state: 'rejected', reason: 'Reference does not match the order' };
 
@@ -419,6 +439,8 @@ function appendPayment_(sheet, cols, p) {
   put('Purpose', p.purpose);
   put('Purpose detail', safeCell_(p.detail));
   put('Amount (CAD)', p.cents / 100);
+  put('PayPal fee (CAD)', p.feeCents / 100);
+  put('Total charged (CAD)', p.totalCents / 100);
   put('Note', safeCell_(p.note));
   put('Payment status', p.status);
   put('PayPal order ID', p.orderId);
@@ -426,7 +448,9 @@ function appendPayment_(sheet, cols, p) {
   put('PayPal payer email', safeCell_(p.payerEmail || ''));
   sheet.appendRow(row);
   var r = sheet.getLastRow();
-  sheet.getRange(r, cols['Amount (CAD)']).setNumberFormat('#,##0.00');
+  ['Amount (CAD)', 'PayPal fee (CAD)', 'Total charged (CAD)'].forEach(function (h) {
+    sheet.getRange(r, cols[h]).setNumberFormat('#,##0.00');
+  });
   sheet.getRange(r, cols['Received']).setNumberFormat('yyyy-mm-dd hh:mm');
 }
 
@@ -444,6 +468,7 @@ function safeCell_(v) {
 function sendReceipts_(p, sheetUrl) {
   var when = Utilities.formatDate(p.received, CONFIG.TIME_ZONE, "MMMM d, yyyy 'at' h:mm a z");
   var money = formatMoney_(p.cents);
+  var total = formatMoney_(p.totalCents);
   var purpose = p.purpose === 'Other' ? 'Other: ' + p.detail : p.purpose;
   var common = [
     ['Reference', p.ref],
@@ -451,8 +476,13 @@ function sendReceipts_(p, sheetUrl) {
     ['Name', p.name],
     ['For', purpose],
     ['Amount', money],
+    ['PayPal fee (' + CONFIG.FEE_PERCENT + '%)', formatMoney_(p.feeCents)],
+    ['Total paid', total],
     ['PayPal order ID', p.orderId]
   ];
+  var paidLine = p.feeCents
+    ? total + ': ' + money + ' for ' + purpose + ', plus the ' + CONFIG.FEE_PERCENT + '% PayPal fee of ' + formatMoney_(p.feeCents)
+    : money + ' for ' + purpose;
 
   /* To the student */
   var studentNotes = [
@@ -469,12 +499,12 @@ function sendReceipts_(p, sheetUrl) {
     subject: 'Your ICS payment receipt (' + p.ref + ')',
     htmlBody: receiptHtml_({
       title: 'Payment receipt',
-      intro: 'Thank you, ' + p.name + '. We’ve received your payment of ' + money + '.',
+      intro: 'Thank you, ' + p.name + '. We’ve received your payment of ' + paidLine + '.',
       rows: common,
       notes: studentNotes,
       footer: 'Questions? Reply to this email to reach the Academic Registrar.'
     }),
-    body: receiptText_('Thank you, ' + p.name + '. We’ve received your payment of ' + money + '.', common, studentNotes)
+    body: receiptText_('Thank you, ' + p.name + '. We’ve received your payment of ' + paidLine + '.', common, studentNotes)
   });
 
   /* To the Registrar */
@@ -488,7 +518,7 @@ function sendReceipts_(p, sheetUrl) {
   var alert = null;
   if (p.status === STATUS.CHECK) {
     alert = 'CHECK PAYMENT. This payment was not checked with PayPal automatically (' + p.checkReason +
-            '). Find PayPal order ' + p.orderId + ' and confirm ' + money + ' arrived before treating it as paid.';
+            '). Find PayPal order ' + p.orderId + ' and confirm ' + total + ' arrived before treating it as paid.';
   } else if (p.status === STATUS.PENDING) {
     alert = 'Payment pending. PayPal is holding this payment' + (p.checkReason ? ': ' + p.checkReason : '') +
             '. Check PayPal before treating it as paid.';
@@ -502,13 +532,13 @@ function sendReceipts_(p, sheetUrl) {
     htmlBody: receiptHtml_({
       alert: alert,
       title: 'Payment received',
-      intro: p.name + ' paid ' + money + ' online.',
+      intro: p.name + ' paid ' + paidLine + '. Credit ' + money + ' to the student’s account.',
       rows: staffRows,
       notes: [],
       link: sheetUrl ? { href: sheetUrl, label: 'Open the payments sheet' } : null,
       footer: 'Reply to this email to reach the student.'
     }),
-    body: receiptText_((alert ? alert + '\n\n' : '') + p.name + ' paid ' + money + ' online.', staffRows,
+    body: receiptText_((alert ? alert + '\n\n' : '') + p.name + ' paid ' + paidLine + '. Credit ' + money + ' to the student’s account.', staffRows,
                        sheetUrl ? ['Payments sheet: ' + sheetUrl] : [])
   });
 }
@@ -578,6 +608,8 @@ function alertAdmin_(subject, p, err) {
         'PayPal capture ID: ' + (p.captureId || '') + '\n' +
         'Payment status: ' + (p.status || '') + '\n' +
         'Amount: ' + formatMoney_(p.cents) + '\n' +
+        'PayPal fee: ' + formatMoney_(p.feeCents || 0) + '\n' +
+        'Total charged: ' + formatMoney_(p.totalCents || p.cents) + '\n' +
         'Purpose: ' + p.purpose + (p.detail ? ': ' + p.detail : '') + '\n' +
         'Name: ' + p.name + '\n' +
         'Email: ' + p.email + '\n' +

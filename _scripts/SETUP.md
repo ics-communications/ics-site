@@ -108,15 +108,31 @@ PayPal live accounts have no test mode, so test with a real, small payment.
 2. Use your own name and an email you can check. Choose **Other**, type `Test payment`,
    and enter **5** (the smallest amount allowed).
 3. Pay with **Debit or Credit Card** or a PayPal account.
-4. Check that:
+4. The summary should show **CAD $5.10**: $5.00 plus the 10¢ PayPal fee.
+5. Check that:
    - the page shows **"Thank you. Your payment is complete."** with a reference such
      as `PAY-261014-K7QM`;
    - your email has a receipt titled **Your ICS payment receipt (PAY-…)**;
-   - `academic-registrar@icscanada.edu` received **Payment received: CAD $5.00 from …**;
+   - `academic-registrar@icscanada.edu` received **Payment received: CAD $5.00 from …**, showing
+     the fee and the total;
    - the Sheet has a new row.
-5. Refund it: sign in to PayPal (business account) → **Activity** → find the payment →
+6. Refund it: sign in to PayPal (business account) → **Activity** → find the payment →
    **Issue a refund**.
-6. In the Sheet, write `Test (refunded)` in the **Payment status** cell of that row.
+7. In the Sheet, write `Test (refunded)` in the **Payment status** cell of that row.
+
+## Day to day: the PayPal fee
+
+Students pay the invoice amount plus a 2% PayPal fee. For example, a CAD $1,250.00
+invoice is charged CAD $1,275.00. The page shows the fee before they pay, with a note
+that they can avoid it by paying by Interac e-Transfer to hdekker@icscanada.edu or
+through Bill Payment.
+
+The Sheet has three money columns: **Amount (CAD)**, **PayPal fee (CAD)** and
+**Total charged (CAD)**. Credit the student with **Amount**, the invoice amount.
+**Total charged** is what PayPal received.
+
+To change the fee, edit `FEE_PERCENT` in both files (see the table at the end), and
+change the "2%" wording in `academics/payments.html`.
 
 ## Day to day: what the Payment status column means
 
@@ -189,6 +205,7 @@ files, then commit the website change and publish a new version (step 8):
 | Smallest payment | `MIN_AMOUNT: 5` | `MIN_AMOUNT: 5` |
 | Largest payment | `MAX_AMOUNT: 20000` | `MAX_AMOUNT: 20000` |
 | Currency | `CURRENCY: 'CAD'` | `CURRENCY: 'CAD'` |
+| PayPal fee added on top | `FEE_PERCENT: 2` | `FEE_PERCENT: 2` |
 | PayPal app | `PAYPAL_CLIENT_ID` | `PAYPAL_CLIENT_ID` |
 | Payment name | `SERVICE: 'ICS payment'` | `SERVICE: 'ICS payment'` |
 

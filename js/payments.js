@@ -7,10 +7,11 @@
    checks the payment, records it in a Sheet and emails a receipt to the
    student and to the Academic Registrar.
 
-   The one promise the page makes: the amount in the summary is the amount
-   charged. The amount and purpose are validated before PayPal opens and
-   locked while it is open, and PayPal is given the validated amount, never
-   whatever is in the box at that moment.
+   The one promise the page makes: the total in the summary is the amount
+   charged. That total is the invoice amount plus a FEE_PERCENT PayPal fee,
+   shown as its own line. The amount and purpose are validated before PayPal
+   opens and locked while it is open, and PayPal is given the validated
+   figures, never whatever is in the box at that moment.
 
    If the post to the script fails after the student has paid, the details
    are already saved in localStorage, so the page offers "Send again" (now
@@ -26,7 +27,7 @@
   'use strict';
 
   /* ── CONFIG ─────────────────────────────────────────────────────────
-     MIN_AMOUNT, MAX_AMOUNT and CURRENCY must match CONFIG in
+     MIN_AMOUNT, MAX_AMOUNT, CURRENCY and FEE_PERCENT must match CONFIG in
      _scripts/student-payments.gs. If you change one, change both. */
   var CONFIG = {
     SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyvTY1Jq3i91Y5uhTbQHz5iOJ-wD6LM55pnEBpSHEm2R_3gHH1Glawkxogc-O7tLCqvKA/exec',
@@ -34,9 +35,10 @@
     PAYPAL_CLIENT_ID: 'AdZ0cWK3Bl7wjgmrmgk_On-ac13XCdpZxx8te_4IPlRDVoYx3ZNoGG8vK7mb8VXdKH2L-TM1M3sMj6oI',
                              // ICS's live PayPal app, shared with the other ICS forms; it is public
     SERVICE: 'ICS payment',  // names the payment in PayPal and in emails
-    MIN_AMOUNT: 5,
+    MIN_AMOUNT: 5,           // limits apply to the invoice amount, before the fee
     MAX_AMOUNT: 20000,
-    CURRENCY: 'CAD'
+    CURRENCY: 'CAD',
+    FEE_PERCENT: 2           // PayPal transaction fee added on top of the amount
   };
 
   var REGISTRAR = 'academic-registrar@icscanada.edu';
@@ -78,6 +80,7 @@
   var slipTitle = $('pay-slip-title');
   var slipPurpose = $('pay-slip-purpose');
   var slipAmount = $('pay-slip-amount');
+  var slipFee = $('pay-slip-fee');
   var summary = $('pay-summary');
   var buttons = $('paypal-buttons');
   var status = $('pay-status');
@@ -96,6 +99,12 @@
   function valueToCents(value) {
     var m = /^(\d+)\.(\d{2})$/.exec(String(value));
     return m ? parseInt(m[1], 10) * 100 + parseInt(m[2], 10) : NaN;
+  }
+
+  /* The PayPal fee on an amount, in cents, rounded to the nearest cent.
+     The server computes it the same way and rejects any other figure. */
+  function feeFor(cents) {
+    return Math.round(cents * CONFIG.FEE_PERCENT / 100);
   }
 
   /* Accepts "1250", "1,250", "1250.5", "$1,250.50" and "CAD 1250".
@@ -185,6 +194,8 @@
       detail: purpose === 'Other' ? el.detail.value.trim() : '',
       amount: amount.value,
       cents: amount.cents,
+      fee: centsToValue(feeFor(amount.cents)),
+      total: centsToValue(amount.cents + feeFor(amount.cents)),
       note: el.note.value.trim()
     };
   }
@@ -230,18 +241,28 @@
     else if (purpose === 'Other') setLine(slipPurpose, detail || 'Other', !detail);
     else setLine(slipPurpose, purpose);
 
-    if (amount.cents) setLine(slipAmount, money(amount.cents));
-    else setLine(slipAmount, el.amount.value.trim() ? 'Check the amount' : 'Not entered yet', true);
+    if (amount.cents) {
+      setLine(slipAmount, money(amount.cents));
+      setLine(slipFee, money(feeFor(amount.cents)));
+    } else {
+      setLine(slipAmount, el.amount.value.trim() ? 'Check the amount' : 'Not entered yet', true);
+      setLine(slipFee, CONFIG.FEE_PERCENT + '% of the amount', true);
+    }
 
     var ready = !!(purposeReady && amount.cents);
     summary.textContent = '';
     if (ready) {
       var strong = document.createElement('strong');
-      strong.textContent = money(amount.cents);
+      strong.textContent = money(amount.cents + feeFor(amount.cents));
       summary.appendChild(document.createTextNode('You are paying '));
       summary.appendChild(strong);
+      summary.appendChild(document.createTextNode(': '));
+      summary.appendChild(node('span', 'pay-slip__money', money(amount.cents)));
       summary.appendChild(document.createTextNode(' for ' +
-        (PURPOSE_PHRASE[purpose] || '“' + detail + '”') + '.'));
+        (PURPOSE_PHRASE[purpose] || '“' + detail + '”') + ', plus the ' + CONFIG.FEE_PERCENT +
+        '% PayPal fee of '));
+      summary.appendChild(node('span', 'pay-slip__money', money(feeFor(amount.cents))));
+      summary.appendChild(document.createTextNode('.'));
     } else {
       summary.textContent = 'Fill in the form and your total appears here.';
     }
@@ -338,7 +359,11 @@
   function loadSaved() {
     try {
       var r = JSON.parse(localStorage.getItem(STORE_KEY));
-      if (r && r.ref && r.orderId && r.amount) return r;
+      if (r && r.ref && r.orderId && r.amount) {
+        /* Saved before the fee existed: nothing extra was charged. */
+        if (!r.fee) { r.fee = '0.00'; r.total = r.amount; }
+        return r;
+      }
     } catch (e) { /* unreadable: treat as none */ }
     return null;
   }
@@ -374,6 +399,8 @@
       captureId: record.captureId || '',
       payerEmail: record.payerEmail || '',
       amount: record.amount,
+      fee: record.fee,
+      total: record.total,
       name: record.name,
       email: record.email,
       purpose: record.purpose,
@@ -419,6 +446,8 @@
     [
       ['Reference', record.ref],
       ['Amount', money(valueToCents(record.amount))],
+      ['PayPal fee', money(valueToCents(record.fee))],
+      ['Total paid', money(valueToCents(record.total))],
       ['For', purposeLabel(record.purpose, record.detail)],
       ['PayPal order', record.orderId]
     ].forEach(function (row) {
@@ -435,6 +464,8 @@
       'Reference: ' + record.ref + '\n' +
       'PayPal order: ' + record.orderId + '\n' +
       'Amount: ' + money(valueToCents(record.amount)) + '\n' +
+      'PayPal fee: ' + money(valueToCents(record.fee)) + '\n' +
+      'Total paid: ' + money(valueToCents(record.total)) + '\n' +
       'For: ' + purposeLabel(record.purpose, record.detail) + '\n' +
       'Name: ' + record.name + '\n' +
       'Email: ' + record.email + '\n\nThank you.';
@@ -568,7 +599,16 @@
         return actions.order.create({
           intent: 'CAPTURE',
           purchase_units: [{
-            amount: { currency_code: CONFIG.CURRENCY, value: attempt.amount },
+            /* The fee rides as PayPal's "handling" line, so the payer sees
+               amount and fee separately on PayPal's side too. */
+            amount: {
+              currency_code: CONFIG.CURRENCY,
+              value: attempt.total,
+              breakdown: {
+                item_total: { currency_code: CONFIG.CURRENCY, value: attempt.amount },
+                handling: { currency_code: CONFIG.CURRENCY, value: attempt.fee }
+              }
+            },
             description: (CONFIG.SERVICE + ': ' + purposeLabel(attempt.purpose, attempt.detail)).slice(0, 127),
             custom_id: attempt.ref,
             invoice_id: attempt.ref
@@ -594,6 +634,8 @@
             ref: attempt.ref,
             orderId: order.id || data.orderID,
             amount: attempt.amount,
+            fee: attempt.fee,
+            total: attempt.total,
             captureId: capture.id || '',
             captureStatus: capture.status,
             payerEmail: (order.payer && order.payer.email_address) || '',
