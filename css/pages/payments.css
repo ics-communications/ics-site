@@ -1,0 +1,521 @@
+/* ============================================================
+   payments
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer, and the .rsvp-form card the fields sit in). Only
+   rules that differ from the shared sheet live here.
+
+   The page is a form beside a summary. The form asks four
+   things. The summary fills in as the student types and ends
+   in the PayPal buttons, so the amount they read is the
+   amount they are charged. On narrow screens the summary
+   follows the form.
+
+   The hero matches the other academics pages (calendar,
+   timetable).
+   ============================================================ */
+
+:root {
+  /* Secondary text that still clears 4.5:1 on --cream (5.6:1).
+     The shared --text-muted lands at 3.9:1. Same value as the
+     timetable's --tt-quiet. */
+  --pay-quiet: #6B655F;
+  --pay-rule: rgba(155, 13, 36, 0.13);
+}
+
+/* ---------------------------------------------------------- hero */
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  position: relative;
+  padding: 4.5rem 0 4rem;
+  overflow: hidden;
+  align-items: initial;
+  display: block;
+  min-height: initial;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 10%, rgba(190,11,40,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.hero .container {
+  position: relative;
+}
+/* overrides css/styles.css */
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+.hero__sub {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-on-dark);
+  max-width: 640px;
+}
+
+/* ------------------------------------------------------ section */
+.pay {
+  background: var(--cream-warm);
+  padding: 3.5rem 0 5rem;
+}
+
+.inline-link {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.inline-link:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+
+::selection {
+  background: var(--accent-pale);
+  color: var(--text-dark);
+}
+
+.pay__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
+  gap: 2rem;
+  align-items: start;
+}
+.pay__layout[hidden] {
+  display: none;
+}
+
+.pay__contact {
+  margin: 2.2rem 0 0;
+  font-size: 0.88rem;
+  color: var(--pay-quiet);
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------- form */
+/* overrides css/styles.css: the card fills its grid column
+   instead of centring at 720px */
+.pay-form {
+  max-width: none;
+  margin: 0;
+}
+.pay-form .rsvp-form__label {
+  font-size: 0.82rem;
+}
+.pay-form .rsvp-form__help {
+  font-size: 0.78rem;
+  color: var(--pay-quiet);
+}
+.pay-form__optional {
+  font-weight: 400;
+  color: var(--pay-quiet);
+}
+/* Locked while PayPal is open (see lock() in js/payments.js). */
+.pay-form input.rsvp-form__input:read-only,
+.pay-form select.rsvp-form__input:disabled {
+  background: var(--parchment);
+  color: var(--text-body);
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* The "Other" detail row ships hidden; the shared grid rule
+   would otherwise show it. */
+.pay-form .rsvp-form__row[hidden] {
+  display: none;
+}
+
+/* The error summary sits first in the card, so the first section
+   loses the divider the shared :first-child rule would have removed. */
+.pay-form__errors + .rsvp-form__section {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Error summary. Reuses the shared error box; this adds the
+   heading and the list of links back to each field. */
+.pay-form__errors.is-active {
+  margin-bottom: 1.8rem;
+}
+.pay-form__errors:focus {
+  outline: 2px solid var(--wine-mid);
+  outline-offset: 3px;
+}
+.pay-form__errors-title {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--wine-mid);
+  line-height: 1.5;
+}
+.pay-form__errors-list {
+  list-style: none;
+  margin-top: 0.35rem;
+}
+.pay-form__errors-list a {
+  color: var(--wine-mid);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Amount: the currency sits inside the box, so what the student
+   types reads as "CAD $ 1,250.00". */
+.pay-form__money {
+  position: relative;
+}
+.pay-form__currency {
+  position: absolute;
+  left: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: max(16px, 0.95rem);
+  font-weight: 500;
+  color: var(--pay-quiet);
+  pointer-events: none;
+}
+.pay-form__money .rsvp-form__input {
+  padding-left: 3.6em;
+  font-variant-numeric: tabular-nums;
+}
+
+.pay-form__count {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Honeypot: off-screen rather than display:none, which some bots
+   skip. Hidden from assistive tech and the tab order. */
+.pay-form__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Only shown once the summary drops below the form (see the
+   900px rule): it takes the student down to the summary. Beside
+   the summary it would be a third button competing with PayPal's. */
+.pay-form__check {
+  display: none;
+}
+
+/* ------------------------------------------------------ summary */
+.pay-slip {
+  position: sticky;
+  top: 1.5rem;
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+  padding: 1.8rem 1.6rem 1.6rem;
+  box-shadow: 0 8px 28px rgba(155,13,36,0.04);
+}
+.pay-slip__title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.3;
+  margin-bottom: 0.9rem;
+}
+.pay-slip__line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--pay-rule);
+}
+.pay-slip__line dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pay-quiet);
+  flex-shrink: 0;
+}
+.pay-slip__line dd {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.pay-slip__line dd.is-empty {
+  font-weight: 400;
+  color: var(--pay-quiet);
+}
+
+/* The sentence the student agrees to. Baskerville, because it is
+   the page saying something. Stays muted until the form is valid. */
+.pay-slip__total {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--pay-quiet);
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--pay-rule);
+}
+.pay-slip.is-ready .pay-slip__total {
+  font-size: 1.08rem;
+  color: var(--text-dark);
+  animation: pay-settle 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pay-slip__total strong {
+  color: var(--wine);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@keyframes pay-settle {
+  from { opacity: 0.35; transform: translateY(3px); }
+  to   { opacity: 1;    transform: none; }
+}
+
+.pay-slip__buttons {
+  margin-top: 1.4rem;
+  position: relative;
+  z-index: 0; /* keeps PayPal's iframe under the sticky slip's edges */
+}
+.pay-slip__buttons:empty {
+  margin-top: 0;
+}
+
+.pay-slip__status {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-body);
+  margin-top: 1rem;
+}
+.pay-slip__status:empty {
+  display: none;
+}
+.pay-slip__status[data-tone="error"] {
+  color: var(--wine-mid);
+  font-weight: 500;
+}
+
+.pay-slip__fine {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--pay-quiet);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--pay-rule);
+}
+.pay-slip__fine strong {
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+/* ------------------------------------------------------- result */
+/* One panel, three uses: payment recorded, payment taken but not
+   yet recorded, and online payment not set up. Built on the shared
+   confirmation card. */
+.pay-result {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+  padding: 3rem 2.4rem 2.6rem;
+  box-shadow: 0 8px 28px rgba(155,13,36,0.04);
+  text-align: center;
+}
+.pay-result[hidden] {
+  display: none;
+}
+/* With the result card showing, the contact line centres under it. */
+.pay-result:not([hidden]) + .pay__contact {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+.pay-result:focus {
+  outline: none;
+}
+.pay-result:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+.pay-result[data-tone="warn"] {
+  border-top-color: var(--wine-mid);
+}
+.pay-result .rsvp-form__confirm-icon {
+  margin-bottom: 1.3rem;
+}
+.pay-result__title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  color: var(--wine);
+  line-height: 1.25;
+  margin-bottom: 0.8rem;
+  text-wrap: balance;
+}
+.pay-result__text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  max-width: 34rem;
+  margin: 0 auto;
+}
+.pay-result__text + .pay-result__text {
+  margin-top: 0.8rem;
+}
+.pay-result__text strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+.pay-result__details {
+  max-width: 26rem;
+  margin: 1.8rem auto;
+  text-align: left;
+  border-bottom: 1px solid var(--pay-rule);
+}
+.pay-result__details div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--pay-rule);
+}
+.pay-result__details dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pay-quiet);
+  flex-shrink: 0;
+}
+.pay-result__details dd {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.pay-result__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem 1.4rem;
+  margin-top: 1.8rem;
+}
+.pay-result__actions .btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+  box-shadow: none;
+}
+.pay-result__link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.pay-result__dismiss {
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--pay-quiet);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+  min-height: 44px;
+  margin-top: 1rem;
+}
+.pay-result__dismiss:hover {
+  color: var(--wine);
+}
+
+/* ------------------------------------------------------ focus ring */
+.inline-link:focus-visible,
+.pay-form__errors-list a:focus-visible,
+.pay-result__dismiss:focus-visible,
+.pay-form__check:focus-visible,
+.pay-result .btn:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------ responsive */
+@media (max-width: 900px) {
+  .pay__layout {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .pay__contact {
+    max-width: 720px;
+    margin-inline: auto;
+  }
+  .pay-slip {
+    position: static;
+  }
+  .pay-form__check {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+  }
+}
+@media (max-width: 1024px) {
+  .hero {
+    padding: 3rem 0 2.8rem;
+  }
+  .pay {
+    padding: 2.5rem 0 3.5rem;
+  }
+  .pay-result {
+    padding: 2.4rem 1.4rem 2.2rem;
+  }
+}
+@media (max-width: 480px) {
+  .pay-slip {
+    padding: 1.5rem 1.2rem 1.3rem;
+  }
+  .pay-result__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pay-slip.is-ready .pay-slip__total {
+    animation: none;
+  }
+  .inline-link {
+    transition: none;
+  }
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make a Payment — Institute for Christian Studies</title>
+<link rel="icon" href="../assets/logos/ics-favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/logos/ics-favicon.png">
+<meta name="description" content="Pay tuition or a program fee to the Institute for Christian Studies by PayPal or by card. You and the Academic Registrar each get a receipt by email.">
+<!-- Unlisted for now: kept out of search, the navigation and the sitemap
+     until ICS is ready to announce it. Drop this line to list it. -->
+<meta name="robots" content="noindex">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://www.icscanada.edu/academics/payments">
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/pages/payments.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HERO — PAGE TITLE
+     ═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <h1 class="hero__title">Make a Payment</h1>
+    <p class="hero__sub">Pay tuition or a program fee by PayPal or by debit or credit card. You and the Academic Registrar each get a receipt by email.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PAYMENT
+
+     js/payments.js drives everything here: validation, the live
+     summary, PayPal, and the confirmation. Setup for the server
+     side is in _scripts/SETUP.md.
+     ═══════════════════════════════════════════ -->
+<section class="pay">
+  <div class="container">
+
+    <div class="pay__layout" id="pay-layout">
+
+      <form class="rsvp-form pay-form" id="pay-form" novalidate>
+
+        <div class="rsvp-form__error pay-form__errors" id="pay-errors" tabindex="-1">
+          <h2 class="pay-form__errors-title" id="pay-errors-title"></h2>
+          <ul class="pay-form__errors-list" id="pay-errors-list"></ul>
+        </div>
+
+        <!-- About you -->
+        <div class="rsvp-form__section">
+          <h2 class="rsvp-form__section-title">About you</h2>
+          <div class="rsvp-form__row">
+            <div class="rsvp-form__field">
+              <label class="rsvp-form__label" for="pay-name">Full name<span class="req" aria-hidden="true">*</span></label>
+              <input class="rsvp-form__input" type="text" id="pay-name" name="name" autocomplete="name" maxlength="100" required aria-describedby="pay-name-error">
+              <p class="rsvp-form__field-error" id="pay-name-error"></p>
+            </div>
+            <div class="rsvp-form__field">
+              <label class="rsvp-form__label" for="pay-email">Email<span class="req" aria-hidden="true">*</span></label>
+              <input class="rsvp-form__input" type="email" id="pay-email" name="email" autocomplete="email" inputmode="email" maxlength="254" spellcheck="false" required aria-describedby="pay-email-help pay-email-error">
+              <p class="rsvp-form__help" id="pay-email-help">Your receipt goes here.</p>
+              <p class="rsvp-form__field-error" id="pay-email-error"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- The payment -->
+        <div class="rsvp-form__section">
+          <h2 class="rsvp-form__section-title">Your payment</h2>
+          <div class="rsvp-form__row">
+            <div class="rsvp-form__field">
+              <label class="rsvp-form__label" for="pay-purpose">What it’s for<span class="req" aria-hidden="true">*</span></label>
+              <select class="rsvp-form__input" id="pay-purpose" name="purpose" required aria-describedby="pay-purpose-error">
+                <option value="">Choose one</option>
+                <option>Tuition</option>
+                <option>Course or program fee</option>
+                <option>Other</option>
+              </select>
+              <p class="rsvp-form__field-error" id="pay-purpose-error"></p>
+            </div>
+            <div class="rsvp-form__field">
+              <label class="rsvp-form__label" for="pay-amount">Amount<span class="req" aria-hidden="true">*</span></label>
+              <div class="pay-form__money">
+                <span class="pay-form__currency" aria-hidden="true">CAD $</span>
+                <input class="rsvp-form__input" type="text" id="pay-amount" name="amount" inputmode="decimal" autocomplete="off" maxlength="14" required aria-describedby="pay-amount-help pay-amount-error">
+              </div>
+              <p class="rsvp-form__help" id="pay-amount-help">In Canadian dollars, from $5 to $20,000.</p>
+              <p class="rsvp-form__field-error" id="pay-amount-error"></p>
+            </div>
+          </div>
+          <div class="rsvp-form__row rsvp-form__row--full" id="pay-detail-row" hidden>
+            <div class="rsvp-form__field">
+              <label class="rsvp-form__label" for="pay-detail">Tell us what the payment is for<span class="req" aria-hidden="true">*</span></label>
+              <input class="rsvp-form__input" type="text" id="pay-detail" name="detail" maxlength="80" aria-describedby="pay-detail-help pay-detail-error">
+              <p class="rsvp-form__help" id="pay-detail-help">A few words is plenty, for example “Graduation fee”.</p>
+              <p class="rsvp-form__field-error" id="pay-detail-error"></p>
+            </div>
+          </div>
+          <div class="rsvp-form__row rsvp-form__row--full">
+            <div class="rsvp-form__field">
+              <label class="rsvp-form__label" for="pay-note">Note to the Registrar <span class="pay-form__optional">(optional)</span></label>
+              <textarea class="rsvp-form__textarea" id="pay-note" name="note" rows="3" maxlength="500" aria-describedby="pay-note-count"></textarea>
+              <p class="rsvp-form__help pay-form__count" id="pay-note-count">Up to 500 characters.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left empty by people; filled by bots. The script drops any
+             submission that fills it. -->
+        <div class="pay-form__trap" aria-hidden="true">
+          <label for="pay-website">Leave this empty</label>
+          <input type="text" id="pay-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn btn-accent btn-arrow pay-form__check">Continue to payment</button>
+      </form>
+
+      <aside class="pay-slip" id="pay-slip" aria-labelledby="pay-slip-title">
+        <h2 class="pay-slip__title" id="pay-slip-title">Summary</h2>
+        <dl class="pay-slip__lines">
+          <div class="pay-slip__line">
+            <dt>For</dt>
+            <dd id="pay-slip-purpose">Not chosen yet</dd>
+          </div>
+          <div class="pay-slip__line">
+            <dt>Amount</dt>
+            <dd id="pay-slip-amount">Not entered yet</dd>
+          </div>
+        </dl>
+        <p class="pay-slip__total" id="pay-summary">Fill in the form and your total appears here.</p>
+
+        <div class="pay-slip__buttons" id="paypal-buttons"></div>
+        <noscript><p class="pay-slip__fine">Online payment needs JavaScript. Turn it on and reload the page, or write to the Academic Registrar at <a class="inline-link" href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a>.</p></noscript>
+        <p class="pay-slip__status" id="pay-status" role="status" aria-live="polite"></p>
+
+        <p class="pay-slip__fine">You don’t need a PayPal account: choose <strong>Debit or Credit Card</strong> to pay as a guest. ICS never sees your card details.</p>
+      </aside>
+
+    </div>
+
+    <!-- Replaces the form after payment, or stands in for it when online
+         payment isn't set up yet. Filled by js/payments.js. -->
+    <div class="pay-result" id="pay-result" tabindex="-1" hidden></div>
+
+    <p class="pay__contact">Questions about what you owe? Write to the Academic Registrar at <a class="inline-link" href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a>.</p>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<script src="../js/footer.js"></script>
+<script src="../js/extlinks.js"></script>
+<script src="../js/payments.js" defer></script>
+</body>
+</html>
