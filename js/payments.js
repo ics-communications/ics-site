@@ -94,8 +94,10 @@
   function groupThousands(n) {
     return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
+  /* "CAD $1,250.00", with a non-breaking space so the currency never
+     wraps away from the figure. */
   function money(cents) {
-    return 'CAD $' + groupThousands(Math.floor(cents / 100)) + '.' + ('0' + (cents % 100)).slice(-2);
+    return 'CAD\u00A0$' + groupThousands(Math.floor(cents / 100)) + '.' + ('0' + (cents % 100)).slice(-2);
   }
   function valueToCents(value) {
     var m = /^(\d+)\.(\d{2})$/.exec(String(value));

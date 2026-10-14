@@ -125,6 +125,12 @@
 .pay-form .rsvp-form__help {
   font-size: 0.78rem;
   color: var(--pay-quiet);
+  text-wrap: pretty;
+}
+/* The shared title is spaced for a note underneath it; here a label
+   follows directly, so it gets real room. */
+.pay-form .rsvp-form__section-title {
+  margin-bottom: 0.9rem;
 }
 .pay-form__optional {
   font-weight: 400;
@@ -182,24 +188,59 @@
   min-height: 44px;
 }
 
-/* Amount: the currency sits inside the box, so what the student
-   types reads as "CAD $ 1,250.00". */
+/* Amount: "CAD $" is a fixed segment joined to the input, so the
+   digits always start after it, whatever the font or the size. The
+   segment shares the input's border and follows its focus and error
+   colours; the focus ring wraps both. */
 .pay-form__money {
-  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-radius: 3px;
+  transition: box-shadow 0.2s;
 }
 .pay-form__currency {
-  position: absolute;
-  left: 1em;
-  top: 50%;
-  transform: translateY(-50%);
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 0.8em;
   font-size: max(16px, 0.95rem);
   font-weight: 500;
   color: var(--pay-quiet);
-  pointer-events: none;
+  background: var(--cream-warm);
+  border: 1.5px solid rgba(155,13,36,0.15);
+  border-right-color: var(--pay-rule);
+  border-radius: 3px 0 0 3px;
+  transition: border-color 0.2s;
 }
 .pay-form__money .rsvp-form__input {
-  padding-left: 3.6em;
+  flex: 1;
+  min-width: 0;
+  border-left: none;
+  border-radius: 0 3px 3px 0;
+  padding-left: 0.8em;
   font-variant-numeric: tabular-nums;
+}
+.pay-form__money .rsvp-form__input::placeholder {
+  color: var(--pay-quiet);
+  opacity: 1;
+}
+.pay-form__money .rsvp-form__input:focus,
+.pay-form__money .rsvp-form__input.is-invalid {
+  box-shadow: none;
+}
+.pay-form__money:focus-within {
+  box-shadow: 0 0 0 3px rgba(155,13,36,0.08);
+}
+.pay-form__money:focus-within .pay-form__currency {
+  border-color: var(--wine);
+  border-right-color: var(--pay-rule);
+}
+.pay-form__money:has(.is-invalid) {
+  box-shadow: 0 0 0 3px rgba(190,11,40,0.12);
+}
+.pay-form__money:has(.is-invalid) .pay-form__currency {
+  border-color: var(--wine-mid);
+  border-right-color: var(--pay-rule);
 }
 
 .pay-form__count {
@@ -302,15 +343,15 @@
 }
 
 /* Why the fee is there, and how to avoid it. Sits between the
-   total and the buttons, so it is read before paying. */
+   total and the buttons, so it is read before paying. Plain text
+   under a hairline, not a box inside the card. */
 .pay-slip__fee-note {
   font-size: 0.8rem;
   line-height: 1.6;
   color: var(--text-body);
-  background: var(--cream-warm);
-  border: 1px solid var(--pay-rule);
-  padding: 0.75rem 0.9rem;
   margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--pay-rule);
 }
 .pay-slip__fee-note strong {
   font-weight: 600;

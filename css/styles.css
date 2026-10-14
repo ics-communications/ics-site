@@ -1632,6 +1632,7 @@ a { text-decoration: none; color: inherit; }
   border-radius: 3px;
   background: var(--cream);
   outline: none;
+  caret-color: var(--wine);
   transition: border-color 0.2s, box-shadow 0.2s;
   width: 100%;
 }
