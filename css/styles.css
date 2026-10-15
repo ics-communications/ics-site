@@ -13,6 +13,8 @@
   /* Burnt Copper accent */
   --accent:       #A85A32;
   --accent-light: #C87A52;
+  /* Copper for text on wine grounds: 4.6:1 on --wine, 6:1 on --wine-deep */
+  --accent-on-wine: #E9B48F;
   --accent-muted: #8E4A28;
   --accent-pale:  #EEDACA;
   --accent-deep:  #7A4020;
@@ -118,8 +120,8 @@ a { text-decoration: none; color: inherit; }
   border: 1.5px solid rgba(255,255,255,0.3);
 }
 .btn-outline-light:hover {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
+  border-color: var(--accent-on-wine);
+  color: var(--accent-on-wine);
 }
 
 .btn-outline-dark {
@@ -187,10 +189,9 @@ a { text-decoration: none; color: inherit; }
   font-family: var(--sans);
   font-size: 0.82rem;
   font-weight: 500;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
   letter-spacing: 0.06em;
   margin-bottom: 0.75rem;
-  opacity: 0.9;
 }
 
 .hero__title {
@@ -203,7 +204,7 @@ a { text-decoration: none; color: inherit; }
 }
 .hero__title em {
   font-style: italic;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
 }
 
 .hero__subtitle {
@@ -229,8 +230,8 @@ a { text-decoration: none; color: inherit; }
   min-height: 44px;
 }
 .btn-donate-hero:hover {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
+  border-color: var(--accent-on-wine);
+  color: var(--accent-on-wine);
   transform: translateY(-1px);
 }
 
@@ -305,6 +306,24 @@ a { text-decoration: none; color: inherit; }
 }
 
 .announce:hover .announce__book { transform: rotate(0deg) translateY(-3px); }
+
+/* Speaker or instructor portrait: flat and square-cornered (the cast
+   shadow belongs to book covers only). */
+.announce__photo {
+  display: block;
+  width: 220px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--parchment);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+}
+
+.announce__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 46% center;
+}
 
 .announce__text-col {
   display: flex; flex-direction: column; gap: 0.75rem;
@@ -479,7 +498,7 @@ a { text-decoration: none; color: inherit; }
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
   margin-bottom: 1rem;
 }
 
@@ -493,7 +512,7 @@ a { text-decoration: none; color: inherit; }
 }
 .mission-strip__title em {
   font-style: italic;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
 }
 
 .mission-strip__body {
@@ -505,56 +524,88 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ================================================================
-   DISTINCTIVES — 3-column feature grid
+   PRESIDENT — portrait beside name, role and bio
    ================================================================ */
-.distinctives {
+.president {
   padding: 4.5rem 0 5rem;
   background: var(--cream-warm);
   border-top: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
 }
 
-.distinctives__header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-.distinctives__header .eyebrow { margin-bottom: 0.5rem; }
-
-.distinctives__grid {
+.president__inner {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: 240px minmax(0, 34rem);
+  justify-content: center;
+  align-items: center;
+  gap: 3.5rem;
 }
 
-.distinctive {
-  text-align: center;
-  padding: 2rem 1.5rem;
-}
-
-.distinctive__icon {
-  width: 52px; height: 52px;
-  margin: 0 auto 1.2rem;
-  background: rgba(155,13,36,0.06);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
-  color: var(--wine);
+/* Square-cornered portrait, copper top rule like the program cards.
+   She faces right, so the photo sits left and looks into the text. */
+.president__portrait {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--parchment);
   border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
 }
 
-.distinctive__title {
+.president__portrait img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.president__name {
   font-family: var(--serif);
-  font-size: 1.1rem;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
   font-weight: 700;
   color: var(--wine);
-  margin-bottom: 0.6rem;
-  line-height: 1.3;
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
-.distinctive__desc {
-  font-size: 0.88rem;
+.president__role {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--accent-deep);
+  line-height: 1.5;
+  margin-top: 0.35rem;
+}
+
+.president__body {
+  font-size: 0.95rem;
   color: var(--text-body);
-  line-height: 1.65;
+  line-height: 1.7;
+  max-width: 60ch;
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(168,90,50,0.25);
+}
+
+.president__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  transition: color 0.3s ease, gap 0.3s ease;
+}
+.president__link:hover {
+  color: var(--wine);
+  gap: 0.55rem;
+}
+.president__link:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
 }
 
 /* ================================================================
@@ -810,14 +861,14 @@ a { text-decoration: none; color: inherit; }
 }
 .spotlight__title em {
   font-style: italic;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
 }
 
 .spotlight__sub {
   font-family: var(--sans);
   font-size: 0.82rem;
   font-weight: 500;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
   letter-spacing: 0.04em;
   margin-bottom: 1.2rem;
 }
@@ -1195,7 +1246,7 @@ a { text-decoration: none; color: inherit; }
   background: var(--wine);
   display: flex; align-items: center; justify-content: center;
   border-radius: 4px;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
   flex-shrink: 0;
 }
 
@@ -1236,9 +1287,19 @@ a { text-decoration: none; color: inherit; }
 .events-widget__empty {
   text-align: center;
   padding: 3rem 1.5rem;
-  color: var(--text-muted);
+  color: var(--text-body);
   font-size: 0.88rem;
 }
+
+.events-widget__empty-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--accent-muted);
+  transition: color 0.2s ease;
+}
+.events-widget__empty-link:hover { color: var(--wine); }
 
 .events-widget__loading-spinner {
   width: 26px; height: 26px;
@@ -1289,7 +1350,7 @@ a { text-decoration: none; color: inherit; }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
   margin-top: 2px;
 }
 
@@ -1399,7 +1460,7 @@ a { text-decoration: none; color: inherit; }
 .community-cta__eyebrow {
   margin-bottom: 0.5rem;
   display: block;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
 }
 
 .community-cta__title {
@@ -1412,7 +1473,7 @@ a { text-decoration: none; color: inherit; }
 }
 .community-cta__title em {
   font-style: italic;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
 }
 
 .community-cta__text {
@@ -1472,7 +1533,7 @@ a { text-decoration: none; color: inherit; }
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--accent-light);
+  color: var(--accent-on-wine);
   margin-bottom: 1.2rem;
 }
 
@@ -1486,7 +1547,7 @@ a { text-decoration: none; color: inherit; }
   display: inline-block;
   padding: 0.15rem 0;
 }
-.footer__links a:hover { color: var(--accent-light); }
+.footer__links a:hover { color: var(--accent-on-wine); }
 
 .footer__bottom {
   border-top: 1px solid rgba(255,255,255,0.06);
@@ -1511,8 +1572,8 @@ a { text-decoration: none; color: inherit; }
   transition: all 0.2s ease;
 }
 .footer__social a:hover {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
+  border-color: var(--accent-on-wine);
+  color: var(--accent-on-wine);
 }
 
 .footer__social .social-substack {
@@ -1883,6 +1944,7 @@ select.rsvp-form__input {
     gap: 1.6rem;
   }
   .announce__book { width: 130px; }
+  .announce__photo { width: 150px; }
   .announce__heading { font-size: 1.6rem; }
   .announce__subhead { font-size: 0.95rem; }
   .announce__facts { justify-content: center; font-size: 0.82rem; }
@@ -1902,14 +1964,14 @@ select.rsvp-form__input {
   .mission-strip__title { font-size: clamp(1.15rem, 4.5vw, 1.5rem); }
   .mission-strip__body { font-size: 0.86rem; }
 
-  /* ── DISTINCTIVES ── */
-  .distinctives { padding: 3rem 0 3.5rem; }
-  .distinctives__header { margin-bottom: 2rem; }
-  .distinctives__grid {
+  /* ── PRESIDENT ── */
+  .president { padding: 3rem 0 3.5rem; }
+  .president__inner {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    justify-items: start;
+    gap: 1.8rem;
   }
-  .distinctive { padding: 1.5rem 1rem; }
+  .president__portrait { width: 180px; }
 
   /* ── TESTIMONIALS ── */
   .testimonials { padding: 3rem 0; }
@@ -2017,16 +2079,17 @@ select.rsvp-form__input {
 
   .announce__inner { padding: 2rem 1rem 2.4rem; }
   .announce__book { width: 112px; }
+  .announce__photo { width: 130px; }
   .announce__heading { font-size: 1.4rem; }
   .announce__body { font-size: 0.84rem; }
   .announce__quote-text { font-size: 0.84rem; }
 
   .mission-strip { padding: 2rem 0; }
 
-  .distinctives { padding: 2.5rem 0; }
-  .distinctive { padding: 1.2rem 0.5rem; }
-  .distinctive__title { font-size: 1rem; }
-  .distinctive__desc { font-size: 0.84rem; }
+  .president { padding: 2.5rem 0 3rem; }
+  .president__portrait { width: 150px; }
+  .president__role { font-size: 0.95rem; }
+  .president__body { font-size: 0.88rem; }
 
   .testimonial-card__quote { font-size: 0.86rem; }
 
