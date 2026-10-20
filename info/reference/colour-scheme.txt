@@ -1,0 +1,29 @@
+--harbour:       #073146;  /* headings, mission strip, icons, outlines */
+  --ink:           #0C1627;  /* hero, spotlight, footer */
+  --harbour-mid:   #0A3D57;  /* degree tags, small links */
+  --harbour-soft:  #3E6A82;  /* hover borders */
+
+  /* ── Secondary: wines ── */
+  --oxblood:       #7B3F49;  /* card top borders, donate button, today badge */
+  --oxblood-light: #9A5A64;
+  --rosewood:      #60333E;  /* eyebrows and links on light */
+  --claret:        #442633;  /* hover states, tag text */
+  --blush:         #EDDDDD;  /* tag backgrounds, icon circles */
+  --aubergine:     #291A28;  /* optional dark section or striped rows */
+
+  /* ── Accent: coppers (shared with ICS) ── */
+  --copper:        #A85A32;  /* primary buttons, bullets, rules */
+  --copper-light:  #D4906A;  /* on dark blue only */
+  --copper-muted:  #8E4A28;  /* eyebrows and meta text on light */
+  --copper-pale:   #EEDACA;
+  --copper-deep:   #7A4020;  /* button hover */
+
+  /* ── Neutrals (shared with ICS) ── */
+  --cream:         #FDFBF7;
+  --cream-warm:    #F9F5ED;
+  --parchment:     #F0E9DD;
+  --text-dark:     #2E1318;
+  --text-body:     #3A3330;
+  --text-muted:    #857E78;
+  --text-on-dark:  #F2E6E3;
+  --border-light:  rgba(7,49,70,0.08);

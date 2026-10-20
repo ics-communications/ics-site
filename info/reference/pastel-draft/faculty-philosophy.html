@@ -1,0 +1,2173 @@
+<!DOCTYPE html><html lang="en-CA"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faculty – MA &amp; PhD in Philosophy | Institute for Christian Studies</title>
+  
+  <style>
+    html, body { 
+      margin: 0; 
+      padding: 0; 
+      background: transparent; 
+    }
+
+    /* Override Squarespace's default section and block padding */
+    .page-section:first-child .content-wrapper {
+      padding-top: 0 !important;
+    }
+
+    .page-section:last-child .content-wrapper,
+    .page-section .content-wrapper {
+      padding-bottom: 0 !important;
+    }
+    
+    .sqs-block-code {
+      padding: 0 !important;
+      margin-bottom: 0 !important;
+    }
+    
+    .sqs-block-code .sqs-block-content {
+      margin: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700&display=swap');
+
+    .ics-faculty *,
+    .ics-faculty *::before,
+    .ics-faculty *::after { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    .ics-faculty {
+      /* Philosophy program palette: teal / burgundy / rose */
+      --teal:          #023048;
+      --teal-deep:     #091629;
+      --teal-mid:      #081E33;
+      --teal-light:    #0A3D5C;
+      --plum:          #271928;
+      --burgundy:      #442534;
+      --burgundy-mid:  #61313D;
+      --rose:          #7D3F4A;
+      --rose-light:    #9B5A65;
+      --rose-pale:     #B4787F;
+      --cream:         #E8E1E5;
+      --cream-muted:   #DAD6DE;
+      --cream-dim:     #B8B0B5;
+      --white:         #FFFFFF;
+      --bg-warm:       #F0EDEE;
+      --bg-card:       #FAFAFA;
+      --text-body:     #3a3330;
+      --text-muted:    #9a958f;
+      --border-light:  rgba(2, 48, 72, 0.1);
+      --border-dark:   rgba(232, 225, 229, 0.1);
+      --font-serif:    'Libre Baskerville', Georgia, 'Times New Roman', serif;
+      --font-sans:     'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      
+      font-family: var(--font-sans);
+      color: var(--text-body);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      max-width: 100vw;
+    }
+
+    /* ===================== */
+    /* ANIMATIONS             */
+    /* ===================== */
+    @keyframes icsFacFadeUp { 
+      from { opacity: 0; transform: translateY(24px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+
+    @keyframes icsFacSlideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ===================== */
+    /* PAGE HEADER (compact) */
+    /* ===================== */
+    .ics-fac-header {
+      background: var(--teal-deep);
+      padding: 3.5rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ics-fac-header::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(125,63,74,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .ics-fac-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(125,63,74,0.5), transparent);
+    }
+
+    .ics-fac-header__inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ics-fac-header__left {
+      animation: icsFacSlideIn 0.7s ease-out both;
+    }
+
+    .ics-fac-header__label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose-pale);
+      margin-bottom: 0.5rem;
+    }
+
+    .ics-fac-header__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.25;
+    }
+
+    .ics-fac-header__title em {
+      font-style: italic;
+      color: var(--rose-pale);
+    }
+
+    .ics-fac-header__count {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      color: rgba(232,225,229,0.4);
+      letter-spacing: 0.04em;
+      animation: icsFacSlideIn 0.7s ease-out 0.2s both;
+    }
+
+    /* ===================== */
+    /* FACULTY SECTION        */
+    /* ===================== */
+    .ics-fac-section {
+      background: var(--bg-warm);
+      padding: 0 2rem;
+    }
+
+    .ics-fac-section__inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Subsection divider for cross-appointed */
+    .ics-fac-divider {
+      padding: 3rem 0 0.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .ics-fac-divider__label {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.3rem;
+    }
+
+    .ics-fac-divider__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1.3;
+    }
+
+    /* ===================== */
+    /* INDIVIDUAL PROFILE     */
+    /* ===================== */
+    .ics-fac-profile {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border-light);
+      padding: 3.5rem 0;
+      position: relative;
+    }
+
+    .ics-fac-profile:last-child {
+      border-bottom: none;
+    }
+
+    @media (min-width: 900px) {
+      .ics-fac-profile {
+        grid-template-columns: 300px 1fr;
+        gap: 3.5rem;
+      }
+
+      /* Alternate layout: flip photo to right on even profiles */
+      .ics-fac-profile:nth-child(even) {
+        grid-template-columns: 1fr 300px;
+      }
+      .ics-fac-profile:nth-child(even) .ics-fac-profile__sidebar {
+        order: 2;
+      }
+      .ics-fac-profile:nth-child(even) .ics-fac-profile__main {
+        order: 1;
+      }
+    }
+
+    /* Sidebar: Photo + Quick Info */
+    .ics-fac-profile__sidebar {
+      position: relative;
+    }
+
+    .ics-fac-profile__photo-frame {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .ics-fac-profile__photo {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 5 / 6;
+      overflow: hidden;
+      background: #d5d0cc;
+    }
+
+    .ics-fac-profile__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(0.85) contrast(1.02);
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
+    }
+
+    .ics-fac-profile:hover .ics-fac-profile__photo img {
+      transform: scale(1.04);
+      filter: saturate(1) contrast(1.02);
+    }
+
+    /* Colored accent stripe at bottom of photo */
+    .ics-fac-profile__photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--rose);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .ics-fac-profile:hover .ics-fac-profile__photo::after {
+      transform: scaleX(1);
+    }
+
+    /* Contact & Media Links under photo */
+    .ics-fac-profile__links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .ics-fac-profile__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      padding: 0.5rem 0.7rem;
+      background: rgba(2, 48, 72, 0.04);
+      border-left: 2px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .ics-fac-profile__link:hover {
+      color: var(--rose);
+      background: rgba(125, 63, 74, 0.05);
+      border-left-color: var(--rose);
+    }
+
+    .ics-fac-profile__link svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      stroke: currentColor;
+    }
+
+    .ics-fac-profile__link--podcast {
+      color: var(--teal-light);
+    }
+
+    /* Main content area */
+    .ics-fac-profile__main {
+      display: flex;
+      flex-direction: column;
+      padding-top: 0.5rem;
+    }
+
+    .ics-fac-profile__name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+
+    .ics-fac-profile__name a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .ics-fac-profile__name a:hover {
+      color: var(--rose);
+    }
+
+    .ics-fac-profile__role {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--rose);
+      line-height: 1.5;
+      margin-bottom: 0.2rem;
+    }
+
+    .ics-fac-profile__extra-role {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--teal-light);
+      line-height: 1.5;
+      margin-bottom: 0.3rem;
+    }
+
+    .ics-fac-profile__credentials {
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+      margin-bottom: 1.6rem;
+    }
+
+    /* Vision / Quote */
+    .ics-fac-profile__vision-wrap {
+      position: relative;
+      margin-bottom: 2rem;
+      padding: 1.6rem 1.8rem;
+      background: var(--bg-card);
+      border-left: 3px solid var(--rose);
+    }
+
+    .ics-fac-profile__vision-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+
+    .ics-fac-profile__vision {
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      color: #4a4540;
+      line-height: 1.85;
+      font-style: italic;
+    }
+
+    /* Detail Chips - Courses, Research, Pubs */
+    .ics-fac-profile__details-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.6rem 0;
+      margin-bottom: 0.5rem;
+      transition: color 0.25s ease;
+    }
+
+    .ics-fac-profile__details-toggle:hover {
+      color: var(--rose);
+    }
+
+    .ics-fac-profile__details-toggle svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s ease;
+      stroke: currentColor;
+    }
+
+    .ics-fac-profile__details-toggle[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+
+    .ics-fac-profile__details {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  opacity 0.4s ease,
+                  margin 0.4s ease;
+      margin-top: 0;
+    }
+
+    .ics-fac-profile__details.is-open {
+      max-height: 2000px;
+      opacity: 1;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .ics-fac-profile__details {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .ics-fac-profile__details {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .ics-fac-detail {
+      padding: 1.2rem;
+      background: var(--bg-card);
+    }
+
+    .ics-fac-detail__heading {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border-light);
+    }
+
+    .ics-fac-detail__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .ics-fac-detail__list li {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: #5c5550;
+      line-height: 1.6;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .ics-fac-detail__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 4px;
+      height: 4px;
+      background: var(--rose);
+      transform: rotate(45deg);
+    }
+
+    .ics-fac-detail__pubs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .ics-fac-detail__pubs li {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      color: #7a7570;
+      line-height: 1.6;
+    }
+
+    .ics-fac-detail__pubs li em {
+      font-style: italic;
+    }
+
+    /* ===================== */
+    /* COMPACT CARD SECTIONS  */
+    /* (Adjuncts/Sess/Emeriti)*/
+    /* ===================== */
+    .ics-fac-cards {
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    .ics-fac-cards--teal {
+      background: var(--teal);
+    }
+
+    .ics-fac-cards--warm {
+      background: var(--bg-warm);
+    }
+
+    .ics-fac-cards--plum {
+      background: var(--plum);
+    }
+
+    .ics-fac-cards__inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
+
+    .ics-fac-cards__header {
+      margin-bottom: 2.5rem;
+    }
+
+    .ics-fac-cards__eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .ics-fac-cards--teal .ics-fac-cards__eyebrow,
+    .ics-fac-cards--plum .ics-fac-cards__eyebrow {
+      color: var(--rose-pale);
+    }
+    .ics-fac-cards--warm .ics-fac-cards__eyebrow {
+      color: var(--rose);
+    }
+
+    .ics-fac-cards__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .ics-fac-cards--teal .ics-fac-cards__title,
+    .ics-fac-cards--plum .ics-fac-cards__title {
+      color: var(--cream);
+    }
+    .ics-fac-cards--warm .ics-fac-cards__title {
+      color: var(--teal);
+    }
+
+    .ics-fac-cards__subtitle {
+      font-family: var(--font-sans);
+      font-size: 1.02rem;
+      line-height: 1.7;
+      margin-top: 0.6rem;
+      max-width: 640px;
+    }
+
+    .ics-fac-cards--teal .ics-fac-cards__subtitle,
+    .ics-fac-cards--plum .ics-fac-cards__subtitle {
+      color: rgba(232,225,229,0.55);
+    }
+    .ics-fac-cards--warm .ics-fac-cards__subtitle {
+      color: #7a7570;
+    }
+
+    .ics-fac-cards__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .ics-fac-cards__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .ics-fac-cards__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .ics-fac-cards__grid--four {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Individual card */
+    .ics-fac-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .ics-fac-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .ics-fac-cards--teal .ics-fac-card {
+      background: var(--teal-mid);
+      border: 1px solid rgba(232,225,229,0.06);
+    }
+    .ics-fac-cards--teal .ics-fac-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+      border-color: rgba(232,225,229,0.12);
+    }
+
+    .ics-fac-cards--warm .ics-fac-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+    }
+    .ics-fac-cards--warm .ics-fac-card:hover {
+      box-shadow: 0 12px 32px rgba(2,48,72,0.08);
+      border-color: var(--rose-pale);
+    }
+
+    .ics-fac-cards--plum .ics-fac-card {
+      background: var(--burgundy);
+      border: 1px solid rgba(232,225,229,0.06);
+    }
+    .ics-fac-cards--plum .ics-fac-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+      border-color: rgba(232,225,229,0.12);
+    }
+
+    .ics-fac-card__photo {
+      width: 100%;
+      aspect-ratio: 5 / 4;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ics-fac-cards--teal .ics-fac-card__photo {
+      background: #0c2940;
+    }
+    .ics-fac-cards--warm .ics-fac-card__photo {
+      background: #d5d0cc;
+    }
+    .ics-fac-cards--plum .ics-fac-card__photo {
+      background: #352030;
+    }
+
+    .ics-fac-card__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(0.8) contrast(1.02);
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .ics-fac-card:hover .ics-fac-card__photo img {
+      transform: scale(1.05);
+      filter: saturate(1) contrast(1.02);
+    }
+
+    .ics-fac-card__photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--rose);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .ics-fac-card:hover .ics-fac-card__photo::after {
+      transform: scaleX(1);
+    }
+
+    .ics-fac-card__body {
+      padding: 1.4rem 1.5rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .ics-fac-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.18rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+
+    .ics-fac-card__name a {
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .ics-fac-cards--teal .ics-fac-card__name a {
+      color: var(--cream);
+    }
+    .ics-fac-cards--teal .ics-fac-card__name a:hover {
+      color: var(--rose-pale);
+    }
+
+    .ics-fac-cards--warm .ics-fac-card__name a {
+      color: var(--teal);
+    }
+    .ics-fac-cards--warm .ics-fac-card__name a:hover {
+      color: var(--rose);
+    }
+
+    .ics-fac-cards--plum .ics-fac-card__name a {
+      color: var(--cream);
+    }
+    .ics-fac-cards--plum .ics-fac-card__name a:hover {
+      color: var(--rose-pale);
+    }
+
+    .ics-fac-card__field {
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 0.25rem;
+    }
+
+    .ics-fac-cards--teal .ics-fac-card__field { color: var(--rose-pale); }
+    .ics-fac-cards--warm .ics-fac-card__field { color: var(--rose); }
+    .ics-fac-cards--plum .ics-fac-card__field { color: var(--rose-pale); }
+
+    .ics-fac-card__creds {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      line-height: 1.55;
+      margin-bottom: 0.8rem;
+    }
+
+    .ics-fac-cards--teal .ics-fac-card__creds { color: rgba(232,225,229,0.4); }
+    .ics-fac-cards--warm .ics-fac-card__creds { color: var(--text-muted); }
+    .ics-fac-cards--plum .ics-fac-card__creds { color: rgba(232,225,229,0.4); }
+
+    .ics-fac-card__desc {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .ics-fac-cards--teal .ics-fac-card__desc { color: rgba(232,225,229,0.6); }
+    .ics-fac-cards--warm .ics-fac-card__desc { color: #6a655f; }
+    .ics-fac-cards--plum .ics-fac-card__desc { color: rgba(232,225,229,0.6); }
+
+    .ics-fac-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: color 0.25s ease;
+    }
+
+    .ics-fac-card__link svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      transition: transform 0.25s ease;
+    }
+
+    .ics-fac-card__link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .ics-fac-cards--teal .ics-fac-card__link { color: var(--rose-pale); }
+    .ics-fac-cards--teal .ics-fac-card__link:hover { color: var(--cream); }
+    .ics-fac-cards--warm .ics-fac-card__link { color: var(--teal-light); }
+    .ics-fac-cards--warm .ics-fac-card__link:hover { color: var(--rose); }
+    .ics-fac-cards--plum .ics-fac-card__link { color: var(--rose-pale); }
+    .ics-fac-cards--plum .ics-fac-card__link:hover { color: var(--cream); }
+
+    /* Emeriti: compact horizontal cards */
+    .ics-fac-card--compact {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .ics-fac-card--compact .ics-fac-card__photo {
+      width: 110px;
+      min-width: 110px;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+    }
+
+    .ics-fac-card--compact .ics-fac-card__body {
+      padding: 1rem 1.3rem;
+    }
+
+    .ics-fac-card--compact .ics-fac-card__name {
+      font-size: 1.08rem;
+    }
+
+    .ics-fac-card__years {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-top: 0.2rem;
+    }
+
+    .ics-fac-cards--plum .ics-fac-card__years { color: rgba(232,225,229,0.35); }
+
+    .ics-fac-card__memorial {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-style: italic;
+    }
+
+    .ics-fac-cards--plum .ics-fac-card__memorial { color: rgba(232,225,229,0.3); }
+
+    @media (min-width: 960px) {
+      .ics-fac-cards__grid--emeriti {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .ics-fac-card--compact {
+        flex-direction: column;
+      }
+      .ics-fac-card--compact .ics-fac-card__photo {
+        width: 100%;
+        aspect-ratio: 5 / 3;
+      }
+      .ics-fac-cards__inner {
+        padding: 3rem 0;
+      }
+    }
+
+    /* ===================== */
+    /* BUTTONS               */
+    /* ===================== */
+    .ics-btn {
+      display: inline-flex; 
+      align-items: center; 
+      gap: 0.5em; 
+      font-family: var(--font-sans);
+      font-size: 1.02rem; 
+      font-weight: 600; 
+      letter-spacing: 0.06em; 
+      text-transform: uppercase;
+      padding: 0.9em 2.2em; 
+      border: none; 
+      cursor: pointer; 
+      text-decoration: none; 
+      transition: all 0.3s ease;
+    }
+    
+    .ics-btn--primary { background: var(--rose); color: var(--cream); }
+    .ics-btn--primary:hover { background: var(--rose-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(125,63,74,0.3); }
+    
+    .ics-btn--outline { background: transparent; color: var(--cream); border: 1.5px solid rgba(232,225,229,0.35); }
+    .ics-btn--outline:hover { border-color: var(--cream); background: rgba(232,225,229,0.08); transform: translateY(-2px); }
+
+    /* ===================== */
+    /* CTA BANNER            */
+    /* ===================== */
+    .ics-cta-banner { 
+      background: linear-gradient(180deg, #0d2a42 0%, var(--teal-deep) 100%);
+      padding: 4.5rem 4rem; 
+      text-align: center; 
+      position: relative;
+      overflow: hidden;
+    }
+    .ics-cta-banner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background: var(--bg-warm);
+      transform: translate(-50%, -50%) rotate(45deg);
+      box-shadow: 0 0 0 6px rgba(240,237,238,0.02);
+      pointer-events: none;
+    }
+
+    .ics-cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(125,63,74,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(180,120,127,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .ics-cta-banner__inner { 
+      max-width: 620px; 
+      margin: 0 auto; 
+      position: relative; 
+      z-index: 1; 
+    }
+
+    .ics-cta-banner__heading { 
+      font-family: var(--font-serif); 
+      font-size: clamp(1.68rem, 3.36vw, 2.28rem); 
+      font-weight: 700; 
+      color: var(--cream); 
+      line-height: 1.35; 
+      margin-bottom: 1rem; 
+    }
+
+    .ics-cta-banner__heading em {
+      font-style: italic;
+      color: var(--rose-pale);
+    }
+
+    .ics-cta-banner__text { 
+      font-family: var(--font-sans); 
+      font-size: 1.08rem; 
+      color: rgba(232,225,229,0.6);
+      margin-bottom: 2rem; 
+      line-height: 1.8; 
+    }
+
+
+    .ics-cta-banner__actions { 
+      display: flex; 
+      gap: 1rem; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+    }
+
+    /* ===================== */
+    /* RESPONSIVE FINE-TUNE   */
+    /* ===================== */
+    @media (max-width: 899px) {
+      .ics-fac-profile__sidebar {
+        max-width: 280px;
+      }
+
+      .ics-fac-profile__main {
+        padding-top: 1.5rem;
+      }
+
+      .ics-fac-header__inner {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .ics-fac-profile {
+        padding: 2.5rem 0;
+      }
+      .ics-fac-profile__vision-wrap {
+        padding: 1.2rem 1.3rem;
+      }
+      .ics-cta-banner {
+        padding: 3.5rem 1.5rem;
+      }
+    }
+  </style>
+
+<!-- ===== ICS SITE NAV — START ===== -->
+<style>
+  .ics-site-nav {
+    --nav-bg: #091629;
+    --nav-bg-scrolled: rgba(9, 22, 41, 0.97);
+    --nav-text: #DAD6DE;
+    --nav-text-hover: #FFFFFF;
+    --nav-accent: #7D3F4A;
+    --nav-accent-hover: #9B5A65;
+    --nav-border: rgba(232, 225, 229, 0.08);
+    --nav-dropdown-bg: #0D1F35;
+    --nav-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --nav-height: 64px;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    height: var(--nav-height); background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    font-family: var(--nav-font); -webkit-font-smoothing: antialiased;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+  }
+  .ics-site-nav--scrolled {
+    background: var(--nav-bg-scrolled);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+  }
+  .ics-site-nav__inner {
+    max-width: 1200px; margin: 0 auto; height: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.75rem;
+  }
+  .ics-site-nav__logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+  .ics-site-nav__logo img { height: 36px; width: auto; display: block; }
+  .ics-site-nav__menu {
+    display: flex; align-items: center; gap: 0; list-style: none;
+    margin: 0; padding: 0; height: 100%;
+  }
+  .ics-site-nav__item { position: relative; height: 100%; display: flex; align-items: center; }
+  .ics-site-nav__link {
+    display: flex; align-items: center; gap: 0.3em; height: 100%;
+    padding: 0 0.95rem; font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.03em; color: var(--nav-text);
+    text-decoration: none; transition: color 0.2s; white-space: nowrap;
+    cursor: pointer; background: none; border: none; font-family: inherit;
+  }
+  .ics-site-nav__link:hover, .ics-site-nav__link--active { color: var(--nav-text-hover); }
+  .ics-site-nav__link svg.ics-nav-chevron { width: 12px; height: 12px; transition: transform 0.25s; flex-shrink: 0; }
+  .ics-site-nav__item:hover .ics-nav-chevron,
+  .ics-site-nav__item--open .ics-nav-chevron { transform: rotate(180deg); }
+  .ics-site-nav__dropdown {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    min-width: 210px; background: var(--nav-dropdown-bg);
+    border: 1px solid var(--nav-border); border-top: 2px solid var(--nav-accent);
+    padding: 0.5rem 0; opacity: 0; visibility: hidden;
+    transform: translateX(-50%) translateY(6px);
+    transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+  }
+  .ics-site-nav__item:hover .ics-site-nav__dropdown,
+  .ics-site-nav__item--open .ics-site-nav__dropdown {
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+  }
+  .ics-site-nav__dropdown-label {
+    display: block; padding: 0.5rem 1.2rem 0.35rem;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--nav-accent); pointer-events: none;
+  }
+  .ics-site-nav__dropdown a {
+    display: block; padding: 0.45rem 1.2rem; font-size: 0.86rem;
+    font-weight: 400; color: var(--nav-text); text-decoration: none;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+  }
+  .ics-site-nav__dropdown a:hover {
+    background: rgba(232,225,229,0.05); color: var(--nav-text-hover); padding-left: 1.45rem;
+  }
+  .ics-site-nav__cta {
+    display: inline-flex; align-items: center;
+    font-family: var(--nav-font); font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.55em 1.5em; color: var(--nav-text); background: var(--nav-accent);
+    border: none; text-decoration: none;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    margin-left: 0.75rem; white-space: nowrap;
+  }
+  .ics-site-nav__cta:hover {
+    background: var(--nav-accent-hover); transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(125,63,74,0.35);
+  }
+  .ics-site-nav__hamburger {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 36px; height: 36px; position: relative; flex-shrink: 0;
+  }
+  .ics-site-nav__hamburger span {
+    display: block; position: absolute; left: 6px; width: 24px; height: 2px;
+    background: var(--nav-text); transition: transform 0.3s, opacity 0.3s, top 0.3s;
+  }
+  .ics-site-nav__hamburger span:nth-child(1) { top: 10px; }
+  .ics-site-nav__hamburger span:nth-child(2) { top: 17px; }
+  .ics-site-nav__hamburger span:nth-child(3) { top: 24px; }
+  .ics-site-nav__hamburger--open span:nth-child(1) { top: 17px; transform: rotate(45deg); }
+  .ics-site-nav__hamburger--open span:nth-child(2) { opacity: 0; }
+  .ics-site-nav__hamburger--open span:nth-child(3) { top: 17px; transform: rotate(-45deg); }
+  .ics-site-nav__mobile {
+    --nav-bg: #091629;
+    --nav-text: #DAD6DE;
+    --nav-text-hover: #FFFFFF;
+    --nav-accent: #7D3F4A;
+    --nav-border: rgba(232, 225, 229, 0.08);
+    --nav-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: #091629; z-index: 9998; overflow-y: auto;
+    padding: 1.5rem 2rem 3rem; opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+    font-family: var(--nav-font);
+  }
+  .ics-site-nav__mobile--visible { display: block; opacity: 1; transform: translateY(0); }
+  .ics-site-nav__mobile-group { margin-bottom: 1.4rem; }
+  .ics-site-nav__mobile-group-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--nav-accent);
+    margin-bottom: 0.55rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--nav-border);
+  }
+  .ics-site-nav__mobile a {
+    display: block; padding: 0.6rem 0; font-size: 1rem; font-weight: 500;
+    color: var(--nav-text); text-decoration: none;
+    border-bottom: 1px solid var(--nav-border); transition: color 0.2s, padding-left 0.2s;
+  }
+  .ics-site-nav__mobile a:hover { color: var(--nav-text-hover); padding-left: 0.5rem; }
+  .ics-site-nav__mobile-cta {
+    display: block; text-align: center;
+    font-family: var(--nav-font); font-size: 0.95rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.85em 2em; color: #E8E1E5; background: var(--nav-accent);
+    text-decoration: none; margin-top: 1.5rem; transition: background 0.25s;
+  }
+  .ics-site-nav__mobile-cta:hover { background: var(--nav-accent-hover); }
+  .ics-site-nav-spacer { height: var(--nav-height, 64px); width: 100%; display: block; }
+  @media (max-width: 900px) {
+    .ics-site-nav__menu { display: none; }
+    .ics-site-nav__cta--desktop { display: none; }
+    .ics-site-nav__hamburger { display: block; }
+  }
+</style>
+
+</head>
+<body>
+
+<nav class="ics-site-nav" id="icsSiteNav" role="navigation" aria-label="Main navigation">
+  <div class="ics-site-nav__inner">
+    <a href="https://www.icscanada.edu" class="ics-site-nav__logo" aria-label="ICS Home">
+      <img src="https://images.squarespace-cdn.com/content/v1/69961bfd9be8a352ca34cb2f/1771445259448-EVZXO6XGJPH95Y3MLV7Q/Logo+w+White+Writing+-+Transparent+Background.png?format=500w" alt="Institute for Christian Studies" loading="eager" />
+    </a>
+    <ul class="ics-site-nav__menu">
+      <li class="ics-site-nav__item">
+        <a href="/ma-phd-landing.html" class="ics-site-nav__link">Overview</a>
+      </li>
+      <li class="ics-site-nav__item">
+        <button class="ics-site-nav__link" aria-expanded="false" aria-haspopup="true">
+          MA in Philosophy
+          <svg class="ics-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="ics-site-nav__dropdown">
+          <span class="ics-site-nav__dropdown-label">Master of Arts</span>
+          <a href="/ma-about.html">About the MA</a>
+          <a href="/ma-design.html">Program Design</a>
+          <a href="/ma-apply.html">How to Apply</a>
+          <a href="/ma-faq.html">FAQ</a>
+        </div>
+      </li>
+      <li class="ics-site-nav__item">
+        <button class="ics-site-nav__link" aria-expanded="false" aria-haspopup="true">
+          PhD in Philosophy
+          <svg class="ics-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="ics-site-nav__dropdown">
+          <span class="ics-site-nav__dropdown-label">Doctor of Philosophy</span>
+          <a href="/phd-about.html">About the PhD</a>
+          <a href="/phd-design.html">Program Design</a>
+          <a href="/phd-apply.html">How to Apply</a>
+          <a href="/phd-faq.html">FAQ</a>
+        </div>
+      </li>
+      <li class="ics-site-nav__item">
+        <a href="/faculty-philosophy.html" class="ics-site-nav__link">Faculty</a>
+      </li>
+    </ul>
+    <a href="/ma-apply.html" class="ics-site-nav__cta ics-site-nav__cta--desktop">Apply Now</a>
+    <button class="ics-site-nav__hamburger" id="icsNavHamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="ics-site-nav__mobile" id="icsNavMobile">
+  <div class="ics-site-nav__mobile-group"><a href="/ma-phd-landing.html">Overview</a></div>
+  <div class="ics-site-nav__mobile-group">
+    <div class="ics-site-nav__mobile-group-label">MA in Philosophy</div>
+    <a href="/ma-about.html">About the MA</a>
+    <a href="/ma-design.html">Program Design</a>
+    <a href="/ma-apply.html">How to Apply</a>
+    <a href="/ma-faq.html">FAQ</a>
+  </div>
+  <div class="ics-site-nav__mobile-group">
+    <div class="ics-site-nav__mobile-group-label">PhD in Philosophy</div>
+    <a href="/phd-about.html">About the PhD</a>
+    <a href="/phd-design.html">Program Design</a>
+    <a href="/phd-apply.html">How to Apply</a>
+    <a href="/phd-faq.html">FAQ</a>
+  </div>
+  <div class="ics-site-nav__mobile-group"><a href="/faculty-philosophy.html">Faculty</a></div>
+  <a href="/ma-apply.html" class="ics-site-nav__mobile-cta">Apply Now</a>
+</div>
+
+<div class="ics-site-nav-spacer"></div>
+
+<script>
+(function() {
+  var nav = document.getElementById('icsSiteNav');
+  var btn = document.getElementById('icsNavHamburger');
+  var mob = document.getElementById('icsNavMobile');
+  var isOpen = false;
+  function onScroll() { nav.classList.toggle('ics-site-nav--scrolled', window.scrollY > 20); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  btn.addEventListener('click', function() {
+    isOpen = !isOpen;
+    btn.classList.toggle('ics-site-nav__hamburger--open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+    if (isOpen) { mob.style.display = 'block'; requestAnimationFrame(function() { mob.classList.add('ics-site-nav__mobile--visible'); }); document.body.style.overflow = 'hidden'; }
+    else { mob.classList.remove('ics-site-nav__mobile--visible'); document.body.style.overflow = ''; setTimeout(function() { mob.style.display = 'none'; }, 300); }
+  });
+  mob.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      isOpen = false; btn.classList.remove('ics-site-nav__hamburger--open');
+      btn.setAttribute('aria-expanded', 'false');
+      mob.classList.remove('ics-site-nav__mobile--visible');
+      document.body.style.overflow = '';
+      setTimeout(function() { mob.style.display = 'none'; }, 300);
+    });
+  });
+})();
+</script>
+<!-- ===== ICS SITE NAV — END ===== -->
+
+
+  <div class="ics-faculty">
+
+    <!-- ============ COMPACT PAGE HEADER ============ -->
+    <section class="ics-fac-header">
+      <div class="ics-fac-header__inner">
+        <div class="ics-fac-header__left">
+          <p class="ics-fac-header__label">MA &amp; PhD in Philosophy at ICS</p>
+          <h1 class="ics-fac-header__title">Meet Our <em>Senior Members</em></h1>
+        </div>
+        <p class="ics-fac-header__count">6 Senior Members &middot; 2 Cross-Appointed from King&rsquo;s</p>
+      </div>
+    </section>
+
+
+    <!-- ============ FACULTY PROFILES: ICS SENIOR MEMBERS ============ -->
+    <section class="ics-fac-section">
+      <div class="ics-fac-section__inner">
+
+        <!-- ====== NIK ANSELL ====== -->
+        <article class="ics-fac-profile" id="faculty-nik-ansell">
+          <div class="ics-fac-profile__sidebar">
+            <div class="ics-fac-profile__photo-frame">
+              <div class="ics-fac-profile__photo">
+                <img src="https://images.squarespace-cdn.com/content/69961bfd9be8a352ca34cb2f/6f61cf41-11b3-4b0e-b865-39602e7a096a/Ansell-Faculty.jpg?content-type=image%2Fjpeg" alt="Dr. Nik Ansell">
+              </div>
+            </div>
+            <div class="ics-fac-profile__links">
+              <a class="ics-fac-profile__link" href="/cdn-cgi/l/email-protection#aac4cbc4d9cfc6c68c899c9e91c3c9d9c9cbc4cbcecb84cfcedf">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span class="__cf_email__" data-cfemail="cfa1aea1bcaaa3a38fa6acbcacaea1aeabaee1aaabba">[email&#160;protected]</span>
+              </a>
+              <a class="ics-fac-profile__link ics-fac-profile__link--podcast" href="https://criticalfaith.podbean.com/?s=ansell" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                Critical Faith Podcast
+              </a>
+              <a class="ics-fac-profile__link" href="https://faculty.icscanada.edu/nansell/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Full Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="ics-fac-profile__main">
+            <h2 class="ics-fac-profile__name"><a href="#faculty-nik-ansell">Dr. Nik Ansell</a></h2>
+            <p class="ics-fac-profile__role">Associate Professor of Theology</p>
+            <p class="ics-fac-profile__credentials">PhD (VU University, Amsterdam) &middot; MPhil (Institute for Christian Studies) &middot; BA (University of Bristol)</p>
+
+            <div class="ics-fac-profile__vision-wrap">
+              <span class="ics-fac-profile__vision-label">Nik&rsquo;s Vision</span>
+              <blockquote class="ics-fac-profile__vision">Theology includes reflection on key meta-theological issues that frame the discipline&mdash;how the sacred is related to life as a whole, as the hope or heartbeat of the universe, as the revelation of God, self, world, and other. My teaching and research focus on systematic and biblical theology, notably Christology, eschatology, Old Testament wisdom thinking, and the theology of gender.</blockquote>
+            </div>
+
+            <button class="ics-fac-profile__details-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('is-open');">
+              Courses, Research &amp; Publications
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="ics-fac-profile__details">
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Courses Taught</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Biblical Foundations: Narrative, Wisdom, and the Art of Reading Scripture</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Research Interests</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Christology &amp; Eschatology</li>
+                  <li>Old Testament Wisdom Thinking</li>
+                  <li>Theology of Gender</li>
+                  <li>Phenomenology of Revelation</li>
+                  <li>Covenantal Participation &amp; Imaging the Divine</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Selected Publications</h4>
+                <ul class="ics-fac-detail__pubs">
+                  <li>Ansell, N. (2013). <em>The Annihilation of Hell: Universal Salvation and the Redemption of Time in the Eschatology of J&uuml;rgen Moltmann.</em> Wipf &amp; Stock.</li>
+                  <li>Ansell, N. (1994). <em>The Woman Will Overcome The Warrior: A Dialogue with the Christian/Feminist Theology of Rosemary Radford Ruether.</em> University Press of America.</li>
+                  <li>Ansell, N. (2001). The Call of Wisdom/The Voice of the Serpent: A Canonical Approach to the Tree of Knowledge. <em>Christian Scholar&rsquo;s Review, 31</em>(1), 31&ndash;58.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- ====== NEAL DEROO ====== -->
+        <article class="ics-fac-profile" id="faculty-neal-deroo">
+          <div class="ics-fac-profile__sidebar">
+            <div class="ics-fac-profile__photo-frame">
+              <div class="ics-fac-profile__photo">
+                <img src="https://images.squarespace-cdn.com/content/69961bfd9be8a352ca34cb2f/a34ecb68-c6b6-412f-81fc-3706988e3436/DeRoo-Faculty.png?content-type=image%2Fpng" alt="Dr. Neal DeRoo">
+              </div>
+            </div>
+            <div class="ics-fac-profile__links">
+              <a class="ics-fac-profile__link" href="/cdn-cgi/l/email-protection#dcb2b8b9aeb3b3faffeae8e7b5bfafbfbdb2bdb8bdf2b9b8a9">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span class="__cf_email__" data-cfemail="d4bab0b1a6bbbb94bdb7a7b7b5bab5b0b5fab1b0a1">[email&#160;protected]</span>
+              </a>
+              <a class="ics-fac-profile__link ics-fac-profile__link--podcast" href="https://criticalfaith.podbean.com/e/material-spirituality-with-neal-deroo-pt-i/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                Critical Faith: Material Spirituality
+              </a>
+              <a class="ics-fac-profile__link" href="https://faculty.icscanada.edu/neal-deroo" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Full Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="ics-fac-profile__main">
+            <h2 class="ics-fac-profile__name"><a href="#faculty-neal-deroo">Dr. Neal DeRoo</a></h2>
+            <p class="ics-fac-profile__role">Professor of Philosophy</p>
+            <p class="ics-fac-profile__credentials">PhD (Boston College) &middot; MA (Institute for Christian Studies) &middot; BA (Calvin College)</p>
+
+            <div class="ics-fac-profile__vision-wrap">
+              <span class="ics-fac-profile__vision-label">Neal&rsquo;s Vision</span>
+              <blockquote class="ics-fac-profile__vision">My work tries to account for how spirituality is constantly at work in constituting our experience and the implications that has for how we live our lives. I speak to academic, popular, and professional audiences&mdash;showing that the deep-seated spiritual forces shaping our experience help us think about faith as something that impacts our everyday life together.</blockquote>
+            </div>
+
+            <button class="ics-fac-profile__details-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('is-open');">
+              Courses, Research &amp; Publications
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="ics-fac-profile__details">
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Courses Taught</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Philosophical Foundations: Movements, Theories, and Methods</li>
+                  <li>What is Religion?</li>
+                  <li>Philosophies of Oppression</li>
+                  <li>What&rsquo;s Christian About Christian Education?</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Research Interests</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Phenomenology (Husserl, Merleau-Ponty, Derrida, Levinas)</li>
+                  <li>Critical Phenomenology</li>
+                  <li>Philosophy of Religion</li>
+                  <li>Relationship between God &amp; Materiality</li>
+                  <li>Philosophies of Liturgy</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Selected Publications</h4>
+                <ul class="ics-fac-detail__pubs">
+                  <li>DeRoo, N. (2022). <em>The Political Logic of Experience: Expression in Phenomenology.</em> Fordham University Press.</li>
+                  <li>DeRoo, N. (2013). <em>Futurity in Phenomenology: Promise and Method in Husserl, Levinas, and Derrida.</em> Fordham University Press.</li>
+                  <li>DeRoo, N., Simmons, J.A., &amp; Benson, B.E. (Eds.) (2023). <em>Philosophies of Liturgy: Explorations of Embodied Religious Practice.</em> Bloomsbury.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- ====== RONALD A. KUIPERS ====== -->
+        <article class="ics-fac-profile" id="faculty-ronald-kuipers">
+          <div class="ics-fac-profile__sidebar">
+            <div class="ics-fac-profile__photo-frame">
+              <div class="ics-fac-profile__photo">
+                <!-- REPLACE: Swap this placeholder with your Squarespace-hosted image of Ronald Kuipers -->
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=720&fit=crop&crop=face" alt="Dr. Ronald A. Kuipers">
+              </div>
+            </div>
+            <div class="ics-fac-profile__links">
+              <a class="ics-fac-profile__link" href="/cdn-cgi/l/email-protection#493b223c20392c3b3a6f6a7f7d72202a3a2a2827282d28672c2d3c">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span class="__cf_email__" data-cfemail="30425b4559405542437059534353515e5154511e555445">[email&#160;protected]</span>
+              </a>
+              <a class="ics-fac-profile__link ics-fac-profile__link--podcast" href="https://criticalfaith.podbean.com/?s=kuipers" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                Critical Faith Podcast
+              </a>
+              <a class="ics-fac-profile__link" href="https://faculty.icscanada.edu/rkuipers" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Full Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="ics-fac-profile__main">
+            <h2 class="ics-fac-profile__name"><a href="#faculty-ronald-kuipers">Dr. Ronald A. Kuipers</a></h2>
+            <p class="ics-fac-profile__role">Professor of Philosophy of Religion</p>
+            <p class="ics-fac-profile__extra-role">President of ICS &middot; Director, Centre for Philosophy, Religion &amp; Social Ethics</p>
+            <p class="ics-fac-profile__credentials">PhD (VU University, Amsterdam) &middot; MPhil (Institute for Christian Studies) &middot; BA (The King&rsquo;s University)</p>
+
+            <div class="ics-fac-profile__vision-wrap">
+              <span class="ics-fac-profile__vision-label">Ron&rsquo;s Vision</span>
+              <blockquote class="ics-fac-profile__vision">Christianity, if it is anything at all, is a holistic pattern of living, and not simply a matter of intellectual believing. My work in the philosophy of religion takes up Wittgenstein&rsquo;s challenge to speak an old language that yet belongs to a newer world, hoping to retrieve redemptive possibilities for our current existence that our present culture has trouble envisioning.</blockquote>
+            </div>
+
+            <button class="ics-fac-profile__details-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('is-open');">
+              Courses, Research &amp; Publications
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="ics-fac-profile__details">
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Courses Taught</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Spiritual Foundations: Faith, Hope, and Life Together</li>
+                  <li>Religion, Secularization &amp; Democracy</li>
+                  <li>Pragmatism, Race &amp; Religion</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Research Interests</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Religion in the Public Sphere</li>
+                  <li>Faith &amp; Reason</li>
+                  <li>Meaning of Religious Language</li>
+                  <li>Religion, Secularization &amp; Democracy</li>
+                  <li>American Pragmatism &amp; Critical Theory</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Selected Publications</h4>
+                <ul class="ics-fac-detail__pubs">
+                  <li>Kuipers, R.A. (2013). <em>Richard Rorty.</em> Bloomsbury (Contemporary American Thinkers series).</li>
+                  <li>Kuipers, R.A. (2002). <em>Critical Faith: Toward a Renewed Understanding of Religious Life and its Public Accountability.</em> Rodopi.</li>
+                  <li>Dudiak, J., Kuipers, R.A., &amp; Sweetman, R. (Eds.) (2022). <em>Post-Truth? Facts and Faithfulness.</em></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- ====== REBEKAH SMICK ====== -->
+        <article class="ics-fac-profile" id="faculty-rebekah-smick">
+          <div class="ics-fac-profile__sidebar">
+            <div class="ics-fac-profile__photo-frame">
+              <div class="ics-fac-profile__photo">
+                <!-- REPLACE: Swap this placeholder with your Squarespace-hosted image of Rebekah Smick -->
+                <img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?w=600&h=720&fit=crop&crop=face" alt="Dr. Rebekah Smick">
+              </div>
+            </div>
+            <div class="ics-fac-profile__links">
+              <a class="ics-fac-profile__link" href="/cdn-cgi/l/email-protection#2654554b4f454d000510121d4f455545474847424708434253">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span class="__cf_email__" data-cfemail="2755544a4e444c674e445444464946434609424352">[email&#160;protected]</span>
+              </a>
+              <a class="ics-fac-profile__link" href="https://faculty.icscanada.edu/rsmick" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Full Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="ics-fac-profile__main">
+            <h2 class="ics-fac-profile__name"><a href="#faculty-rebekah-smick">Dr. Rebekah Smick</a></h2>
+            <p class="ics-fac-profile__role">Associate Professor of Philosophy of Arts and Culture</p>
+            <p class="ics-fac-profile__credentials">PhD (University of Toronto) &middot; MA (Columbia University) &middot; BA (Brandeis University)</p>
+
+            <div class="ics-fac-profile__vision-wrap">
+              <span class="ics-fac-profile__vision-label">Rebekah&rsquo;s Vision</span>
+              <blockquote class="ics-fac-profile__vision">In the hope of better understanding our contemporary valuation of the arts and their relation to theology and religion, unearthing the intricacies of the relationship between art and religion as they get expressed in the art literature of the early modern period is what orients my teaching and research.</blockquote>
+            </div>
+
+            <button class="ics-fac-profile__details-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('is-open');">
+              Courses, Research &amp; Publications
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="ics-fac-profile__details">
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Research Interests</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Philosophy of Art</li>
+                  <li>Theology of Art</li>
+                  <li>Rhetoric &amp; Poetics</li>
+                  <li>History of Art</li>
+                  <li>Aesthetics of Compassion</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Selected Publications</h4>
+                <ul class="ics-fac-detail__pubs">
+                  <li>Smick, R., Kuttner, A., &amp; Payne, A. (Eds.) (2000). <em>Antiquity and Its Interpreters: From the Renaissance to the Modern Era.</em> Cambridge University Press.</li>
+                  <li>Smick, R. (2021). Kuyper&rsquo;s Calvin: The Aesthetics of Disenchantment. In <em>Seeking Stillness or The Sound of Wings.</em> Wipf &amp; Stock.</li>
+                  <li>Smick, R. (2016). &ldquo;The Second Book of God&rdquo;: Protestant Mysticism. In <em>Mystical Landscapes: from Vincent van Gogh to Emily Carr.</em> DelMonico Books&ndash;Prestel. (Winner, Canadian Museum&rsquo;s Association Research Award, 2017.)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- ====== GIDEON STRAUSS ====== -->
+        <article class="ics-fac-profile" id="faculty-gideon-strauss">
+          <div class="ics-fac-profile__sidebar">
+            <div class="ics-fac-profile__photo-frame">
+              <div class="ics-fac-profile__photo">
+                <img src="https://images.squarespace-cdn.com/content/69961bfd9be8a352ca34cb2f/e4b17aee-3a6b-44b0-b309-22e61b4ae0e0/Strauss-Faculty.jpg?content-type=image%2Fjpeg" alt="Dr. Gideon Strauss">
+              </div>
+            </div>
+            <div class="ics-fac-profile__links">
+              <a class="ics-fac-profile__link" href="/cdn-cgi/l/email-protection#89eefafdfbe8fcfafaafaabfbdb2e0eafaeae8e7e8ede8a7ecedfc">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span class="__cf_email__" data-cfemail="afc8dcdbddcedadcdcefc6ccdccccec1cecbce81cacbda">[email&#160;protected]</span>
+              </a>
+              <a class="ics-fac-profile__link" href="https://faculty.icscanada.edu/gstrauss" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Full Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="ics-fac-profile__main">
+            <h2 class="ics-fac-profile__name"><a href="#faculty-gideon-strauss">Dr. Gideon Strauss</a></h2>
+            <p class="ics-fac-profile__role">Associate Professor of Leadership and Worldview Studies</p>
+            <p class="ics-fac-profile__extra-role">ICS Academic Dean</p>
+            <p class="ics-fac-profile__credentials">PhD, MA, BA (University of the Free State, South Africa)</p>
+
+            <div class="ics-fac-profile__vision-wrap">
+              <span class="ics-fac-profile__vision-label">Gideon&rsquo;s Vision</span>
+              <blockquote class="ics-fac-profile__vision">I teach, do research, and serve the wider community at the intersection of leadership and worldview studies, with an interdisciplinary approach that attends to phenomenological and ethnographic methods of inquiry. I prioritize equipping students for the praxis&mdash;the theoretically informed reflective practice&mdash;of leadership as cultural contribution.</blockquote>
+            </div>
+
+            <button class="ics-fac-profile__details-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('is-open');">
+              Courses, Research &amp; Publications
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="ics-fac-profile__details">
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Research Interests</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Leadership &amp; Worldview Studies</li>
+                  <li>Narrative Practice Studies</li>
+                  <li>Phenomenological &amp; Ethnographic Methods</li>
+                  <li>Public Justice &amp; Civil Society</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Selected Publications</h4>
+                <ul class="ics-fac-detail__pubs">
+                  <li>Avedisian, J., Strauss, G., Pennings, R., &amp; Wright, W. (2004). <em>To Honor God</em> (A monograph on executive business leadership). Max De Pree Center for Leadership.</li>
+                  <li>Strauss, G. (1997). <em>Does the rainbow cost too much? Polemical essays on the economics of language.</em> University of the Free State Acta Varia.</li>
+                  <li>Strauss, G. (1998). Love is not a four-letter word. <em>Tydskrif vir Christelike Wetenskap</em>, 51&ndash;69.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- ====== EDITH VAN DER BOOM ====== -->
+        <article class="ics-fac-profile" id="faculty-edith-van-der-boom">
+          <div class="ics-fac-profile__sidebar">
+            <div class="ics-fac-profile__photo-frame">
+              <div class="ics-fac-profile__photo">
+                <img src="https://images.squarespace-cdn.com/content/69961bfd9be8a352ca34cb2f/d65363a9-4c68-403b-8ec9-783fb236c4b3/vanderboom-Faculty.jpg?content-type=image%2Fjpeg" alt="Dr. Edith van der Boom">
+              </div>
+            </div>
+            <div class="ics-fac-profile__links">
+              <a class="ics-fac-profile__link" href="/cdn-cgi/l/email-protection#0e6b786f606a6b7c6c616163282d383a35676d7d6d6f606f6a6f206b6a7b">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span class="__cf_email__" data-cfemail="5f3a293e313b3a2d3d3030321f363c2c3c3e313e3b3e713a3b2a">[email&#160;protected]</span>
+              </a>
+              <a class="ics-fac-profile__link ics-fac-profile__link--podcast" href="https://criticalfaith.podbean.com/e/a-growth-mindset-for-christian-education-with-edith-van-der-boom/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                Critical Faith: Growth Mindset
+              </a>
+              <a class="ics-fac-profile__link" href="https://faculty.icscanada.edu/evanderboom" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Full Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="ics-fac-profile__main">
+            <h2 class="ics-fac-profile__name"><a href="#faculty-edith-van-der-boom">Dr. Edith van der Boom</a></h2>
+            <p class="ics-fac-profile__role">Associate Professor of Philosophy of Education and Practice of Pedagogy</p>
+            <p class="ics-fac-profile__extra-role">Director, MA-EL Program</p>
+            <p class="ics-fac-profile__credentials">PhD (University of Toronto) &middot; MEd &middot; BA</p>
+
+            <div class="ics-fac-profile__vision-wrap">
+              <span class="ics-fac-profile__vision-label">Edith&rsquo;s Vision</span>
+              <blockquote class="ics-fac-profile__vision">My philosophy of education is rooted in the belief that each student is uniquely created by God and that education should celebrate both diversity and community. I believe that Christian schools need to be places of inclusive education where solid foundations are provided for all students&mdash;both spiritually and academically.</blockquote>
+            </div>
+
+            <button class="ics-fac-profile__details-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('is-open');">
+              Courses, Research &amp; Publications
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="ics-fac-profile__details">
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Courses Taught</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Called to Teach: Formation &amp; Learning</li>
+                  <li>How to Lead a School</li>
+                  <li>Inclusive Education</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Research Interests</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Philosophy of Education</li>
+                  <li>Inclusive Education</li>
+                  <li>Growth Mindset &amp; Pedagogy</li>
+                  <li>Christian School Leadership</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- ========= CROSS-APPOINTED DIVIDER ========= -->
+        <div class="ics-fac-divider">
+          <p class="ics-fac-divider__label">Cross-Appointed Faculty</p>
+          <h3 class="ics-fac-divider__title">From The King&rsquo;s University</h3>
+        </div>
+
+
+        <!-- ====== MICHAEL DEMOOR ====== -->
+        <article class="ics-fac-profile" id="faculty-michael-demoor">
+          <div class="ics-fac-profile__sidebar">
+            <div class="ics-fac-profile__photo-frame">
+              <div class="ics-fac-profile__photo">
+                <!-- REPLACE: Swap this placeholder with your Squarespace-hosted image of Michael DeMoor -->
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=720&fit=crop&crop=face" alt="Dr. Michael DeMoor">
+              </div>
+            </div>
+            <div class="ics-fac-profile__links">
+              <a class="ics-fac-profile__link" href="https://www.kingsu.ca/about-us/staff-directory/contact_id/3627" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                King&rsquo;s University Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="ics-fac-profile__main">
+            <h2 class="ics-fac-profile__name"><a href="#faculty-michael-demoor">Dr. Michael DeMoor</a></h2>
+            <p class="ics-fac-profile__role">Associate Professor of Social Philosophy</p>
+            <p class="ics-fac-profile__extra-role">The King&rsquo;s University, Edmonton &middot; Cross-Appointed to ICS</p>
+            <p class="ics-fac-profile__credentials">PhD (VU University, Amsterdam) &middot; MPhilF (Institute for Christian Studies) &middot; BA</p>
+
+            <div class="ics-fac-profile__vision-wrap">
+              <span class="ics-fac-profile__vision-label">Michael&rsquo;s Vision</span>
+              <blockquote class="ics-fac-profile__vision">My research focuses on how different conceptions of human rationality do and should shape how we make and justify public policy. I bring questions from political philosophy, the history of political thought, and Reformational social philosophy to bear on issues of democracy, human rights, and the common good.</blockquote>
+            </div>
+
+            <button class="ics-fac-profile__details-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('is-open');">
+              Courses, Research &amp; Publications
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="ics-fac-profile__details">
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Research Interests</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Social &amp; Political Philosophy</li>
+                  <li>Deliberative Democracy</li>
+                  <li>Human Rights &amp; Common Good</li>
+                  <li>Bounded Rationality &amp; Public Policy</li>
+                  <li>Reformational Social Philosophy</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Selected Publications</h4>
+                <ul class="ics-fac-detail__pubs">
+                  <li>DeMoor, M. (2013). Embeddedness and Social Pluralism. <em>Philosophia Reformata, 78</em>(2), 144&ndash;161.</li>
+                  <li>DeMoor, M. Legitimacy, Public Justice and Deliberative Democracy. <em>The Kuyper Center Review, Vol. 4.</em> Eerdmans.</li>
+                  <li>DeMoor, M. (2010). Kuyper, Sphere Sovereignty, and the Possibility of Political Friendship. In <em>The Kuyper Center Review, Vol. 1.</em> Eerdmans, 61&ndash;82.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- ====== JEFFREY DUDIAK ====== -->
+        <article class="ics-fac-profile" id="faculty-jeffrey-dudiak">
+          <div class="ics-fac-profile__sidebar">
+            <div class="ics-fac-profile__photo-frame">
+              <div class="ics-fac-profile__photo">
+                <!-- REPLACE: Swap this placeholder with your Squarespace-hosted image of Jeffrey Dudiak -->
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=720&fit=crop&crop=face" alt="Dr. Jeffrey Dudiak">
+              </div>
+            </div>
+            <div class="ics-fac-profile__links">
+              <a class="ics-fac-profile__link" href="https://www.kingsu.ca/about-us/staff-directory/contact_id/3625" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                King&rsquo;s University Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="ics-fac-profile__main">
+            <h2 class="ics-fac-profile__name"><a href="#faculty-jeffrey-dudiak">Dr. Jeffrey Dudiak</a></h2>
+            <p class="ics-fac-profile__role">Professor of Philosophy</p>
+            <p class="ics-fac-profile__extra-role">The King&rsquo;s University, Edmonton &middot; Cross-Appointed to ICS</p>
+            <p class="ics-fac-profile__credentials">PhD &middot; MPhilF (Institute for Christian Studies) &middot; MA &middot; BA</p>
+
+            <div class="ics-fac-profile__vision-wrap">
+              <span class="ics-fac-profile__vision-label">Jeff&rsquo;s Vision</span>
+              <blockquote class="ics-fac-profile__vision">My work explores how human beings can live more peacefully with one another by understanding the conditions of possibility for dialogue. Drawing on Levinas, I seek to show that dialogue is ultimately possible only for a gracious subjectivity already graced by God by way of the other&mdash;and that peace comes down to the subject&rsquo;s willingness to take the beautiful risk of a peaceful gesture.</blockquote>
+            </div>
+
+            <button class="ics-fac-profile__details-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('is-open');">
+              Courses, Research &amp; Publications
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="ics-fac-profile__details">
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Research Interests</h4>
+                <ul class="ics-fac-detail__list">
+                  <li>Emmanuel Levinas &amp; Ethics</li>
+                  <li>Philosophy of Dialogue &amp; Peace</li>
+                  <li>Continental Philosophy</li>
+                  <li>Philosophy of Religion</li>
+                </ul>
+              </div>
+              <div class="ics-fac-detail">
+                <h4 class="ics-fac-detail__heading">Selected Publications</h4>
+                <ul class="ics-fac-detail__pubs">
+                  <li>Dudiak, J. (2001). <em>The Intrigue of Ethics: A Reading of the Idea of Discourse in the Thought of Emmanuel Levinas.</em> Fordham University Press.</li>
+                  <li>Dudiak, J. Peace as Being Taught: The Philosophical Foundations of a Culture of Peace. In Eg&eacute;a-Kuehne, D. (Ed.), <em>Levinas and Education.</em> Routledge.</li>
+                  <li>Dudiak, J. (2004). Religion with an Impure Heart: Levinas on Kierkegaardian Religion. In Smith, J.K.A. &amp; Venema, H. (Eds.), <em>The Hermeneutics of Charity.</em> Brazos Press, 185&ndash;196.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ============ ADJUNCT FACULTY ============ -->
+    <section class="ics-fac-cards ics-fac-cards--teal">
+      <div class="ics-fac-cards__inner">
+        <div class="ics-fac-cards__header">
+          <p class="ics-fac-cards__eyebrow">Adjunct Faculty</p>
+          <h2 class="ics-fac-cards__title">Scholars Shaping the Conversation</h2>
+          <p class="ics-fac-cards__subtitle">Our adjunct faculty bring specialized expertise from institutions across North America and Europe, enriching ICS&rsquo;s interdisciplinary philosophical community.</p>
+        </div>
+        <div class="ics-fac-cards__grid ics-fac-cards__grid--four">
+
+          <!-- Jonathan Chaplin -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=400&fit=crop&crop=face" alt="Dr. Jonathan Chaplin">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/jchaplin" target="_blank" rel="noopener">Dr. Jonathan Chaplin</a></h3>
+              <p class="ics-fac-card__field">Political Philosophy &amp; Theology</p>
+              <p class="ics-fac-card__creds">PhD (LSE) &middot; MPhil (ICS) &middot; BA (Oxford)</p>
+              <p class="ics-fac-card__desc">Specialist in Christian political thought&mdash;state, civil society, justice, liberal democracy, religious pluralism, and environmental political theology. Author of <em>Herman Dooyeweerd: Christian Philosopher of State and Civil Society</em>.</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/jchaplin" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Adrienne Dengerink Chaplin -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=400&fit=crop&crop=face" alt="Dr. Adrienne Dengerink Chaplin">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/adengerinkchaplin" target="_blank" rel="noopener">Dr. Adrienne Dengerink Chaplin</a></h3>
+              <p class="ics-fac-card__field">Aesthetics</p>
+              <p class="ics-fac-card__creds">PhD (VU Amsterdam) &middot; MPhil (ICS)</p>
+              <p class="ics-fac-card__desc">Works at the interface of philosophy, theology, and art&mdash;exploring how art articulates meaning about the world, the human condition, and the divine. Author of <em>The Philosophy of Susanne Langer</em> (Bloomsbury, 2020).</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/adengerinkchaplin" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Sylvia Keesmaat -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=500&h=400&fit=crop&crop=face" alt="Dr. Sylvia Keesmaat">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/skeesmaat" target="_blank" rel="noopener">Dr. Sylvia Keesmaat</a></h3>
+              <p class="ics-fac-card__field">Biblical Studies &amp; Hermeneutics</p>
+              <p class="ics-fac-card__creds">DPhil (Oxford) &middot; MA &middot; BA</p>
+              <p class="ics-fac-card__desc">Biblical scholar, activist, and farmer. Co-author of <em>Romans Disarmed</em> and <em>Colossians Remixed</em>. Speaks on the Bible, economic justice, climate catastrophe, and Indigenous justice. Founder of Bible Remixed.</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/skeesmaat" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Michael R. Wagenman -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=400&fit=crop&crop=face" alt="Dr. Michael R. Wagenman">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/mike-wagenman" target="_blank" rel="noopener">Dr. Michael R. Wagenman</a></h3>
+              <p class="ics-fac-card__field">Worldview Studies</p>
+              <p class="ics-fac-card__creds">PhD (Bristol) &middot; MDiv (Calvin) &middot; BA (Minnesota)</p>
+              <p class="ics-fac-card__desc">Develops a comprehensive account of the power of civic institutions, with a focus on ecclesiology and Kuyper&rsquo;s sacramental thought. Author of <em>The Power of the Church: The Ecclesiology of Abraham Kuyper</em>.</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/mike-wagenman" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ SESSIONAL FACULTY ============ -->
+    <section class="ics-fac-cards ics-fac-cards--warm">
+      <div class="ics-fac-cards__inner">
+        <div class="ics-fac-cards__header">
+          <p class="ics-fac-cards__eyebrow">Sessional Faculty</p>
+          <h2 class="ics-fac-cards__title">Emerging Voices in the ICS Community</h2>
+          <p class="ics-fac-cards__subtitle">Our sessional lecturers bring fresh perspectives and cutting-edge research to the ICS classroom, many of them graduates of ICS&rsquo;s own doctoral program.</p>
+        </div>
+        <div class="ics-fac-cards__grid">
+
+          <!-- Michael Buttrey -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=400&fit=crop&crop=face" alt="Dr. Michael Buttrey">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/mbuttrey" target="_blank" rel="noopener">Dr. Michael Buttrey</a></h3>
+              <p class="ics-fac-card__field">Christian Ethics &amp; Theology</p>
+              <p class="ics-fac-card__creds">PhD (TST) &middot; MA &middot; BSc</p>
+              <p class="ics-fac-card__desc">Works on moral enhancement, Neo-Aristotelian virtue ethics, and Thomas Aquinas. Theologian-in-Residence at a local Anglican church. Co-founded ACCtoo, an advocacy group for survivors of sexual abuse in churches.</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/mbuttrey" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Robert Covolo -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=500&h=400&fit=crop&crop=face" alt="Dr. Robert Covolo">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/robert-covolo" target="_blank" rel="noopener">Dr. Robert Covolo</a></h3>
+              <p class="ics-fac-card__field">Cultural Theology</p>
+              <p class="ics-fac-card__creds">PhD (VU Amsterdam) &middot; PhD (Fuller) &middot; BA (San Jos&eacute; State)</p>
+              <p class="ics-fac-card__desc">Cultural theologian who has served as a scholar at the Visual Faith Institute of Art and Architecture, on faculty at the Torrey Honors Institute, and directs the Center for Pastoral Residents.</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/robert-covolo" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Dean Dettloff -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=400&fit=crop&crop=face" alt="Dr. Dean Dettloff">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/dean-dettloff" target="_blank" rel="noopener">Dr. Dean Dettloff</a></h3>
+              <p class="ics-fac-card__field">Political Philosophy</p>
+              <p class="ics-fac-card__creds">PhD (ICS) &middot; MA (ICS) &middot; BA (Cornerstone)</p>
+              <p class="ics-fac-card__desc">An ICS graduate whose academic work explores the ambiguity within Christianity as a world historical force, researching the intersections of media, religion, and politics.</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/dean-dettloff" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Jeffrey Hocking -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=400&fit=crop&crop=face" alt="Jeffrey Hocking">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/jeffrey-hocking" target="_blank" rel="noopener">Jeffrey Hocking</a></h3>
+              <p class="ics-fac-card__field">Theology</p>
+              <p class="ics-fac-card__creds">PhD candidate (ICS) &middot; MA (ICS) &middot; BA (Cornerstone)</p>
+              <p class="ics-fac-card__desc">Researches the relationship between God, humanity, and creation. Currently exploring religious language in the theopoet Rubem Alves. Works in academic administration at Wycliffe College, Toronto.</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/jeffrey-hocking" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Andrew Tebbutt -->
+          <div class="ics-fac-card">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=500&h=400&fit=crop&crop=face" alt="Dr. Andrew Tebbutt">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/andrew-tebbutt" target="_blank" rel="noopener">Dr. Andrew Tebbutt</a></h3>
+              <p class="ics-fac-card__field">Phenomenology &amp; Political Philosophy</p>
+              <p class="ics-fac-card__creds">PhD (U of T) &middot; MA (ICS) &middot; MA, BA (Brock)</p>
+              <p class="ics-fac-card__desc">Postdoctoral Research Associate in the CPRSE. Explores ethical and religious community, personal identity, and political responsibility through phenomenology and German idealism. Developing a book on forgiveness and interreligious dialogue.</p>
+              <a class="ics-fac-card__link" href="https://faculty.icscanada.edu/andrew-tebbutt" target="_blank" rel="noopener">
+                Full Profile
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ EMERITUS FACULTY ============ -->
+    <section class="ics-fac-cards ics-fac-cards--plum">
+      <div class="ics-fac-cards__inner">
+        <div class="ics-fac-cards__header">
+          <p class="ics-fac-cards__eyebrow">Emeritus Faculty</p>
+          <h2 class="ics-fac-cards__title">The Tradition that Shapes Us</h2>
+          <p class="ics-fac-cards__subtitle">These scholars built the Reformational philosophical tradition at ICS over decades of teaching, research, and mentorship. Their legacy continues to define our scholarly community.</p>
+        </div>
+        <div class="ics-fac-cards__grid ics-fac-cards__grid--emeriti">
+
+          <!-- Robert Sweetman -->
+          <div class="ics-fac-card ics-fac-card--compact">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=220&h=220&fit=crop&crop=face" alt="Dr. Robert Sweetman">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/bsweetman" target="_blank" rel="noopener">Dr. Robert Sweetman</a></h3>
+              <p class="ics-fac-card__field">H. Evan Runner Chair in the History of Philosophy</p>
+              <p class="ics-fac-card__creds">PhD (U of T) &middot; MSL (Pontifical Institute for Mediaeval Studies) &middot; BA (Calvin College)</p>
+              <p class="ics-fac-card__years">Medievalist &middot; Dominican Thought &middot; Aquinas, Eckhart</p>
+            </div>
+          </div>
+
+          <!-- Doug Blomberg -->
+          <div class="ics-fac-card ics-fac-card--compact">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=220&h=220&fit=crop&crop=face" alt="Dr. Doug Blomberg">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/dblomberg" target="_blank" rel="noopener">Dr. Doug Blomberg</a></h3>
+              <p class="ics-fac-card__field">Philosophy of Education</p>
+              <p class="ics-fac-card__creds">PhD</p>
+              <p class="ics-fac-card__years">ICS Faculty 2003&ndash;2018</p>
+            </div>
+          </div>
+
+          <!-- Hendrik Hart -->
+          <div class="ics-fac-card ics-fac-card--compact">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=220&h=220&fit=crop&crop=face" alt="Dr. Hendrik Hart">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/hhart" target="_blank" rel="noopener">Dr. Hendrik Hart</a></h3>
+              <p class="ics-fac-card__field">Systematic Philosophy</p>
+              <p class="ics-fac-card__creds">PhD</p>
+              <p class="ics-fac-card__years">ICS Faculty 1967&ndash;2001</p>
+              <p class="ics-fac-card__memorial">In memoriam</p>
+            </div>
+          </div>
+
+          <!-- James Olthuis -->
+          <div class="ics-fac-card ics-fac-card--compact">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=220&h=220&fit=crop&crop=face" alt="Dr. James Olthuis">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/jolthuis" target="_blank" rel="noopener">Dr. James Olthuis</a></h3>
+              <p class="ics-fac-card__field">Philosophical Theology</p>
+              <p class="ics-fac-card__creds">PhD</p>
+              <p class="ics-fac-card__years">ICS Faculty 1968&ndash;2004</p>
+            </div>
+          </div>
+
+          <!-- Calvin Seerveld -->
+          <div class="ics-fac-card ics-fac-card--compact">
+            <div class="ics-fac-card__photo">
+              <!-- REPLACE: Swap with Squarespace-hosted image -->
+              <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=220&h=220&fit=crop&crop=face" alt="Dr. Calvin Seerveld">
+            </div>
+            <div class="ics-fac-card__body">
+              <h3 class="ics-fac-card__name"><a href="https://faculty.icscanada.edu/cseerveld" target="_blank" rel="noopener">Dr. Calvin Seerveld</a></h3>
+              <p class="ics-fac-card__field">Aesthetics</p>
+              <p class="ics-fac-card__creds">PhD</p>
+              <p class="ics-fac-card__years">ICS Faculty 1972&ndash;1995</p>
+              <p class="ics-fac-card__memorial">In memoriam</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ CTA BANNER ============ -->
+    <section class="ics-cta-banner">
+      <div class="ics-cta-banner__inner">
+        <h2 class="ics-cta-banner__heading">Study with Scholars Who <em>Walk Alongside You</em></h2>
+        <p class="ics-cta-banner__text">At ICS, you&rsquo;re not a number&mdash;you&rsquo;re a Junior Member in a close-knit community of scholars. Ready to join a tradition of rigorous, faith-informed philosophical inquiry?</p>
+        <div class="ics-cta-banner__actions">
+          <a href="/ma-apply.html" class="ics-btn ics-btn--primary">Apply Today &rarr;</a>
+          <a href="/ma-about.html" class="ics-btn ics-btn--outline">Explore the MA</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+<!-- ===== ICS SITE FOOTER — START ===== -->
+<style>
+  .ics-site-footer {
+    --footer-bg-body: #091629; --footer-accent: #7D3F4A; --footer-accent-lt: #9B5A65;
+    --footer-text: #DAD6DE; --footer-text-muted: #8A8290;
+    --footer-white: #FFFFFF; --footer-border: rgba(232, 225, 229, 0.08);
+    --font-serif: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    --font-sans:  'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-sans); position: relative; width: 100%; margin-top: 0;
+  }
+  .ics-site-footer__wave { display: block; width: 100%; height: auto; line-height: 0; margin-bottom: -1px; }
+  .ics-site-footer__wave svg { display: block; width: 100%; height: auto; }
+  .ics-site-footer__body { background: var(--footer-bg-body); padding: 3rem 2rem 0; }
+  .ics-site-footer__inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1.2fr 0.8fr 1fr; gap: 2.5rem; align-items: start; }
+  .ics-footer-brand__logo { display: block; margin-bottom: 1.25rem; text-decoration: none; }
+  .ics-footer-brand__logo-img { display: block; max-width: 220px; width: 100%; height: auto; }
+  .ics-footer-social { display: flex; gap: 0.6rem; margin-top: 0.5rem; flex-wrap: wrap; }
+  .ics-footer-social__link { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); color: var(--footer-text); text-decoration: none; transition: border-color 0.25s, color 0.25s; }
+  .ics-footer-social__link:hover { border-color: var(--footer-accent); color: var(--footer-accent-lt); }
+  .ics-footer-social__link svg { width: 16px; height: 16px; fill: currentColor; }
+  .ics-footer-contact__heading, .ics-footer-nav__heading { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--footer-text-muted); margin-bottom: 0.9rem; }
+  .ics-footer-contact p { font-size: 0.88rem; color: var(--footer-text); line-height: 1.7; margin: 0; }
+  .ics-footer-contact__group { margin-top: 0.85rem; }
+  .ics-footer-contact a { color: var(--footer-text); text-decoration: none; transition: color 0.2s; }
+  .ics-footer-contact a:hover { color: var(--footer-accent-lt); }
+  .ics-footer-nav__list { list-style: none; padding: 0; margin: 0; }
+  .ics-footer-nav__list li + li { margin-top: 0.5rem; }
+  .ics-footer-nav__list a { font-size: 0.9rem; color: var(--footer-text); text-decoration: none; transition: color 0.2s; }
+  .ics-footer-nav__list a:hover { color: var(--footer-white); }
+  .ics-footer-legal__copyright { font-size: 0.82rem; color: var(--footer-text-muted); line-height: 1.6; margin-bottom: 0.6rem; }
+  .ics-footer-legal__links { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 1.4rem; }
+  .ics-footer-legal__links a { font-size: 0.82rem; color: var(--footer-text-muted); text-decoration: none; transition: color 0.2s; }
+  .ics-footer-legal__links a:hover { color: var(--footer-white); }
+  .ics-footer-legal__apply { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--footer-accent); border: 1.5px solid var(--footer-accent); background: transparent; padding: 0.65em 1.8em; border-radius: 4px; text-decoration: none; transition: background 0.25s, color 0.25s; }
+  .ics-footer-legal__apply:hover { background: var(--footer-accent); color: var(--footer-white); }
+  .ics-site-footer__bottom { margin-top: 2.5rem; padding: 1rem 2rem; border-top: 1px solid var(--footer-border); text-align: center; }
+  .ics-site-footer__bottom p { font-size: 0.75rem; color: var(--footer-text-muted); max-width: 1100px; margin: 0 auto; }
+  .ics-site-footer__bottom a { color: var(--footer-text-muted); text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
+  .ics-site-footer__bottom a:hover { color: var(--footer-white); }
+  @media (max-width: 900px) { .ics-site-footer__inner { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  @media (max-width: 600px) { .ics-site-footer__body { padding: 2rem 1.5rem 0; } .ics-site-footer__inner { grid-template-columns: 1fr; gap: 1.8rem; text-align: center; } .ics-footer-brand__logo-img { margin: 0 auto; } .ics-footer-social { justify-content: center; } .ics-footer-legal__apply { width: 100%; max-width: 240px; } }
+</style>
+
+<footer class="ics-site-footer" role="contentinfo">
+  <div class="ics-site-footer__wave" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path d="M0 160 L0 90 Q360 38 720 72 Q1080 106 1440 55 L1440 160 Z" fill="#091629"/>
+      <path d="M0 88 Q360 36 720 70 Q1080 104 1440 53" fill="none" stroke="#7D3F4A" stroke-width="6"/>
+      <path d="M0 80 Q360 28 720 62 Q1080 96 1440 45" fill="none" stroke="#7D3F4A" stroke-width="2.5" opacity="0.5"/>
+      <path d="M0 96 Q360 44 720 78 Q1080 112 1440 61" fill="none" stroke="#091629" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="ics-site-footer__body">
+    <div class="ics-site-footer__inner">
+      <div class="ics-footer-brand">
+        <a href="https://www.icscanada.edu" class="ics-footer-brand__logo">
+          <img class="ics-footer-brand__logo-img" src="https://images.squarespace-cdn.com/content/v1/69961bfd9be8a352ca34cb2f/1771445259448-EVZXO6XGJPH95Y3MLV7Q/Logo+w+White+Writing+-+Transparent+Background.png?format=1500w" alt="Institute for Christian Studies logo" loading="lazy" />
+        </a>
+        <div class="ics-footer-social">
+          <a href="https://www.facebook.com/instituteforchristianstudies" class="ics-footer-social__link" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/instituteforchristianstudies/" class="ics-footer-social__link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5" fill="#091629"/><circle cx="17.5" cy="6.5" r="1.2"/></svg></a>
+          <a href="https://www.linkedin.com/school/icscanada" class="ics-footer-social__link" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.youtube.com/user/ChristianStudies" class="ics-footer-social__link" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.35 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#091629"/></svg></a>
+          <a href="https://ics.on.worldcat.org/discovery" class="ics-footer-social__link" aria-label="ICS Library Catalogue" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+          <a href="https://instituteforchristianstudies.substack.com" class="ics-footer-social__link" aria-label="Substack" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+        </div>
+      </div>
+      <div class="ics-footer-contact">
+        <p class="ics-footer-contact__heading">Contact</p>
+        <p>59 St. George Street,</p>
+        <p>Toronto, Ontario</p>
+        <p>M5S 2E6 Canada</p>
+        <div class="ics-footer-contact__group">
+          <p>Phone: <a href="tel:+14169792331">1-416-979-2331</a></p>
+          <p>Toll-free: <a href="tel:+18883265347">1-888-326-5347</a></p>
+        </div>
+        <div class="ics-footer-contact__group">
+          <p><a href="https://www.icscanada.edu">www.icscanada.edu</a></p>
+          <p><a href="/cdn-cgi/l/email-protection#dcb5b2bab3faffeae8e7b5bfafbfbdb2bdb8bdf2b9b8a9">info&#64;icscanada.edu</a></p>
+        </div>
+      </div>
+      <nav class="ics-footer-nav" aria-label="Footer navigation">
+        <p class="ics-footer-nav__heading">Explore</p>
+        <ul class="ics-footer-nav__list">
+          <li><a href="/about">About ICS</a></li>
+          <li><a href="/staff">Staff</a></li>
+          <li><a href="/programs">Programs</a></li>
+          <li><a href="/library">Library</a></li>
+          <li><a hre<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a445fa47eade1185',t:'MTc5MDk2NzkxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>

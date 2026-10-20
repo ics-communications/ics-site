@@ -1,0 +1,46 @@
+{
+  "title": "New ICS business card",
+  "question": "Three compositions for the card, all in the site's own world (wine, copper, Libre Baskerville, Outfit). Lock one, steer, or re-roll.",
+  "options": [
+    {
+      "id": "call-response",
+      "label": "Call and Response",
+      "kicker": "THE ROLL",
+      "lineage": "the ICS tagline, split across two faces",
+      "thesis": "The front opens the sentence, the back finishes it: you flip the card to complete the tagline.",
+      "palette": ["#FDFBF7", "#9B0D24", "#A85A32", "#2E1318"],
+      "materials": ["Baskerville italic as voice", "drenched wine reverse", "dove mark cropped to bleed"],
+      "viewport": "Front: \"a tradition of inquiry,\" in copper italic over a large wine name and a quiet contact block. Back: solid wine, \"a spirit of engagement\" with the white dove bleeding off the edge.",
+      "risk": "The joke lands only if people flip the card, and the front relies on type alone.",
+      "html": ".impeccable/mocks/decision/call-response.html",
+      "htmlFrame": "1050x1300"
+    },
+    {
+      "id": "spine",
+      "label": "The Spine",
+      "lineage": "a cloth-bound book's spine and title label",
+      "thesis": "The card as a book seen at its edge, with a wine spine carrying the institution beside a page that carries the person.",
+      "palette": ["#9B0D24", "#FDFBF7", "#EEDACA", "#2E1318"],
+      "materials": ["wine spine band", "vertical spine lettering", "parchment page"],
+      "viewport": "Front: a wine band down the left third with the white mark and vertical wordmark, and the name and details on parchment to the right. Back: parchment with the red logo centred and the tagline beneath.",
+      "risk": "Vertical lettering slows reading, and the band is a familiar split.",
+      "html": ".impeccable/mocks/decision/spine.html",
+      "htmlFrame": "1050x1300"
+    },
+    {
+      "id": "gloss",
+      "label": "The Gloss",
+      "lineage": "scholarly page with marginal glosses",
+      "thesis": "The card set like a page of commentary: the name is the text, and the contact lines sit in the margin as its glosses.",
+      "palette": ["#FDFBF7", "#9B0D24", "#A85A32", "#7A0A1C"],
+      "materials": ["copper hairline rules", "small-caps marginal notes", "oversized dove on wine"],
+      "viewport": "Front: the name in large Baskerville in the main column with titles below, a copper hairline, and a narrow right margin of contact glosses. Back: wine field with the dove cropped huge from the corner and a small wordmark.",
+      "risk": "Small margin type is near the legibility floor at card size.",
+      "html": ".impeccable/mocks/decision/gloss.html",
+      "htmlFrame": "1050x1300"
+    }
+  ],
+  "reroll": true,
+  "buildPath": {"value": "code"},
+  "steer": true
+}

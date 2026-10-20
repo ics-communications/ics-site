@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T15:10:21+00:00",
+  "title": "Design System: Institute for Christian Studies",
+  "extensions": {
+    "colorMeta": {
+      "wine": {
+        "role": "primary",
+        "displayName": "Ecclesiastical Wine",
+        "canonical": "#9B0D24",
+        "oklch": "oklch(44.1% 0.170 21.7)",
+        "tonalRamp": [
+          "#1E0102",
+          "#470B10",
+          "#751D23",
+          "#A73138",
+          "#CE5558",
+          "#E78583",
+          "#FEB2AF",
+          "#FFE0DE"
+        ],
+        "printCMYK": "10 100 80 35",
+        "printWatermark": {
+          "cmyk": "10 100 80 45",
+          "purpose": "Wine + 10K; the dove watermark on the card back only."
+        }
+      },
+      "wine-deep": {
+        "role": "primary",
+        "displayName": "Deep Wine",
+        "canonical": "#7A0A1C",
+        "oklch": "oklch(37.2% 0.142 21.2)",
+        "tonalRamp": [
+          "#1B0304",
+          "#421214",
+          "#6E2729",
+          "#9D3D40",
+          "#C35F60",
+          "#DD8B89",
+          "#F6B7B4",
+          "#FFE3E1"
+        ]
+      },
+      "wine-mid": {
+        "role": "primary",
+        "displayName": "ICS Brand Red",
+        "canonical": "#BE0B28",
+        "oklch": "oklch(50.9% 0.201 23.0)",
+        "tonalRamp": [
+          "#200001",
+          "#4C0109",
+          "#7D0C1A",
+          "#B11C2B",
+          "#DA484C",
+          "#F27D7A",
+          "#FFAEA9",
+          "#FFDEDA"
+        ],
+        "printCMYK": "5 100 80 15"
+      },
+      "wine-soft": {
+        "role": "primary",
+        "displayName": "Rose Wine",
+        "canonical": "#D44B5E",
+        "oklch": "oklch(60.5% 0.172 15.8)",
+        "tonalRamp": [
+          "#1E0104",
+          "#470A16",
+          "#751C2B",
+          "#A72F42",
+          "#CE5462",
+          "#E7838B",
+          "#FEB1B5",
+          "#FFE0E2"
+        ]
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Burnt Copper",
+        "canonical": "#A85A32",
+        "oklch": "oklch(55.2% 0.116 46.3)",
+        "tonalRamp": [
+          "#180601",
+          "#3C1A08",
+          "#653218",
+          "#904C29",
+          "#B56D4A",
+          "#D19579",
+          "#ECBEA8",
+          "#FFE7D9"
+        ],
+        "printCMYK": "20 65 85 15"
+      },
+      "accent-light": {
+        "role": "secondary",
+        "displayName": "Light Copper",
+        "canonical": "#C87A52",
+        "oklch": "oklch(65.5% 0.112 47.3)",
+        "tonalRamp": [
+          "#170601",
+          "#3B1B09",
+          "#643319",
+          "#8F4D2A",
+          "#B46E4B",
+          "#CF967A",
+          "#EABEA9",
+          "#FFE8DA"
+        ]
+      },
+      "accent-muted": {
+        "role": "secondary",
+        "displayName": "Muted Copper",
+        "canonical": "#8E4A28",
+        "oklch": "oklch(48.6% 0.103 45.7)",
+        "tonalRamp": [
+          "#170602",
+          "#3A1C0C",
+          "#62341E",
+          "#8C4F31",
+          "#B17051",
+          "#CD977E",
+          "#E8BFAC",
+          "#FFE8DC"
+        ],
+        "printCMYK": "25 70 90 30"
+      },
+      "accent-pale": {
+        "role": "secondary",
+        "displayName": "Copper Blush",
+        "canonical": "#EEDACA",
+        "oklch": "oklch(90.0% 0.031 61.1)",
+        "tonalRamp": [
+          "#0E0A07",
+          "#2B231D",
+          "#4B4036",
+          "#6D5E51",
+          "#8F7F72",
+          "#B0A297",
+          "#D1C7BF",
+          "#F4EDE8"
+        ]
+      },
+      "accent-deep": {
+        "role": "secondary",
+        "displayName": "Deep Copper",
+        "canonical": "#7A4020",
+        "oklch": "oklch(43.8% 0.092 47.7)",
+        "tonalRamp": [
+          "#150702",
+          "#381D0F",
+          "#5E3622",
+          "#885236",
+          "#AC7356",
+          "#C89982",
+          "#E5C0AF",
+          "#FFE9DD"
+        ]
+      },
+      "teal": {
+        "role": "tertiary",
+        "displayName": "Warm Umber",
+        "canonical": "#7A5C3A",
+        "oklch": "oklch(49.7% 0.063 69.0)",
+        "tonalRamp": [
+          "#110903",
+          "#302213",
+          "#523E27",
+          "#775B3D",
+          "#997D5D",
+          "#B8A187",
+          "#D8C6B3",
+          "#F8ECE0"
+        ]
+      },
+      "teal-muted": {
+        "role": "tertiary",
+        "displayName": "Muted Umber",
+        "canonical": "#6B4E30",
+        "oklch": "oklch(44.8% 0.059 66.3)",
+        "tonalRamp": [
+          "#110904",
+          "#2F2215",
+          "#513E2A",
+          "#765B40",
+          "#997C60",
+          "#B8A08A",
+          "#D8C6B5",
+          "#F8ECE1"
+        ]
+      },
+      "teal-pale": {
+        "role": "tertiary",
+        "displayName": "Umber Pale",
+        "canonical": "#E6D9C6",
+        "oklch": "oklch(89.1% 0.029 77.5)",
+        "tonalRamp": [
+          "#0D0B07",
+          "#29241D",
+          "#484136",
+          "#6A6051",
+          "#8B8171",
+          "#ACA497",
+          "#CFC8BE",
+          "#F2EEE7"
+        ]
+      },
+      "teal-deep": {
+        "role": "tertiary",
+        "displayName": "Deep Umber",
+        "canonical": "#5A4228",
+        "oklch": "oklch(39.9% 0.052 67.7)",
+        "tonalRamp": [
+          "#100A04",
+          "#2E2317",
+          "#4F3E2D",
+          "#735C44",
+          "#967D65",
+          "#B5A18D",
+          "#D5C6B7",
+          "#F7EDE3"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Cream",
+        "canonical": "#FDFBF7",
+        "oklch": "oklch(98.9% 0.006 84.6)",
+        "tonalRamp": [
+          "#0C0B09",
+          "#262522",
+          "#43423F",
+          "#62615E",
+          "#84827F",
+          "#A6A5A1",
+          "#CBC9C5",
+          "#F0EEEB"
+        ],
+        "printCMYK": "0 2 6 0"
+      },
+      "cream-warm": {
+        "role": "neutral",
+        "displayName": "Warm Cream",
+        "canonical": "#F9F5ED",
+        "oklch": "oklch(97.1% 0.011 84.6)",
+        "tonalRamp": [
+          "#0C0B09",
+          "#262522",
+          "#44423D",
+          "#64615B",
+          "#85827B",
+          "#A7A59F",
+          "#CBC9C5",
+          "#F0EEEB"
+        ]
+      },
+      "parchment": {
+        "role": "neutral",
+        "displayName": "Parchment",
+        "canonical": "#F0E9DD",
+        "oklch": "oklch(93.6% 0.018 81.3)",
+        "tonalRamp": [
+          "#0C0B08",
+          "#272520",
+          "#45413B",
+          "#666057",
+          "#878278",
+          "#A9A49C",
+          "#CCC9C2",
+          "#F0EEEA"
+        ]
+      },
+      "text-dark": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#2E1318",
+        "oklch": "oklch(22.9% 0.045 9.5)",
+        "tonalRamp": [
+          "#11090A",
+          "#2F2022",
+          "#513B3E",
+          "#76585C",
+          "#99797D",
+          "#B89DA1",
+          "#D8C3C6",
+          "#F8EBEC"
+        ],
+        "printCMYK": "40 80 60 80"
+      },
+      "text-body": {
+        "role": "neutral",
+        "displayName": "Body Umber-Grey",
+        "canonical": "#3A3330",
+        "oklch": "oklch(32.7% 0.011 44.7)",
+        "tonalRamp": [
+          "#0D0B09",
+          "#282423",
+          "#46413E",
+          "#675F5C",
+          "#88807D",
+          "#AAA3A1",
+          "#CDC8C6",
+          "#F1EDEC"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Stone",
+        "canonical": "#857E78",
+        "oklch": "oklch(59.7% 0.012 63.2)",
+        "tonalRamp": [
+          "#0D0B09",
+          "#272422",
+          "#45413D",
+          "#66605B",
+          "#87817C",
+          "#A9A49F",
+          "#CCC8C5",
+          "#F1EEEB"
+        ]
+      },
+      "text-on-dark": {
+        "role": "neutral",
+        "displayName": "Rose Mist",
+        "canonical": "#E8C2C2",
+        "oklch": "oklch(84.7% 0.043 18.0)",
+        "tonalRamp": [
+          "#110909",
+          "#2F2121",
+          "#513B3C",
+          "#765859",
+          "#997979",
+          "#B89E9E",
+          "#D8C4C3",
+          "#F8EBEB"
+        ],
+        "printCMYK": "0 25 12 5"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero titles, cream on wine; italic emphasis in light copper."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles in wine."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and program titles in wine."
+      },
+      "voice": {
+        "displayName": "Voice (italic)",
+        "purpose": "Baskerville italic: program questions, quotes, the card tagline halves.",
+        "fontStyle": "italic"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Outfit running text at a 110% root."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase Outfit for buttons and text links.",
+        "textTransform": "uppercase"
+      },
+      "card-name": {
+        "displayName": "Card Name",
+        "purpose": "Wine; floor 12pt, then two lines at 12/13.5pt.",
+        "floor": "12pt"
+      },
+      "card-call": {
+        "displayName": "Card Call",
+        "purpose": "Copper italic, front top-left; the hanging comma.",
+        "fontStyle": "italic"
+      },
+      "card-response": {
+        "displayName": "Card Response",
+        "purpose": "Cream italic on wine, two lines, back upper-left.",
+        "fontStyle": "italic"
+      },
+      "card-fact": {
+        "displayName": "Card Fact",
+        "purpose": "Outfit contact/title lines on a 9.5pt step; floors 6.5pt (6pt credentials).",
+        "floor": "6pt"
+      }
+    },
+    "shadows": [
+      {
+        "name": "copper-glow",
+        "value": "0 6px 20px rgba(168,90,50,0.3)",
+        "purpose": "Hover glow under accent buttons."
+      },
+      {
+        "name": "wine-lift",
+        "value": "0 12px 35px rgba(155,13,36,0.07)",
+        "purpose": "Hover lift under program and course cards."
+      },
+      {
+        "name": "object-cast",
+        "value": "0 2px 4px rgba(46,19,24,0.18), 0 18px 36px -8px rgba(46,19,24,0.38)",
+        "purpose": "Featured book cover rendered as a physical object only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "purpose": "Default easing (--ease)."
+      },
+      {
+        "name": "state",
+        "value": "0.3s-0.4s",
+        "purpose": "Hover state transitions on buttons and cards."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity/transform 0.7s ease, translateY(20px)",
+        "purpose": "Scroll reveal; disabled under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "1024px"
+      },
+      {
+        "name": "mobile",
+        "value": "768px"
+      },
+      {
+        "name": "small",
+        "value": "480px"
+      },
+      {
+        "name": "tiny",
+        "value": "360px"
+      }
+    ],
+    "print": {
+      "trim": "3.5in x 2in",
+      "bleed": "0.125in",
+      "cropMarks": "0.25pt black, outside bleed",
+      "innerMargin": "13pt",
+      "cmykProvisional": "Converted from web hex; confirm brand red CMYK with printer.",
+      "logo": {
+        "source": "SVG-Logos/ICS-Logo-Black.svg",
+        "front": "brand red, 25pt high, right margin, foot on web baseline",
+        "back": "cream, 22pt high, bottom-left with name and one-line address"
+      },
+      "watermark": {
+        "element": "dove C only, clipped to its circle",
+        "diameter": "200pt",
+        "center": "52pt in from right trim, vertical middle",
+        "color": "wine + 10K (10 100 80 45)",
+        "clip": "never past bleed"
+      },
+      "fonts": "Static instances embedded (Libre Baskerville 400/400i, Outfit 300/400/500)"
+    }
+  },
+  "components": [
+    {
+      "name": "Accent Button",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "Primary call to act: square copper button.",
+      "html": "<button class=\"ds-btn ds-btn-accent\">Apply Now</button>",
+      "css": ":host{--wine:#9B0D24;--wine-deep:#7A0A1C;--wine-mid:#BE0B28;--wine-soft:#D44B5E;--accent:#A85A32;--accent-light:#C87A52;--accent-muted:#8E4A28;--accent-pale:#EEDACA;--accent-deep:#7A4020;--teal:#7A5C3A;--teal-muted:#6B4E30;--teal-pale:#E6D9C6;--teal-deep:#5A4228;--cream:#FDFBF7;--cream-warm:#F9F5ED;--text-dark:#2E1318;--text-body:#3A3330;--text-on-dark:#E8C2C2;--border-light:rgba(155,13,36,0.08);--serif:'Libre Baskerville',Georgia,serif;--sans:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94);} .ds-btn{display:inline-flex;align-items:center;font-family:var(--sans);font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.75rem 1.6rem;min-height:44px;border:none;border-radius:0;cursor:pointer;transition:all 0.35s var(--ease);} .ds-btn:focus-visible{outline:2px solid var(--wine);outline-offset:3px;} .ds-btn:active{transform:scale(0.97);opacity:0.9;} .ds-btn-accent{background:var(--accent);color:#fff;} .ds-btn-accent:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 6px 20px rgba(168,90,50,0.3);}"
+    },
+    {
+      "name": "Outline Button (dark)",
+      "kind": "button",
+      "refersTo": "button-outline-dark",
+      "description": "Secondary action on cream grounds.",
+      "html": "<button class=\"ds-btn ds-btn-outline\">Request Info</button>",
+      "css": ":host{--wine:#9B0D24;--wine-deep:#7A0A1C;--wine-mid:#BE0B28;--wine-soft:#D44B5E;--accent:#A85A32;--accent-light:#C87A52;--accent-muted:#8E4A28;--accent-pale:#EEDACA;--accent-deep:#7A4020;--teal:#7A5C3A;--teal-muted:#6B4E30;--teal-pale:#E6D9C6;--teal-deep:#5A4228;--cream:#FDFBF7;--cream-warm:#F9F5ED;--text-dark:#2E1318;--text-body:#3A3330;--text-on-dark:#E8C2C2;--border-light:rgba(155,13,36,0.08);--serif:'Libre Baskerville',Georgia,serif;--sans:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94);} .ds-btn{display:inline-flex;align-items:center;font-family:var(--sans);font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.75rem 1.6rem;min-height:44px;border:none;border-radius:0;cursor:pointer;transition:all 0.35s var(--ease);} .ds-btn:focus-visible{outline:2px solid var(--wine);outline-offset:3px;} .ds-btn:active{transform:scale(0.97);opacity:0.9;} .ds-btn-outline{background:transparent;color:var(--wine);border:1.5px solid var(--wine);} .ds-btn-outline:hover{background:var(--wine);color:var(--cream);}"
+    },
+    {
+      "name": "Outline Button (on wine)",
+      "kind": "button",
+      "description": "Secondary action on wine grounds.",
+      "html": "<div class=\"ds-wine\"><button class=\"ds-btn ds-btn-light\">Donate</button></div>",
+      "css": ":host{--wine:#9B0D24;--wine-deep:#7A0A1C;--wine-mid:#BE0B28;--wine-soft:#D44B5E;--accent:#A85A32;--accent-light:#C87A52;--accent-muted:#8E4A28;--accent-pale:#EEDACA;--accent-deep:#7A4020;--teal:#7A5C3A;--teal-muted:#6B4E30;--teal-pale:#E6D9C6;--teal-deep:#5A4228;--cream:#FDFBF7;--cream-warm:#F9F5ED;--text-dark:#2E1318;--text-body:#3A3330;--text-on-dark:#E8C2C2;--border-light:rgba(155,13,36,0.08);--serif:'Libre Baskerville',Georgia,serif;--sans:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94);} .ds-btn{display:inline-flex;align-items:center;font-family:var(--sans);font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.75rem 1.6rem;min-height:44px;border:none;border-radius:0;cursor:pointer;transition:all 0.35s var(--ease);} .ds-btn:focus-visible{outline:2px solid var(--wine);outline-offset:3px;} .ds-btn:active{transform:scale(0.97);opacity:0.9;} .ds-wine{background:var(--wine-deep);padding:1.5rem;} .ds-btn-light{background:transparent;color:var(--cream);border:1.5px solid rgba(255,255,255,0.3);} .ds-btn-light:hover{border-color:var(--accent-light);color:var(--accent-light);}"
+    },
+    {
+      "name": "Program Card",
+      "kind": "card",
+      "refersTo": "program-card",
+      "description": "Square cream card with copper top border, serif title, italic copper question, degree tags.",
+      "html": "<article class=\"ds-prog\"><div class=\"ds-prog-num\">I</div><h3 class=\"ds-prog-title\">Philosophy</h3><p class=\"ds-prog-q\">What does it mean to know?</p><p class=\"ds-prog-desc\">Graduate study in reformational philosophy, engaged with contemporary thought.</p><span class=\"ds-tag\">MA</span> <span class=\"ds-tag\">PhD</span></article>",
+      "css": ":host{--wine:#9B0D24;--wine-deep:#7A0A1C;--wine-mid:#BE0B28;--wine-soft:#D44B5E;--accent:#A85A32;--accent-light:#C87A52;--accent-muted:#8E4A28;--accent-pale:#EEDACA;--accent-deep:#7A4020;--teal:#7A5C3A;--teal-muted:#6B4E30;--teal-pale:#E6D9C6;--teal-deep:#5A4228;--cream:#FDFBF7;--cream-warm:#F9F5ED;--text-dark:#2E1318;--text-body:#3A3330;--text-on-dark:#E8C2C2;--border-light:rgba(155,13,36,0.08);--serif:'Libre Baskerville',Georgia,serif;--sans:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94);} .ds-prog{max-width:320px;background:var(--cream-warm);border:1px solid var(--border-light);border-top:3px solid var(--accent);padding:2.2rem 1.8rem 1.8rem;font-family:var(--sans);transition:all 0.4s var(--ease);} .ds-prog:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(155,13,36,0.07);border-top-color:var(--wine-soft);} .ds-prog-num{font-family:var(--serif);font-size:0.75rem;font-weight:700;color:var(--accent-muted);margin-bottom:0.75rem;} .ds-prog-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--wine);line-height:1.25;margin:0 0 0.5rem;} .ds-prog-q{font-family:var(--serif);font-size:0.85rem;font-style:italic;color:var(--accent-deep);line-height:1.5;padding-left:0.8rem;border-left:2px solid var(--accent-pale);margin:0 0 0.8rem;} .ds-prog-desc{font-size:0.9rem;color:var(--text-body);line-height:1.65;margin:0 0 1rem;} .ds-tag{font-size:0.72rem;font-weight:700;color:var(--wine-mid);background:rgba(155,13,36,0.06);padding:0.1rem 0.45rem;border-radius:3px;}"
+    },
+    {
+      "name": "Degree Tag",
+      "kind": "chip",
+      "refersTo": "degree-tag",
+      "description": "Small wine-tinted tag for degree levels.",
+      "html": "<span class=\"ds-tag\">MA</span> <span class=\"ds-tag\">PhD</span>",
+      "css": ":host{--wine:#9B0D24;--wine-deep:#7A0A1C;--wine-mid:#BE0B28;--wine-soft:#D44B5E;--accent:#A85A32;--accent-light:#C87A52;--accent-muted:#8E4A28;--accent-pale:#EEDACA;--accent-deep:#7A4020;--teal:#7A5C3A;--teal-muted:#6B4E30;--teal-pale:#E6D9C6;--teal-deep:#5A4228;--cream:#FDFBF7;--cream-warm:#F9F5ED;--text-dark:#2E1318;--text-body:#3A3330;--text-on-dark:#E8C2C2;--border-light:rgba(155,13,36,0.08);--serif:'Libre Baskerville',Georgia,serif;--sans:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94);} .ds-tag{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--wine-mid);background:rgba(155,13,36,0.06);padding:0.1rem 0.45rem;border-radius:3px;}"
+    },
+    {
+      "name": "Hero Title",
+      "kind": "custom",
+      "refersTo": "display",
+      "description": "Cream serif display on deep wine, copper italic emphasis, copper accent rule at top.",
+      "html": "<section class=\"ds-hero\"><div class=\"ds-rule\"></div><h1 class=\"ds-hero-t\">Where Faith Meets <em>Rigorous Scholarship</em></h1><p class=\"ds-hero-s\">An interdisciplinary graduate school in Toronto and online.</p></section>",
+      "css": ":host{--wine:#9B0D24;--wine-deep:#7A0A1C;--wine-mid:#BE0B28;--wine-soft:#D44B5E;--accent:#A85A32;--accent-light:#C87A52;--accent-muted:#8E4A28;--accent-pale:#EEDACA;--accent-deep:#7A4020;--teal:#7A5C3A;--teal-muted:#6B4E30;--teal-pale:#E6D9C6;--teal-deep:#5A4228;--cream:#FDFBF7;--cream-warm:#F9F5ED;--text-dark:#2E1318;--text-body:#3A3330;--text-on-dark:#E8C2C2;--border-light:rgba(155,13,36,0.08);--serif:'Libre Baskerville',Georgia,serif;--sans:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94);} .ds-hero{position:relative;background:linear-gradient(160deg,rgba(122,10,28,0.98),rgba(122,10,28,0.85));padding:3rem 2rem;} .ds-rule{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-light) 40%,transparent 80%);} .ds-hero-t{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;color:var(--cream);line-height:1.12;margin:0 0 1.1rem;} .ds-hero-t em{font-style:italic;color:var(--accent-light);} .ds-hero-s{font-family:var(--sans);font-weight:300;font-size:1.02rem;line-height:1.75;color:var(--text-on-dark);max-width:560px;margin:0;}"
+    },
+    {
+      "name": "Footer",
+      "kind": "nav",
+      "refersTo": "site-footer",
+      "description": "Wine-deep footer: serif brand, copper uppercase headings, rose-mist links.",
+      "html": "<footer class=\"ds-foot\"><div class=\"ds-foot-brand\">Institute for Christian Studies</div><div class=\"ds-foot-h\">Programs</div><a class=\"ds-foot-a\" href=\"#\">Master of Arts</a><a class=\"ds-foot-a\" href=\"#\">PhD</a></footer>",
+      "css": ":host{--wine:#9B0D24;--wine-deep:#7A0A1C;--wine-mid:#BE0B28;--wine-soft:#D44B5E;--accent:#A85A32;--accent-light:#C87A52;--accent-muted:#8E4A28;--accent-pale:#EEDACA;--accent-deep:#7A4020;--teal:#7A5C3A;--teal-muted:#6B4E30;--teal-pale:#E6D9C6;--teal-deep:#5A4228;--cream:#FDFBF7;--cream-warm:#F9F5ED;--text-dark:#2E1318;--text-body:#3A3330;--text-on-dark:#E8C2C2;--border-light:rgba(155,13,36,0.08);--serif:'Libre Baskerville',Georgia,serif;--sans:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94);} .ds-foot{background:var(--wine-deep);color:var(--text-on-dark);padding:2.5rem 2rem;font-family:var(--sans);border-top:1px solid rgba(168,90,50,0.12);} .ds-foot-brand{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--cream);margin-bottom:1.2rem;} .ds-foot-h{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-light);margin-bottom:0.8rem;} .ds-foot-a{display:block;font-size:0.85rem;color:var(--text-on-dark);text-decoration:none;padding:0.15rem 0;transition:color 0.2s ease;} .ds-foot-a:hover,.ds-foot-a:focus-visible{color:var(--accent-light);outline:none;}"
+    },
+    {
+      "name": "Business Card (front / back)",
+      "kind": "custom",
+      "refersTo": "business-card-front",
+      "description": "Print extension: call on the cream front, response on the wine back, tone-on-tone dove. Screen approximation of the 3.5 x 2 in card; print values are CMYK.",
+      "html": "<div class=\"ds-cards\"><div class=\"ds-card ds-front\"><div class=\"ds-call\">a tradition of inquiry,</div><div class=\"ds-name\">Edith van der Boom</div><div class=\"ds-cred\">PhD</div><div class=\"ds-tl\">Director, Educational Leadership</div><div class=\"ds-hair\"></div><div class=\"ds-em\">evanderboom@icscanada.edu</div><div class=\"ds-tl\">416-979-2331</div><div class=\"ds-web\">icscanada.edu</div><div class=\"ds-logo\">ICS</div></div><div class=\"ds-card ds-back\"><svg class=\"ds-dove\" viewBox=\"0 0 100 100\" aria-hidden=\"true\"><circle cx=\"50\" cy=\"50\" r=\"50\"/></svg><div class=\"ds-resp\">a spirit of<br>engagement.</div><div class=\"ds-sig\"><b>Institute for Christian Studies</b><br><span>59 St. George Street, Toronto ON  M5S 2E6</span></div></div></div>",
+      "css": ":host{--wine:#9B0D24;--wine-deep:#7A0A1C;--wine-mid:#BE0B28;--wine-soft:#D44B5E;--accent:#A85A32;--accent-light:#C87A52;--accent-muted:#8E4A28;--accent-pale:#EEDACA;--accent-deep:#7A4020;--teal:#7A5C3A;--teal-muted:#6B4E30;--teal-pale:#E6D9C6;--teal-deep:#5A4228;--cream:#FDFBF7;--cream-warm:#F9F5ED;--text-dark:#2E1318;--text-body:#3A3330;--text-on-dark:#E8C2C2;--border-light:rgba(155,13,36,0.08);--serif:'Libre Baskerville',Georgia,serif;--sans:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94);} .ds-cards{display:flex;gap:16px;flex-wrap:wrap;} .ds-card{position:relative;overflow:hidden;width:350px;height:200px;box-sizing:border-box;padding:18px;font-family:var(--sans);} .ds-front{background:var(--cream);} .ds-back{background:var(--wine);} .ds-call{font-family:var(--serif);font-style:italic;font-size:12px;color:var(--accent);margin-bottom:12px;} .ds-name{font-family:var(--serif);font-size:21px;color:var(--wine);line-height:1.1;} .ds-cred{font-size:9px;color:var(--accent-muted);margin:2px 0 6px;} .ds-tl{font-size:10.5px;font-weight:300;color:var(--text-dark);line-height:1.3;} .ds-hair{width:31px;height:0;border-top:0.7px solid var(--accent);margin:8px 0 6px;} .ds-em{font-size:10.3px;color:var(--wine);} .ds-web{font-size:10.3px;font-weight:500;letter-spacing:0.02em;color:var(--accent);} .ds-logo{position:absolute;right:18px;bottom:20px;font-family:var(--serif);font-weight:700;font-size:30px;color:var(--wine-mid);} .ds-dove{position:absolute;width:278px;height:278px;right:-67px;top:-39px;fill:#86091D;} .ds-resp{position:relative;font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.2;color:var(--cream);} .ds-sig{position:absolute;left:18px;bottom:16px;font-size:10px;color:var(--cream);line-height:1.35;} .ds-sig b{font-weight:500;} .ds-sig span{color:var(--text-on-dark);font-size:9.4px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Scholar's Hearth",
+    "overview": "A warm, bookish world. Wine and cream set the ground, copper carries the voice, and a warm umber gives programs a second register. Libre Baskerville carries what the institution says: names, headings, and an italic speaking voice. Outfit carries the facts: dates, contacts, labels, body copy. Surfaces are flat and square-cornered. Depth comes from tone (wine over wine-deep, cream over cream-warm), with a soft lift on hover.\n\nThe website (`css/styles.css` plus per-page CSS) is the source of the world. Print is an extension of it. The business card (`info/BusinessCards/make_ics_card.py`) carries the same palette in CMYK, the same two faces, and the same copper thread, compressed to 3.5 × 2 in.",
+    "keyCharacteristics": [
+      "Wine-drenched heroes and footers; cream content grounds.",
+      "Copper for the italic voice, calls to act, and thin rules.",
+      "Serif for what is said, sans for what is stated.",
+      "Square buttons and cards, with small radii only on tags.",
+      "Tone-on-tone depth rather than heavy shadow."
+    ],
+    "rules": [
+      {
+        "name": "The Copper Voice Rule",
+        "body": "Copper speaks: italic phrases, calls to act and rules. Wine names. Never set a name or heading in copper, and never set the italic voice in wine.",
+        "section": "colors"
+      },
+      {
+        "name": "The Logo Red Rule",
+        "body": "On print, brand red (#BE0B28) appears only in the logo, on cream. On wine, the logo reverses to cream. It is never set in copper, umber or ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Baskerville for what is said (names, headings, the italic voice), Outfit for what is stated (contacts, dates, labels, body). Don't swap them.",
+        "section": "typography"
+      },
+      {
+        "name": "The Six-Point Floor Rule",
+        "body": "No print text below 6 pt. A line that cannot fit at its floor is refused and must be rewritten, not shrunk further.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lift-On-Hover Rule",
+        "body": "Surfaces rest flat. On hover they rise 1–3px with a soft tinted shadow, and touch devices drop the lift.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use the logo intact, drawn from `SVG-Logos/` vectors: brand red on cream, cream on wine.",
+      "Do keep the dove watermark tone-on-tone (one step darker, +10K) so text can cross it and stay legible.",
+      "Do set print colour in CMYK from the table above. Confirm brand red with the printer before a large run.",
+      "Do keep copper to the voice, actions and rules, and let wine and cream carry the mass.",
+      "Do hold print type at or above its floor (6 pt minimum, 12 pt for names)."
+    ],
+    "donts": [
+      "Don't set the whole tagline on one face of the card. The split is the card's idea.",
+      "Don't extract, crop or restyle any part of the logo except the dove \"C\" watermark, and don't use the watermark in a contrasting colour.",
+      "Don't round buttons or cards.",
+      "Don't introduce cool hues. The palette is wine, copper, umber and cream; the only exception is a third-party mark in its own colour, such as the Facebook widget's blue."
+    ]
+  }
+}

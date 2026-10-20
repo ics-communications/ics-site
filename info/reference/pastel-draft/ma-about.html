@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MA in Philosophy &mdash; About | Institute for Christian Studies</title>
+  <style>
+    html, body { margin: 0; padding: 0; background: transparent; }
+    .page-section:first-child .content-wrapper { padding-top: 0 !important; }
+    .sqs-block-code { padding: 0 !important; }
+    .sqs-block-code .sqs-block-content { margin: 0 !important; }
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700&display=swap');
+
+    .ics-pg *, .ics-pg *::before, .ics-pg *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .ics-pg {
+      --teal: #023048; --teal-deep: #091629; --teal-mid: #081E33; --teal-light: #0A3D5C;
+      --plum: #271928; --burgundy: #442534; --burgundy-mid: #61313D;
+      --rose: #7D3F4A; --rose-light: #9B5A65; --rose-pale: #B4787F;
+      --cream: #E8E1E5; --cream-muted: #DAD6DE; --cream-dim: #B8B0B5;
+      --ics-white: #FFFFFF; --ics-cream: transparent;
+      --ics-border-light: rgba(2, 48, 72, 0.12);
+      --ics-border-dark: rgba(232, 225, 229, 0.1);
+      --font-serif: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: var(--font-sans); color: #3a3330; line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      width: 100vw !important; margin-left: calc(50% - 50vw) !important; max-width: 100vw;
+    }
+
+    /* ===== HERO ===== */
+    .ics-hero { position: relative; min-height: 72vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; background: var(--teal-deep); }
+    .ics-hero--compact { min-height: 44vh; }
+    .ics-hero__bg { position: absolute; inset: 0; z-index: 0; }
+    .ics-hero__bg img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.25) brightness(0.5); }
+    .ics-hero__overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(9,22,41,0.4) 0%, rgba(2,48,72,0.72) 50%, rgba(39,25,40,0.95) 100%); }
+    .ics-hero--compact .ics-hero__overlay { background: linear-gradient(135deg, rgba(9,22,41,1) 0%, rgba(2,48,72,0.98) 45%, rgba(125,63,74,0.65) 100%); }
+    .ics-hero__content { position: relative; z-index: 2; max-width: 780px; padding: 5rem 2rem 6rem; animation: icsFadeUp 0.9s ease-out both; }
+    .ics-hero--compact .ics-hero__content { padding: 3.5rem 2rem 4rem; }
+    @keyframes icsFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .ics-hero__badge { display: inline-block; font-family: var(--font-sans); font-size: 0.84rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.4em 1.1em; background: var(--burgundy-mid); color: var(--cream); margin-bottom: 1.6rem; animation: icsFadeUp 0.9s ease-out 0.1s both; }
+    .ics-hero__label { display: block; font-family: var(--font-sans); font-size: 1.02rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,225,229,0.6); margin-bottom: 1.2rem; animation: icsFadeUp 0.9s ease-out 0.2s both; }
+    .ics-hero__title { font-family: var(--font-serif); font-size: clamp(2.4rem, 5.5vw, 3.84rem); font-weight: 700; line-height: 1.2; color: var(--cream); margin-bottom: 1.4rem; animation: icsFadeUp 0.9s ease-out 0.3s both; }
+    .ics-hero--compact .ics-hero__title { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+    .ics-hero__title em { font-style: italic; color: var(--rose-pale); }
+    .ics-hero__subtitle { font-family: var(--font-sans); font-size: 1.2rem; color: rgba(232,225,229,0.62); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8; animation: icsFadeUp 0.9s ease-out 0.45s both; }
+    .ics-hero--compact .ics-hero__subtitle { font-size: 1.1rem; margin-bottom: 0; }
+    .ics-hero__cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: icsFadeUp 0.9s ease-out 0.6s both; }
+
+    /* ===== BUTTONS ===== */
+    .ics-btn { display: inline-flex; align-items: center; gap: 0.5em; font-family: var(--font-sans); font-size: 1.02rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.9em 2.2em; border: none; cursor: pointer; text-decoration: none; transition: all 0.3s ease; }
+    .ics-btn--primary { background: var(--rose); color: var(--cream); }
+    .ics-btn--primary:hover { background: var(--rose-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(125,63,74,0.35); }
+    .ics-btn--outline { background: transparent; color: var(--cream); border: 1.5px solid rgba(232,225,229,0.3); }
+    .ics-btn--outline:hover { border-color: var(--cream); background: rgba(232,225,229,0.08); transform: translateY(-2px); }
+    .ics-btn--primary-on-light { background: var(--teal); color: var(--cream); }
+    .ics-btn--primary-on-light:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(2,48,72,0.3); }
+    .ics-btn--outline-on-light { background: transparent; color: var(--teal); border: 1.5px solid rgba(2,48,72,0.3); }
+    .ics-btn--outline-on-light:hover { border-color: var(--teal); background: rgba(2,48,72,0.04); transform: translateY(-2px); }
+    .ics-btn--burgundy { background: var(--burgundy-mid); color: var(--cream); }
+    .ics-btn--burgundy:hover { background: var(--rose); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(97,49,61,0.35); }
+
+    /* ===== INTRO ===== */
+    .ics-intro { background: var(--ics-cream); padding: 4.5rem 2rem 3.5rem; text-align: center; }
+    .ics-intro__inner { max-width: 720px; margin: 0 auto; }
+    .ics-intro__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy-mid); margin-bottom: 1.2rem; }
+    .ics-intro__heading { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.84vw, 2.64rem); font-weight: 700; color: var(--teal); line-height: 1.35; margin-bottom: 1.4rem; }
+    .ics-intro__body { font-family: var(--font-sans); font-size: 1.176rem; color: #5c5550; line-height: 1.85; max-width: 620px; margin: 0 auto; }
+
+    /* ===== DIVIDER ===== */
+    .ics-divider { display: flex; align-items: center; justify-content: center; gap: 1.2rem; padding: 0.5rem 2rem; background: var(--ics-cream); }
+    .ics-divider__line { flex: 1; max-width: 180px; height: 1px; background: var(--ics-border-light); }
+    .ics-divider__diamond { width: 7px; height: 7px; background: var(--burgundy-mid); transform: rotate(45deg); flex-shrink: 0; }
+
+    /* ===== GLANCE GRID ===== */
+    .ics-glance { background: var(--ics-cream); padding: 3rem 2rem 4rem; }
+    .ics-glance__inner { max-width: 1060px; margin: 0 auto; }
+    .ics-glance__header { text-align: center; margin-bottom: 2.5rem; }
+    .ics-glance__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy-mid); margin-bottom: 0.8rem; }
+    .ics-glance__heading { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.84vw, 2.4rem); font-weight: 700; color: var(--teal); line-height: 1.35; }
+    .ics-glance__grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--ics-border-light); border: 1px solid var(--ics-border-light); }
+    @media (min-width: 600px) { .ics-glance__grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .ics-glance__grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .ics-glance__item { background: var(--ics-white); padding: 1.8rem 1.6rem; text-align: center; transition: background 0.3s ease; }
+    .ics-glance__item:hover { background: #faf8f6; }
+    .ics-glance__icon { width: 30px; height: 30px; color: var(--burgundy-mid); margin: 0 auto 0.9rem; display: block; }
+    .ics-glance__item-label { font-family: var(--font-sans); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--burgundy-mid); margin-bottom: 0.4rem; }
+    .ics-glance__item-value { font-family: var(--font-serif); font-size: 1.32rem; font-weight: 700; color: var(--teal); line-height: 1.4; }
+    .ics-glance__item-note { font-family: var(--font-sans); font-size: 0.9rem; color: #8a8580; margin-top: 0.3rem; line-height: 1.5; }
+
+    /* ===== DARK SECTION (teal bg) ===== */
+    .ics-dark { background: var(--teal); padding: 5rem 2rem; }
+    .ics-dark__inner { max-width: 1060px; margin: 0 auto; }
+    .ics-dark__header { text-align: center; margin-bottom: 3rem; }
+    .ics-dark__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.9rem; }
+    .ics-dark__heading { font-family: var(--font-serif); font-size: clamp(2rem, 3.84vw, 2.64rem); font-weight: 700; color: var(--cream); line-height: 1.35; }
+    .ics-dark__subtitle { font-family: var(--font-sans); font-size: 1.14rem; color: var(--cream-dim); max-width: 620px; margin: 1rem auto 0; line-height: 1.8; }
+
+    /* ===== FIELD / COURSE TILES ===== */
+    .ics-tiles { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 640px) { .ics-tiles { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 960px) { .ics-tiles { grid-template-columns: 1fr 1fr 1fr; } }
+    .ics-tile { background: var(--plum); border: 1px solid rgba(125,63,74,0.12); padding: 1.8rem 1.5rem; transition: border-color 0.3s ease, transform 0.3s ease; }
+    .ics-tile:hover { border-color: rgba(125,63,74,0.4); transform: translateY(-3px); }
+    .ics-tile__icon { width: 30px; height: 30px; color: var(--rose); margin-bottom: 1rem; display: block; }
+    .ics-tile__name { font-family: var(--font-serif); font-size: 1.14rem; font-weight: 700; color: var(--cream); line-height: 1.4; margin-bottom: 0.6rem; }
+    .ics-tile__desc { font-family: var(--font-sans); font-size: 0.96rem; color: var(--cream-dim); line-height: 1.7; }
+    .ics-tile__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .ics-tile__tag { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; padding: 0.25em 0.65em; border: 1px solid var(--ics-border-dark); color: var(--cream-dim); }
+    .ics-tile__tag--accent { border-color: rgba(125,63,74,0.35); color: var(--rose-pale); }
+    .ics-dark__cta { text-align: center; margin-top: 2.5rem; }
+
+    /* ===== TWO-COL SECTION ===== */
+    .ics-twocol { background: var(--ics-cream); padding: 5rem 2rem; }
+    .ics-twocol--dark { background: var(--plum); }
+    .ics-twocol__inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+    @media (min-width: 768px) { .ics-twocol__inner { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+    .ics-twocol__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy-mid); margin-bottom: 1rem; }
+    .ics-twocol--dark .ics-twocol__eyebrow { color: var(--rose); }
+    .ics-twocol__heading { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.84vw, 2.4rem); font-weight: 700; color: var(--teal); line-height: 1.35; margin-bottom: 1.4rem; }
+    .ics-twocol--dark .ics-twocol__heading { color: var(--cream); }
+    .ics-twocol__body { font-family: var(--font-sans); font-size: 1.1rem; color: #5c5550; line-height: 1.85; margin-bottom: 1.8rem; }
+    .ics-twocol--dark .ics-twocol__body { color: var(--cream-muted); }
+    .ics-twocol__list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .ics-twocol__list-item { display: flex; align-items: flex-start; gap: 1rem; font-family: var(--font-sans); font-size: 1.056rem; color: #4a4540; line-height: 1.7; }
+    .ics-twocol--dark .ics-twocol__list-item { color: var(--cream-muted); }
+    .ics-twocol__list-item strong { color: var(--teal); }
+    .ics-twocol--dark .ics-twocol__list-item strong { color: var(--cream); }
+    .ics-twocol__list-icon { flex-shrink: 0; width: 22px; height: 22px; margin-top: 3px; color: var(--burgundy-mid); }
+    .ics-twocol--dark .ics-twocol__list-icon { color: var(--rose-pale); }
+    .ics-twocol__img { position: relative; }
+    .ics-twocol__img img { width: 100%; height: auto; display: block; filter: saturate(0.85); }
+    .ics-twocol__img-accent { position: absolute; bottom: -12px; left: -12px; width: 60%; height: 60%; border: 3px solid var(--burgundy-mid); z-index: -1; }
+
+    /* ===== FOUR-COL WHY GRID ===== */
+    .ics-why { background: var(--ics-cream); padding: 5rem 2rem; }
+    .ics-why__inner { max-width: 1060px; margin: 0 auto; }
+    .ics-why__header { text-align: center; margin-bottom: 3rem; }
+    .ics-why__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy-mid); margin-bottom: 0.9rem; }
+    .ics-why__heading { font-family: var(--font-serif); font-size: clamp(2rem, 3.84vw, 2.64rem); font-weight: 700; color: var(--teal); line-height: 1.35; }
+    .ics-why__grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+    @media (min-width: 640px) { .ics-why__grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 960px) { .ics-why__grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    .ics-why__item { padding: 1.8rem 1.4rem; background: var(--ics-white); border: 1px solid var(--ics-border-light); transition: border-color 0.3s ease, transform 0.3s ease; }
+    .ics-why__item:hover { border-color: rgba(97,49,61,0.35); transform: translateY(-3px); }
+    .ics-why__icon { width: 34px; height: 34px; color: var(--burgundy-mid); margin-bottom: 1.1rem; }
+    .ics-why__item-title { font-family: var(--font-sans); font-size: 1.104rem; font-weight: 600; color: var(--teal); margin-bottom: 0.5rem; }
+    .ics-why__item-text { font-family: var(--font-sans); font-size: 1.008rem; color: #5c5550; line-height: 1.75; }
+
+    /* ===== COMPARISON TABLE ===== */
+    .ics-compare { background: var(--teal-deep); padding: 5rem 2rem; }
+    .ics-compare__inner { max-width: 860px; margin: 0 auto; }
+    .ics-compare__header { text-align: center; margin-bottom: 2.5rem; }
+    .ics-compare__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.8rem; }
+    .ics-compare__heading { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.84vw, 2.4rem); font-weight: 700; color: var(--cream); line-height: 1.35; }
+    .ics-compare__table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .ics-compare__table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 1.02rem; min-width: 540px; }
+    .ics-compare__table thead th { font-weight: 700; font-size: 1.08rem; text-align: left; padding: 1.2rem 1.4rem; border-bottom: 2px solid rgba(232,225,229,0.15); color: var(--cream-dim); }
+    .ics-compare__table thead th:first-child { color: rgba(232,225,229,0.4); font-weight: 600; font-size: 0.96rem; }
+    .ics-compare__table thead th.hl { background: rgba(125,63,74,0.08); color: var(--rose-pale); }
+    .ics-compare__table tbody td { padding: 1rem 1.4rem; border-bottom: 1px solid rgba(232,225,229,0.06); color: var(--cream-muted); line-height: 1.6; vertical-align: top; }
+    .ics-compare__table tbody td:first-child { font-weight: 600; color: var(--cream); white-space: nowrap; }
+    .ics-compare__table tbody td.hl { background: rgba(125,63,74,0.05); }
+    .ics-compare__footnote { text-align: center; margin-top: 1.5rem; font-family: var(--font-sans); font-size: 0.92rem; color: var(--cream-dim); line-height: 1.6; }
+    .ics-compare__footnote a { color: var(--rose-pale); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .ics-compare__footnote a:hover { border-bottom-color: currentColor; }
+
+    /* ===== FAQ ACCORDION ===== */
+    .ics-faq-nav { background: var(--ics-cream); padding: 1.2rem 2rem; border-bottom: 1px solid var(--ics-border-light); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .ics-faq-nav__inner { max-width: 900px; margin: 0 auto; display: flex; gap: 0.5rem; flex-wrap: nowrap; min-width: max-content; }
+    .ics-faq-nav__tab { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.55em 1.1em; color: #6a6560; text-decoration: none; border: 1px solid var(--ics-border-light); transition: all 0.25s ease; white-space: nowrap; }
+    .ics-faq-nav__tab:hover { border-color: var(--burgundy-mid); color: var(--teal); }
+    .ics-faq-nav__tab--active { background: var(--teal); color: var(--cream); border-color: var(--teal); }
+
+    .ics-faq-section { background: var(--ics-cream); padding: 3rem 2rem 4rem; }
+    .ics-faq-section__inner { max-width: 800px; margin: 0 auto; }
+    .ics-faq-section__category { margin-bottom: 3rem; }
+    .ics-faq-section__category-title { font-family: var(--font-serif); font-size: 1.56rem; font-weight: 700; color: var(--teal); margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--ics-border-light); }
+
+    .ics-accordion {}
+    .ics-accordion__item { border-bottom: 1px solid var(--ics-border-light); }
+    .ics-accordion__trigger { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; background: none; border: none; cursor: pointer; padding: 1.2rem 1.4rem; font-family: var(--font-sans); font-size: 1.06rem; font-weight: 600; color: var(--teal-deep); text-align: left; transition: color 0.2s ease; }
+    .ics-accordion__trigger:hover { color: var(--rose); }
+    .ics-accordion__icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--burgundy-mid); transition: transform 0.3s ease; }
+    .ics-accordion__item.is-open .ics-accordion__icon { transform: rotate(45deg); }
+    .ics-accordion__panel { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .ics-accordion__item.is-open .ics-accordion__panel { max-height: 600px; }
+    .ics-accordion__content { padding: 0 1.4rem 1.4rem; font-family: var(--font-sans); font-size: 1.02rem; color: #5c5550; line-height: 1.8; }
+    .ics-accordion__content p { margin-bottom: 0.8rem; }
+    .ics-accordion__content ul { margin: 0.6rem 0 0.8rem 1.4rem; }
+    .ics-accordion__content li { margin-bottom: 0.4rem; }
+    .ics-accordion__content a { color: var(--teal); text-decoration: none; border-bottom: 1px solid var(--ics-border-light); transition: border-color 0.2s; }
+    .ics-accordion__content a:hover { border-bottom-color: var(--teal); }
+    .ics-accordion__content strong { color: var(--teal-deep); }
+    @media (max-width: 640px) { .ics-accordion__trigger { padding: 1rem 1.2rem; font-size: 0.98rem; } .ics-accordion__content { padding: 0 1.2rem 1.2rem; } }
+
+    /* ===== CONTACT STRIP ===== */
+    .ics-contact { background: var(--plum); padding: 4rem 2rem; text-align: center; }
+    .ics-contact__inner { max-width: 600px; margin: 0 auto; }
+    .ics-contact__heading { font-family: var(--font-serif); font-size: clamp(1.5rem, 3.2vw, 2rem); font-weight: 700; color: var(--cream); line-height: 1.35; margin-bottom: 1rem; }
+    .ics-contact__text { font-family: var(--font-sans); font-size: 1.1rem; color: var(--cream-muted); line-height: 1.8; margin-bottom: 0.5rem; }
+    .ics-contact__text a { color: var(--rose-pale); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s, color 0.2s; }
+    .ics-contact__text a:hover { color: var(--cream); border-bottom-color: currentColor; }
+    .ics-contact__email { display: inline-block; font-family: var(--font-sans); font-size: 1.1rem; font-weight: 600; color: var(--rose-pale); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s; }
+    .ics-contact__email:hover { color: var(--cream); }
+    .ics-contact__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== CTA BANNER ===== */
+    .ics-cta { background: var(--ics-cream); padding: 4.5rem 2rem; text-align: center; }
+    .ics-cta__inner { max-width: 600px; margin: 0 auto; }
+    .ics-cta__heading { font-family: var(--font-serif); font-size: clamp(1.68rem, 3.36vw, 2.28rem); font-weight: 700; color: var(--teal); line-height: 1.35; margin-bottom: 1rem; }
+    .ics-cta__text { font-family: var(--font-sans); font-size: 1.14rem; color: #5c5550; margin-bottom: 2rem; line-height: 1.8; }
+    .ics-cta__deadlines { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .ics-cta__tag { font-family: var(--font-sans); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.06em; padding: 0.45em 1em; background: var(--teal); color: var(--cream); }
+    .ics-cta__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== APPLY PAGE ===== */
+    .ics-apply-steps { background: var(--ics-cream); padding: 5rem 2rem; }
+    .ics-apply-steps__inner { max-width: 860px; margin: 0 auto; }
+    .ics-apply-steps__header { text-align: center; margin-bottom: 3rem; }
+    .ics-apply-steps__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy-mid); margin-bottom: 0.8rem; }
+    .ics-apply-steps__heading { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.84vw, 2.4rem); font-weight: 700; color: var(--teal); line-height: 1.35; }
+    .ics-apply-steps__grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+    @media (min-width: 640px) { .ics-apply-steps__grid { grid-template-columns: 1fr 1fr; } }
+    .ics-step { background: var(--ics-white); border: 1px solid var(--ics-border-light); padding: 2rem 1.6rem; transition: border-color 0.3s ease, transform 0.3s ease; }
+    .ics-step:hover { border-color: rgba(97,49,61,0.3); transform: translateY(-3px); }
+    .ics-step__num { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--burgundy-mid); opacity: 0.5; margin-bottom: 0.6rem; }
+    .ics-step__title { font-family: var(--font-sans); font-size: 1.1rem; font-weight: 600; color: var(--teal); margin-bottom: 0.5rem; }
+    .ics-step__desc { font-family: var(--font-sans); font-size: 0.96rem; color: #5c5550; line-height: 1.7; }
+
+    .ics-checklist { background: var(--teal); padding: 5rem 2rem; }
+    .ics-checklist__inner { max-width: 700px; margin: 0 auto; }
+    .ics-checklist__header { text-align: center; margin-bottom: 2.5rem; }
+    .ics-checklist__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.8rem; }
+    .ics-checklist__heading { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.84vw, 2.4rem); font-weight: 700; color: var(--cream); line-height: 1.35; }
+    .ics-checklist__list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+    .ics-checklist__item { display: flex; align-items: flex-start; gap: 1rem; font-family: var(--font-sans); font-size: 1.06rem; color: var(--cream-muted); line-height: 1.7; }
+    .ics-checklist__item strong { color: var(--cream); }
+    .ics-checklist__icon { flex-shrink: 0; width: 22px; height: 22px; margin-top: 3px; color: var(--rose-pale); }
+    .ics-checklist__cta { text-align: center; margin-top: 2.5rem; }
+
+    /* ===== DESIGN PAGE TABLE ===== */
+    .ics-dtable { background: var(--teal); padding: 5rem 2rem; }
+    .ics-dtable__inner { max-width: 860px; margin: 0 auto; }
+    .ics-dtable__header { text-align: center; margin-bottom: 2.5rem; }
+    .ics-dtable__eyebrow { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.8rem; }
+    .ics-dtable__heading { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.84vw, 2.4rem); font-weight: 700; color: var(--cream); line-height: 1.35; }
+    .ics-dtable__subtitle { font-family: var(--font-sans); font-size: 1.1rem; color: var(--cream-dim); max-width: 580px; margin: 1rem auto 0; line-height: 1.8; }
+    .ics-dtable__wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .ics-dtable__table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 0.96rem; min-width: 500px; }
+    .ics-dtable__table thead th { font-weight: 700; font-size: 1.02rem; text-align: left; padding: 1.1rem 1.2rem; border-bottom: 2px solid rgba(232,225,229,0.15); color: var(--rose); }
+    .ics-dtable__table thead th:first-child { color: rgba(232,225,229,0.5); font-weight: 600; font-size: 0.9rem; }
+    .ics-dtable__table tbody td { padding: 0.85rem 1.2rem; border-bottom: 1px solid rgba(232,225,229,0.06); color: var(--cream-muted); line-height: 1.5; vertical-align: top; }
+    .ics-dtable__table tbody td:first-child { font-weight: 600; color: var(--cream); white-space: nowrap; }
+    .ics-dtable__table tbody tr:last-child td { border-bottom: none; }
+    .ics-dtable__footnote { text-align: center; margin-top: 1.5rem; font-family: var(--font-sans); font-size: 0.9rem; color: var(--cream-dim); line-height: 1.6; }
+</style>
+
+<!-- ===== ICS SITE NAV — START ===== -->
+<style>
+  .ics-site-nav {
+    --nav-bg: #091629;
+    --nav-bg-scrolled: rgba(9, 22, 41, 0.97);
+    --nav-text: #DAD6DE;
+    --nav-text-hover: #FFFFFF;
+    --nav-accent: #7D3F4A;
+    --nav-accent-hover: #9B5A65;
+    --nav-border: rgba(232, 225, 229, 0.08);
+    --nav-dropdown-bg: #0D1F35;
+    --nav-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --nav-height: 64px;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    height: var(--nav-height); background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    font-family: var(--nav-font); -webkit-font-smoothing: antialiased;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+  }
+  .ics-site-nav--scrolled {
+    background: var(--nav-bg-scrolled);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+  }
+  .ics-site-nav__inner {
+    max-width: 1200px; margin: 0 auto; height: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.75rem;
+  }
+  .ics-site-nav__logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+  .ics-site-nav__logo img { height: 36px; width: auto; display: block; }
+  .ics-site-nav__menu {
+    display: flex; align-items: center; gap: 0; list-style: none;
+    margin: 0; padding: 0; height: 100%;
+  }
+  .ics-site-nav__item { position: relative; height: 100%; display: flex; align-items: center; }
+  .ics-site-nav__link {
+    display: flex; align-items: center; gap: 0.3em; height: 100%;
+    padding: 0 0.95rem; font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.03em; color: var(--nav-text);
+    text-decoration: none; transition: color 0.2s; white-space: nowrap;
+    cursor: pointer; background: none; border: none; font-family: inherit;
+  }
+  .ics-site-nav__link:hover, .ics-site-nav__link--active { color: var(--nav-text-hover); }
+  .ics-site-nav__link svg.ics-nav-chevron { width: 12px; height: 12px; transition: transform 0.25s; flex-shrink: 0; }
+  .ics-site-nav__item:hover .ics-nav-chevron,
+  .ics-site-nav__item--open .ics-nav-chevron { transform: rotate(180deg); }
+  .ics-site-nav__dropdown {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    min-width: 210px; background: var(--nav-dropdown-bg);
+    border: 1px solid var(--nav-border); border-top: 2px solid var(--nav-accent);
+    padding: 0.5rem 0; opacity: 0; visibility: hidden;
+    transform: translateX(-50%) translateY(6px);
+    transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+  }
+  .ics-site-nav__item:hover .ics-site-nav__dropdown,
+  .ics-site-nav__item--open .ics-site-nav__dropdown {
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+  }
+  .ics-site-nav__dropdown-label {
+    display: block; padding: 0.5rem 1.2rem 0.35rem;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--nav-accent); pointer-events: none;
+  }
+  .ics-site-nav__dropdown a {
+    display: block; padding: 0.45rem 1.2rem; font-size: 0.86rem;
+    font-weight: 400; color: var(--nav-text); text-decoration: none;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+  }
+  .ics-site-nav__dropdown a:hover {
+    background: rgba(232,225,229,0.05); color: var(--nav-text-hover); padding-left: 1.45rem;
+  }
+  .ics-site-nav__cta {
+    display: inline-flex; align-items: center;
+    font-family: var(--nav-font); font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.55em 1.5em; color: var(--nav-text); background: var(--nav-accent);
+    border: none; text-decoration: none;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    margin-left: 0.75rem; white-space: nowrap;
+  }
+  .ics-site-nav__cta:hover {
+    background: var(--nav-accent-hover); transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(125,63,74,0.35);
+  }
+  .ics-site-nav__hamburger {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 36px; height: 36px; position: relative; flex-shrink: 0;
+  }
+  .ics-site-nav__hamburger span {
+    display: block; position: absolute; left: 6px; width: 24px; height: 2px;
+    background: var(--nav-text); transition: transform 0.3s, opacity 0.3s, top 0.3s;
+  }
+  .ics-site-nav__hamburger span:nth-child(1) { top: 10px; }
+  .ics-site-nav__hamburger span:nth-child(2) { top: 17px; }
+  .ics-site-nav__hamburger span:nth-child(3) { top: 24px; }
+  .ics-site-nav__hamburger--open span:nth-child(1) { top: 17px; transform: rotate(45deg); }
+  .ics-site-nav__hamburger--open span:nth-child(2) { opacity: 0; }
+  .ics-site-nav__hamburger--open span:nth-child(3) { top: 17px; transform: rotate(-45deg); }
+  .ics-site-nav__mobile {
+    --nav-bg: #091629;
+    --nav-text: #DAD6DE;
+    --nav-text-hover: #FFFFFF;
+    --nav-accent: #7D3F4A;
+    --nav-border: rgba(232, 225, 229, 0.08);
+    --nav-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: #091629; z-index: 9998; overflow-y: auto;
+    padding: 1.5rem 2rem 3rem; opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+    font-family: var(--nav-font);
+  }
+  .ics-site-nav__mobile--visible { display: block; opacity: 1; transform: translateY(0); }
+  .ics-site-nav__mobile-group { margin-bottom: 1.4rem; }
+  .ics-site-nav__mobile-group-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--nav-accent);
+    margin-bottom: 0.55rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--nav-border);
+  }
+  .ics-site-nav__mobile a {
+    display: block; padding: 0.6rem 0; font-size: 1rem; font-weight: 500;
+    color: var(--nav-text); text-decoration: none;
+    border-bottom: 1px solid var(--nav-border); transition: color 0.2s, padding-left 0.2s;
+  }
+  .ics-site-nav__mobile a:hover { color: var(--nav-text-hover); padding-left: 0.5rem; }
+  .ics-site-nav__mobile-cta {
+    display: block; text-align: center;
+    font-family: var(--nav-font); font-size: 0.95rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.85em 2em; color: #E8E1E5; background: var(--nav-accent);
+    text-decoration: none; margin-top: 1.5rem; transition: background 0.25s;
+  }
+  .ics-site-nav__mobile-cta:hover { background: var(--nav-accent-hover); }
+  .ics-site-nav-spacer { height: var(--nav-height, 64px); width: 100%; display: block; }
+  @media (max-width: 900px) {
+    .ics-site-nav__menu { display: none; }
+    .ics-site-nav__cta--desktop { display: none; }
+    .ics-site-nav__hamburger { display: block; }
+  }
+</style>
+
+</head>
+<body>
+
+<nav class="ics-site-nav" id="icsSiteNav" role="navigation" aria-label="Main navigation">
+  <div class="ics-site-nav__inner">
+    <a href="https://www.icscanada.edu" class="ics-site-nav__logo" aria-label="ICS Home">
+      <img src="https://images.squarespace-cdn.com/content/v1/69961bfd9be8a352ca34cb2f/1771445259448-EVZXO6XGJPH95Y3MLV7Q/Logo+w+White+Writing+-+Transparent+Background.png?format=500w" alt="Institute for Christian Studies" loading="eager" />
+    </a>
+    <ul class="ics-site-nav__menu">
+      <li class="ics-site-nav__item">
+        <a href="/ma-phd-landing.html" class="ics-site-nav__link">Overview</a>
+      </li>
+      <li class="ics-site-nav__item">
+        <button class="ics-site-nav__link" aria-expanded="false" aria-haspopup="true">
+          MA in Philosophy
+          <svg class="ics-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="ics-site-nav__dropdown">
+          <span class="ics-site-nav__dropdown-label">Master of Arts</span>
+          <a href="/ma-about.html">About the MA</a>
+          <a href="/ma-design.html">Program Design</a>
+          <a href="/ma-apply.html">How to Apply</a>
+          <a href="/ma-faq.html">FAQ</a>
+        </div>
+      </li>
+      <li class="ics-site-nav__item">
+        <button class="ics-site-nav__link" aria-expanded="false" aria-haspopup="true">
+          PhD in Philosophy
+          <svg class="ics-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="ics-site-nav__dropdown">
+          <span class="ics-site-nav__dropdown-label">Doctor of Philosophy</span>
+          <a href="/phd-about.html">About the PhD</a>
+          <a href="/phd-design.html">Program Design</a>
+          <a href="/phd-apply.html">How to Apply</a>
+          <a href="/phd-faq.html">FAQ</a>
+        </div>
+      </li>
+      <li class="ics-site-nav__item">
+        <a href="/faculty-philosophy.html" class="ics-site-nav__link">Faculty</a>
+      </li>
+    </ul>
+    <a href="/ma-apply.html" class="ics-site-nav__cta ics-site-nav__cta--desktop">Apply Now</a>
+    <button class="ics-site-nav__hamburger" id="icsNavHamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="ics-site-nav__mobile" id="icsNavMobile">
+  <div class="ics-site-nav__mobile-group"><a href="/ma-phd-landing.html">Overview</a></div>
+  <div class="ics-site-nav__mobile-group">
+    <div class="ics-site-nav__mobile-group-label">MA in Philosophy</div>
+    <a href="/ma-about.html">About the MA</a>
+    <a href="/ma-design.html">Program Design</a>
+    <a href="/ma-apply.html">How to Apply</a>
+    <a href="/ma-faq.html">FAQ</a>
+  </div>
+  <div class="ics-site-nav__mobile-group">
+    <div class="ics-site-nav__mobile-group-label">PhD in Philosophy</div>
+    <a href="/phd-about.html">About the PhD</a>
+    <a href="/phd-design.html">Program Design</a>
+    <a href="/phd-apply.html">How to Apply</a>
+    <a href="/phd-faq.html">FAQ</a>
+  </div>
+  <div class="ics-site-nav__mobile-group"><a href="/faculty-philosophy.html">Faculty</a></div>
+  <a href="/ma-apply.html" class="ics-site-nav__mobile-cta">Apply Now</a>
+</div>
+
+<div class="ics-site-nav-spacer"></div>
+
+<script>
+(function() {
+  var nav = document.getElementById('icsSiteNav');
+  var btn = document.getElementById('icsNavHamburger');
+  var mob = document.getElementById('icsNavMobile');
+  var isOpen = false;
+  function onScroll() { nav.classList.toggle('ics-site-nav--scrolled', window.scrollY > 20); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  btn.addEventListener('click', function() {
+    isOpen = !isOpen;
+    btn.classList.toggle('ics-site-nav__hamburger--open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+    if (isOpen) { mob.style.display = 'block'; requestAnimationFrame(function() { mob.classList.add('ics-site-nav__mobile--visible'); }); document.body.style.overflow = 'hidden'; }
+    else { mob.classList.remove('ics-site-nav__mobile--visible'); document.body.style.overflow = ''; setTimeout(function() { mob.style.display = 'none'; }, 300); }
+  });
+  mob.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      isOpen = false; btn.classList.remove('ics-site-nav__hamburger--open');
+      btn.setAttribute('aria-expanded', 'false');
+      mob.classList.remove('ics-site-nav__mobile--visible');
+      document.body.style.overflow = '';
+      setTimeout(function() { mob.style.display = 'none'; }, 300);
+    });
+  });
+})();
+</script>
+<!-- ===== ICS SITE NAV — END ===== -->
+
+  <div class="ics-pg">
+
+    <section class="ics-hero ">
+      <div class="ics-hero__bg"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80" alt="ICS Philosophy"></div>
+      <div class="ics-hero__overlay"></div>
+      <div class="ics-hero__content">
+        <span class="ics-hero__badge">Thesis-Based</span>
+        <span class="ics-hero__label">Master of Arts in Philosophy</span>
+        <h1 class="ics-hero__title">Find Your Scholarly <em>Voice</em></h1>
+        <p class="ics-hero__subtitle">A two-year apprenticeship in Christian philosophical thought, culminating in an original thesis and the beginning of a life of integral scholarship.</p>
+        <div class="ics-hero__cta-row">
+          <a href="/ma-apply.html" class="ics-btn ics-btn--primary">Apply Today &rarr;</a>
+          <a href="/ma-design.html" class="ics-btn ics-btn--outline">Program Design</a>
+        </div>
+      </div>
+    </section>
+    <section class="ics-intro">
+      <div class="ics-intro__inner">
+        <p class="ics-intro__eyebrow">About the MA</p>
+        <h2 class="ics-intro__heading">An Apprenticeship in Integral Christian Scholarship</h2>
+        <p class="ics-intro__body">The MA in Philosophy is designed for Junior Members who wish to explore and equip themselves for a vocation in integrally Christian scholarship &mdash; whether in the university as a professor or researcher, or in a career where training in disciplined Christian thought and writing is a valuable component.</p>
+      </div>
+    </section>
+    <div class="ics-divider"><div class="ics-divider__line"></div><div class="ics-divider__diamond"></div><div class="ics-divider__line"></div></div>
+    <section class="ics-glance">
+      <div class="ics-glance__inner">
+        <div class="ics-glance__header">
+          <p class="ics-glance__eyebrow">Program at a Glance</p>
+          <h2 class="ics-glance__heading">Your Path Through the MA</h2>
+        </div>
+        <div class="ics-glance__grid">
+          <div class="ics-glance__item">
+            <svg class="ics-glance__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div class="ics-glance__item-label">Length</div>
+            <div class="ics-glance__item-value">2 Years</div>
+            <div class="ics-glance__item-note">Full-time study</div>
+          </div>
+          <div class="ics-glance__item">
+            <svg class="ics-glance__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <div class="ics-glance__item-label">Courses</div>
+            <div class="ics-glance__item-value">10 Courses</div>
+            <div class="ics-glance__item-note">3 Foundations + 6 Electives + 1 Seminar</div>
+          </div>
+          <div class="ics-glance__item">
+            <svg class="ics-glance__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <div class="ics-glance__item-label">Thesis</div>
+            <div class="ics-glance__item-value">17,000&ndash;25,000 Words</div>
+            <div class="ics-glance__item-note">With oral defense</div>
+          </div>
+          <div class="ics-glance__item">
+            <svg class="ics-glance__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+            <div class="ics-glance__item-label">Language</div>
+            <div class="ics-glance__item-value">1 Foreign Language</div>
+            <div class="ics-glance__item-note">Reading knowledge required</div>
+          </div>
+          <div class="ics-glance__item">
+            <svg class="ics-glance__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div class="ics-glance__item-label">Mentorship</div>
+            <div class="ics-glance__item-value">Senior Member Mentor</div>
+            <div class="ics-glance__item-note">Close faculty guidance throughout</div>
+          </div>
+          <div class="ics-glance__item">
+            <svg class="ics-glance__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <div class="ics-glance__item-label">Accreditation</div>
+            <div class="ics-glance__item-value">Province of Ontario</div>
+            <div class="ics-glance__item-note">TST affiliated</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="ics-dark">
+      <div class="ics-dark__inner">
+        <div class="ics-dark__header">
+          <p class="ics-dark__eyebrow">Fields of Study</p>
+          <h2 class="ics-dark__heading">Seven Interdisciplinary Neighbourhoods</h2>
+          <p class="ics-dark__subtitle">With the mentorship of a Senior Member, you select courses from one of seven thematic fields &mdash; each an invitation to find your own pathway of inquiry.</p>
+        </div>
+        <div class="ics-tiles">
+          <div class="ics-tile"><h3 class="ics-tile__name">Aesthetics, Hermeneutics &amp; Philosophy of Discourse</h3><p class="ics-tile__desc">Beauty, interpretation, and language &mdash; the arts, culture, rhetoric, and interreligious dialogue.</p></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">Anthropology &amp; Ethics</h3><p class="ics-tile__desc">Community, ecology, embodiment, gender, and social critique &mdash; what it means to be human and to live well.</p></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">History &amp; Historiography of Philosophy</h3><p class="ics-tile__desc">Medieval, modern, and contemporary thought &mdash; from Aquinas and Kant to Heidegger, Arendt, and Reformational philosophy.</p></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">Knowledge, Truth &amp; Learning</h3><p class="ics-tile__desc">Education and schooling, epistemology and metaphysics &mdash; the nature of knowing and the shape of reality.</p></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">Philosophy of Religion &amp; Philosophical Theology</h3><p class="ics-tile__desc">The encounter between reason and revelation &mdash; faith and philosophical inquiry illuminating one another.</p></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">Social &amp; Political Philosophy</h3><p class="ics-tile__desc">Democracy, pluralism, justice, and the common good &mdash; thinking Christianly about shared public life.</p></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">Theology &amp; Biblical Studies</h3><p class="ics-tile__desc">Christology, eschatology, theological aesthetics, and the intersection of faith and culture.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="ics-twocol">
+      <div class="ics-twocol__inner">
+        <div>
+          <p class="ics-twocol__eyebrow">How It Works</p>
+          <h2 class="ics-twocol__heading">From Foundations to Thesis Defense</h2>
+          <p class="ics-twocol__body">You begin with shared courses that frame ICS&rsquo;s approach to scholarship, build competence through electives chosen with your mentor, and conclude with an original thesis and oral defense.</p>
+          <ul class="ics-twocol__list">
+            <li class="ics-twocol__list-item"><svg class="ics-twocol__list-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Foundations Courses (3)</strong> &mdash; A biblically-directed philosophical framework for your scholarly community</span></li>
+            <li class="ics-twocol__list-item"><svg class="ics-twocol__list-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Elective Courses (6)</strong> &mdash; Build competence in your chosen field of study with your mentor</span></li>
+            <li class="ics-twocol__list-item"><svg class="ics-twocol__list-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Interdisciplinary Seminar (1)</strong> &mdash; Contribute your expertise to a communal exploration of contemporary issues</span></li>
+            <li class="ics-twocol__list-item"><svg class="ics-twocol__list-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span><strong>Thesis &amp; Defense</strong> &mdash; A major paper (17,000&ndash;25,000 words) demonstrating competence in your area</span></li>
+          </ul>
+        </div>
+        <div class="ics-twocol__img">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80" alt="Graduate seminar in session">
+          <div class="ics-twocol__img-accent"></div>
+        </div>
+      </div>
+    </section>
+    <section class="ics-dark">
+      <div class="ics-dark__inner">
+        <div class="ics-dark__header">
+          <p class="ics-dark__eyebrow">Course Offerings</p>
+          <h2 class="ics-dark__heading">A Sampling of What You&rsquo;ll Study</h2>
+          <p class="ics-dark__subtitle">Courses are drawn from ICS offerings and, where relevant, from the Toronto School of Theology. Up to two TST courses may count toward the MA.</p>
+        </div>
+        <div class="ics-tiles">
+          <div class="ics-tile"><h3 class="ics-tile__name">Biblical Foundations</h3><p class="ics-tile__desc">Explore the biblical story from Genesis to Revelation as the grounding narrative for the scholarly questions pursued at ICS.</p><div class="ics-tile__tags"><span class="ics-tile__tag ics-tile__tag--accent">Foundation</span></div></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">Philosophical Foundations</h3><p class="ics-tile__desc">Engage the Reformational tradition and its critiques of foundationalism, metaphysics, and modernity.</p><div class="ics-tile__tags"><span class="ics-tile__tag ics-tile__tag--accent">Foundation</span></div></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">Interdisciplinary Seminar</h3><p class="ics-tile__desc">A communal exploration of key issues in contemporary culture and society.</p><div class="ics-tile__tags"><span class="ics-tile__tag ics-tile__tag--accent">Required</span></div></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">The Beauty Question</h3><p class="ics-tile__desc">Views of beauty from Plato and Augustine to Kant, Weil, Barth, and Balthasar &mdash; and their implications for the arts.</p><div class="ics-tile__tags"><span class="ics-tile__tag">Elective</span></div></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">Oxford&rsquo;s Women Philosophers</h3><p class="ics-tile__desc">Anscombe, Foot, Murdoch, and Midgley &mdash; four women who revolutionized ethics and analytic philosophy.</p><div class="ics-tile__tags"><span class="ics-tile__tag">Elective</span></div></div>
+          <div class="ics-tile"><h3 class="ics-tile__name">God, Freedom &amp; Open Theism</h3><p class="ics-tile__desc">Did God take a risk in creating the world? Explore how divine and human freedom relate.</p><div class="ics-tile__tags"><span class="ics-tile__tag">Elective</span></div></div>
+        </div>
+        <div class="ics-dark__cta"><a href="/ma-design.html" class="ics-btn ics-btn--outline">View Full Program Design &rarr;</a></div>
+      </div>
+    </section>
+    <section class="ics-why">
+      <div class="ics-why__inner">
+        <div class="ics-why__header">
+          <p class="ics-why__eyebrow">Why the MA at ICS</p>
+          <h2 class="ics-why__heading">A Different Kind of Graduate School</h2>
+        </div>
+        <div class="ics-why__grid">
+          <div class="ics-why__item"><svg class="ics-why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><h3 class="ics-why__item-title">Integral Scholarship</h3><p class="ics-why__item-text">Christian faith shapes scholarship from the ground up. Every course is an exercise in thinking Christianly about the whole of life.</p></div>
+          <div class="ics-why__item"><svg class="ics-why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><h3 class="ics-why__item-title">Mentored Learning</h3><p class="ics-why__item-text">Small seminars and close faculty mentorship offer a truly personal apprenticeship in Christian philosophical thought.</p></div>
+          <div class="ics-why__item"><svg class="ics-why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg><h3 class="ics-why__item-title">TST &amp; Toronto</h3><p class="ics-why__item-text">Affiliated with the Toronto School of Theology at the University of Toronto &mdash; a world-class academic community.</p></div>
+          <div class="ics-why__item"><svg class="ics-why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg><h3 class="ics-why__item-title">PhD Preparation</h3><p class="ics-why__item-text">The thesis-based MA provides ideal preparation for doctoral study &mdash; including ICS&rsquo;s own PhD, standalone or conjoint with VU Amsterdam.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="ics-compare">
+      <div class="ics-compare__inner">
+        <div class="ics-compare__header">
+          <p class="ics-compare__eyebrow">Not Sure Which Program?</p>
+          <h2 class="ics-compare__heading">MA vs. PhD at a Glance</h2>
+        </div>
+        <div class="ics-compare__table-wrap">
+          <table class="ics-compare__table">
+            <thead><tr><th>Feature</th><th class="hl">MA in Philosophy</th><th>PhD in Philosophy</th></tr></thead>
+            <tbody>
+              <tr><td>Duration</td><td class="hl">2 Years (Full-Time)</td><td>~5 Years (2 + 3)</td></tr>
+              <tr><td>Courses</td><td class="hl">10 Courses</td><td>Foundations + Electives + Seminar</td></tr>
+              <tr><td>Capstone</td><td class="hl">Thesis (17k&ndash;25k words)</td><td>Dissertation + Pre-Diss Exam</td></tr>
+              <tr><td>Languages</td><td class="hl">1 Foreign Language</td><td>2 Foreign Languages</td></tr>
+              <tr><td>Prerequisite</td><td class="hl">4-Year Bachelor&rsquo;s (B+)</td><td>Master&rsquo;s with Thesis</td></tr>
+              <tr><td>Study Mode</td><td class="hl">Full-Time or Part-Time</td><td>Full-Time Only</td></tr>
+              <tr><td>Ideal For</td><td class="hl">Scholarly foundations &amp; PhD prep</td><td>Academic vocation &amp; teaching</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ics-compare__footnote">Both programs share seven interdisciplinary fields and close faculty mentorship. <a href="/phd-about.html">Learn more about the PhD &rarr;</a></p>
+      </div>
+    </section>
+    <section class="ics-cta">
+      <div class="ics-cta__inner">
+        <h2 class="ics-cta__heading">Ready to Begin Your Apprenticeship?</h2>
+        <p class="ics-cta__text">The MA at ICS invites you into a community where rigorous thought and living faith meet.</p>
+        <div class="ics-cta__deadlines"><span class="ics-cta__tag">February 1 &mdash; Fall Deadline</span></div>
+        <div class="ics-cta__actions">
+          <a href="/ma-apply.html" class="ics-btn ics-btn--primary-on-light">Apply Today &rarr;</a>
+          <a href="/ma-faq.html" class="ics-btn ics-btn--outline-on-light">Read the FAQ</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+<!-- ===== ICS SITE FOOTER — START ===== -->
+<style>
+  .ics-site-footer {
+    --footer-bg-body: #091629; --footer-accent: #7D3F4A; --footer-accent-lt: #9B5A65;
+    --footer-text: #DAD6DE; --footer-text-muted: #8A8290;
+    --footer-white: #FFFFFF; --footer-border: rgba(232, 225, 229, 0.08);
+    --font-serif: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    --font-sans:  'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-sans); position: relative; width: 100%; margin-top: 0;
+  }
+  .ics-site-footer__wave { display: block; width: 100%; height: auto; line-height: 0; margin-bottom: -1px; }
+  .ics-site-footer__wave svg { display: block; width: 100%; height: auto; }
+  .ics-site-footer__body { background: var(--footer-bg-body); padding: 3rem 2rem 0; }
+  .ics-site-footer__inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1.2fr 0.8fr 1fr; gap: 2.5rem; align-items: start; }
+  .ics-footer-brand__logo { display: block; margin-bottom: 1.25rem; text-decoration: none; }
+  .ics-footer-brand__logo-img { display: block; max-width: 220px; width: 100%; height: auto; }
+  .ics-footer-social { display: flex; gap: 0.6rem; margin-top: 0.5rem; flex-wrap: wrap; }
+  .ics-footer-social__link { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); color: var(--footer-text); text-decoration: none; transition: border-color 0.25s, color 0.25s; }
+  .ics-footer-social__link:hover { border-color: var(--footer-accent); color: var(--footer-accent-lt); }
+  .ics-footer-social__link svg { width: 16px; height: 16px; fill: currentColor; }
+  .ics-footer-contact__heading, .ics-footer-nav__heading { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--footer-text-muted); margin-bottom: 0.9rem; }
+  .ics-footer-contact p { font-size: 0.88rem; color: var(--footer-text); line-height: 1.7; margin: 0; }
+  .ics-footer-contact__group { margin-top: 0.85rem; }
+  .ics-footer-contact a { color: var(--footer-text); text-decoration: none; transition: color 0.2s; }
+  .ics-footer-contact a:hover { color: var(--footer-accent-lt); }
+  .ics-footer-nav__list { list-style: none; padding: 0; margin: 0; }
+  .ics-footer-nav__list li + li { margin-top: 0.5rem; }
+  .ics-footer-nav__list a { font-size: 0.9rem; color: var(--footer-text); text-decoration: none; transition: color 0.2s; }
+  .ics-footer-nav__list a:hover { color: var(--footer-white); }
+  .ics-footer-legal__copyright { font-size: 0.82rem; color: var(--footer-text-muted); line-height: 1.6; margin-bottom: 0.6rem; }
+  .ics-footer-legal__links { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 1.4rem; }
+  .ics-footer-legal__links a { font-size: 0.82rem; color: var(--footer-text-muted); text-decoration: none; transition: color 0.2s; }
+  .ics-footer-legal__links a:hover { color: var(--footer-white); }
+  .ics-footer-legal__apply { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--footer-accent); border: 1.5px solid var(--footer-accent); background: transparent; padding: 0.65em 1.8em; border-radius: 4px; text-decoration: none; transition: background 0.25s, color 0.25s; }
+  .ics-footer-legal__apply:hover { background: var(--footer-accent); color: var(--footer-white); }
+  .ics-site-footer__bottom { margin-top: 2.5rem; padding: 1rem 2rem; border-top: 1px solid var(--footer-border); text-align: center; }
+  .ics-site-footer__bottom p { font-size: 0.75rem; color: var(--footer-text-muted); max-width: 1100px; margin: 0 auto; }
+  .ics-site-footer__bottom a { color: var(--footer-text-muted); text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
+  .ics-site-footer__bottom a:hover { color: var(--footer-white); }
+  @media (max-width: 900px) { .ics-site-footer__inner { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  @media (max-width: 600px) { .ics-site-footer__body { padding: 2rem 1.5rem 0; } .ics-site-footer__inner { grid-template-columns: 1fr; gap: 1.8rem; text-align: center; } .ics-footer-brand__logo-img { margin: 0 auto; } .ics-footer-social { justify-content: center; } .ics-footer-legal__apply { width: 100%; max-width: 240px; } }
+</style>
+
+<footer class="ics-site-footer" role="contentinfo">
+  <div class="ics-site-footer__wave" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path d="M0 160 L0 90 Q360 38 720 72 Q1080 106 1440 55 L1440 160 Z" fill="#091629"/>
+      <path d="M0 88 Q360 36 720 70 Q1080 104 1440 53" fill="none" stroke="#7D3F4A" stroke-width="6"/>
+      <path d="M0 80 Q360 28 720 62 Q1080 96 1440 45" fill="none" stroke="#7D3F4A" stroke-width="2.5" opacity="0.5"/>
+      <path d="M0 96 Q360 44 720 78 Q1080 112 1440 61" fill="none" stroke="#091629" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="ics-site-footer__body">
+    <div class="ics-site-footer__inner">
+      <div class="ics-footer-brand">
+        <a href="https://www.icscanada.edu" class="ics-footer-brand__logo">
+          <img class="ics-footer-brand__logo-img" src="https://images.squarespace-cdn.com/content/v1/69961bfd9be8a352ca34cb2f/1771445259448-EVZXO6XGJPH95Y3MLV7Q/Logo+w+White+Writing+-+Transparent+Background.png?format=1500w" alt="Institute for Christian Studies logo" loading="lazy" />
+        </a>
+        <div class="ics-footer-social">
+          <a href="https://www.facebook.com/instituteforchristianstudies" class="ics-footer-social__link" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/instituteforchristianstudies/" class="ics-footer-social__link" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5" fill="#091629"/><circle cx="17.5" cy="6.5" r="1.2"/></svg></a>
+          <a href="https://www.linkedin.com/school/icscanada" class="ics-footer-social__link" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.youtube.com/user/ChristianStudies" class="ics-footer-social__link" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.35 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#091629"/></svg></a>
+          <a href="https://ics.on.worldcat.org/discovery" class="ics-footer-social__link" aria-label="ICS Library Catalogue" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+          <a href="https://instituteforchristianstudies.substack.com" class="ics-footer-social__link" aria-label="Substack" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+        </div>
+      </div>
+      <div class="ics-footer-contact">
+        <p class="ics-footer-contact__heading">Contact</p>
+        <p>59 St. George Street,</p>
+        <p>Toronto, Ontario</p>
+        <p>M5S 2E6 Canada</p>
+        <div class="ics-footer-contact__group">
+          <p>Phone: <a href="tel:+14169792331">1-416-979-2331</a></p>
+          <p>Toll-free: <a href="tel:+18883265347">1-888-326-5347</a></p>
+        </div>
+        <div class="ics-footer-contact__group">
+          <p><a href="https://www.icscanada.edu">www.icscanada.edu</a></p>
+          <p><a href="/cdn-cgi/l/email-protection#e980878f86cfcadfddd2808a9a8a8887888d88c78c8d9c">info&#64;icscanada.edu</a></p>
+        </div>
+      </div>
+      <nav class="ics-footer-nav" aria-label="Footer navigation">
+        <p class="ics-footer-nav__heading">Explore</p>
+        <ul class="ics-footer-nav__list">
+          <li><a href="/about">About ICS</a></li>
+          <li><a href="/staff">Staff</a></li>
+          <li><a href="/programs">Programs</a></li>
+          <li><a href="/library">Library</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="ics-footer-legal">
+        <p class="ics-footer-legal__copyright">&copy; 2026 Institute for<br>Christian Studies<br>All rights reserved</p>
+        <div class="ics-footer-legal__links">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/accessibility-policy">Accessibility Policy</a>
+        </div>
+        <a href="/ma-apply.html" class="ics-footer-legal__apply">Apply Today</a>
+      </div>
+    </div>
+    <div class="ics-site-footer__bottom">
+      <p>ICS is a graduate school in the <a href="https://en.wikipedia.org/wiki/Neo-Calvinism" target="_blank" rel="noopener">Reformational tradition</a>, affiliated with the <a href="https://www.utoronto.ca/" target="_blank" rel="noopener">University of Toronto</a>.</p>
+    </div>
+  </div>
+</footer>
+<!-- ===== ICS S<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a445fa48b845fcd9',t:'MTc5MDk2NzkxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
