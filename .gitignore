@@ -1,3 +1,6 @@
 ._*
 .DS_Store
 info/BusinessCards/
+
+# Apps Script server code — deployed by hand to script.google.com
+_scripts/
