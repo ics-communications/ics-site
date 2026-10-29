@@ -27,6 +27,8 @@
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration-color: var(--rubric); text-decoration-thickness: 1px; text-underline-offset: .18em; }
   a:hover { color: var(--rubric); }
+  /* Download links held in place until the PDF exists: they look like links but go nowhere */
+  a.soon { text-decoration-line: underline; cursor: help; }
   :focus-visible { outline: 2px solid var(--rubric); outline-offset: 3px; }
   .sc { font-family: "Spectral SC", Spectral, serif; letter-spacing: .05em; font-weight: 500; }
   .r { color: var(--rubric); }
@@ -419,7 +421,7 @@
       <li><a href="#thanks"><span class="n">vi.</span>With Thanks</a></li>
       <li><a href="#finances"><span class="n">vii.</span>Finances</a></li>
     </ol></div>
-    <a class="pdf" href="ICS-Impact-Report-2025-26-DRAFT.pdf" download>Download the PDF</a>
+    <a class="pdf soon" aria-disabled="true" title="The PDF will be ready with the final report">Download the PDF</a>
   </nav>
 
   <main id="main">
@@ -443,7 +445,7 @@
           <li><a href="#thanks"><span class="n">vi.</span><span class="t">With Thanks</span><span class="pg">12</span></a></li>
           <li><a href="#finances"><span class="n">vii.</span><span class="t">Finances</span><span class="pg">13</span></a></li>
         </ol>
-        <p class="fine">Figures cover the academic year September 2025 to August 2026 unless marked otherwise.<span class="screen-only"> <a href="ICS-Impact-Report-2025-26-DRAFT.pdf" download>Download the PDF</a>.</span></p>
+        <p class="fine">Figures cover the academic year September 2025 to August 2026 unless marked otherwise.<span class="screen-only"> <a class="soon" aria-disabled="true" title="The PDF will be ready with the final report">Download the PDF</a>.</span></p>
       </div>
       <div class="foot-rule" aria-hidden="true"></div>
     </section>
