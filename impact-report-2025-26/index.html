@@ -134,6 +134,14 @@
   .letter .head .lede { margin: 1.2rem clamp(1rem, 5vw, 4.5rem) 0; }
   .letter .ph-note { margin: 0 0 1.4rem; }
   .letter .sig { margin-top: 1.6rem; font-style: italic; }
+  /* Hovering (or tapping) the Convocation sentence reveals the photo above the line it starts on */
+  .letter .prose p:has(.peek) { position: relative; }
+  .peek { text-decoration: underline dotted var(--leader); text-underline-offset: .2em; cursor: zoom-in; outline-offset: 2px; }
+  .peek:hover, .peek:focus-visible { text-decoration-color: var(--rubric); }
+  .peek .pop { position: absolute; left: 0; right: 0; z-index: 3; transform: translateY(calc(-100% - .5rem)); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s var(--ease), visibility 0s .2s; background: var(--paper); box-shadow: 0 10px 30px rgb(0 0 0 / .22); }
+  .peek:hover .pop, .peek:focus .pop { opacity: 1; visibility: visible; transition-delay: 0s; }
+  .peek .pop img { display: block; width: 100%; height: auto; }
+  .peek .pop .cap { display: block; padding: .35rem .6rem; font-size: .8rem; font-style: italic; color: var(--grey); }
   .letter .sig b { font-style: normal; font-weight: 600; display: block; font-size: 1.15rem; }
   @media (min-width: 52rem) {
     .letter { grid-template-columns: 5fr 7fr; gap: 3.5rem; }
@@ -295,6 +303,7 @@
     html { font-size: 11.6pt; scroll-behavior: auto; }
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .draftbar, .rail, .skip, .screen-only, .tocbtn { display: none !important; }
+    .peek { text-decoration: none; } .peek .pop { display: none; }
     .shell { display: block; }
     main { max-width: none; padding-bottom: 0 !important; }
     .sheet { width: 11in; height: 8.5in; padding: .62in .72in .6in; border: 0; overflow: hidden; break-after: page; page-break-after: always; }
@@ -453,7 +462,7 @@
         <div class="prose">
           <p class="ph-note draft">First draft for Beth Green to revise. See president-letter.md for the facts to check.</p>
           <p class="versal">Dear friends of ICS, I became President on July 1, which puts me in the slightly awkward position of introducing a year I mostly missed. So I have done what newcomers should: listened, read back through a year of newsletters, and asked people what mattered. What I heard, again and again, was a story about a community whose members kept showing up for one another.</p>
-          <p>The year began with the Fall Retreat at Crieff Hills, and a week later the community gathered again to give thanks for the life of Calvin Seerveld, a teacher and colleague many of you knew and loved. It ended at Convocation in May, where four graduates received their degrees and John A. Olthuis was awarded an honorary Doctor of Letters. In between came seminars, conferences and new books, and the quieter work that holds a school together. But the heart of this report is our Junior Members. In the pages that follow you will meet two current students and an alum, and see what study at ICS has meant for them and the communities they serve.</p>
+          <p>The year began with the Fall Retreat at Crieff Hills, and a week later the community gathered again to give thanks for the life of Calvin Seerveld, a teacher and colleague many of you knew and loved. It ended at Convocation in May, where <span class="peek" tabindex="0"><span class="pop" aria-hidden="true"><img src="img/convocation-2026.jpg" alt="" width="1200" height="800" loading="lazy"><span class="cap">Convocation, May 2026</span></span>four graduates received their degrees and John A. Olthuis was awarded an honorary Doctor of Letters</span>. In between came seminars, conferences and new books, and the quieter work that holds a school together. But the heart of this report is our Junior Members. In the pages that follow you will meet two current students and an alum, and see what study at ICS has meant for them and the communities they serve.</p>
           <p>All of this happened under the leadership of Ron Kuipers, and I want to thank him by name. He led ICS steadily and hopefully, and gave his time generously as a teacher and writer as well as President. In his monthly reflections he kept returning to a hope that costs something, ending in June with the conviction that “wherever a light shines in the darkness, the darkness will not overcome it.” He has handed on the baton with gratitude and hope, and I receive it in the same spirit, and I am glad Ron remains by my side, as a colleague.</p>
           <p>A report like this tells the bright part of the story. Any year in a community also holds illness, loss and work that goes unseen, and gratitude does not pretend otherwise. When Paul urged an anxious church in Thessalonica to encourage one another, to rejoice, pray and give thanks, he was not selling positive thinking. He was describing a community held together by the grace of God. That is the community I have found at ICS.</p>
           <p>You are part of it. Your gifts, prayers and friendship sustain the seminar where a Junior Member’s question becomes research, and the Free to be Faithful course that brings ICS scholarship to people who will never sit in one of our seminar rooms. You will find an account of our finances at the back of this report, because you deserve to see how your trust was used.</p>
