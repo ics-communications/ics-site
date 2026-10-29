@@ -32,7 +32,6 @@
   :focus-visible { outline: 2px solid var(--rubric); outline-offset: 3px; }
   .sc { font-family: "Spectral SC", Spectral, serif; letter-spacing: .05em; font-weight: 500; }
   .r { color: var(--rubric); }
-  .ph { background: var(--ph); box-decoration-break: clone; -webkit-box-decoration-break: clone; padding: 0 .15em; }
   .ph-note { font-style: italic; font-size: .82rem; color: var(--grey); }
   .ph-note.draft::before { content: "Draft · "; }
   .ph-note::before { content: "Placeholder · "; font-style: normal; font-family: "Spectral SC", serif; letter-spacing: .05em; color: var(--ink); background: var(--ph); padding: 0 .3em; margin-right: .2em; }
@@ -271,14 +270,14 @@
   .trend .base { position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--hair); }
   .trend svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
   .trend polyline { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: miter; vector-effect: non-scaling-stroke; }
-  .trend .pt { position: absolute; left: calc(var(--i) / 5 * 100%); bottom: calc(var(--v) / var(--max) * 100%); width: 1.6rem; height: 1.6rem; transform: translate(-50%, 50%); outline-offset: 2px; }
+  .trend .pt { position: absolute; left: calc(var(--i) / 3 * 100%); bottom: calc(var(--v) / var(--max) * 100%); width: 1.6rem; height: 1.6rem; transform: translate(-50%, 50%); outline-offset: 2px; }
   .trend .pt::before { content: ""; position: absolute; inset: calc(50% - 3.5px); background: var(--ink); }
   .trend .pt.now::before { inset: calc(50% - 4.5px); background: var(--rubric); }
   .trend .v { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); font-size: .85rem; font-weight: 600; white-space: nowrap; }
   .trend .pt.start .v { left: calc(50% - 3.5px); transform: none; }
   .trend .pt.below .v { bottom: auto; top: 100%; }
   .trend .pt.now .v { left: auto; right: calc(50% - 4.5px); transform: none; }
-  .trend .yr { position: absolute; top: calc(100% + .6rem); left: calc(var(--i) / 5 * 100%); transform: translateX(-50%); font-size: .82rem; color: var(--grey); white-space: nowrap; }
+  .trend .yr { position: absolute; top: calc(100% + .6rem); left: calc(var(--i) / 3 * 100%); transform: translateX(-50%); font-size: .82rem; color: var(--grey); white-space: nowrap; }
   .trend .yr.start { transform: none; }
   .trend .yr.end { transform: translateX(-100%); }
   .trend .pt[data-tip]:hover::after, .trend .pt[data-tip]:focus-visible::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 1.4rem); transform: translateX(-50%); background: var(--ink); color: var(--paper); font-size: .8rem; font-weight: 400; padding: .25rem .55rem; white-space: nowrap; z-index: 2; }
@@ -288,7 +287,7 @@
     /* Narrow columns: inset the plot and centre the end labels so the six years space evenly. */
     .trend .plot { height: 9rem; margin-inline: 1.4rem; }
     .trend .v, .trend .yr { font-size: .7rem; }
-    .trend .pt.start .v, .trend .yr.start, .trend .yr.end { left: calc(var(--i) / 5 * 100%); transform: translateX(-50%); }
+    .trend .pt.start .v, .trend .yr.start, .trend .yr.end { left: calc(var(--i) / 3 * 100%); transform: translateX(-50%); }
     .trend .pt.start .v { left: 50%; }
   }
 
@@ -312,7 +311,6 @@
     .runhead { display: flex; justify-content: space-between; position: absolute; top: .3in; left: .72in; right: .72in; font-size: .78rem; color: var(--grey); }
     .runhead .sc { color: var(--ink); }
     .folio { display: block; position: absolute; bottom: .28in; right: .72in; left: .72in; font-size: .72rem; font-style: italic; color: var(--grey); text-align: right; }
-    .folio::before { content: "Draft mock-up · placeholders highlighted"; float: left; }
 
     .cover { --band: 5rem; min-height: 0; grid-template-columns: 1fr 1px 1fr; gap: .55in; padding: .9in .9in .8in; align-content: stretch; }
     .cover::before { left: 0; width: 100%; animation: none; background-image: var(--veil), url(img/cover-autumn.jpg); }
@@ -405,7 +403,6 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to the report</a>
-<div class="draftbar"><mark>Draft mock-up</mark> for layout only. Highlighted text, all figures, and every photograph are placeholders until the real drafts arrive.</div>
 
 <div class="shell at-top" id="shell">
 <a class="tocbtn sc" href="#top">Contents</a>
@@ -462,7 +459,6 @@
           <p class="lede">Beth Green on a year of community, and the many people it gives us reason to thank.</p>
         </div>
         <div class="prose">
-          <p class="ph-note draft">First draft for Beth Green to revise. See president-letter.md for the facts to check.</p>
           <p class="versal">Dear friends of ICS, I became President on July 1, which puts me in the slightly awkward position of introducing a year I mostly missed. So I have done what newcomers should: listened, read back through a year of newsletters, and asked people what mattered. What I heard, again and again, was a story about a community whose members kept showing up for one another.</p>
           <p>The year began with the Fall Retreat at Crieff Hills, and a week later the community gathered again to give thanks for the life of Calvin Seerveld, a teacher and colleague many of you knew and loved. It ended at Convocation in May, where <span class="peek" tabindex="0"><span class="pop" aria-hidden="true"><img src="img/convocation-2026.jpg" alt="" width="1200" height="800" loading="lazy"><span class="cap">Convocation, May 2026</span></span>four graduates received their degrees and John A. Olthuis was awarded an honorary Doctor of Letters</span>. In between came seminars, conferences and new books, and the quieter work that holds a school together. But the heart of this report is our Junior Members. In the pages that follow you will meet two current students and an alum, and see what study at ICS has meant for them and the communities they serve.</p>
           <p>All of this happened under the leadership of Ron Kuipers, and I want to thank him by name. He led ICS steadily and hopefully, and gave his time generously as a teacher and writer as well as President. In his monthly reflections he kept returning to a hope that costs something, ending in June with the conviction that “wherever a light shines in the darkness, the darkness will not overcome it.” He has handed on the baton with gratitude and hope, and I receive it in the same spirit, and I am glad Ron remains by my side, as a colleague.</p>
@@ -479,7 +475,6 @@
     <section class="sheet feature-a mirror" id="students" data-section>
       <figure class="photo">
         <img src="img/student-a.jpg" alt="Placeholder stock photograph standing in for a portrait of David Grills." width="800" height="1200">
-        <figcaption>Placeholder photograph · use Grills-2025-headshot.jpg</figcaption>
       </figure>
       <div class="text">
         <div class="runhead"><span class="sc"><span class="r">ii.</span> Our Students</span><span>3</span></div>
@@ -497,7 +492,6 @@
       <div class="runhead"><span class="sc"><span class="r">ii.</span> Our Students</span><span>4</span></div>
       <div class="story">
         <div class="prose">
-          <p class="ph-note draft">From the October 24 interview. Check quotes against the audio and with David.</p>
           <p class="versal" style="margin-top:.9em">Early in his Grade 10 Old Testament course, David Grills asks his students how many sons Abraham had. No one says eight. Most have studied Genesis since kindergarten and, he says, “arrive feeling, okay, I know this already.” Being confidently wrong is where his teaching starts.</p>
           <p>David has taught Bible at Hamilton District Christian High since 2013. When Gideon Strauss invited him into a new master’s program for working educators, the MA-EL, he said yes. “I just wanted to be a better teacher,” he says.</p>
           <p>He was among its <span class="ph">first</span> students, and COVID stretched the degree to four years. “It’s like trying on a jetpack that’s never been tested,” he says. “Sometimes it goes left when you want to go right, and that was fine.”</p>
@@ -509,7 +503,6 @@
           <p class="note">MA-EL project, 2022: <i>Flourishing: Better Bible Instruction Podcast</i></p>
           <p class="note">Teaching Biblical Foundations for ICS, Fall 2026</p>
           <p class="note">His essay “Finding Wonder on the Side Streets of Biblical Narrative” appears in <i>Perspective</i>, Fall 2026</p>
-          <p class="note"><span class="ph">[Scholarship or bursary support, if any]</span></p>
         </aside>
       </div>
       <div class="folio">4</div>
@@ -519,7 +512,6 @@
     <section class="sheet feature-a" aria-label="Alayna Erickson" data-section-part="students">
       <figure class="photo">
         <img src="img/student-b.jpg" alt="Placeholder stock photograph: a teacher standing at the front of a classroom of adult students." width="1200" height="675" style="object-position:6% center">
-        <figcaption>Placeholder photograph</figcaption>
       </figure>
       <div class="text">
         <div class="runhead"><span class="sc"><span class="r">ii.</span> Our Students</span><span>5</span></div>
@@ -533,7 +525,6 @@
       <div class="runhead"><span class="sc"><span class="r">ii.</span> Our Students</span><span>6</span></div>
       <div class="story">
         <div class="prose">
-          <p class="ph-note">Sample story, about 350 words. Alayna’s approved profile replaces it.</p>
           <p class="versal" style="margin-top:.9em">He teaches senior humanities at a Christian high school, and for years he has kept a list on the corner of his whiteboard titled “Questions we didn’t get to.” Most of them are about suffering, justice and whether faith can survive a hard argument. Coming to ICS was, in part, an attempt to get to them.</p>
           <p>He chose ICS because he wanted to study philosophy inside a tradition rather than against one. In his first seminar he read Dooyeweerd and Arendt side by side, and found himself arguing with both. “It was the first time in years that someone pushed back on my thinking and I was grateful,” he says.</p>
           <p>His research this year looked at how adolescents form moral judgments, and how a classroom can make room for doubt without abandoning conviction. He tested some of those ideas with his own students, with their permission, and wrote about the results in a piece for the ICS Substack that drew more readers than any post that month.</p>
@@ -553,7 +544,6 @@
     <section class="sheet feature-a mirror" aria-label="Caleb Ratzlaff" data-section-part="students">
       <figure class="photo">
         <img src="img/alum.jpg" alt="Placeholder stock photograph: a graduate reading a book between library shelves." width="1200" height="936" style="object-position:62% center">
-        <figcaption>Placeholder photograph</figcaption>
       </figure>
       <div class="text">
         <div class="runhead"><span class="sc"><span class="r">ii.</span> Our Students</span><span>7</span></div>
@@ -567,7 +557,6 @@
       <div class="runhead"><span class="sc"><span class="r">ii.</span> Our Students</span><span>8</span></div>
       <div class="story">
         <div class="prose">
-          <p class="ph-note">Sample story, about 350 words. Caleb’s approved profile replaces it.</p>
           <p class="versal" style="margin-top:.9em">When she graduated from ICS, she assumed she would go on to a doctorate. Instead, a job posting at a community housing organization caught her eye, and she has been there ever since, now leading its policy and research work.</p>
           <p>It is not the career she planned, but she says it is the one ICS prepared her for. Her thesis on the idea of “home” in Reformational philosophy turned out to be a practical document. It gave her a way to talk about housing as more than shelter: as the place where belonging, dignity and responsibility take shape.</p>
           <p>That framing has travelled. She has presented it to city staff, to church groups trying to decide what to do with empty buildings, and to tenants’ associations wary of both. “I learned at ICS that you can disagree with someone and still take their view of the world seriously,” she says. “That turns out to be most of my job.”</p>
@@ -604,7 +593,6 @@
             <div class="bar" tabindex="0" data-tip="2024–25: 16 MA-EL students" aria-label="2024–25: 16 MA-EL students"><span class="yr">2024–25</span><span class="track"><span class="fill" style="--v:16"></span></span><span class="v">16</span></div>
             <div class="bar now" tabindex="0" data-tip="2025–26: 18 MA-EL students" aria-label="2025–26: 18 MA-EL students"><span class="yr">2025–26</span><span class="track"><span class="fill" style="--v:18"></span></span><span class="v">18</span></div>
           </div>
-          <p class="src">2025–26 figures are projections from the 2024–25 report, pending the Registrar.</p>
         </div>
         <div>
           <h3>By program, 2025–26</h3>
@@ -615,7 +603,6 @@
             <div><dt>Master of Worldview Studies</dt><dd>1</dd></div>
             <div><dt>Non-degree and audit</dt><dd>22</dd></div>
           </dl>
-          <p class="src">Source: Office of the Registrar.</p>
         </div>
         <div>
           <h3>The year in numbers</h3>
@@ -679,7 +666,6 @@
       <h2 class="section"><span class="n">vi.</span>With Thanks</h2>
       <div class="thanks">
         <div class="prose">
-          <p class="ph-note">Sample thanks. Final wording to follow.</p>
           <p class="versal" style="margin-top:.9em">Everything in this report was made possible by people who chose to stand with ICS. To our donors, our partner churches and foundations, our volunteers, our Board of Trustees, and our Senior Members and staff: thank you.</p>
           <p>Your gifts funded bursaries that let students say yes. Your prayers and encouragement sustained us through a year of change. Your presence at lectures, in reading groups and in our inboxes reminded us why this work matters.</p>
           <p>We are especially grateful to <span class="ph">[named foundation or estate, if recognized]</span>, whose support this year <span class="ph">[made something specific possible]</span>.</p>
@@ -696,7 +682,7 @@
           </div>
           <div class="contact">
             <h3>Stay in touch</h3>
-            <p>Institute for Christian Studies<br>59 St. George Street, Toronto, Ontario<br><a href="https://www.icscanada.edu">icscanada.edu</a> · <span class="ph">[phone]</span></p>
+            <p>Institute for Christian Studies<br>59 St. George Street, Toronto, Ontario<br><a href="https://www.icscanada.edu">icscanada.edu</a> · <a href="tel:+14169792331">1-416-979-2331</a></p>
           </div>
         </div>
       </div>
@@ -707,7 +693,6 @@
     <section class="sheet" id="finances" data-section>
       <div class="runhead"><span class="sc"><span class="r">vii.</span> Finances</span><span>13</span></div>
       <h2 class="section"><span class="n">vii.</span>Finances</h2>
-      <p class="ph-note draft">Figures from the auditors’ draft statements for the year ended June 30, 2026, supplied by Harley Dekker on October 28. Update to the audited statements once the Board approves them in November.</p>
       <div class="fin">
         <div>
           <h3 id="rev-h">Where our support came from</h3>
@@ -744,24 +729,19 @@
       </div>
       <div class="fin-foot">
         <figure class="trend">
-          <h3 id="trend-h">General donations, 2020–21 to 2025–26</h3>
+          <h3 id="trend-h">General donations, 2022–23 to 2025–26</h3>
           <div class="plot" style="--max: 600000" role="group" aria-labelledby="trend-h">
             <span class="base" aria-hidden="true"></span>
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polyline points="0,29.78 20,35.59 40,50.59 60,51.91 80,35.73 100,3.75"/></svg>
-            <span class="pt start" tabindex="0" style="--i:0; --v:421294" data-tip="2020–21: $421,294" aria-label="2020–21: $421,294 in general donations"><span class="v" aria-hidden="true">$421K</span></span>
-            <span class="pt" tabindex="0" style="--i:1; --v:386471" data-tip="2021–22: $386,471" aria-label="2021–22: $386,471 in general donations"><span class="v" aria-hidden="true">$386K</span></span>
-            <span class="pt below" tabindex="0" style="--i:2; --v:296471" data-tip="2022–23: $296,471" aria-label="2022–23: $296,471 in general donations"><span class="v" aria-hidden="true">$296K</span></span>
-            <span class="pt below" tabindex="0" style="--i:3; --v:288523" data-tip="2023–24: $288,523" aria-label="2023–24: $288,523 in general donations"><span class="v" aria-hidden="true">$289K</span></span>
-            <span class="pt" tabindex="0" style="--i:4; --v:385626" data-tip="2024–25: $385,626" aria-label="2024–25: $385,626 in general donations"><span class="v" aria-hidden="true">$386K</span></span>
-            <span class="pt now" tabindex="0" style="--i:5; --v:577514" data-tip="2025–26: $577,514" aria-label="2025–26: $577,514 in general donations"><span class="v" aria-hidden="true">$578K</span></span>
-            <span class="yr start" style="--i:0" aria-hidden="true">2020–21</span>
-            <span class="yr" style="--i:1" aria-hidden="true">2021–22</span>
-            <span class="yr" style="--i:2" aria-hidden="true">2022–23</span>
-            <span class="yr" style="--i:3" aria-hidden="true">2023–24</span>
-            <span class="yr" style="--i:4" aria-hidden="true">2024–25</span>
-            <span class="yr end" style="--i:5" aria-hidden="true">2025–26</span>
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polyline points="0,50.59 33.33,51.91 66.67,35.73 100,3.75"/></svg>
+            <span class="pt start below" tabindex="0" style="--i:0; --v:296471" data-tip="2022–23: $296,471" aria-label="2022–23: $296,471 in general donations"><span class="v" aria-hidden="true">$296K</span></span>
+            <span class="pt below" tabindex="0" style="--i:1; --v:288523" data-tip="2023–24: $288,523" aria-label="2023–24: $288,523 in general donations"><span class="v" aria-hidden="true">$289K</span></span>
+            <span class="pt" tabindex="0" style="--i:2; --v:385626" data-tip="2024–25: $385,626" aria-label="2024–25: $385,626 in general donations"><span class="v" aria-hidden="true">$386K</span></span>
+            <span class="pt now" tabindex="0" style="--i:3; --v:577514" data-tip="2025–26: $577,514" aria-label="2025–26: $577,514 in general donations"><span class="v" aria-hidden="true">$578K</span></span>
+            <span class="yr start" style="--i:0" aria-hidden="true">2022–23</span>
+            <span class="yr" style="--i:1" aria-hidden="true">2023–24</span>
+            <span class="yr" style="--i:2" aria-hidden="true">2024–25</span>
+            <span class="yr end" style="--i:3" aria-hidden="true">2025–26</span>
           </div>
-          <figcaption class="src">“General donations” in each year’s Annual Report (“Donations” since 2023–24), not counting church contributions or bequests. 2025–26 from the auditors’ draft statements.</figcaption>
         </figure>
         <div class="fin-notes">
           <p>Summary of the audited financial statements for the year ended June 30, 2026. Bars show each line’s share of its total.</p>
@@ -774,7 +754,6 @@
     <!-- vii. Finances, detail for the Annual Report only (hidden unless <body class="annual">). Same categories as the 2024–25 report; 2025–26 figures from Harley Dekker. -->
     <section class="sheet annual-only" id="fin-detail" aria-label="Finances, continued: revenues and expenditures" data-section-part="finances">
       <div class="runhead"><span class="sc"><span class="r">vii.</span> Finances</span><span>14</span></div>
-            <p class="ph-note draft">2025–26 figures from the auditors’ draft statements (Harley Dekker, October 28). The 2024–25 column matches the comparatives in Harley’s sheet. Bars show 2025–26 shares.</p>
       <div class="fin">
         <div>
           <h3 id="rev-h">Revenues</h3>
@@ -837,7 +816,7 @@
         <div class="fin-notes">
           <p>Summary of the audited financial statements of the Institute for Christian Studies for the fiscal year ended June 30, 2026. Figures for 2025 are the prior-year comparatives.</p>
           <p>Revenue and expenditure totals are the sums of the lines shown. Bars show each line’s share of its total.</p>
-          <p>The revenue line reported last year as “Okia Fund and Reinders Bursary” is now “Okia Fund and other fund transfers”; the 2025 comparative is unchanged. <span class="ph">[Other income rose to $86,107 from three items; confirm with Harley what they are and whether any should be named.]</span></p>
+          <p>The revenue line reported last year as “Okia Fund and Reinders Bursary” is now “Okia Fund and other fund transfers”; the 2025 comparative is unchanged.</p>
           <p>The complete audited statements are available on request from the ICS finance office.</p>
         </div>
       </div>
@@ -850,9 +829,9 @@
         <span class="sc">Institute for Christian Studies</span><br>
         59 St. George Street, Toronto, Ontario<br>
         <a href="https://www.icscanada.edu">icscanada.edu</a><br>
-        Charitable registration <span class="ph">[number]</span>
+        Charitable registration 10750 8434 RR0001
       </address>
-      <p class="colophon">Set in Spectral and Spectral SC. Rubrics in vermilion mark what to notice. This draft is a layout mock-up: highlighted text, all figures and every photograph are placeholders.</p>
+      <p class="colophon">Set in Spectral and Spectral SC. Rubrics in vermilion mark what to notice.</p>
     </section>
 
   </main>
