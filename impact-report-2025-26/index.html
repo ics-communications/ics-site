@@ -126,7 +126,6 @@
   .letter .head { position: relative; display: grid; margin: 0 calc(-1 * clamp(1rem, 5vw, 4.5rem)); }
   .letter .portrait { position: relative; grid-area: 1 / 1; }
   .letter .portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(14 11 8 / .66) 0, rgb(14 11 8 / .4) 22%, rgb(14 11 8 / 0) 52%); }
-  /* Screens get a 1500px copy (enough for 3x phones and 2x desktops); 2x tablets get the full 2120px file, and print swaps it in below. */
   .letter .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; }
   /* On phones the subtitle sits on the paper under the photo, so the heading keeps to the dark robes. */
   .letter .head h2 { grid-area: 1 / 1; align-self: end; z-index: 1; margin: 0 clamp(1rem, 5vw, 4.5rem) 1.1rem; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .5), 0 0 24px rgb(0 0 0 / .4); }
@@ -326,8 +325,6 @@
     #letter .head { margin: 0; min-height: 0; height: auto; align-self: stretch; }
     #letter .portrait { position: absolute; inset: 0; margin: 0; }
     #letter .portrait img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: 42% 50%; }
-    /* Full file for print: 430ppi at the printed size, against 304ppi for the screen copy (still enough where content swapping isn't supported). */
-    #letter .portrait img { content: url(img/president-tall.jpg); }
     #letter .head { display: flex; flex-direction: column; justify-content: flex-end; }
     #letter .head h2 { align-self: auto; margin: 0 .35in 0 .72in; }
     #letter .head .lede { position: relative; z-index: 1; font-size: 1.05rem; margin: .1in .35in .45in .72in; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .5), 0 0 24px rgb(0 0 0 / .4); }
@@ -453,7 +450,7 @@
       <div class="letter">
         <div class="head">
           <figure class="portrait">
-            <img src="img/president-tall-1500.jpg" srcset="img/president-tall-1500.jpg 1500w, img/president-tall.jpg 2120w" sizes="(min-width: 52rem) 484px, 100vw" alt="Beth Green, President of the Institute for Christian Studies, in academic robes at Convocation, smiling as she listens to someone at the edge of the frame." width="2120" height="3655">
+            <img src="img/president-convocation.jpg" alt="Beth Green, President of the Institute for Christian Studies, in academic robes at Convocation, smiling as she listens to someone at the edge of the frame." width="1121" height="1403">
           </figure>
           <h2 class="section"><span class="n">i.</span>A Letter from the President</h2>
           <p class="lede">Beth Green on a year of community, and the many people it gives us reason to thank.</p>
