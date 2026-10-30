@@ -291,11 +291,24 @@
   }
 
   /* Back */
-  .back { min-height: 60vh; display: grid; align-content: end; gap: 1.2rem; }
+  /* The back cover answers the front: the windows photograph bleeds edge to edge, with the same white type and leaf-amber marks.
+     The veil pools at the foot, where the address sits, and lets the upper windows keep their detail. A rubric line marks the seam above. */
+  .back { --ink: #fff; --grey: rgb(255 255 255 / .86); --rubric: #F4A867; --hair: rgb(255 255 255 / .38); --scrim: 14 11 8;
+    --veil: linear-gradient(to top, rgb(var(--scrim) / .88) 0, rgb(var(--scrim) / .7) 34%, rgb(var(--scrim) / .22) 68%, rgb(var(--scrim) / .08) 100%);
+    min-height: clamp(30rem, 82svh, 46rem); display: grid; align-content: end; gap: 1.2rem; border-bottom: 0;
+    color: #fff; isolation: isolate; overflow-y: clip; text-shadow: 0 1px 2px rgb(0 0 0 / .5), 0 0 24px rgb(0 0 0 / .4); }
+  .back::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw;
+    background: var(--veil), url(img/back-windows.jpg) 50% 42% / cover no-repeat;
+    background-image: var(--veil), image-set(url(img/back-windows.webp) type("image/webp"), url(img/back-windows.jpg) type("image/jpeg")); }
+  .back::after { content: ""; position: absolute; top: 0; left: calc(50% - 50vw); width: 100vw; height: 3px; background: #C2321E; pointer-events: none; }
+  @media (min-width: 72rem) { .back::before, .back::after { left: calc(50% - 50vw - 7.5rem); } }
   .back .motto { font-size: 1.5rem; font-style: italic; line-height: 1.35; }
   .back .motto .r { font-style: normal; }
   .back .colophon { font-size: .82rem; font-style: italic; color: var(--grey); max-width: 30rem; border-top: 1px solid var(--hair); padding-top: .8rem; margin-top: 1rem; }
-  .back address { font-style: normal; font-size: .95rem; line-height: 1.7; }
+  .back address { font-style: normal; font-size: 1.02rem; line-height: 1.7; }
+  .back address .sc { font-size: 1.3rem; line-height: 1.4; }
+  .back address a { color: var(--ink); text-decoration-color: var(--rubric); }
+  .back address a:hover { color: var(--rubric); }
 
   /* ---------- PDF: US Letter landscape, one sheet per page ---------- */
   @page { size: 11in 8.5in; margin: 0; }
@@ -355,6 +368,8 @@
     .fin { grid-template-columns: 1fr 1fr; gap: .55in; margin-top: .3in; }
     .fin-notes { margin-top: .3in; grid-template-columns: 1fr 1fr; gap: .2in .55in; max-width: none; }
     .back { min-height: 0; padding: .9in; break-after: auto; page-break-after: auto; }
+    .back::before { left: 0; width: 100%; background-image: var(--veil), url(img/back-windows.jpg); }
+    .back::after { left: 0; width: 100%; }
     .cover h1 { font-size: 5.6rem; }
     .order li a { padding: .75rem 0; font-size: 1.2rem; }
     .glance h3, .fin h3, .trend h3 { margin-bottom: 1.2rem; }
