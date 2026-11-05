@@ -15,8 +15,8 @@ in=$1 out=$2
 q=86; [[ $out == *.webp ]] && q=88
 pre=()
 case $(basename "$out") in
-  president-portrait.*) pre=(-channel R -evaluate multiply 0.93 -channel B -evaluate multiply 1.07 +channel -modulate 96,80 -gamma 0.92) ;;
-  alayna-erickson-*)    pre=(-gamma 0.82 -sigmoidal-contrast 4x45% -modulate 100,110) ;;
+  president-portrait.*) pre=(-channel R -evaluate multiply 0.95 -channel B -evaluate multiply 1.05 +channel -modulate 97,85 -gamma 0.95) ;;
+  alayna-erickson-*)    pre=(-gamma 0.88 -sigmoidal-contrast 3x45%) ;;
 esac
 convert "$in" -auto-orient "${pre[@]}" +level 3%,98% -modulate 100,82 \
   -channel R -evaluate multiply 1.025 -channel B -evaluate multiply 0.965 +channel \
