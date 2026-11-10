@@ -4,3 +4,6 @@ info/BusinessCards/
 
 # Apps Script server code — deployed by hand to script.google.com
 _scripts/
+
+# Word exports for copy review (see the copy-review skill)
+copy-review/
