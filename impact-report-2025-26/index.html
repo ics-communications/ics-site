@@ -338,110 +338,182 @@
   .back address a:hover { color: var(--rubric); }
   .back .legal { font-size: .9rem; line-height: 1.65; color: var(--grey); max-width: 30rem; }
   .back .legal .nb { white-space: nowrap; }
-  /* ---------- PDF: US Letter landscape, one sheet per page ---------- */
-  @page { size: 11in 8.5in; margin: 0; }
+  /* ---------- PDF edition: read on screen, never printed ----------
+     One sheet per page at 16:9, 1440 × 810 CSS px (15 × 8.4375 in). A laptop PDF viewer at fit-width shows
+     the page at roughly 1:1, so sizes below are screen pixels: running text 19px, nothing under 13px.
+     RGB only, no bleed or crop marks. make-pdf.mjs renders this from the page itself: it splits the letter
+     over two sheets, numbers the pages and the contents, rewrites links to the live site, adds the outline,
+     and (unless run with --final) sets html.pdf-draft, which adds the draft tags and highlights placeholders. */
+  @page { size: 1440px 810px; margin: 0; }
   @media print {
-    html { font-size: 11.6pt; scroll-behavior: auto; }
+    html { font-size: 16px; scroll-behavior: auto; }
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .draftbar, .rail, .skip, .screen-only, .tocbtn { display: none !important; }
-    .peek { text-decoration: none; } .peek .pop { display: none; }
     .photo .film { display: none; }
     .shell { display: block; }
     main { max-width: none; padding-bottom: 0 !important; }
-    .sheet { width: 11in; height: 8.5in; padding: .62in .72in .6in; border: 0; overflow: hidden; break-after: page; page-break-after: always; }
-    .runhead { display: flex; justify-content: space-between; position: absolute; top: .3in; left: .72in; right: .72in; font-size: .78rem; color: var(--grey); }
+    .sheet { width: 1440px; height: 810px; padding: 76px 96px 64px; border: 0; overflow: hidden; break-after: page; page-break-after: always; }
+    /* Page furniture: the section in the running head, the page number once, in the folio */
+    .runhead { display: block; position: absolute; top: 30px; left: 96px; right: 96px; font-size: 13px; line-height: 1.3; color: var(--grey); }
+    .runhead > span:last-child { display: none; }
     .runhead .sc { color: var(--ink); }
-    .folio { display: block; position: absolute; bottom: .28in; right: .72in; left: .72in; font-size: .72rem; font-style: italic; color: var(--grey); text-align: right; }
+    .folio { display: block; position: absolute; bottom: 26px; right: 96px; left: 96px; font-size: 13px; line-height: 1.3; font-style: italic; color: var(--grey); text-align: right; }
+    h2.section { font-size: 3.1rem; margin-bottom: .9rem; }
+    .lede { font-size: 1.4rem; max-width: 40rem; }
 
-    .cover { --band: 5rem; min-height: 0; grid-template-columns: 1fr 1px 1fr; gap: .55in; padding: .9in .9in .8in; align-content: stretch; }
+    /* Draft edition only (make-pdf.mjs without --final): a tag in the same corner of every page, placeholders in yellow */
+    .draftmark { position: absolute; z-index: 4; top: 27px; right: 112px; font-family: "Spectral SC", Spectral, serif; font-weight: 500; letter-spacing: .05em; font-size: 13px; line-height: 1.3; color: #161616; background: var(--ph); padding: 1px 10px 2px; white-space: nowrap; text-shadow: none; }
+    html.pdf-draft .ph { background: var(--ph); color: var(--ink); padding: 0 .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+    /* Cover */
+    .cover { --band: 6rem; min-height: 0; grid-template-columns: 1fr 1px 1fr; gap: 80px; padding: 104px 112px 96px; align-content: stretch; }
     .cover::before { left: 0; width: 100%; animation: none; background-image: var(--veil), url(img/cover-autumn.jpg); }
-    .cover .motto { position: absolute; bottom: .9in; }
     .cover .titleblock { position: relative; }
+    .cover .who { font-size: 1.1rem; }
+    .cover h1 { font-size: 7rem; margin: 1.8rem 0 1rem; }
+    .cover .year { font-size: 2rem; }
+    .cover .order h2 { font-size: 1.05rem; margin-bottom: 1.1rem; }
+    .order li a { padding: .8rem 0; font-size: 1.3rem; }
+    .order .pg { font-size: 1rem; }
+    .cover .fine { font-size: .9rem; max-width: 28rem; }
+    /* The phone pointer, added by make-pdf.mjs: set at the contents' size so it can be read at phone scale */
+    .cover .phone { margin-top: .8rem; font-size: 1.3rem; line-height: 1.35; color: #fff; max-width: none; }
+    .cover .phone a { display: inline-block; padding: .6rem .5rem; margin: -.4rem -.5rem; color: #fff; text-decoration: underline; text-decoration-color: #F4A867; text-decoration-thickness: 1px; text-underline-offset: .2em; white-space: nowrap; }
     .foot-rule { left: 0; width: 100%; }
 
-    .letter { grid-template-columns: 3.1in 1fr; gap: .45in; align-items: start; }
-    .letter .prose { max-width: none; columns: 2; column-gap: .4in; font-size: .97rem; line-height: 1.52; }
-    .letter .sig { break-inside: avoid; }
+    /* i. Letter: an opener like the profiles (portrait down the left, the letter beginning beside it at reading size),
+       then a continuation sheet set like the stories. make-pdf.mjs moves the overflow to the continuation sheet. */
     #letter { padding: 0; }
-    #letter .letter { grid-template-columns: 3.82in 1fr; height: 8.5in; align-items: stretch; }
-    #letter .head { margin: 0; min-height: 0; height: auto; align-self: stretch; }
+    #letter .letter { grid-template-columns: 620px 1fr; gap: 96px; height: 810px; align-items: stretch; }
+    #letter .head { margin: 0; min-height: 0; height: auto; align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; }
     #letter .portrait { position: absolute; inset: 0; margin: 0; }
+    #letter .portrait::after { background: linear-gradient(to top, rgb(14 11 8 / .84) 0, rgb(14 11 8 / .62) 30%, rgb(14 11 8 / 0) 62%); }
     #letter .portrait img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: 42% 50%; }
-    #letter .head { display: flex; flex-direction: column; justify-content: flex-end; }
-    #letter .head h2 { align-self: auto; margin: 0 .35in 0 .72in; }
-    #letter .head .lede { position: relative; z-index: 1; font-size: 1.05rem; margin: .1in .35in .45in .72in; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .5), 0 0 24px rgb(0 0 0 / .4); }
-    /* Keep both columns and the signature within the printed letter page. */
-    #letter .prose { min-height: 0; padding: .62in .72in .6in 0; font-size: .9rem; line-height: 1.38; }
-    #letter .ph-note { font-size: .8rem; margin-bottom: .12in; }
-    #letter .runhead, #letter .folio { left: 4.27in; }
-    .feature-a { padding: 0; grid-template-columns: 4.7in 1fr; gap: .55in; align-items: center; }
-    .feature-a .photo { margin: 0; height: 8.5in; min-height: 0; aspect-ratio: auto; position: relative; }
-    .feature-a .photo figcaption { display: block; position: absolute; left: .3in; bottom: .3in; background: rgba(22,22,22,.78); color: #fff; font-size: .72rem; font-style: italic; padding: .1rem .5rem; }
-    .feature-a .text { padding-right: .72in; }
-    .feature-a .runhead, .feature-a .folio { left: 5.25in; }
-    .feature-a.mirror { grid-template-columns: 1fr 4.7in; }
-    .feature-a.mirror .photo { grid-column: 2; grid-row: 1; }
-    .feature-a.mirror .text { grid-column: 1; grid-row: 1; padding: 0 0 0 .72in; }
-    .feature-a.mirror .runhead, .feature-a.mirror .folio { left: .72in; right: 5.25in; }
-    .feature-b { padding-top: .75in; }
-    .story { grid-template-columns: 1fr 1.7in; gap: .4in; }
-    .story .prose { max-width: none; columns: 2; column-gap: .45in; font-size: 1.12rem; line-height: 1.62; }
-    .story aside .note { font-size: .9rem; }
+    #letter .head h2 { align-self: auto; margin: 0 64px 0 72px; font-size: 3.4rem; }
+    #letter .head h2 .n { color: #F4A867; }
+    #letter .head .lede { position: relative; z-index: 1; font-size: 1.3rem; max-width: none; margin: 14px 64px 60px 72px; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .5), 0 0 24px rgb(0 0 0 / .4); }
+    #letter .prose { max-width: none; min-height: 0; padding: 84px 104px 0 0; font-size: 1.25rem; line-height: 1.7; }
+    #letter .runhead, #letter .folio { left: 716px; }
+    .letter-cont .sig { margin-top: 1.6rem; font-style: italic; break-inside: avoid; }
+    .letter-cont .sig b { display: block; font-style: normal; font-weight: 600; font-size: 1.3rem; }
+    .letter-cont .prose p.cont { margin-top: 0; }
+    /* The two hover photographs (Convocation) can't pop up in a PDF: make-pdf.mjs turns each phrase into a link
+       that opens its photograph in the browser, underlined like every other link. */
+    a.peek { text-decoration: underline solid var(--rubric); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+    .peek .pop { display: none; }
 
-    .glance { grid-template-columns: repeat(3, 1fr); gap: .45in; margin-top: .35in; }
-    .yir { grid-template-columns: 1fr; gap: .15in; margin-top: .15in; align-items: start; }
-    .yir figure img { height: 1.6in; aspect-ratio: auto; width: 100%; object-fit: cover; object-position: center 40%; }
-    .cal { columns: 2; }
-    .cal li { padding: .24rem 0; grid-template-columns: 4.6rem 1fr; gap: .5rem; font-size: .88rem; line-height: 1.3; }
-    .reach { grid-template-columns: 1fr 2.4in; gap: .6in; margin-top: .3in; }
-    .thanks { grid-template-columns: 1fr 3.4in; gap: .55in; margin-top: .3in; }
-    .fin { grid-template-columns: 1fr 1fr; gap: .55in; margin-top: .3in; }
-    .fin-notes { margin-top: .3in; grid-template-columns: 1fr 1fr; gap: .2in .55in; max-width: none; }
-    .back { min-height: 0; grid-template-columns: 1fr 1px 1fr; gap: .55in; align-items: end; padding: .9in .9in .8in; break-after: auto; page-break-after: auto; }
+    /* ii. Our Students: a photograph down one side, the name and the student's own words on the other */
+    .feature-a { padding: 0; grid-template-columns: 620px 1fr; gap: 96px; align-items: center; }
+    .feature-a .photo { margin: 0; height: 810px; min-height: 0; aspect-ratio: auto; position: relative; }
+    .feature-a .photo figcaption { display: block; position: absolute; left: 24px; bottom: 24px; max-width: calc(100% - 48px); background: rgba(22,22,22,.8); color: #fff; font-size: 14px; line-height: 1.4; font-style: italic; padding: 3px 10px; }
+    .feature-a .text { padding-right: 104px; }
+    .feature-a .runhead, .feature-a .folio { left: 716px; }
+    .feature-a.mirror { grid-template-columns: 1fr 620px; }
+    .feature-a.mirror .photo { grid-column: 2; grid-row: 1; }
+    .feature-a.mirror .text { grid-column: 1; grid-row: 1; padding: 0 0 0 104px; }
+    .feature-a.mirror .runhead, .feature-a.mirror .folio { left: 104px; right: 716px; }
+    .feature-a .intro { margin-bottom: 3rem; }
+    .feature-a h3 { font-size: 4rem; }
+    .feature-a .meta { font-size: 1.2rem; margin: .7rem 0 2.2rem; max-width: 34rem; }
+    .feature-a blockquote { font-size: 2.05rem; line-height: 1.32; max-width: 32rem; }
+    /* Caleb's film can't play in a PDF: make-pdf.mjs turns the Watch button into a link that plays the clip in the browser. */
+    .watch { margin-top: 2.6rem; text-decoration: none; }
+    .watch .mark { width: 3rem; height: 3rem; }
+    .watch .sc { font-size: 1.15rem; color: var(--rubric); }
+    .watch .t { font-size: 1rem; }
+    .watch .t + .t { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rubric); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+
+    /* Each story continues on the facing page, in two columns at reading size, with its notes in the margin */
+    .feature-b { padding-top: 84px; }
+    .story { grid-template-columns: 1fr 232px; gap: 64px; }
+    .story .prose .versal { margin-top: 0 !important; }
+    .story .prose { max-width: none; columns: 2; column-gap: 56px; font-size: 1.1875rem; line-height: 1.62; }
+    .story aside { padding-top: .35em; }
+    .story aside .note, .story aside .ph-note { font-size: 1rem; line-height: 1.45; }
+    /* David's story and the letter's continuation are the shortest: open their leading so the columns end near the others' */
+    .feature-b[aria-label="David Grills, continued"] .story .prose, .letter-cont .story .prose { font-size: 1.25rem; line-height: 1.74; }
+
+    #glance, #year, #public, #thanks, #finances, #fin-detail, #position { display: flex; flex-direction: column; }
+    .yir, .fin { flex: 1; align-content: center; }
+    .src { font-size: .9rem; }
+
+    /* iii. Glance: three full-height panels; the enrolment bars stand up the height of their panel */
+    .glance { flex: 1; grid-template-columns: repeat(3, 1fr); gap: 80px; margin: 2.6rem 0 1.4rem; align-items: stretch; }
+    .glance > div { display: flex; flex-direction: column; min-height: 0; }
+    .glance h3, .fin h3, .trend h3 { font-size: 1.05rem; margin-bottom: 1.2rem; }
+    .glance h3 { font-size: 1.25rem; margin-bottom: 1.4rem; }
+    .ledger div { padding: .5rem 0; font-size: 1.2rem; }
+    .glance .ledger { flex: 1; display: flex; flex-direction: column; }
+    .glance .ledger div { flex: 1; align-items: center; padding: 0; font-size: 1.3rem; border-bottom: 1px solid var(--hair); }
+    .glance .ledger div::after { content: none; }
+    .glance .ledger dd { margin-left: auto; padding-left: .75rem; }
+    .bars { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; align-items: stretch; }
+    .bar { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: .6rem; }
+    .bar .v { order: 0; font-size: 1.9rem; line-height: 1; text-align: center; }
+    .bar .track { order: 1; flex: none; width: 100%; height: auto; display: block; }
+    .bar .fill { display: block; width: 100%; height: calc(var(--v) / var(--max) * 360px); }
+    .bar .yr { order: 2; font-size: 1.15rem; }
+
+    /* iv. Year in review: the calendar in two columns, the chapel photograph running its full height */
+    .yir { grid-template-columns: 1fr 400px; gap: 64px; margin-top: 1.2rem; align-items: stretch; }
+    .cal { columns: 2; column-gap: 48px; }
+    .cal li { padding: .7rem 0; grid-template-columns: 5.6rem 1fr; gap: .7rem; font-size: 1.05rem; line-height: 1.4; }
+    .cal .m { font-size: 1rem; }
+    .yir figure { display: flex; flex-direction: column; min-height: 0; }
+    .yir figure img { flex: 1 1 0; min-height: 0; height: auto; aspect-ratio: auto; width: 100%; object-fit: cover; object-position: 50% 50%; }
+    .yir figcaption { font-size: .9rem; line-height: 1.4; }
+
+    /* v. Learning in public: the four figures as display numerals, two by two */
+    .reach { grid-template-columns: 1fr; margin: auto 0; }
+    .rlist { display: grid; grid-template-columns: 1fr 1fr; column-gap: 96px; }
+    .rlist li { padding: 1.6rem 0 2rem; }
+    .rlist .row { flex-direction: column-reverse; align-items: flex-start; gap: .5rem; font-size: 1.45rem; }
+    .rlist .row::after { display: none; }
+    .rlist .v { font-size: 5.2rem; font-weight: 800; line-height: .95; letter-spacing: -.01em; }
+    .rlist p { font-size: 1.15rem; margin-top: .35rem; }
+
+    /* vi. Thanks: the prose over a photograph from Convocation (added by make-pdf.mjs), level with the contact block */
+    .thanks { flex: 1; grid-template-columns: 1fr 440px; gap: 112px; margin-top: 2.2rem; align-items: stretch; }
+    .thanks .prose { display: flex; flex-direction: column; font-size: 1.3rem; line-height: 1.65; max-width: none; }
+    .thanks .prose .versal { margin-top: 0 !important; }
+    .thanks .prose p { max-width: 40rem; }
+    .thanks-photo { flex: 1 1 0; min-height: 0; margin: 1.8rem 0 0; }
+    .thanks-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+    .thanks > div:last-child { display: flex; flex-direction: column; }
+    .thanks .contact { margin-top: auto; }
+    .events h3, .contact h3 { font-size: 1.05rem; }
+    .events li { grid-template-columns: 6.2rem 1fr; padding: .9rem 0; font-size: 1.15rem; }
+    .events .d { font-size: 1.05rem; }
+    .events em { font-size: 1rem; }
+    .contact { font-size: 1.1rem; }
+
+    /* vii. Finances: two tables, and under them the trend and the notes on the same two columns */
+    .fin { grid-template-columns: 1fr 1fr; gap: 96px; margin-top: 0; }
+    .fin th, .fin td { padding: .3rem 0; font-size: 1.05rem; }
+    .fin td.amt, .fin thead th { padding-left: 1rem; }
+    .fin td.share { width: 22%; padding-left: 1.4rem; }
+    .fin .sbar { height: .7rem; }
+    .fin tr.sub th, .fin tr.sub td { padding-top: .2rem; padding-bottom: .2rem; }
+    .fin tr.group th { padding-top: 1.6rem; }
+    .fin thead th { font-size: .9rem; padding-bottom: .4rem; }
+    .fin .net { font-size: 1.1rem; margin-top: 1.2rem; }
+    #finances .fin { flex: 0 1 auto; margin-top: 1.3rem; }
+    #finances .fin-foot { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: end; }
+    .trend { margin: 0; }
+    .trend .plot { height: 80px; margin: 40px 24px 26px; }
+    .trend .v { font-size: .95rem; }
+    .trend .yr { font-size: .9rem; }
+    .fin-notes { font-size: 1rem; max-width: none; }
+    #finances .fin-notes { grid-template-columns: 1fr; gap: .8rem; margin: 0; }
+    #position .fin-notes { grid-template-columns: 1fr; margin: 0; align-self: center; font-size: 1.05rem; }
+
+    /* Back */
+    .back { min-height: 0; grid-template-columns: 1fr 1px 1fr; gap: 80px; align-content: end; align-items: end; padding: 104px 112px 96px; break-after: auto; page-break-after: auto; }
     .back .rule { display: block; align-self: stretch; }
-    .back .mark { width: 1.35in; margin-bottom: .22in; }
+    .back .mark { width: 140px; margin-bottom: 1.4rem; }
     .back::before { left: 0; width: 100%; transform: none; transition: none; background-image: var(--veil), url(img/back-windows.jpg); }
     .back::after { left: 0; width: 100%; }
-    .cover h1 { font-size: 5.6rem; }
-    .order li a { padding: .75rem 0; font-size: 1.2rem; }
-    .glance h3, .fin h3, .trend h3 { margin-bottom: 1.2rem; }
-    #glance, #year, #public, #thanks, #finances, #fin-detail, #position { display: flex; flex-direction: column; }
-    .glance, .yir, .reach, .thanks, .fin { flex: 1; align-content: center; }
-    .fin-notes { margin-bottom: .2in; }
-    #finances .fin { margin-top: .16in; }
-    #finances .fin h3, .trend h3 { margin-bottom: .6rem; }
-    #finances .fin th, #finances .fin td { padding: .24rem 0; }
-    #finances .fin .net { margin-top: .8rem; }
-    /* The donations chart takes the bottom band, with the notes in a column beside it. */
-    .fin-foot { display: grid; grid-template-columns: 1fr 2.55in; gap: .55in; align-items: end; }
-    .trend { margin: 0; }
-    .trend .plot { height: 1.24in; margin: .24in .55in .28in .55in; }
-    .trend .src { margin-top: 0; }
-    #finances .fin-notes { grid-template-columns: 1fr; gap: .12in; margin: 0; }
-    #position .fin-notes { grid-template-columns: 1fr; margin: 0; align-self: center; font-size: 1.04rem; }
-    .ledger div { padding: .8rem 0; font-size: 1.12rem; }
-    .bars { gap: 1.3rem; }
-    .bar .track { height: .9rem; }
-    .bar .yr, .bar .v { font-size: 1.04rem; }
-    .glance h3[style] { margin-top: 2.6rem !important; }
-    .cal li { padding: .75rem 0; font-size: 1.04rem; }
-    .rlist li { padding: .85rem 0; }
-    .rlist .row { font-size: 1.2rem; }
-    .rlist p { font-size: 1.04rem; }
-    .thanks .prose { font-size: 1.2rem; line-height: 1.65; }
-    .events li { padding: 1rem 0; font-size: 1.1rem; }
-    .contact { font-size: 1.04rem; }
-    .fin th, .fin td { padding: .5rem 0; font-size: 1rem; }
-    .fin td.share { width: 16%; }
-    .fin td.amt, .fin thead th { padding-left: .7rem; }
-    .fin tr.group th { padding-top: 1.6rem; }
-    .fin tr.sub th, .fin tr.sub td { padding-top: .38rem; padding-bottom: .38rem; }
-    .fin thead th { font-size: .82rem; padding-bottom: .4rem; }
-    .fin .sbar { height: .65rem; }
-    .fin .net { font-size: 1.08rem; margin-top: 1.6rem; }
-    .fin-notes { font-size: .95rem; }
-    .lede { font-size: 1.3rem; }
-    h2.section { font-size: 2.6rem; margin-bottom: .8rem; }
+    .back .legal { font-size: 1rem; }
   }
 </style>
 </head>
@@ -585,7 +657,7 @@
       <div class="folio">6</div>
     </section>
 
-    <!-- ii. Alum: Caleb Ratzlaff (draft from the C0144 interview with Hector Acero Ferrer; awaiting his review. MA in Philosophy 2018 and Land Trust chair confirmed by ICS Communications 2026-11-05; Westview Christian Fellowship, 124 Queenston St, St. Catharines (westviewcf.com), pastor for seven years per Canadian Mennonite, 23 Mar 2023, “Journey from pastor to politician”; Ward 4 from calebratzlaff4ward4.com. Still open: thesis title, transit commissioner role, which seminar Bob Sweetman taught, the Grandmothers series wording.
+    <!-- ii. Alum: Caleb Ratzlaff (draft from the C0144 interview with Hector Acero Ferrer; awaiting his review. MA in Philosophy 2018 and Land Trust chair confirmed by ICS Communications 2026-11-05; Westview Christian Fellowship, 124 Queenston St, St. Catharines (westviewcf.com), pastor for seven years per Canadian Mennonite, 23 Mar 2023, “Journey from pastor to politician”; Ward 4 from calebratzlaff4ward4.com. Thesis title confirmed by ICS Communications 2026-11-11. Still open: transit commissioner role, which seminar Bob Sweetman taught, the Grandmothers series wording.
          Film: img/caleb-ratzlaff-clip.mp4, re-encoded at 1080×1350 from Drive "Ratzlaff_ImpactReport_Clip2 - Social (chyron + captions).mp4"; captions are burned in) -->
     <section class="sheet feature-a mirror" aria-label="Caleb Ratzlaff" data-section-part="students">
       <figure class="photo">
@@ -618,7 +690,7 @@
         </div>
         <aside>
           <p class="ph-note draft">Profile awaiting Caleb’s review.</p>
-          <p class="note">Thesis: <span class="ph">[title]</span></p>
+          <p class="note">MA thesis, 2018: <i>Relationship Issues: Forgiveness and Promising According to Hannah Arendt and Jacques Derrida</i></p>
           <p class="note">Councillor for Ward 4 (St. Patrick’s), St. Catharines; re-elected 2026</p>
           <p class="note">Chair, Community Land Trust of Niagara</p>
           <p class="note">Before ICS: a year at McMaster Divinity College</p>
@@ -660,7 +732,6 @@
             <div><dt>Active program students</dt><dd>38</dd></div>
             <div><dt>Graduates, Convocation 2026</dt><dd>4</dd></div>
           </dl>
-          <p class="src">Highlighted values repeat 2024–25 figures as stand-ins.</p>
         </div>
       </div>
       <div class="folio">9</div>
@@ -704,7 +775,6 @@
           <li><div class="row"><span class="k">Substack subscribers</span><span class="v">1,400+</span></div><p>Essays on faith, scholarship, and public life.</p></li>
         </ol>
       </div>
-      <p class="src" style="margin-top:2rem">Highlighted figures repeat 2024–25 numbers as stand-ins.</p>
       <div class="folio">11</div>
     </section>
 

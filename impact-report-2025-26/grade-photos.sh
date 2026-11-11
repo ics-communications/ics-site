@@ -6,6 +6,7 @@
 # A few photos need a correction first so they land with the rest (keyed on output name):
 #   president-portrait: cream wall and red cardigan ran orange; cooled, with added contrast.
 #   alayna-erickson:    bright white room left her washed out; darker midtones, more contrast.
+#   caleb-ratzlaff:     read darker than his sunlit interview film beside it; midtones lifted.
 #
 # Usage: ./grade-photos.sh <ungraded source> <output>   (quality: jpg 86, webp 88)
 # Grade from the ungraded original, never from a file already in img/: the grade stacks.
@@ -17,6 +18,7 @@ pre=()
 case $(basename "$out") in
   president-portrait.*) pre=(-channel R -evaluate multiply 0.95 -channel B -evaluate multiply 1.05 +channel -modulate 100,95 -sigmoidal-contrast 2x50%) ;;
   alayna-erickson-*)    pre=(-gamma 0.88 -sigmoidal-contrast 2x45%) ;;
+  caleb-ratzlaff.*)     pre=(-gamma 1.12) ;;
 esac
 convert "$in" -auto-orient "${pre[@]}" +level 3%,98% -modulate 100,82 \
   -channel R -evaluate multiply 1.025 -channel B -evaluate multiply 0.965 +channel \

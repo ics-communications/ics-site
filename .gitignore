@@ -7,3 +7,6 @@ _scripts/
 
 # Word exports for copy review (see the copy-review skill)
 copy-review/
+
+# Impact report PDF builder (internal; its output goes to copy-review/)
+impact-report-2025-26/make-pdf.mjs
