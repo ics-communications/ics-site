@@ -395,3 +395,26 @@ day, `<th scope="row">` for the slot — so a screen reader can say "Wednesday,
 phone, so below about 46rem the grid scrolls sideways **inside its own box**
 while the page itself never scrolls horizontally, and the time column stays
 pinned to the left edge so no square is ever left without a time on it.
+
+## The Impact Report lives in two repos
+
+The Impact Report 2025–26 is kept in two places, and the two copies must stay identical:
+
+- ics-site: `impact-report-2025-26/`
+- supporters: `26-impact/`, served at https://supporters.icscanada.edu/26-impact/ (the supporters front page forwards to it)
+
+**Every change made in one must be made in the other, in the same sitting, and committed and pushed in both repos.** The easiest way is to edit one copy, then copy the folder across:
+
+```
+rsync -a --exclude='._*' --exclude=.DS_Store <edited folder>/ <other folder>/
+```
+
+Then check that they match (no output means identical):
+
+```
+diff -rq --exclude='._*' --exclude=.DS_Store \
+  /workspace/transferportal/Github/ics-site/impact-report-2025-26 \
+  /workspace/transferportal/Github/supporters/26-impact
+```
+
+`make-pdf.mjs` is gitignored in both repos but kept identical too. It writes the PDF to that repo's `copy-review/impact-report-2025-26/`, and its links point to supporters.icscanada.edu/26-impact/. The favicon link (`../assets/logos/ics-favicon.png`) works in both repos because each has that file.
