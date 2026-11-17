@@ -417,4 +417,4 @@ diff -rq --exclude='._*' --exclude=.DS_Store \
   /workspace/transferportal/Github/supporters/26-impact
 ```
 
-`make-pdf.mjs` is gitignored in both repos but kept identical too. It writes the PDF to that repo's `copy-review/impact-report-2025-26/`, and its links point to supporters.icscanada.edu/26-impact/. The favicon link (`../assets/logos/ics-favicon.png`) works in both repos because each has that file.
+`make-pdf.mjs` is gitignored in both repos but kept identical too. Drafts and the annual edition go to that repo's `copy-review/impact-report-2025-26/`. `--final` writes the published PDF, `ICS-Impact-Report-2025-26.pdf`, next to `index.html`, where the page's two Download links point; build it in one repo and copy it across with the folder, since a second build differs byte for byte. Its links point to supporters.icscanada.edu/26-impact/. The favicon link (`../assets/logos/ics-favicon.png`) works in both repos because each has that file.
