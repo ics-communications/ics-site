@@ -111,6 +111,8 @@
   .order li a:hover .t { color: var(--rubric); }
   .order .n { font-family: "Spectral SC", serif; color: var(--rubric); }
   .order .pg { text-align: right; color: var(--grey); font-size: .9rem; padding-top: .2rem; font-variant-numeric: tabular-nums oldstyle-nums; }
+  /* Page numbers belong to the PDF only (make-pdf.mjs fills the empty .pg spans); on screen the contents are links */
+  @media screen { .order .pg { display: none; } .order li a { grid-template-columns: 3rem 1fr; } }
   .cover .fine { font-size: .82rem; font-style: italic; color: rgb(255 255 255 / .9); margin-top: 1.4rem; max-width: 22rem; }
   .cover .fine a { color: var(--ink); text-decoration-color: var(--rubric); }
   @media (min-width: 52rem) {
@@ -554,13 +556,13 @@
       <div class="order">
         <h2 class="sc">The Order of this Report</h2>
         <ol>
-          <li><a href="#letter"><span class="n">i.</span><span class="t">A Letter from the President</span><span class="pg">2</span></a></li>
-          <li><a href="#students"><span class="n">ii.</span><span class="t">Our Students</span><span class="pg">3</span></a></li>
-          <li><a href="#glance"><span class="n">iii.</span><span class="t">Students at a Glance</span><span class="pg">9</span></a></li>
-          <li><a href="#year"><span class="n">iv.</span><span class="t">The Year in Review</span><span class="pg">10</span></a></li>
-          <li><a href="#public"><span class="n">v.</span><span class="t">Learning in Public</span><span class="pg">11</span></a></li>
-          <li><a href="#thanks"><span class="n">vi.</span><span class="t">With Thanks</span><span class="pg">12</span></a></li>
-          <li><a href="#finances"><span class="n">vii.</span><span class="t">Finances</span><span class="pg">13</span></a></li>
+          <li><a href="#letter"><span class="n">i.</span><span class="t">A Letter from the President</span><span class="pg"></span></a></li>
+          <li><a href="#students"><span class="n">ii.</span><span class="t">Our Students</span><span class="pg"></span></a></li>
+          <li><a href="#glance"><span class="n">iii.</span><span class="t">Students at a Glance</span><span class="pg"></span></a></li>
+          <li><a href="#year"><span class="n">iv.</span><span class="t">The Year in Review</span><span class="pg"></span></a></li>
+          <li><a href="#public"><span class="n">v.</span><span class="t">Learning in Public</span><span class="pg"></span></a></li>
+          <li><a href="#thanks"><span class="n">vi.</span><span class="t">With Thanks</span><span class="pg"></span></a></li>
+          <li><a href="#finances"><span class="n">vii.</span><span class="t">Finances</span><span class="pg"></span></a></li>
         </ol>
         <p class="fine">Figures cover the academic year September 2025 to August 2026 unless marked otherwise.<span class="screen-only"> <a href="ICS-Impact-Report-2025-26.pdf">Download the PDF</a>.</span></p>
       </div>
