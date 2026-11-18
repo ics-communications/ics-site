@@ -46,55 +46,64 @@
 
 
 <!-- ═══════════════════════════════════════════
-     ANNOUNCEMENT BANNER — F2BF Fall 2026: Broken Hallelujah
+     ANNOUNCEMENT BANNER — ART in Orvieto, Summer 2027
      ═══════════════════════════════════════════ -->
-<!-- data-expires: the banner removes itself after this moment (the first
-     class, Tuesday Nov 3 at 6:30 PM ET). Update or drop the attribute when
-     swapping in the next announcement. Course facts come from the F2BF
-     courses page (f2bf repo, f2bf-courses/index.html). -->
-<section class="announce" data-expires="2026-11-03T18:30:00-05:00" aria-labelledby="announce-heading">
+<!-- data-expires: the banner removes itself after the final application
+     deadline (end of March 31, 2027, ET). The Early Bird line carries its
+     own data-expires and drops out after January 31. Facts come from the
+     art-in-orvieto repo (PRODUCT.md, Perspective-F26/back-cover.html); the
+     painting is the F26 campaign image (Perspective-F26/assets/f24-painting.jpg). -->
+<section class="announce announce--orvieto" data-expires="2027-03-31T23:59:59-04:00" aria-labelledby="announce-heading">
   <div class="announce__accent-top"></div>
   <div class="announce__inner container">
 
-    <a class="announce__photo" href="https://f2bf.icscanada.edu/f2bf-courses" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+    <a class="announce__arch" href="https://art-in-orvieto.icscanada.edu" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
       <img
-        src="assets/images/angela-reitsma-bick.jpg"
+        src="assets/images/art-in-orvieto-painting.jpg"
         alt=""
-        width="1080" height="800"
+        width="560" height="700"
+        loading="lazy" decoding="async"
       >
     </a>
 
     <div class="announce__text-col">
-      <p class="announce__date">Fall Course &middot; Free to be Faithful</p>
       <h2 class="announce__heading" id="announce-heading">
-        Broken Hallelujah
-        <span class="announce__subhead">Faith, deconstruction, and spirituality through music, with Angela Reitsma Bick</span>
+        ART <em>in</em> Orvieto
+        <span class="announce__subhead">Art, Religion, and Theology: a summer seminar and studio residency in a 13th-century monastery in Orvieto, Italy</span>
       </h2>
 
       <ul class="announce__facts">
-        <li>Tuesdays, Nov&nbsp;3 to Dec&nbsp;8</li>
-        <li>6:30&nbsp;PM ET</li>
-        <li>6 weeks</li>
-        <li>Online</li>
+        <li>July&nbsp;18 to August&nbsp;5, 2027</li>
+        <li>For credit or audit</li>
       </ul>
 
       <p class="announce__body">
-        What happens to faith when trust is broken, certainty gives way to doubt, or the Church no longer feels like home? Drawing on stories gathered for her book <cite>Blessed Are the Undone</cite>, former <cite>Christian Courier</cite> editor-in-chief Angela Reitsma Bick explores faith, deconstruction, and spiritual longing through music and poetry, from Leonard Cohen&rsquo;s &ldquo;broken Hallelujah&rdquo; to contemporary songwriters and poets.
+        Three weeks of theological study and working studio practice for artists, art teachers, and graduate students, with excursions to Rome, Assisi, and Florence. Rebekah Smick leads the graduate seminar, <cite>Theologies of Art in the Christian Tradition</cite>, and David Holt leads the artists&rsquo; studio residency.
       </p>
 
+      <dl class="announce__deadlines">
+        <div class="announce__deadline" data-expires="2027-01-31T23:59:59-05:00">
+          <dt>Early Bird deadline <span>for one of eight $500 scholarships</span></dt>
+          <dd><time datetime="2027-01-31">January 31, 2027</time></dd>
+        </div>
+        <div class="announce__deadline">
+          <dt>Final application deadline</dt>
+          <dd><time datetime="2027-03-31">March 31, 2027</time></dd>
+        </div>
+      </dl>
+
       <div class="announce__action">
-        <a class="announce__cta" href="https://f2bf.icscanada.edu/f2bf-courses" target="_blank" rel="noopener">
-          Course Details
+        <a class="announce__cta" href="https://art-in-orvieto.icscanada.edu" target="_blank" rel="noopener">
+          Learn More and Apply
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <p class="announce__note">Take it for your own enrichment, or for graduate credit.</p>
       </div>
     </div>
   </div>
 </section>
 <script>
   // Inline so an expired banner is gone before first paint.
-  document.querySelectorAll('.announce[data-expires]').forEach(function (el) {
+  document.querySelectorAll('.announce[data-expires], .announce [data-expires]').forEach(function (el) {
     if (Date.now() > Date.parse(el.dataset.expires)) el.remove();
   });
 </script>

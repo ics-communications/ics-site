@@ -466,6 +466,86 @@ a { text-decoration: none; color: inherit; }
   stroke-linecap: round; stroke-linejoin: round;
 }
 
+/* Program artwork set in an arched niche: the arch is the ART in Orvieto
+   campaign's shape (Perspective F26 poster, card and back cover), here in
+   ICS copper. A hairline arch stands 8px off the plate like a frame line. */
+.announce__arch {
+  position: relative;
+  display: block;
+  width: 270px;
+  aspect-ratio: 4 / 5;
+  margin: 8px;
+  border-radius: 135px 135px 0 0;
+  background: var(--parchment);
+}
+
+.announce__arch::before {
+  content: '';
+  position: absolute; inset: -8px;
+  border: 1px solid rgba(168,90,50,0.45);
+  border-bottom: none;
+  border-radius: 143px 143px 0 0;
+  pointer-events: none;
+}
+
+.announce__arch img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: filter 0.6s var(--ease);
+  filter: saturate(0.92);
+}
+
+.announce:hover .announce__arch img { filter: saturate(1.05); }
+
+.announce--orvieto .announce__heading {
+  font-size: 2.5rem;
+}
+
+.announce--orvieto .announce__heading em {
+  font-weight: 400;
+  color: var(--accent-deep);
+}
+
+.announce--orvieto .announce__subhead { text-wrap: pretty; }
+
+.announce__body cite { font-style: italic; }
+
+/* Deadlines as a short ruled ledger: label left, date right. */
+.announce__deadlines {
+  margin: 0.15rem 0 0;
+  font-family: var(--sans);
+  text-align: left;
+}
+
+.announce__deadline {
+  display: flex; flex-wrap: wrap;
+  align-items: baseline; justify-content: space-between;
+  gap: 0.15rem 1.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+}
+
+.announce__deadline dt {
+  font-size: 0.86rem; font-weight: 600;
+  color: var(--text-dark);
+}
+
+.announce__deadline dt span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-body);
+}
+
+.announce__deadline dd {
+  margin: 0;
+  font-size: 0.92rem; font-weight: 600;
+  color: var(--wine);
+  font-variant-numeric: lining-nums tabular-nums;
+  white-space: nowrap;
+}
+
 /* ================================================================
    WHO WE ARE — mission strip
    ================================================================ */
@@ -2016,7 +2096,11 @@ select.rsvp-form__input {
   }
   .announce__book { width: 130px; }
   .announce__photo { width: 150px; }
+  .announce__arch { width: 170px; border-radius: 85px 85px 0 0; }
+  .announce__arch::before { border-radius: 93px 93px 0 0; }
   .announce__heading { font-size: 1.6rem; }
+  .announce--orvieto .announce__heading { font-size: 1.85rem; }
+  .announce__deadlines { width: 100%; }
   .announce__subhead { font-size: 0.95rem; }
   .announce__facts { justify-content: center; font-size: 0.82rem; }
   .announce__facts li + li::before { margin: 0 0.6rem; }
@@ -2150,7 +2234,10 @@ select.rsvp-form__input {
   .announce__inner { padding: 2rem 1rem 2.4rem; }
   .announce__book { width: 112px; }
   .announce__photo { width: 130px; }
+  .announce__arch { width: 150px; border-radius: 75px 75px 0 0; }
+  .announce__arch::before { border-radius: 83px 83px 0 0; }
   .announce__heading { font-size: 1.4rem; }
+  .announce--orvieto .announce__heading { font-size: 1.6rem; }
   .announce__body { font-size: 0.84rem; }
   .announce__quote-text { font-size: 0.84rem; }
 
@@ -2247,6 +2334,7 @@ select.rsvp-form__input {
 @media (prefers-reduced-motion: reduce) {
   .announce__book,
   .announce:hover .announce__book { transition: none; transform: none; }
+  .announce__arch img { transition: none; }
   .reveal {
     opacity: 1;
     transform: none;
