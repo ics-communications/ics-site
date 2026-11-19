@@ -293,6 +293,10 @@
   .fin td.prev { color: var(--grey); }
   .fin tr.sub th { padding-left: 1.2em; font-size: .9em; color: var(--grey); }
   .fin tr.sub td { font-size: .9em; }
+  /* Accounts layout: category heading without a figure, indented components, a ruled subtotal */
+  .fin tr.head th { border-bottom: 0; padding-bottom: .1rem; }
+  .fin tr.subtotal th, .fin tr.subtotal td.amt { font-weight: 600; }
+  .fin tr.sub:has(+ tr.subtotal) td.amt { border-bottom-color: var(--ink); }
   .fin tr.group th { font-family: "Spectral SC", serif; letter-spacing: .05em; font-weight: 600; padding-top: 1.2rem; }
   #position .fin-notes { margin-top: 0; }
   @media (max-width: 40rem) { .fin td.share, .fin thead th.share { display: none; } }
@@ -520,6 +524,7 @@
     .fin .sbar { height: .7rem; }
     .fin tr.sub th, .fin tr.sub td { padding-top: .2rem; padding-bottom: .2rem; }
     .fin tr.group th { padding-top: 1.6rem; }
+    .fin tr.head th { padding-top: 0; padding-bottom: 0; }
     .fin thead th { font-size: .9rem; padding-bottom: .4rem; }
     .fin .net { font-size: 1.1rem; margin-top: 1.2rem; }
     #finances .fin { flex: 0 1 auto; margin-top: 1.3rem; }
@@ -840,10 +845,11 @@
           <h3 id="rev-h">Where our support came from</h3>
           <table aria-labelledby="rev-h">
             <tbody>
-              <tr><th scope="row">Donation income</th><td class="amt">$745,318</td><td class="share"><span class="sbar" style="--p:59" title="59% of revenue"></span></td></tr>
-              <tr class="sub"><th scope="row">Donations</th><td class="amt">577,514</td><td class="share"></td></tr>
+              <tr class="head"><th scope="rowgroup" colspan="3">Donation income</th></tr>
+              <tr class="sub"><th scope="row">General donations</th><td class="amt">$577,514</td><td class="share"></td></tr>
               <tr class="sub"><th scope="row">Church contributions</th><td class="amt">36,794</td><td class="share"></td></tr>
               <tr class="sub"><th scope="row">Bequests</th><td class="amt">131,010</td><td class="share"></td></tr>
+              <tr class="subtotal"><th scope="row">Total donations</th><td class="amt">745,318</td><td class="share"><span class="sbar" style="--p:59" title="59% of revenue"></span></td></tr>
               <tr><th scope="row">Tuition and fees</th><td class="amt">253,162</td><td class="share"><span class="sbar" style="--p:20" title="20% of revenue"></span></td></tr>
               <tr><th scope="row">Investment income</th><td class="amt">114,329</td><td class="share"><span class="sbar" style="--p:9" title="9% of revenue"></span></td></tr>
               <tr><th scope="row">Okia Fund and other fund transfers</th><td class="amt">56,476</td><td class="share"><span class="sbar" style="--p:4" title="4% of revenue"></span></td></tr>
@@ -902,10 +908,11 @@
           <table aria-labelledby="rev-h">
             <thead><tr><th scope="col">Line</th><th scope="col">2025–26</th><th scope="col">2024–25</th><th scope="col" class="share">Share</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Donation income</th><td class="amt">$745,318</td><td class="amt prev">$503,832</td><td class="share"><span class="sbar" style="--p:59" title="59% of the 2025–26 total"></span></td></tr>
-              <tr class="sub"><th scope="row">Donations</th><td class="amt">577,514</td><td class="amt prev">385,626</td><td class="share"></td></tr>
+              <tr class="head"><th scope="rowgroup" colspan="4">Donation income</th></tr>
+              <tr class="sub"><th scope="row">General donations</th><td class="amt">$577,514</td><td class="amt prev">$385,626</td><td class="share"></td></tr>
               <tr class="sub"><th scope="row">Church contributions</th><td class="amt">36,794</td><td class="amt prev">61,496</td><td class="share"></td></tr>
               <tr class="sub"><th scope="row">Bequests</th><td class="amt">131,010</td><td class="amt prev">56,710</td><td class="share"></td></tr>
+              <tr class="subtotal"><th scope="row">Total donations</th><td class="amt">745,318</td><td class="amt prev">503,832</td><td class="share"><span class="sbar" style="--p:59" title="59% of the 2025–26 total"></span></td></tr>
               <tr><th scope="row">Tuition and fees</th><td class="amt">253,162</td><td class="amt prev">175,015</td><td class="share"><span class="sbar" style="--p:20" title="20% of the 2025–26 total"></span></td></tr>
               <tr><th scope="row">Investment income</th><td class="amt">114,329</td><td class="amt prev">120,373</td><td class="share"><span class="sbar" style="--p:9" title="9% of the 2025–26 total"></span></td></tr>
               <tr><th scope="row">Okia Fund and other fund transfers</th><td class="amt">56,476</td><td class="amt prev">201,688</td><td class="share"><span class="sbar" style="--p:4" title="4% of the 2025–26 total"></span></td></tr>
