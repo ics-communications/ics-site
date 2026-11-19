@@ -228,6 +228,17 @@
   .bar.now .fill { background: var(--rubric); }
   .bar .v { text-align: right; font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
   .bar[data-tip]:hover::after, .bar[data-tip]:focus-visible::after { content: attr(data-tip); position: absolute; left: 5rem; bottom: calc(100% + .3rem); background: var(--ink); color: var(--paper); font-size: .8rem; padding: .25rem .55rem; white-space: nowrap; z-index: 2; }
+  /* A year still under way: solid to what has happened (--at), hatched on to the projection, an ink tick where one becomes the other */
+  .bar.proj { margin-top: 1.3rem; }
+  .bar.proj .track { position: relative; display: flex; }
+  .bar.proj .fill { flex: none; width: calc(var(--at) / var(--max) * 100%); }
+  .bar.proj .ahead { flex: none; height: 100%; width: calc((var(--v) - var(--at)) / var(--max) * 100%); background: repeating-linear-gradient(-45deg, var(--leader) 0 1px, transparent 1px 4px); box-shadow: inset 0 0 0 1px var(--leader); }
+  .bar.proj .mark { position: absolute; left: calc(var(--at) / var(--max) * 100%); top: -.4rem; bottom: -.4rem; border-left: 2px solid var(--ink); }
+  .bar.proj .mark span { position: absolute; bottom: calc(100% + .1rem); font-size: .74rem; font-style: italic; line-height: 1; color: var(--grey); white-space: nowrap; }
+  .bar.proj .mark .past { right: .35rem; }
+  .bar.proj .mark .next { left: .35rem; }
+  .bar.proj .v { font-style: italic; }
+  .bar.proj[data-tip]:hover::after, .bar.proj[data-tip]:focus-visible::after { bottom: calc(100% + 1.2rem); right: 0; white-space: normal; }
 
   /* Year in review */
   .yir { display: grid; gap: 2.5rem; margin-top: 2.6rem; }
@@ -453,12 +464,20 @@
     .glance .ledger div { flex: 1; align-items: center; padding: 0; font-size: 1.3rem; border-bottom: 1px solid var(--hair); }
     .glance .ledger div::after { content: none; }
     .glance .ledger dd { margin-left: auto; padding-left: .75rem; }
-    .bars { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; align-items: stretch; }
+    .bars { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; align-items: stretch; }
     .bar { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: .6rem; }
     .bar .v { order: 0; font-size: 1.9rem; line-height: 1; text-align: center; }
     .bar .track { order: 1; flex: none; width: 100%; height: auto; display: block; }
-    .bar .fill { display: block; width: 100%; height: calc(var(--v) / var(--max) * 360px); }
+    .bar .fill { display: block; width: 100%; height: calc(var(--v) / var(--max) * 296px); }
     .bar .yr { order: 2; font-size: 1.15rem; }
+    .bar.proj { margin-top: 0; }
+    .bar.proj .track { display: flex; flex-direction: column-reverse; }
+    .bar.proj .fill { width: 100%; height: calc(var(--at) / var(--max) * 296px); }
+    .bar.proj .ahead { width: 100%; height: calc((var(--v) - var(--at)) / var(--max) * 296px); }
+    .bar.proj .mark { left: -7px; right: -7px; top: auto; bottom: calc(var(--at) / var(--max) * 296px - 1px); border-left: 0; border-top: 2px solid var(--ink); }
+    .bar.proj .mark span { text-align: center; font-size: .85rem; }
+    .bar.proj .mark .next { left: 50%; transform: translateX(-50%); bottom: .45rem; background: var(--paper); padding: .1rem .3rem; }
+    .bar.proj .mark .past { left: 0; right: 0; bottom: auto; top: .45rem; color: var(--paper); }
 
     /* iv. Year in review: the calendar in two columns, the chapel photograph running its full height */
     .yir { grid-template-columns: 1fr 400px; gap: 64px; margin-top: 1.2rem; align-items: stretch; }
@@ -662,7 +681,7 @@
     </section>
 
     <!-- ii. Alum: Caleb Ratzlaff (draft from the C0144 interview with Hector Acero Ferrer; approved for publication by ICS Communications 2026-11-12. MA in Philosophy changed to 2016 by ICS Communications 2026-11-12 (was 2018); Land Trust chair confirmed 2026-11-05; Westview Christian Fellowship, 124 Queenston St, St. Catharines (westviewcf.com), pastor for seven years per Canadian Mennonite, 23 Mar 2023, “Journey from pastor to politician”; Ward 4 from calebratzlaff4ward4.com. Thesis title confirmed by ICS Communications 2026-11-11. Still open: transit commissioner role, which seminar Bob Sweetman taught, the Grandmothers series wording.
-         Film: img/caleb-ratzlaff-clip.mp4, re-encoded at 1080×1350 from Drive "Ratzlaff_ImpactReport_Clip2 - Social (chyron + captions).mp4"; captions are burned in) -->
+         Film: img/caleb-ratzlaff-clip.mp4, Ratzlaff_ImpactReport_Clip2 - Social (chyron + captions) - web 1080x1350, replaced 2026-11-17 with the corrected chyron (MA 2016); captions are burned in) -->
     <section class="sheet feature-a mirror" aria-label="Caleb Ratzlaff" data-section-part="students">
       <figure class="photo">
         <img src="img/caleb-ratzlaff.jpg" alt="Caleb Ratzlaff, in a cream T-shirt, leaning back in an outdoor chair and laughing as he looks off to one side." width="1200" height="1798">
@@ -713,7 +732,12 @@
             <div class="bar" tabindex="0" data-tip="2023–24: 74 unique students" aria-label="2023–24: 74 unique students"><span class="yr">2023–24</span><span class="track"><span class="fill" style="--v:74"></span></span><span class="v">74</span></div>
             <div class="bar" tabindex="0" data-tip="2024–25: 76 unique students" aria-label="2024–25: 76 unique students"><span class="yr">2024–25</span><span class="track"><span class="fill" style="--v:76"></span></span><span class="v">76</span></div>
             <div class="bar now" tabindex="0" data-tip="2025–26: 49 unique students" aria-label="2025–26: 49 unique students"><span class="yr">2025–26</span><span class="track"><span class="fill" style="--v:49"></span></span><span class="v">49</span></div>
+            <!-- 2026–27 is the fiscal year (Jul 2026 to Jun 2027, each course placed by its own start date), from ampEducator on 2026-11-19:
+                 40 unique students registered in taught courses; 25–40 more registered after Nov 19 in each of the past three fiscal years,
+                 so about 74 (65–80). Method and data: Codex/Work/Context-Info/ampEducator-Data/README.md (not in this repo). -->
+            <div class="bar proj" tabindex="0" data-tip="2026–27: 40 so far; about 74 projected (65–80)" aria-label="2026–27: 40 unique students registered by November 19, 2026; about 74 projected for the year, with a range of 65 to 80" style="--at:40; --v:74"><span class="yr">2026–27</span><span class="track"><span class="fill"></span><span class="ahead"></span><span class="mark" aria-hidden="true"><span class="past">40 so far</span><span class="next">projected</span></span></span><span class="v">74</span></div>
           </div>
+          <p class="src">2026–27 counts the fiscal year, July 2026 to June 2027: 40 students had registered by November 19, 2026, and the rest of the year is projected from registration in the past three years.</p>
         </div>
         <div>
           <h3>By program, 2025–26</h3>
