@@ -284,19 +284,23 @@
   .fin caption { text-align: left; }
   .fin th, .fin td { text-align: left; font-weight: 400; padding: .42rem 0; border-bottom: 1px solid var(--hair); vertical-align: middle; }
   .fin td.amt { text-align: right; padding-left: 1rem; white-space: nowrap; }
-  .fin td.share { width: 32%; padding-left: 1rem; }
+  .fin td.share { width: 24%; padding-left: 1rem; }
   .fin .sbar { display: block; height: .5rem; width: calc(var(--p) * 1%); background: var(--ink); }
   .fin tr.total th, .fin tr.total td, .fin tfoot th, .fin tfoot td { font-weight: 600; border-bottom: 2px solid var(--ink); border-top: 1px solid var(--ink); }
   .fin .net { margin-top: 1.2rem; display: flex; justify-content: space-between; font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
   .fin thead th { font-size: .8rem; font-style: italic; color: var(--grey); text-align: right; padding-left: 1rem; white-space: nowrap; }
   .fin thead th:first-child { text-align: left; padding-left: 0; }
   .fin td.prev { color: var(--grey); }
-  .fin tr.sub th { padding-left: 1.2em; font-size: .9em; color: var(--grey); }
-  .fin tr.sub td { font-size: .9em; }
+  .fin tr.sub th { padding-left: 1.2em; color: var(--grey); white-space: nowrap; }
   /* Accounts layout: category heading without a figure, indented components, a ruled subtotal */
-  .fin tr.head th { border-bottom: 0; padding-bottom: .1rem; }
-  .fin tr.subtotal th, .fin tr.subtotal td.amt { font-weight: 600; }
-  .fin tr.sub:has(+ tr.subtotal) td.amt { border-bottom-color: var(--ink); }
+  /* Components sit in an inner figure column, one step left of the main one; only the subtotal steps out,
+     so the main column adds straight down to the total. One short rule under the last component. */
+  .fin { --inner: 6ch; }
+  #fin-detail .fin { --inner: 0ch; } /* two comparative years: no room for an inner column, so components and subtotal share each year's column */
+  .fin tr.head th { border-bottom: 0; padding-bottom: 0; }
+  .fin tr.sub th, .fin tr.sub td { border-bottom: 0; padding-top: .1rem; padding-bottom: .1rem; }
+  .fin tr.sub td.amt { padding-right: var(--inner); }
+  .fin tr.sub:has(+ tr.subtotal) td.amt { padding-bottom: .35rem; background: linear-gradient(var(--ink), var(--ink)) no-repeat left 1rem bottom 0 / calc(100% - 1rem - var(--inner)) 1px; }
   .fin tr.group th { font-family: "Spectral SC", serif; letter-spacing: .05em; font-weight: 600; padding-top: 1.2rem; }
   #position .fin-notes { margin-top: 0; }
   @media (max-width: 40rem) { .fin td.share, .fin thead th.share { display: none; } }
@@ -522,7 +526,7 @@
     .fin td.amt, .fin thead th { padding-left: 1rem; }
     .fin td.share { width: 22%; padding-left: 1.4rem; }
     .fin .sbar { height: .7rem; }
-    .fin tr.sub th, .fin tr.sub td { padding-top: .2rem; padding-bottom: .2rem; }
+    .fin tr.sub th, .fin tr.sub td { padding-top: .05rem; padding-bottom: .05rem; }
     .fin tr.group th { padding-top: 1.6rem; }
     .fin tr.head th { padding-top: 0; padding-bottom: 0; }
     .fin thead th { font-size: .9rem; padding-bottom: .4rem; }
@@ -849,7 +853,7 @@
               <tr class="sub"><th scope="row">General donations</th><td class="amt">$577,514</td><td class="share"></td></tr>
               <tr class="sub"><th scope="row">Church contributions</th><td class="amt">36,794</td><td class="share"></td></tr>
               <tr class="sub"><th scope="row">Bequests</th><td class="amt">131,010</td><td class="share"></td></tr>
-              <tr class="subtotal"><th scope="row">Total donations</th><td class="amt">745,318</td><td class="share"><span class="sbar" style="--p:59" title="59% of revenue"></span></td></tr>
+              <tr class="subtotal"><th scope="row">Total donations</th><td class="amt">$745,318</td><td class="share"><span class="sbar" style="--p:59" title="59% of revenue"></span></td></tr>
               <tr><th scope="row">Tuition and fees</th><td class="amt">253,162</td><td class="share"><span class="sbar" style="--p:20" title="20% of revenue"></span></td></tr>
               <tr><th scope="row">Investment income</th><td class="amt">114,329</td><td class="share"><span class="sbar" style="--p:9" title="9% of revenue"></span></td></tr>
               <tr><th scope="row">Okia Fund and other fund transfers</th><td class="amt">56,476</td><td class="share"><span class="sbar" style="--p:4" title="4% of revenue"></span></td></tr>
@@ -912,7 +916,7 @@
               <tr class="sub"><th scope="row">General donations</th><td class="amt">$577,514</td><td class="amt prev">$385,626</td><td class="share"></td></tr>
               <tr class="sub"><th scope="row">Church contributions</th><td class="amt">36,794</td><td class="amt prev">61,496</td><td class="share"></td></tr>
               <tr class="sub"><th scope="row">Bequests</th><td class="amt">131,010</td><td class="amt prev">56,710</td><td class="share"></td></tr>
-              <tr class="subtotal"><th scope="row">Total donations</th><td class="amt">745,318</td><td class="amt prev">503,832</td><td class="share"><span class="sbar" style="--p:59" title="59% of the 2025–26 total"></span></td></tr>
+              <tr class="subtotal"><th scope="row">Total donations</th><td class="amt">$745,318</td><td class="amt prev">$503,832</td><td class="share"><span class="sbar" style="--p:59" title="59% of the 2025–26 total"></span></td></tr>
               <tr><th scope="row">Tuition and fees</th><td class="amt">253,162</td><td class="amt prev">175,015</td><td class="share"><span class="sbar" style="--p:20" title="20% of the 2025–26 total"></span></td></tr>
               <tr><th scope="row">Investment income</th><td class="amt">114,329</td><td class="amt prev">120,373</td><td class="share"><span class="sbar" style="--p:9" title="9% of the 2025–26 total"></span></td></tr>
               <tr><th scope="row">Okia Fund and other fund transfers</th><td class="amt">56,476</td><td class="amt prev">201,688</td><td class="share"><span class="sbar" style="--p:4" title="4% of the 2025–26 total"></span></td></tr>
