@@ -468,13 +468,13 @@
     .bar { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: .6rem; }
     .bar .v { order: 0; font-size: 1.9rem; line-height: 1; text-align: center; }
     .bar .track { order: 1; flex: none; width: 100%; height: auto; display: block; }
-    .bar .fill { display: block; width: 100%; height: calc(var(--v) / var(--max) * 296px); }
+    .bar .fill { display: block; width: 100%; height: calc(var(--v) / var(--max) * 268px); }
     .bar .yr { order: 2; font-size: 1.15rem; }
     .bar.proj { margin-top: 0; }
     .bar.proj .track { display: flex; flex-direction: column-reverse; }
-    .bar.proj .fill { width: 100%; height: calc(var(--at) / var(--max) * 296px); }
-    .bar.proj .ahead { width: 100%; height: calc((var(--v) - var(--at)) / var(--max) * 296px); }
-    .bar.proj .mark { left: -7px; right: -7px; top: auto; bottom: calc(var(--at) / var(--max) * 296px - 1px); border-left: 0; border-top: 2px solid var(--ink); }
+    .bar.proj .fill { width: 100%; height: calc(var(--at) / var(--max) * 268px); }
+    .bar.proj .ahead { width: 100%; height: calc((var(--v) - var(--at)) / var(--max) * 268px); }
+    .bar.proj .mark { left: -7px; right: -7px; top: auto; bottom: calc(var(--at) / var(--max) * 268px - 1px); border-left: 0; border-top: 2px solid var(--ink); }
     .bar.proj .mark span { text-align: center; font-size: .85rem; }
     .bar.proj .mark .next { left: 50%; transform: translateX(-50%); bottom: .45rem; background: var(--paper); padding: .1rem .3rem; }
     .bar.proj .mark .past { left: 0; right: 0; bottom: auto; top: .45rem; color: var(--paper); }
@@ -731,13 +731,14 @@
           <div class="bars" style="--max: 80">
             <div class="bar" tabindex="0" data-tip="2023–24: 74 unique students" aria-label="2023–24: 74 unique students"><span class="yr">2023–24</span><span class="track"><span class="fill" style="--v:74"></span></span><span class="v">74</span></div>
             <div class="bar" tabindex="0" data-tip="2024–25: 76 unique students" aria-label="2024–25: 76 unique students"><span class="yr">2024–25</span><span class="track"><span class="fill" style="--v:76"></span></span><span class="v">76</span></div>
-            <div class="bar now" tabindex="0" data-tip="2025–26: 49 unique students" aria-label="2025–26: 49 unique students"><span class="yr">2025–26</span><span class="track"><span class="fill" style="--v:49"></span></span><span class="v">49</span></div>
-            <!-- 2026–27 is the fiscal year (Jul 2026 to Jun 2027, each course placed by its own start date), from ampEducator on 2026-11-19:
+            <div class="bar now" tabindex="0" data-tip="2025–26: 58 unique students, July 2025 to June 2026" aria-label="2025–26: 58 unique students, July 2025 to June 2026"><span class="yr">2025–26</span><span class="track"><span class="fill" style="--v:58"></span></span><span class="v">58</span></div>
+            <!-- 2025–26 (58) and 2026–27 are fiscal years. 2025–26 was 49 in the May 2026 report (Fall + Winter only); 58 adds the rest of the fiscal year.
+                 2026–27 is the fiscal year (Jul 2026 to Jun 2027, each course placed by its own start date), from ampEducator on 2026-11-19:
                  40 unique students registered in taught courses; 25–40 more registered after Nov 19 in each of the past three fiscal years,
                  so about 74 (65–80). Method and data: Codex/Work/Context-Info/ampEducator-Data/README.md (not in this repo). -->
             <div class="bar proj" tabindex="0" data-tip="2026–27: 40 so far; about 74 projected (65–80)" aria-label="2026–27: 40 unique students registered by November 19, 2026; about 74 projected for the year, with a range of 65 to 80" style="--at:40; --v:74"><span class="yr">2026–27</span><span class="track"><span class="fill"></span><span class="ahead"></span><span class="mark" aria-hidden="true"><span class="past">40 so far</span><span class="next">projected</span></span></span><span class="v">74</span></div>
           </div>
-          <p class="src">2026–27 counts the fiscal year, July 2026 to June 2027: 40 students had registered by November 19, 2026, and the rest of the year is projected from registration in the past three years.</p>
+          <p class="src">2025–26 and 2026–27 count the fiscal year, July to June. For 2026–27, 40 students had registered by November 19, 2026; the rest of the year is projected from the past three years.</p>
         </div>
         <div>
           <h3>By program, 2025–26</h3>
