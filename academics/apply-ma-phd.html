@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apply to the MA or PhD — Institute for Christian Studies</title>
+<link rel="icon" href="../assets/logos/ics-favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/logos/ics-favicon.png">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Apply online to the ICS MA or PhD in Philosophy: what to prepare, the deadline and fee, admission requirements, and the application form.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Institute for Christian Studies">
+<meta property="og:locale" content="en_CA">
+<meta property="og:title" content="Apply to the MA or PhD — Institute for Christian Studies">
+<meta property="og:description" content="Apply online to the ICS MA or PhD in Philosophy: what to prepare, the deadline and fee, admission requirements, and the application form.">
+<meta property="og:image" content="https://ics-communications.github.io/ics-site/assets/logos/ics-logo.png">
+<meta property="og:image:alt" content="Institute for Christian Studies logo">
+<script>document.documentElement.className += ' js';</script>
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/pages/apply-ma-phd.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     A second version of the MA/PhD apply page (the first lives in the
+     philosophy repo at /apply/), set in this site's world and laid out
+     like the academic calendar: a sticky rail, a ruled ledger, and one
+     lifted panel — here, the form.
+
+     The form below is the same form as the philosophy site's, generated
+     by philosophy/scripts/lib/application.mjs (publish build) and pasted
+     in. js/application.js is a copy of philosophy/src/assets/js/
+     application.js. Both post to the same Apps Script and the same live
+     PayPal account, so field names, ids and data-* hooks must not change
+     here unless they change there too. See the README.
+     ═══════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════
+     HERO — PAGE TITLE
+     ═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <h1 class="hero__title">Apply to the MA or PhD</h1>
+    <p class="hero__sub">Apply online and pay the application fee, then ask your institutions and referees to write to the Academic Registrar. Your answers are saved on this device as you go, so you can come back to finish.</p>
+  </div>
+</section>
+
+<section class="apply">
+
+  <nav class="ap-jump apply-rail" aria-label="Jump to a part of the application">
+    <div class="container">
+      <ul class="ap-jump__list">
+        <li><a href="#before">Before you apply</a></li>
+        <li data-part><a href="#part-about">About you</a></li>
+        <li data-part><a href="#part-program">Program</a></li>
+        <li data-part><a href="#part-history">Education</a></li>
+        <li data-part><a href="#part-languages">Languages</a></li>
+        <li data-part><a href="#part-references">References</a></li>
+        <li data-part><a href="#part-documents">Documents</a></li>
+        <li data-part><a href="#part-declaration">Declaration</a></li>
+        <li data-part><a href="#part-fee">Fee</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container ap-terms">
+
+    <!-- ── Before you apply: set as a calendar term. The date column carries
+         the one figure a reader is scanning for. ── -->
+    <section class="ap-term apply-before" id="before" aria-labelledby="before-title">
+      <header class="ap-term__head">
+        <h2 class="ap-term__name" id="before-title">Before you apply</h2>
+        <p class="ap-term__range">Three things to do, in order, and what each degree asks of you.</p>
+
+        <!-- js/apply-ma-phd.js reads the next MA &amp; PhD deadline from the
+             academic calendar page and fills in the year and the distance.
+             Without it, this static line still holds. -->
+        <p class="ap-term__next apply-deadline" id="apply-deadline">
+          <span class="ap-term__next-label">Deadline</span>
+          <span class="ap-term__next-date" data-deadline-date>February 1</span>
+          <span class="ap-term__next-title" data-deadline-title>Applications for fall admission to the MA and PhD. <a class="inline-link" href="https://www.icscanada.edu/academics/academic-calendar">See the academic calendar</a></span>
+          <span class="ap-term__next-rel" data-deadline-rel></span>
+        </p>
+      </header>
+
+      <div class="ap-term__body">
+        <section class="ap-month" aria-labelledby="m-prepare">
+          <h3 class="ap-month__name" id="m-prepare">Prepare</h3>
+          <ol class="ap-month__list">
+            <li class="ap-ev ap-ev--doc">
+              <span class="ap-ev__day">500–1,000<span class="ap-ev__unit">words</span></span>
+              <span class="ap-ev__main">
+                <span class="ap-ev__title"><strong>Statement of purpose</strong>: how study at ICS will fit with your academic goals.</span>
+                <span class="ap-ev__cat">Document</span>
+              </span>
+            </li>
+            <li class="ap-ev ap-ev--doc">
+              <span class="ap-ev__day">10–20<span class="ap-ev__unit">pages</span></span>
+              <span class="ap-ev__main">
+                <span class="ap-ev__title"><strong>Academic writing sample</strong>, preferably a research paper.</span>
+                <span class="ap-ev__cat">Document</span>
+              </span>
+            </li>
+          </ol>
+        </section>
+
+        <section class="ap-month" aria-labelledby="m-apply">
+          <h3 class="ap-month__name" id="m-apply">Apply</h3>
+          <ol class="ap-month__list">
+            <li class="ap-ev ap-ev--fee">
+              <span class="ap-ev__day">$90<span class="ap-ev__unit">CAD</span></span>
+              <span class="ap-ev__main">
+                <span class="ap-ev__title"><strong>Complete the form below</strong> and pay the application fee in Canadian dollars ($120 after the deadline). Paying sends your application.</span>
+                <span class="ap-ev__cat">Fee</span>
+              </span>
+            </li>
+          </ol>
+        </section>
+
+        <section class="ap-month" aria-labelledby="m-arrange">
+          <h3 class="ap-month__name" id="m-arrange">Then arrange</h3>
+          <ol class="ap-month__list">
+            <li class="ap-ev ap-ev--after">
+              <span class="ap-ev__day">All<span class="ap-ev__unit">institutions</span></span>
+              <span class="ap-ev__main">
+                <span class="ap-ev__title"><strong>Official transcripts</strong> from every post-secondary institution you have attended, sent directly to <a class="inline-link" href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a>.</span>
+                <span class="ap-ev__cat">Transcripts</span>
+              </span>
+            </li>
+            <li class="ap-ev ap-ev--after">
+              <span class="ap-ev__day">2 or 3<span class="ap-ev__unit">letters</span></span>
+              <span class="ap-ev__main">
+                <span class="ap-ev__title"><strong>Academic reference letters</strong>: two for the MA, three for the PhD, plus one personal referee. Referees write to the Registrar directly.</span>
+                <span class="ap-ev__cat">References</span>
+              </span>
+            </li>
+          </ol>
+        </section>
+
+        <section class="ap-month apply-reqs" aria-labelledby="m-reqs">
+          <h3 class="ap-month__name" id="m-reqs">Who can apply</h3>
+          <dl class="ap-month__list">
+            <div class="ap-ev">
+              <dt class="ap-ev__day">MA</dt>
+              <dd class="ap-ev__title">Four-year bachelor’s degree or equivalent, with a B+ average. A concentration related to your intended field is preferred.</dd>
+            </div>
+            <div class="ap-ev">
+              <dt class="ap-ev__day">PhD</dt>
+              <dd class="ap-ev__title">Master’s degree in your intended field. A background in philosophy is encouraged, not required. No master’s thesis? Ask the Program Director about your preparation.</dd>
+            </div>
+            <div class="ap-ev">
+              <dt class="ap-ev__day">English</dt>
+              <dd class="ap-ev__title">English proficiency is required. See the <a class="inline-link" href="https://www.icscanada.edu/admissions/international-students">requirements for international students</a>.</dd>
+            </div>
+            <div class="ap-ev">
+              <dt class="ap-ev__day">Outside Canada</dt>
+              <dd class="ap-ev__title">Write to the Academic Registrar about studying from outside Canada.</dd>
+            </div>
+          </dl>
+        </section>
+        <p class="apply-compare">Compare study options and course loads: <a class="inline-link" href="https://www.icscanada.edu/academics/master-of-arts-in-philosophy">MA in Philosophy</a> · <a class="inline-link" href="https://www.icscanada.edu/academics/phd-program">PhD in Philosophy</a></p>
+      </div>
+    </section>
+
+    <!-- ── The application: the one lifted surface, as the current term is
+         on the calendar. Each fieldset's legend stands in the margin like
+         a month name. ── -->
+    <section class="ap-term ap-term--current apply-form" id="apply-online" aria-labelledby="apply-online-title">
+      <header class="ap-term__head">
+        <h2 class="ap-term__name" id="apply-online-title">Your application</h2>
+        <p class="ap-term__range">Applications are reviewed after the deadline, and you will hear by March.</p>
+      </header>
+
+<!-- FORM:START (from philosophy publish build; keep names and ids in step) -->
+      <div class="af-wrap">
+            <noscript><p class="af-nojs">The online application needs JavaScript. Please write to <a href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a>.</p></noscript>
+            <form class="af" id="application" novalidate aria-label="Apply online" hidden>
+              <p class="af-lede">All fields are required unless marked optional. Your answers are kept on this device until you send them, so you can come back to finish.</p>
+
+              <fieldset id="part-about" class="af-set">
+                <legend>About you</legend>
+                <div class="af-grid">
+                  <div class="af-field"><label for="af-first">First name</label><input id="af-first" name="firstName" autocomplete="given-name" maxlength="100"></div>
+                  <div class="af-field"><label for="af-last">Last name</label><input id="af-last" name="lastName" autocomplete="family-name" maxlength="100"></div>
+                  <div class="af-field"><label for="af-email">Email</label><input id="af-email" name="email" type="email" autocomplete="email" maxlength="200" spellcheck="false"></div>
+                  <div class="af-field"><label for="af-phone">Telephone</label><input id="af-phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></div>
+                  <div class="af-field"><label for="af-dob">Date of birth</label><input id="af-dob" name="dob" type="date" autocomplete="bday" min="1920-01-01"></div>
+                </div>
+                <p class="af-q af-q--sub">Present mailing address</p>
+                <div class="af-grid">
+                  <div class="af-field af-span"><label for="af-street">Street address</label><input id="af-street" name="street" autocomplete="street-address" maxlength="200"></div>
+                  <div class="af-field"><label for="af-city">City</label><input id="af-city" name="city" autocomplete="address-level2" maxlength="100"></div>
+                  <div class="af-field"><label for="af-region">Province / State</label><input id="af-region" name="region" autocomplete="address-level1" maxlength="100"></div>
+                  <div class="af-field"><label for="af-postal">Postal / Zip code</label><input id="af-postal" name="postal" autocomplete="postal-code" maxlength="20"></div>
+                  <div class="af-field"><label for="af-country">Country</label><input id="af-country" name="country" autocomplete="country-name" maxlength="100" value="Canada"></div>
+                </div>
+                <div class="af-field"><label class="af-check"><input type="checkbox" name="sameAddress" value="yes" checked><span>My permanent address is the same as my mailing address</span></label></div>
+                <div class="af-field" data-show-when="sameAddress!=yes"><label for="af-permanent">Permanent address</label><textarea id="af-permanent" name="permanentAddress" rows="3" maxlength="400"></textarea></div>
+              </fieldset>
+
+              <fieldset id="part-program" class="af-set">
+                <legend>Your program</legend>
+              <div class="af-choices" role="radiogroup" aria-labelledby="af-q-program">
+                <p class="af-q" id="af-q-program">Degree program</p>
+                <label class="af-choice"><input type="radio" name="program" value="ma"><span><strong>Master of Arts (MA)</strong><em>Two academic references and one personal reference.</em></span></label>
+                <label class="af-choice"><input type="radio" name="program" value="phd"><span><strong>Doctoral Studies (PhD)</strong><em>Three academic references and one personal reference.</em></span></label>
+              </div>
+        
+                <div class="af-field af-field--start">
+                  <label for="af-start">Intended start</label>
+                  <select id="af-start" name="start" aria-describedby="af-start-note"><option value="">Choose your program first</option></select>
+                  <p class="af-note af-start-note" id="af-start-note" aria-live="polite" hidden></p>
+                </div>
+              </fieldset>
+
+              <fieldset id="part-history" class="af-set">
+                <legend>Academic history</legend>
+                <p class="af-note" id="af-edu-note">List every post-secondary institution you have attended, the degree granted, and the year it was conferred or is expected.</p>
+                <div class="af-edu-rows" id="af-edu-rows" aria-describedby="af-edu-note"></div>
+                <template id="af-edu-template">
+                  <div class="af-edu-row">
+                    <div class="af-field"><label>Institution and location</label><input data-edu="institution" maxlength="200" autocomplete="off"></div>
+                    <div class="af-field"><label>Degree</label><input data-edu="degree" maxlength="150" autocomplete="off"></div>
+                    <div class="af-field af-field--year"><label>Year</label><input data-edu="year" maxlength="30" autocomplete="off"></div>
+                    <button type="button" class="af-row-remove" aria-label="Remove this institution"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                  </div>
+                </template>
+                <button type="button" class="af-add" id="af-edu-add"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add another institution</button>
+                <div class="af-grid af-theses">
+                  <div class="af-field af-span"><label for="af-bacc">Title of your baccalaureate thesis <span class="af-opt">if applicable</span></label><input id="af-bacc" name="baccThesis" autocomplete="off" maxlength="300"></div>
+                  <div class="af-field af-span"><label for="af-masters">Title of your master’s thesis <span class="af-opt">if applicable</span></label><input id="af-masters" name="mastersThesis" autocomplete="off" maxlength="300"></div>
+                </div>
+              </fieldset>
+
+              <fieldset id="part-languages" class="af-set">
+                <legend>Languages</legend>
+                <div class="af-grid">
+                  <div class="af-field"><label for="af-lang">First language</label><input id="af-lang" name="firstLanguage" autocomplete="off" maxlength="100"></div>
+                  <div class="af-field"><label for="af-langs">Other languages you have studied or speak fluently <span class="af-opt">optional</span></label><input id="af-langs" name="otherLanguages" autocomplete="off" maxlength="300"></div>
+                </div>
+              <div class="af-choices" role="radiogroup" aria-labelledby="af-q-english">
+                <p class="af-q" id="af-q-english">English proficiency</p>
+                <p class="af-note">If English is not your first language, send a TOEFL or IELTS score.</p>
+                <label class="af-choice"><input type="radio" name="english" value="first"><span><strong>English is my first language</strong></span></label>
+                <label class="af-choice"><input type="radio" name="english" value="toefl"><span><strong>TOEFL</strong><em>Ask ETS to send your score directly to ICS (institution code 9541). Minimum: 100 internet-based, 250 computer-based or 600 paper-based.</em></span></label>
+                <label class="af-choice"><input type="radio" name="english" value="ielts"><span><strong>IELTS</strong><em>Academic test: an overall band of 7.0, with at least 6.5 in each component. Add your Test Report Form under Documents.</em></span></label>
+              </div>
+              </fieldset>
+
+              <fieldset id="part-references" class="af-set">
+                <legend>References</legend>
+                <p class="af-note">MA applicants list two academic referees and PhD applicants three; everyone lists one personal referee. Your referees send their letters directly to the Academic Registrar; an email address helps the Registrar follow up.</p>
+              <div class="af-ref" data-referee="1">
+                <p class="af-q">Academic referee 1</p>
+                <div class="af-grid af-grid--3">
+                  <div class="af-field"><label for="af-ref1-name">Name</label><input id="af-ref1-name" name="refName1" autocomplete="off" maxlength="150"></div>
+                  <div class="af-field"><label for="af-ref1-inst">Institution</label><input id="af-ref1-inst" name="refInstitution1" autocomplete="off" maxlength="200"></div>
+                  <div class="af-field"><label for="af-ref1-email">Email <span class="af-opt">optional</span></label><input id="af-ref1-email" name="refEmail1" type="email" autocomplete="off" maxlength="200" spellcheck="false"></div>
+                </div>
+              </div>
+              <div class="af-ref" data-referee="2">
+                <p class="af-q">Academic referee 2</p>
+                <div class="af-grid af-grid--3">
+                  <div class="af-field"><label for="af-ref2-name">Name</label><input id="af-ref2-name" name="refName2" autocomplete="off" maxlength="150"></div>
+                  <div class="af-field"><label for="af-ref2-inst">Institution</label><input id="af-ref2-inst" name="refInstitution2" autocomplete="off" maxlength="200"></div>
+                  <div class="af-field"><label for="af-ref2-email">Email <span class="af-opt">optional</span></label><input id="af-ref2-email" name="refEmail2" type="email" autocomplete="off" maxlength="200" spellcheck="false"></div>
+                </div>
+              </div>
+              <div class="af-ref" data-referee="3">
+                <p class="af-q">Academic referee 3 (PhD applicants)</p>
+                <div class="af-grid af-grid--3">
+                  <div class="af-field"><label for="af-ref3-name">Name</label><input id="af-ref3-name" name="refName3" autocomplete="off" maxlength="150"></div>
+                  <div class="af-field"><label for="af-ref3-inst">Institution</label><input id="af-ref3-inst" name="refInstitution3" autocomplete="off" maxlength="200"></div>
+                  <div class="af-field"><label for="af-ref3-email">Email <span class="af-opt">optional</span></label><input id="af-ref3-email" name="refEmail3" type="email" autocomplete="off" maxlength="200" spellcheck="false"></div>
+                </div>
+              </div>
+                <div class="af-ref">
+                  <p class="af-q">Personal referee</p>
+                  <div class="af-grid af-grid--3">
+                    <div class="af-field"><label for="af-personal-name">Name</label><input id="af-personal-name" name="personalName" autocomplete="off" maxlength="150"></div>
+                    <div class="af-field"><label for="af-personal-rel">Relationship to you</label><input id="af-personal-rel" name="personalRelation" autocomplete="off" maxlength="150"></div>
+                    <div class="af-field"><label for="af-personal-email">Email <span class="af-opt">optional</span></label><input id="af-personal-email" name="personalEmail" type="email" autocomplete="off" maxlength="200" spellcheck="false"></div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset id="part-documents" class="af-set">
+                <legend>Documents</legend>
+                <p class="af-note">Upload each document as a PDF or Word file, 10 MB at most, or tick the box to email it to the Registrar later.</p>
+              <div class="af-doc" data-doc="statement" data-name="Statement of purpose" data-types="pdf doc docx odt rtf" data-missing="Upload your statement of purpose, or tick the box to send it separately.">
+                <p class="af-q" id="af-q-statement">Statement of purpose</p>
+                <p class="af-note">500 to 1,000 words on how study at ICS will fit with your academic goals.</p>
+                <div class="af-drop">
+                  <input type="file" id="af-file-statement" accept=".pdf,.doc,.docx,.odt,.rtf" aria-describedby="af-q-statement">
+                  <label for="af-file-statement" class="af-drop-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span><strong>Choose a file</strong> or drop it here</span></label>
+                </div>
+                <ul class="af-files" aria-live="polite"></ul>
+                <label class="af-check"><input type="checkbox" name="statementLater" value="yes"><span>I’ll email it to the Academic Registrar separately</span></label>
+              </div>
+              <div class="af-doc" data-doc="sample" data-name="Academic writing sample" data-types="pdf doc docx odt rtf" data-missing="Upload your academic writing sample, or tick the box to send it separately.">
+                <p class="af-q" id="af-q-sample">Academic writing sample</p>
+                <p class="af-note">Preferably a research paper of 10 to 20 pages.</p>
+                <div class="af-drop">
+                  <input type="file" id="af-file-sample" accept=".pdf,.doc,.docx,.odt,.rtf" aria-describedby="af-q-sample">
+                  <label for="af-file-sample" class="af-drop-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span><strong>Choose a file</strong> or drop it here</span></label>
+                </div>
+                <ul class="af-files" aria-live="polite"></ul>
+                <label class="af-check"><input type="checkbox" name="sampleLater" value="yes"><span>I’ll email it to the Academic Registrar separately</span></label>
+              </div>
+              <div class="af-doc" data-doc="ielts" data-name="IELTS Test Report Form" data-types="pdf jpg jpeg png" data-missing="Upload your IELTS Test Report Form, or tick the box to send it separately." data-show-when="english=ielts">
+                <p class="af-q" id="af-q-ielts">IELTS Test Report Form</p>
+                <p class="af-note">A PDF or a photo of your Test Report Form.</p>
+                <div class="af-drop">
+                  <input type="file" id="af-file-ielts" accept=".pdf,.jpg,.jpeg,.png" aria-describedby="af-q-ielts">
+                  <label for="af-file-ielts" class="af-drop-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span><strong>Choose a file</strong> or drop it here</span></label>
+                </div>
+                <ul class="af-files" aria-live="polite"></ul>
+                <label class="af-check"><input type="checkbox" name="ieltsLater" value="yes"><span>I’ll email it to the Academic Registrar separately</span></label>
+              </div>
+              </fieldset>
+
+              <fieldset id="part-declaration" class="af-set">
+                <legend>Transcripts and declaration</legend>
+                <p class="af-note">Institutions can email official transcripts to <span class="nw">academic-registrar@icscanada.edu</span>, or post them to the Institute for Christian Studies, Attn. Academic Registrar, 59 St. George Street, Toronto, ON M5S 2E6, Canada.</p>
+                <div class="af-field"><label class="af-check"><input type="checkbox" name="transcripts" value="yes"><span>I have asked, or will ask, every post-secondary institution I have attended to send an official transcript directly to ICS.</span></label></div>
+                <div class="af-field"><label class="af-check"><input type="checkbox" name="references" value="yes"><span>I will ask my referees to send their letters directly to the Academic Registrar.</span></label></div>
+                <div class="af-field"><label class="af-check"><input type="checkbox" name="declaration" value="yes"><span>The information in this application is complete and accurate.</span></label></div>
+                <div class="af-field af-sign"><label for="af-signature">Signature <span class="af-opt">type your full name</span></label><input id="af-signature" name="signature" autocomplete="name" maxlength="200"></div>
+              </fieldset>
+
+              <fieldset id="part-fee" class="af-set af-pay">
+                <legend>Application fee</legend>
+                <table class="af-ledger"><tr><td id="af-fee-label">Application fee <span class="af-sub">non-refundable</span></td><td id="af-fee-amount">CAD $90.00</td></tr></table>
+                <p class="af-note">The fee is CAD $90 by the deadline and CAD $120 for a late application, paid by PayPal or card. Financial award applications are due by the same deadline; ask the Registrar for the financial aid form.</p>
+                <div class="af-error" id="af-error" role="alert" tabindex="-1" hidden></div>
+                <p class="af-pay-lede">Paying sends your application. You can pay with a PayPal account or a credit or debit card.</p>
+                <div class="af-paypal" id="af-paypal"><p class="af-pay-status">Loading payment options…</p></div>
+                <p class="af-privacy">Your application goes to the ICS Academic Registrar and is stored privately by the Institute for Christian Studies. See our <a href="https://www.icscanada.edu/about/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>
+              </fieldset>
+            </form>
+
+            <!-- Shown while sending, after success, or if sending fails after payment. -->
+            <div class="af-state" id="af-state" tabindex="-1" hidden aria-live="polite"></div>
+          </div>
+      <!-- FORM:END -->
+    </section>
+
+    <aside class="ap-notes apply-notes" aria-labelledby="notes-title">
+      <h2 class="ap-notes__title" id="notes-title">Fees and questions</h2>
+      <ul class="ap-notes__list">
+        <li>See <a class="inline-link" href="https://www.icscanada.edu/admissions/tuition-fees">current tuition and fees</a>, and ask the Academic Registrar about current financial aid.</li>
+        <li>Unsure about your preparation, or who would supervise you? <a class="inline-link" href="mailto:nderoo@icscanada.edu">Write to Neal DeRoo, Program Director</a>.</li>
+        <li>Questions about the form, documents or deadlines? Write to the Academic Registrar at <a class="inline-link" href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a>.</li>
+      </ul>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<script src="../js/footer.js"></script>
+<script src="../js/extlinks.js"></script>
+<script src="../js/application.js" defer></script>
+<script src="../js/apply-ma-phd.js" defer></script>
+</body>
+</html>

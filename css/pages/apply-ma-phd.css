@@ -1,0 +1,1281 @@
+/* ============================================================
+   apply-ma-phd
+   Page-specific styles. Loaded AFTER css/styles.css, which
+   supplies the shared design system (tokens, buttons, hero,
+   footer). Only rules that differ from the shared sheet live
+   here.
+
+   The page borrows the academic calendar's grammar rather than
+   its stylesheet (classes here are ap-, so a change to the
+   calendar can never move this page):
+
+     - the wine hero band with its copper hairline;
+     - a sticky rail naming each part of the application;
+     - "Before you apply" set as a term: a ruled ledger whose
+       date column carries the one figure a reader is scanning
+       for (500–1,000 words, $90, 2 or 3 letters);
+     - the form as the one lifted surface, the way the calendar
+       lifts the term under way, with each fieldset's legend
+       standing in the margin like a month name.
+
+   The form markup (af-) and its script come from the philosophy
+   site; only their look is set here.
+   ============================================================ */
+
+:root {
+  /* Height of the sticky rail, so headings park under it. */
+  --ap-rail: 3.35rem;
+
+  /* Secondary text that clears 4.5:1 on --cream and --cream-warm
+     (5.6:1 / 5.3:1). The shared --text-muted lands under 4.5. Same
+     value as the calendar's --cal-past and the timetable's quiet. */
+  --ap-quiet: #6B655F;
+
+  /* Hairlines, as on the calendar. */
+  --ap-rule: rgba(155, 13, 36, 0.13);
+  --ap-rule-soft: rgba(155, 13, 36, 0.07);
+  --ap-field: rgba(155, 13, 36, 0.18);
+
+  /* The legend / month column and the gap after it. */
+  --ap-margin: 9rem;
+  --ap-gutter: 2rem;
+}
+
+::selection {
+  background: var(--accent-pale);
+  color: var(--text-dark);
+}
+
+/* ---------------------------------------------------------- hero */
+/* overrides css/styles.css; the trailing declarations
+   pin back values the shared rule would otherwise impose */
+.hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  position: relative;
+  padding: 4.5rem 0 4rem;
+  overflow: hidden;
+  align-items: initial;
+  display: block;
+  min-height: initial;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 10%, rgba(190,11,40,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.hero .container {
+  position: relative;
+}
+/* overrides css/styles.css */
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+  text-wrap: balance;
+}
+.hero__sub {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-on-dark);
+  max-width: 640px;
+}
+
+/* ------------------------------------------------------ section */
+.apply {
+  background: var(--cream);
+  padding: 0 0 5rem;
+}
+.apply [hidden] {
+  display: none !important;
+}
+
+.inline-link {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.apply a[href^="mailto:"] {
+  white-space: nowrap;
+}
+.inline-link:hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+
+/* ---------------------------------------------------------- rail */
+/* As on the calendar: sticky, solid, full-bleed. The form's parts
+   only appear once the form script can show the form. */
+.ap-jump {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--cream-warm);
+  border-bottom: 1px solid var(--ap-rule);
+}
+.ap-jump__list {
+  list-style: none;
+  display: flex;
+  gap: 1.9rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  padding: 0 0 0.05rem;
+}
+.ap-jump__list::-webkit-scrollbar { display: none; }
+.ap-jump__list [data-part] { display: none; }
+.js .ap-jump__list [data-part] { display: list-item; }
+/* Once the application is sent, the form gives way to the
+   confirmation, and its parts leave the rail with it. */
+.apply:has(#application[hidden]) .ap-jump__list [data-part] { display: none; }
+
+.ap-jump__list a {
+  display: block;
+  white-space: nowrap;
+  padding: 1.05rem 0 0.95rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ap-quiet);
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.ap-jump__list a:hover {
+  color: var(--wine);
+}
+.ap-jump__list a.is-current {
+  color: var(--wine);
+  border-bottom-color: var(--accent);
+}
+
+/* Anchors land below the rail, not under it. */
+.ap-term,
+.af-set {
+  scroll-margin-top: calc(var(--ap-rail) + 1.25rem);
+}
+
+/* ---------------------------------------------------------- term */
+.ap-terms {
+  padding-top: 3.5rem;
+}
+.ap-term {
+  margin-bottom: 4.5rem;
+}
+
+.ap-term__head {
+  padding-bottom: 1.4rem;
+  border-bottom: 2px solid var(--wine);
+}
+.ap-term__name {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.2;
+}
+.ap-term__range {
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ap-quiet);
+  margin-top: 0.4rem;
+  max-width: 62ch;
+}
+
+/* ------------------------------------------------------ deadline */
+/* The calendar's "next up" strip. The one thing on the page that
+   depends on the reader's date, so it gets the page's one authored
+   entrance: it draws in from the left. */
+.ap-term__next {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.85rem;
+  background: var(--accent-pale);
+  padding: 0.95rem 1.2rem;
+  margin-top: 1.6rem;
+  border-left: 1px solid var(--accent);
+  animation: ap-next-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes ap-next-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+.ap-term__next-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+.ap-term__next-date {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--wine);
+  font-variant-numeric: tabular-nums;
+}
+.ap-term__next-title {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+  flex: 1 1 14rem;
+}
+.ap-term__next-rel {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  white-space: nowrap;
+}
+.ap-term__next-rel:empty {
+  display: none;
+}
+
+/* --------------------------------------------------------- month */
+.ap-month {
+  display: grid;
+  grid-template-columns: var(--ap-margin) 1fr;
+  gap: 0 var(--ap-gutter);
+  padding-top: 1.6rem;
+}
+.ap-month__name {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.3;
+  position: sticky;
+  top: calc(var(--ap-rail) + 1.1rem);
+  align-self: start;
+  padding-top: 0.75rem;
+}
+.ap-month__name::before {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 0.6rem;
+}
+.ap-month__list {
+  list-style: none;
+}
+
+/* ---------------------------------------------------------- rows */
+.ap-ev {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0 1.2rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--ap-rule-soft);
+  transition: background-color 0.25s ease;
+}
+.ap-ev:first-child {
+  border-top-color: var(--ap-rule);
+}
+.ap-month__list > .ap-ev:last-child {
+  border-bottom: 1px solid var(--ap-rule-soft);
+}
+.ap-ev:hover {
+  background: rgba(155, 13, 36, 0.022);
+}
+
+.ap-ev__day {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  font-variant-numeric: tabular-nums lining-nums;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+/* The figure's unit, set under it in the facts voice. */
+.ap-ev__unit {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ap-quiet);
+  line-height: 1.5;
+}
+
+.ap-ev__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1.2rem;
+}
+.ap-ev__title {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  flex: 1 1 18rem;
+  max-width: 64ch;
+}
+.ap-ev__title strong {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Category: a dot plus a word, as on the calendar. */
+.ap-ev__cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.ap-ev__cat::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.ap-ev--doc   .ap-ev__cat         { color: var(--accent-deep); }
+.ap-ev--doc   .ap-ev__cat::before { background: var(--accent); }
+.ap-ev--fee   .ap-ev__cat         { color: var(--teal-deep); }
+.ap-ev--fee   .ap-ev__cat::before { background: var(--teal); }
+.ap-ev--after .ap-ev__cat         { color: var(--wine); }
+.ap-ev--after .ap-ev__cat::before { background: var(--wine-mid); }
+.ap-ev--fee .ap-ev__day {
+  color: var(--wine);
+}
+
+/* Who can apply: a definition list on the same ruling, with a
+   wider name column for "Outside Canada". */
+.apply-reqs .ap-ev {
+  grid-template-columns: 8.5rem 1fr;
+}
+.apply-reqs .ap-ev__day {
+  white-space: normal;
+}
+
+.apply-compare {
+  margin: 1.6rem 0 0 calc(var(--ap-margin) + var(--ap-gutter));
+  font-size: 0.88rem;
+  color: var(--text-body);
+}
+
+/* ===================================================== the form */
+/* The one surface lifted off the page ground, in the site's card
+   idiom: hairline box, 3px copper rule along the top. */
+.ap-term--current {
+  background: var(--cream-warm);
+  border: 1px solid var(--ap-rule-soft);
+  border-top: 3px solid var(--accent);
+  padding: 2.4rem 2.2rem 2.4rem;
+  box-shadow: 0 14px 40px rgba(155, 13, 36, 0.06);
+}
+
+.af-wrap {
+  font-size: 0.92rem;
+}
+.af-nojs,
+.af-lede {
+  margin: 1.6rem 0 0 calc(var(--ap-margin) + var(--ap-gutter));
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--accent-deep);
+  max-width: 60ch;
+}
+
+/* Each fieldset is a month: the legend floats into the margin
+   column and rides along while its own fields scroll past. */
+.af-set {
+  border: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 1.6rem 0 0;
+}
+.af-set + .af-set {
+  margin-top: 2.2rem;
+  border-top: 1px solid var(--ap-rule);
+}
+.af-set > legend {
+  float: left;
+  width: var(--ap-margin);
+  position: sticky;
+  top: calc(var(--ap-rail) + 1.1rem);
+  padding: 0.75rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.3;
+}
+.af-set > legend::before {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 0.6rem;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* The part you are filling in: its rule reaches further. */
+.af-set:focus-within > legend::before {
+  width: 52px;
+}
+.af-set > :not(legend) {
+  margin-left: calc(var(--ap-margin) + var(--ap-gutter));
+}
+.af-set > :not(legend):first-of-type,
+.af-set > legend + * {
+  padding-top: 0.75rem;
+}
+
+/* ---------------------------------------------------- questions */
+.af-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+.af-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1rem;
+  margin-bottom: 1.2rem;
+}
+.af-grid--3 {
+  grid-template-columns: 1.1fr 1.1fr 1fr;
+}
+.af-span {
+  grid-column: 1 / -1;
+}
+.af-grid > .af-field,
+.af-edu-row > .af-field {
+  margin-bottom: 0;
+}
+
+.af-field > label:not(.af-check),
+.af-q {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-dark);
+  line-height: 1.45;
+}
+.af-q {
+  margin-bottom: 0.4rem;
+}
+.af-q--sub {
+  margin: 1.6rem 0 0.9rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--ap-rule-soft);
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--wine);
+}
+/* "optional" speaks in the institution's italic voice. */
+.af-opt {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  color: var(--accent-deep);
+  margin-left: 0.2em;
+}
+.af-note {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--ap-quiet);
+  max-width: 62ch;
+  margin-bottom: 0.9rem;
+}
+
+/* -------------------------------------------------------- inputs */
+/* The shared .rsvp-form__input, restated for the af- markup. */
+.af input:not([type="radio"], [type="checkbox"], [type="file"]),
+.af textarea,
+.af select {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: max(16px, 0.95rem);
+  color: var(--text-dark);
+  padding: 0.7em 0.95em;
+  min-height: 46px;
+  border: 1.5px solid var(--ap-field);
+  border-radius: 3px;
+  background: var(--cream);
+  outline: none;
+  caret-color: var(--wine);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.af textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+  line-height: 1.55;
+}
+.af select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 2.6em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%239B0D24' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1em center;
+  background-size: 0.75em auto;
+  cursor: pointer;
+}
+.af select:disabled {
+  color: var(--ap-quiet);
+  background-color: var(--parchment);
+  cursor: not-allowed;
+}
+.af input[type="date"] {
+  color-scheme: light;
+}
+.af input::placeholder,
+.af textarea::placeholder {
+  color: var(--ap-quiet);
+}
+.af :is(input, textarea, select):hover {
+  border-color: rgba(155, 13, 36, 0.34);
+}
+.af :is(input, textarea, select):focus {
+  border-color: var(--wine);
+  box-shadow: 0 0 0 3px rgba(155, 13, 36, 0.08);
+}
+.af :is(input:not([type="radio"], [type="checkbox"]), textarea, select)[aria-invalid="true"] {
+  border-color: var(--wine-mid);
+  box-shadow: 0 0 0 3px rgba(190, 11, 40, 0.12);
+}
+
+.af-error-msg {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--wine-mid);
+}
+
+.af-field--start {
+  max-width: 24rem;
+  margin-top: 1.4rem;
+}
+.af-start-note {
+  margin: 0.3rem 0 0;
+}
+
+/* ------------------------------------------------------- choices */
+.af-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+}
+.af-choices > .af-note {
+  margin-bottom: 0.3rem;
+}
+.af-choice {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.8rem 0.95rem;
+  border: 1.5px solid rgba(155, 13, 36, 0.12);
+  border-radius: 3px;
+  background: var(--cream);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.af-choice:hover {
+  border-color: rgba(155, 13, 36, 0.3);
+}
+.af-choice:has(input:checked) {
+  border-color: var(--wine);
+  background: rgba(155, 13, 36, 0.035);
+}
+.af-choice input,
+.af-check input {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--wine);
+  cursor: pointer;
+}
+.af-choice strong {
+  display: block;
+  font-weight: 500;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+.af-choice em {
+  display: block;
+  margin-top: 0.15rem;
+  font-style: normal;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--ap-quiet);
+}
+.af-choices.has-error .af-choice {
+  border-color: rgba(190, 11, 40, 0.45);
+}
+
+.af-check {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  max-width: 64ch;
+}
+.af-field.has-error .af-check input {
+  outline: 2px solid var(--wine-mid);
+  outline-offset: 1px;
+}
+
+/* ----------------------------------------------- academic history */
+.af-edu-rows {
+  display: grid;
+  gap: 0.9rem;
+}
+.af-edu-row {
+  display: grid;
+  grid-template-columns: 2.2fr 1.5fr 0.8fr 46px;
+  gap: 0 0.8rem;
+  align-items: start;
+}
+.af-edu-row + .af-edu-row {
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--ap-rule-soft);
+}
+.af-edu-row .af-error-msg,
+.af-edu-rows > .af-error-msg {
+  grid-column: 1 / -1;
+}
+.af-row-remove {
+  align-self: end;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-content: center;
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-radius: 3px;
+  color: var(--ap-quiet);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.af-row-remove:hover {
+  color: var(--wine);
+  border-color: var(--ap-field);
+}
+.af svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+
+/* Small outline button: the shared .btn-outline-dark, scaled down. */
+.af-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: 1rem;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wine);
+  background: transparent;
+  border: 1.5px solid var(--wine);
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.af-add:hover {
+  background: var(--wine);
+  color: var(--cream);
+}
+.af-theses {
+  margin-top: 1.4rem;
+}
+
+/* ------------------------------------------------------ referees */
+.af-ref {
+  padding-top: 1rem;
+  border-top: 1px solid var(--ap-rule-soft);
+}
+.af-ref > .af-q {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--wine);
+  margin-bottom: 0.7rem;
+}
+
+/* ----------------------------------------------------- documents */
+.af-doc {
+  padding: 1rem 0 1.3rem;
+  border-top: 1px solid var(--ap-rule-soft);
+}
+.af-doc > .af-q {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--wine);
+  margin-bottom: 0.2rem;
+}
+.af-doc .af-note {
+  margin-bottom: 0.75rem;
+}
+.af-drop {
+  position: relative;
+  border: 1.5px dashed rgba(155, 13, 36, 0.28);
+  border-radius: 3px;
+  background: var(--cream);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.af-drop input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.af-drop-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 4.2rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+  color: var(--text-body);
+  text-align: center;
+}
+.af-drop-label strong {
+  font-weight: 600;
+  color: var(--wine);
+  text-decoration: underline;
+  text-decoration-color: rgba(155, 13, 36, 0.3);
+  text-underline-offset: 3px;
+}
+.af-drop-label svg {
+  color: var(--accent);
+}
+.af-drop:hover,
+.af-drop.is-over {
+  border-color: var(--wine);
+  background: rgba(155, 13, 36, 0.03);
+}
+.af-drop:focus-within {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+.af-doc.has-error .af-drop {
+  border-color: var(--wine-mid);
+}
+.af-files {
+  list-style: none;
+}
+.af-files li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3.2rem;
+  padding: 0.45rem 0.85rem;
+  background: var(--cream);
+  border: 1px solid var(--ap-rule);
+  border-top: 2px solid var(--accent);
+  font-size: 0.88rem;
+}
+.af-files li svg {
+  color: var(--accent);
+}
+.af-file-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-dark);
+}
+.af-file-size {
+  color: var(--ap-quiet);
+  font-variant-numeric: tabular-nums;
+}
+.af-file-remove {
+  min-height: 44px;
+  padding: 0 0.25rem;
+  background: none;
+  border: 0;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  cursor: pointer;
+}
+.af-file-remove:hover {
+  color: var(--wine);
+}
+.af-files .af-file-problem {
+  min-height: 0;
+  margin-top: 0.4rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--wine-mid);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.af-doc .af-check {
+  margin-top: 0.75rem;
+  font-size: 0.84rem;
+}
+
+.af-sign {
+  max-width: 26rem;
+  margin-top: 1.4rem;
+}
+
+/* ------------------------------------------------------------ fee */
+/* The fee is one ledger row: what it is, and the figure. */
+.af-ledger {
+  width: 100%;
+  max-width: 34rem;
+  border-collapse: collapse;
+  margin-bottom: 0.9rem;
+}
+.af-ledger td {
+  padding: 0.85rem 0;
+  border-block: 1px solid var(--ap-rule);
+  vertical-align: baseline;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+}
+.af-ledger td:last-child {
+  text-align: right;
+  white-space: nowrap;
+  padding-left: 1rem;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--wine);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.af-sub {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--accent-deep);
+}
+.af-pay-lede {
+  max-width: 62ch;
+  margin: 1.2rem 0 0.9rem;
+  font-size: 0.9rem;
+  color: var(--text-body);
+}
+.af-paypal {
+  max-width: 26rem;
+  min-height: 3.2rem;
+}
+.af-pay-status {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--accent-deep);
+}
+.af-pay-status a {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+}
+.af-pay-status.is-paid {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--wine);
+}
+/* The shared .btn-accent, at full width. */
+.af-send {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1.6rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.af-send:hover {
+  background: var(--accent-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(168, 90, 50, 0.3);
+}
+.af-privacy {
+  margin-top: 1.4rem;
+  max-width: 62ch;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--ap-quiet);
+}
+.af-privacy a {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168,90,50,0.25);
+}
+
+/* -------------------------------------------- errors and outcomes */
+.af-error {
+  margin: 0 0 1.2rem;
+  padding: 0.85em 1.1em;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: rgba(190, 11, 40, 0.06);
+  border: 1px solid rgba(190, 11, 40, 0.2);
+  border-radius: 3px;
+}
+.af-error strong {
+  font-weight: 600;
+  color: var(--wine-mid);
+}
+.af-error a,
+.af-state a {
+  color: var(--wine);
+  border-bottom: 1px solid rgba(155, 13, 36, 0.3);
+}
+
+.af-state {
+  padding: 2.2rem 0 0.4rem;
+  margin-left: calc(var(--ap-margin) + var(--ap-gutter));
+}
+.af-state h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--wine);
+  margin-bottom: 0.9rem;
+  text-wrap: balance;
+}
+.af-state p {
+  max-width: 62ch;
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+/* While sending: a copper thread that keeps moving. */
+.af-sending-rule {
+  height: 2px;
+  max-width: 26rem;
+  margin-top: 1.6rem;
+  background: linear-gradient(90deg, transparent, var(--accent) 45%, var(--accent-light) 55%, transparent) 0 0 / 40% 100% no-repeat,
+              var(--ap-rule);
+  animation: ap-thread 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes ap-thread {
+  from { background-position: -40% 0, 0 0; }
+  to   { background-position: 140% 0, 0 0; }
+}
+.af-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 3rem;
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ap-rule);
+}
+.af-facts dt {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ap-quiet);
+}
+.af-facts dd {
+  margin-top: 0.15rem;
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--wine);
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0.02em;
+}
+
+.af-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------- notes */
+.ap-notes {
+  border-top: 1px solid var(--ap-rule);
+  padding-top: 2rem;
+  max-width: 68ch;
+}
+.ap-notes__title {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  margin-bottom: 1rem;
+}
+.ap-notes__list {
+  list-style: none;
+}
+.ap-notes__list li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text-body);
+}
+.ap-notes__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ------------------------------------------------------ focus ring */
+.ap-jump__list a:focus-visible,
+.apply a:focus-visible,
+.af :is(button, .af-send):focus-visible,
+.af :is(input[type="radio"], input[type="checkbox"]):focus-visible,
+.af-state:focus-visible,
+.af-error:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+
+/* ----------------------------------------------------- responsive */
+@media (max-width: 1024px) {
+  :root {
+    --ap-margin: 7rem;
+    --ap-gutter: 1.4rem;
+  }
+  .hero {
+    padding: 3rem 0 2.5rem;
+  }
+  .apply {
+    padding-bottom: 3.5rem;
+  }
+  .ap-terms {
+    padding-top: 2.5rem;
+  }
+  .ap-term {
+    margin-bottom: 3.5rem;
+  }
+  .ap-term--current {
+    padding: 1.8rem 1.5rem 1.8rem;
+  }
+  .af-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .af-grid--3 > .af-field:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* The margin column costs more than it gives at this width: each
+   month and each part of the form becomes a plain heading over its
+   own rows, as on the calendar. */
+@media (max-width: 768px) {
+  .ap-month {
+    grid-template-columns: 1fr;
+    padding-top: 1.9rem;
+  }
+  .ap-month__name {
+    position: static;
+    padding-top: 0;
+    margin-bottom: 0.7rem;
+  }
+  .ap-ev {
+    grid-template-columns: 5rem 1fr;
+    gap: 0 0.9rem;
+  }
+  .apply-reqs .ap-ev {
+    grid-template-columns: 5rem 1fr;
+  }
+  .apply-reqs .ap-ev__day {
+    font-size: 0.86rem;
+  }
+  .ap-ev__main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .ap-ev__title {
+    flex: 1 1 auto;
+  }
+  .apply-compare,
+  .af-nojs,
+  .af-lede,
+  .af-state {
+    margin-left: 0;
+  }
+  .ap-term--current {
+    padding: 1.5rem 1rem 1.5rem;
+  }
+  .af-set > legend {
+    float: none;
+    position: static;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.9rem;
+  }
+  .af-set > :not(legend) {
+    margin-left: 0;
+  }
+  .af-set > legend + * {
+    padding-top: 0;
+  }
+  .af-edu-row {
+    grid-template-columns: minmax(0, 1fr) 6rem 46px;
+    gap: 0.8rem 0.6rem;
+  }
+  .af-edu-row > .af-field:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .af-grid,
+  .af-grid--3 {
+    grid-template-columns: 1fr;
+  }
+  .af-edu-row {
+    grid-template-columns: minmax(0, 1fr) 46px;
+  }
+  .af-edu-row > .af-field:nth-child(2) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .ap-jump__list {
+    gap: 1.3rem;
+  }
+  .ap-ev,
+  .apply-reqs .ap-ev {
+    grid-template-columns: 5.6rem 1fr;
+    gap: 0 0.8rem;
+  }
+  .ap-ev__unit {
+    letter-spacing: 0.06em;
+  }
+  .ap-ev__day {
+    font-size: 0.9rem;
+  }
+  .ap-term__next {
+    padding: 0.85rem 1rem;
+  }
+}
+
+@media (hover: none) {
+  .ap-ev:hover {
+    background: transparent;
+  }
+  .af-send:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  .ap-jump__list {
+    scroll-behavior: auto;
+  }
+  .ap-term__next,
+  .af-sending-rule {
+    animation: none;
+  }
+  .af-set > legend::before {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------- print */
+/* A printout is the checklist, not the form. */
+@media print {
+  .hero,
+  .ap-jump,
+  .site-footer,
+  .apply-form {
+    display: none !important;
+  }
+  .apply {
+    padding: 0;
+    background: #fff;
+  }
+  .ap-month__name {
+    position: static;
+  }
+  .ap-term__next {
+    animation: none;
+    background: none;
+    border: 1px solid #000;
+  }
+}
