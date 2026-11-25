@@ -12,6 +12,9 @@ academics/
                           Google Sheet, see "The academic calendar" below
   course-timetable.html   /academics/course-timetable — generated from a
                           Google Sheet, see "The course timetable" below
+  apply-ma-phd.html       /academics/apply-ma-phd — the live MA/PhD application
+                          form (real PayPal payments). Form markup copied from
+                          the philosophy repo's /apply/ build; keep in step
 about/                  /about section
   index.html              About Us
   academic-registrar.html filled job posting, kept so old links still land
@@ -33,6 +36,10 @@ js/
   calendar.js           academic calendar only — pins the current term, hides
                         finished ones
   timetable.js          course timetable only — same, plus the program filter
+  application.js        MA/PhD application form. An exact COPY of
+                        philosophy/src/assets/js/application.js: change both
+  apply-ma-phd.js       apply page only — reads the next MA & PhD deadline from
+                        academic-calendar.html, marks the rail
 scripts/
   sync-calendar.mjs     rebuilds the academic calendar page from the sheet
   sync-timetable.mjs    rebuilds the course timetable page from its sheet
