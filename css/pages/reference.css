@@ -1,0 +1,273 @@
+/* ============================================================
+   reference
+   The referee page. Loaded after css/styles.css and
+   css/pages/apply-ma-phd.css, whose world it shares: the wine
+   hero, the one lifted panel, each part's legend in the margin,
+   the af- form components. Only what this page adds lives here:
+
+     - the ledger naming who the letter is for, set like the
+       apply page's fee row (quiet label, wine serif figure);
+     - the switch between uploading a letter and typing it;
+     - the letter's own writing box.
+   ============================================================ */
+
+/* No rail on this page: the panel sits a little closer to the hero. */
+.rf .ap-terms {
+  padding-top: 3rem;
+}
+.rf .ap-term {
+  scroll-margin-top: 1.25rem;
+}
+
+/* -------------------------------------------------------- ledger */
+/* Applicant, program, due date: the three facts a referee checks
+   before writing, ruled like the apply page's fee row. */
+.rf-ledger {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr) minmax(0, 0.8fr);
+  gap: 0 2rem;
+  margin: 1.8rem 0 0 calc(var(--ap-margin) + var(--ap-gutter));
+  padding: 0.95rem 0 1rem;
+  border-block: 1px solid var(--ap-rule);
+}
+.rf-ledger dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ap-quiet);
+}
+.rf-ledger dd {
+  margin-top: 0.25rem;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--wine);
+  font-variant-numeric: lining-nums;
+  overflow-wrap: anywhere;
+}
+.rf-ledger dd small {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--ap-quiet);
+}
+
+/* While the link is checked: the ledger's ruling with pale bars
+   where the facts will be, and the copper thread under it. */
+.rf-loading {
+  margin-left: calc(var(--ap-margin) + var(--ap-gutter));
+  padding-bottom: 1rem;
+}
+.rf-ledger--ghost {
+  margin-left: 0;
+  min-height: 4.3rem;
+}
+.rf-ledger--ghost span {
+  display: block;
+  height: 0.7rem;
+  margin-top: 0.4rem;
+  border-radius: 2px;
+  background: var(--ap-rule-soft);
+  box-shadow: 0 1.35rem 0 0 var(--ap-rule-soft);
+  width: 70%;
+}
+.rf-ledger--ghost span:nth-child(2) { width: 85%; }
+.rf-ledger--ghost span:nth-child(3) { width: 55%; }
+.rf-loading .af-sending-rule {
+  margin-top: 1.4rem;
+}
+
+/* ---------------------------------------------------- questions */
+.rf-other {
+  max-width: 30rem;
+  margin: -0.6rem 0 1.4rem;
+}
+.rf-known {
+  max-width: 18rem;
+}
+.rf-known + .rf-scale {
+  margin-top: 1.6rem;
+}
+/* Four steps of one scale: two by two where there's room, so they
+   read as a set rather than a list. */
+@media (min-width: 900px) {
+  .rf-scale {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .rf-scale > .af-q,
+  .rf-scale > .af-note,
+  .rf-scale > .af-error-msg {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ------------------------------------------------------- letter */
+.rf-ask {
+  max-width: 62ch;
+  margin-bottom: 1.1rem;
+}
+
+/* Upload or type: two halves of one control, in the choice idiom. */
+.rf-mode {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  margin-bottom: 1.1rem;
+  border: 1.5px solid rgba(155, 13, 36, 0.14);
+  border-radius: 3px;
+  background: var(--cream);
+}
+.rf-mode label {
+  position: relative;
+  cursor: pointer;
+}
+.rf-mode input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.rf-mode span {
+  display: block;
+  border-radius: 2px;
+  padding: 0.6rem 1.15rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ap-quiet);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.rf-mode label:hover span {
+  color: var(--wine);
+}
+.rf-mode input:checked + span {
+  color: var(--wine);
+  background: rgba(155, 13, 36, 0.06);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+.rf-mode input:focus-visible + span {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+
+.rf .af-doc[data-doc="letter"] {
+  max-width: 40rem;
+}
+.rf .af-doc[data-doc="letter"] .af-note {
+  margin-top: 0.6rem;
+}
+
+/* The writing box: a page's measure, a reading line, room to think. */
+.rf-text {
+  max-width: 44rem;
+}
+.rf .rf-text textarea {
+  min-height: 22rem;
+  padding: 1rem 1.1rem;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  resize: vertical;
+}
+.rf-count {
+  margin-top: 0.45rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.rf-count.is-short {
+  color: var(--accent-deep);
+}
+
+/* ----------------------------------------------------- declaration */
+#rf-confidential {
+  max-width: 62ch;
+  margin-bottom: 1rem;
+}
+.rf .af-send {
+  max-width: 26rem;
+  margin-top: 1.8rem;
+}
+.rf .af-send:disabled {
+  cursor: progress;
+  background: var(--accent-muted);
+  transform: none;
+  box-shadow: none;
+}
+.rf #rf-error {
+  max-width: 40rem;
+  margin: 1.6rem 0 0;
+}
+
+/* ------------------------------------------------------- outcomes */
+.rf .af-state {
+  padding-top: 1.8rem;
+}
+.rf .af-state .rf-ledger {
+  margin-left: 0;
+}
+.rf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.6rem;
+  margin-top: 1.6rem;
+}
+.rf-actions .af-send {
+  width: auto;
+  margin: 0;
+  padding-inline: 2rem;
+}
+
+/* ----------------------------------------------------- responsive */
+@media (max-width: 768px) {
+  .rf-ledger,
+  .rf-loading {
+    margin-left: 0;
+  }
+  /* The first legend's rule needs air under the italic lede. A legend
+     sits in its fieldset's border area, so this is margin, not padding. */
+  .rf .af-lede + .af-set {
+    margin-top: 1.6rem;
+    padding-top: 0;
+  }
+}
+@media (max-width: 600px) {
+  .rf-ledger {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  .rf-ledger--ghost {
+    min-height: 0;
+  }
+  .rf-mode {
+    display: flex;
+  }
+  .rf-mode label {
+    flex: 1;
+    text-align: center;
+  }
+  .rf .rf-text textarea {
+    min-height: 16rem;
+  }
+}
+
+@media print {
+  .rf-mode,
+  .rf .af-send,
+  .rf-loading {
+    display: none;
+  }
+}
+
+/* The outcome box takes focus so screen readers announce it; it isn't
+   a control, so it draws no ring. */
+.rf .af-state:focus,
+.rf .af-state:focus-visible {
+  outline: none;
+}

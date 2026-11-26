@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submit a letter of reference — Institute for Christian Studies</title>
+<link rel="icon" href="../assets/logos/ics-favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/logos/ics-favicon.png">
+<!-- The link carries a private token: keep it out of other sites' logs,
+     and out of search. -->
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Referees for MA and PhD applicants to the Institute for Christian Studies submit their letters here.">
+<script>document.documentElement.className += ' js';</script>
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/pages/apply-ma-phd.css">
+<link rel="stylesheet" href="../css/pages/reference.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     The referee page. Each referee reaches it from the link in their
+     request email (?t=<token>); js/reference.js asks the MA/PhD Apps
+     Script what the link is for, fills in the applicant and the
+     referee's details, and posts the letter back to the same script
+     (philosophy/_scripts/ma-phd-references.gs).
+
+     Linked directly at ics-communications.github.io, not through the
+     Google Sites embed, which doesn't pass the token through.
+
+     Set in the apply page's world (css/pages/apply-ma-phd.css): the wine
+     hero, one lifted panel, each part's legend standing in the margin.
+     css/pages/reference.css adds only what this page needs.
+     ═══════════════════════════════════════════ -->
+
+<section class="hero">
+  <div class="container">
+    <h1 class="hero__title">Submit a letter of reference</h1>
+    <p class="hero__sub" id="rf-sub">For an applicant to the MA or PhD at the Institute for Christian Studies, Toronto. Your letter goes to the Academic Registrar and the admissions committee.</p>
+  </div>
+</section>
+
+<section class="apply rf">
+  <div class="container ap-terms">
+
+    <section class="ap-term ap-term--current" id="reference" aria-labelledby="rf-title" aria-busy="true">
+      <header class="ap-term__head">
+        <h2 class="ap-term__name" id="rf-title">Your letter</h2>
+        <p class="ap-term__range" id="rf-range">Checking your link…</p>
+      </header>
+
+      <div class="af-wrap">
+        <noscript><p class="af-nojs">This page needs JavaScript. Please email your letter to <a href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a> instead.</p></noscript>
+
+        <!-- While the link is checked: the outline of what's coming. -->
+        <div class="rf-loading" id="rf-loading" aria-hidden="true">
+          <div class="rf-ledger rf-ledger--ghost">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="af-sending-rule"></div>
+        </div>
+
+        <!-- Who the letter is for. Filled in from the link. -->
+        <dl class="rf-ledger" id="rf-ledger" hidden>
+          <div><dt>Applicant</dt><dd data-fill="applicant"></dd></div>
+          <div><dt>Program</dt><dd data-fill="program"></dd></div>
+          <div><dt>Due</dt><dd data-fill="due"></dd></div>
+        </dl>
+
+        <form class="af" id="rf-form" novalidate aria-label="Letter of reference" hidden>
+          <p class="af-lede" id="rf-lede">All fields are required unless marked optional. What you enter is kept on this device until you send it, so you can come back to finish.</p>
+
+          <fieldset id="part-you" class="af-set">
+            <legend>About you</legend>
+            <div class="af-grid">
+              <div class="af-field"><label for="rf-name">Your name</label><input type="text" id="rf-name" name="name" autocomplete="name" maxlength="150"></div>
+              <div class="af-field"><label for="rf-email">Email</label><input id="rf-email" name="email" type="email" autocomplete="email" maxlength="200" spellcheck="false"></div>
+              <div class="af-field" data-kind="academic"><label for="rf-title-input">Position</label><input type="text" id="rf-title-input" name="title" autocomplete="organization-title" maxlength="150" placeholder="e.g. Associate Professor of Philosophy"></div>
+              <div class="af-field" data-kind="academic"><label for="rf-inst">Institution</label><input type="text" id="rf-inst" name="institution" autocomplete="organization" maxlength="200"></div>
+              <div class="af-field" data-kind="personal"><label for="rf-org">Church or organization <span class="af-opt">optional</span></label><input type="text" id="rf-org" name="organization" autocomplete="organization" maxlength="200"></div>
+              <div class="af-field"><label for="rf-phone">Telephone <span class="af-opt">optional</span></label><input id="rf-phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></div>
+            </div>
+          </fieldset>
+
+          <fieldset id="part-applicant" class="af-set">
+            <legend>The applicant</legend>
+            <div class="af-choices" role="radiogroup" aria-labelledby="rf-q-capacity">
+              <p class="af-q" id="rf-q-capacity">How do you know <span data-fill="first">the applicant</span>?</p>
+              <label class="af-choice" data-kind="academic"><input type="radio" name="capacity" value="instructor"><span><strong>I taught them</strong><em>In one or more courses or seminars.</em></span></label>
+              <label class="af-choice" data-kind="academic"><input type="radio" name="capacity" value="supervisor"><span><strong>I supervised their thesis or research</strong></span></label>
+              <label class="af-choice" data-kind="academic"><input type="radio" name="capacity" value="advisor"><span><strong>I was their academic advisor</strong></span></label>
+              <label class="af-choice" data-kind="academic"><input type="radio" name="capacity" value="colleague"><span><strong>As a colleague or employer</strong></span></label>
+              <label class="af-choice" data-kind="personal"><input type="radio" name="capacity" value="pastor"><span><strong>As their pastor or church leader</strong></span></label>
+              <label class="af-choice" data-kind="personal"><input type="radio" name="capacity" value="colleague"><span><strong>As a colleague or employer</strong></span></label>
+              <label class="af-choice" data-kind="personal"><input type="radio" name="capacity" value="friend"><span><strong>As a friend or mentor</strong></span></label>
+              <label class="af-choice"><input type="radio" name="capacity" value="other"><span><strong>Another way</strong></span></label>
+            </div>
+            <div class="af-field rf-other" data-show-when="capacity=other"><label for="rf-capacity-other">How you know them</label><input type="text" id="rf-capacity-other" name="capacityOther" maxlength="200"></div>
+
+            <div class="af-field rf-known">
+              <label for="rf-known">How long you have known them</label>
+              <select id="rf-known" name="known">
+                <option value="">Choose one</option>
+                <option value="lt1">Less than a year</option>
+                <option value="1-2">1 to 2 years</option>
+                <option value="3-5">3 to 5 years</option>
+                <option value="gt5">More than 5 years</option>
+              </select>
+            </div>
+
+            <div class="af-choices rf-scale" role="radiogroup" aria-labelledby="rf-q-recommend" data-kind="academic">
+              <p class="af-q" id="rf-q-recommend">Your overall recommendation</p>
+              <p class="af-note">For graduate study at ICS, taking everything you know of their work.</p>
+              <label class="af-choice"><input type="radio" name="recommendation" value="highest"><span><strong>With enthusiasm</strong><em>Without reservation.</em></span></label>
+              <label class="af-choice"><input type="radio" name="recommendation" value="recommend"><span><strong>Recommend</strong></span></label>
+              <label class="af-choice"><input type="radio" name="recommendation" value="reservations"><span><strong>With reservations</strong><em>Say what they are in your letter.</em></span></label>
+              <label class="af-choice"><input type="radio" name="recommendation" value="not"><span><strong>Do not recommend</strong></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset id="part-letter" class="af-set">
+            <legend>Your letter</legend>
+            <p class="af-note rf-ask" data-kind="academic">Please comment on <span data-fill="first">the applicant</span>’s academic ability and preparation, their research and writing, and their readiness for graduate study. A signed letter on letterhead is welcome.</p>
+            <p class="af-note rf-ask" data-kind="personal">Please comment on <span data-fill="first">the applicant</span>’s character and maturity, and their readiness for demanding graduate study.</p>
+
+            <div class="rf-mode" role="radiogroup" aria-label="How you’ll give your letter">
+              <label><input type="radio" name="mode" value="upload" checked><span>Upload a file</span></label>
+              <label><input type="radio" name="mode" value="type"><span>Type it here</span></label>
+            </div>
+
+            <div class="af-doc" data-doc="letter" data-show-when="mode=upload">
+              <p class="af-q af-sr" id="rf-q-file">Letter file</p>
+              <div class="af-drop">
+                <input type="file" id="rf-file" accept=".pdf,.doc,.docx,.odt,.rtf" aria-describedby="rf-file-note">
+                <label for="rf-file" class="af-drop-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span><strong>Choose a file</strong> or drop it here</span></label>
+              </div>
+              <ul class="af-files" aria-live="polite"></ul>
+              <p class="af-note" id="rf-file-note">PDF or Word, 10 MB at most.</p>
+            </div>
+
+            <div class="af-field rf-text" data-show-when="mode=type">
+              <label for="rf-letter">Letter</label>
+              <textarea id="rf-letter" name="letter" rows="16" maxlength="30000" aria-describedby="rf-count"></textarea>
+              <p class="af-note rf-count" id="rf-count" aria-live="polite">At least 50 words.</p>
+            </div>
+          </fieldset>
+
+          <fieldset id="part-sign" class="af-set">
+            <legend>Declaration</legend>
+            <p class="af-note" id="rf-confidential">Your letter is read by the Academic Registrar and the admissions committee only, and is not shared with the applicant. They’ll hear that it has arrived, but not what it says.</p>
+            <div class="af-field"><label class="af-check"><input type="checkbox" name="declaration" value="yes"><span>This letter is my own, and accurate to the best of my knowledge.</span></label></div>
+            <div class="af-field af-sign"><label for="rf-signature">Signature <span class="af-opt">type your full name</span></label><input type="text" id="rf-signature" name="signature" autocomplete="name" maxlength="200"></div>
+
+            <div class="af-error" id="rf-error" role="alert" tabindex="-1" hidden></div>
+            <button type="submit" class="af-send" id="rf-send">Send my letter</button>
+            <p class="af-privacy">Sent to the Institute for Christian Studies over an encrypted connection and kept in its admissions records. Questions? Write to the Academic Registrar at <a href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a>.</p>
+          </fieldset>
+        </form>
+
+        <!-- Sending, sent, already received, closed, or a link that doesn't work. -->
+        <div class="af-state" id="rf-state" tabindex="-1" hidden aria-live="polite"></div>
+      </div>
+    </section>
+
+    <aside class="ap-notes" aria-labelledby="notes-title">
+      <h2 class="ap-notes__title" id="notes-title">Questions</h2>
+      <ul class="ap-notes__list">
+        <li>Can’t write a letter, or would rather email it? Reply to the request email, or write to the Academic Registrar at <a class="inline-link" href="mailto:academic-registrar@icscanada.edu">academic-registrar@icscanada.edu</a>.</li>
+        <li>Questions about the program? Write to the Program Director at <a class="inline-link" href="mailto:ma-phd-director@icscanada.edu">ma-phd-director@icscanada.edu</a>.</li>
+      </ul>
+    </aside>
+
+  </div>
+</section>
+
+<script src="../js/footer.js"></script>
+<script src="../js/extlinks.js"></script>
+<script src="../js/reference.js" defer></script>
+</body>
+</html>

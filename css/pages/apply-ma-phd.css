@@ -587,8 +587,14 @@
   max-width: 24rem;
   margin-top: 1.4rem;
 }
-.af-start-note {
+.af-start-note,
+.af-field--start > .af-note {
   margin: 0.3rem 0 0;
+}
+/* Financial aid follows the study-load select; part-time gets one line instead. */
+.af-field--start + .af-choices,
+.af-field--start ~ .af-note {
+  margin-top: 1.4rem;
 }
 
 /* ------------------------------------------------------- choices */
@@ -971,9 +977,14 @@
   line-height: 1.65;
   color: var(--ap-quiet);
 }
-.af-privacy a {
+.af-privacy a,
+.af-note a {
   color: var(--accent-muted);
   border-bottom: 1px solid rgba(168,90,50,0.25);
+}
+.af-note a:hover {
+  color: var(--accent-deep);
+  border-bottom-color: currentColor;
 }
 
 /* -------------------------------------------- errors and outcomes */
