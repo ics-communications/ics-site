@@ -1,0 +1,1228 @@
+/* ============================================================
+   junior-member-handbook
+   Page-specific styles. Loaded AFTER css/styles.css.
+
+   The handbook is set as the academic calendar's companion
+   volume: the same wine hero, the same cream-warm rail with
+   its copper underline, and the same ledger: numbers standing
+   in a margin column, hairline-ruled rows, Baskerville for
+   what is said and Outfit for what is stated. The PDF is
+   printed from this page (see the print section at the end).
+   ============================================================ */
+
+:root {
+  --hb-rail: 3.35rem;
+  --hb-rule: rgba(155, 13, 36, 0.13);
+  --hb-rule-soft: rgba(155, 13, 36, 0.07);
+  --hb-measure: 42rem;
+  /* the calendar's past-event grey: --text-muted fails AA on cream-warm */
+  --hb-quiet: #6B655F;
+}
+
+::selection {
+  background: var(--accent-pale);
+  color: var(--text-dark);
+}
+
+/* ---------------------------------------------------------- hero */
+/* overrides css/styles.css; matches the academic calendar's hero */
+.hb-hero {
+  background: var(--wine-deep);
+  color: var(--cream);
+  position: relative;
+  padding: 4.25rem 0 3.75rem;
+  overflow: hidden;
+  display: block;
+  min-height: initial;
+  align-items: initial;
+}
+.hb-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 90%, rgba(168,90,50,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 10%, rgba(190,11,40,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hb-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light) 40%, transparent 80%);
+}
+.hb-hero__inner {
+  position: relative;
+}
+.hb-hero__logo {
+  width: auto;
+  height: 52px;
+  margin-bottom: 2rem;
+}
+.hb-hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--cream);
+  margin: 0;
+  text-wrap: balance;
+}
+.hb-hero__year {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  line-height: 1.3;
+  color: var(--accent-on-wine);
+  margin: 0.35rem 0 1.3rem;
+  font-variant-numeric: lining-nums;
+}
+.hb-hero .hero__sub {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-on-dark);
+  max-width: 600px;
+  margin: 0;
+}
+.hb-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.8rem;
+  margin-top: 2rem;
+}
+/* the shared button glows; on this page it lifts with a neutral shadow */
+.hb-hero .btn-accent {
+  box-shadow: none;
+}
+.hb-hero .btn-accent:hover {
+  box-shadow: 0 6px 16px rgba(46, 19, 24, 0.28);
+}
+.hb-hero__link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-on-wine);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(233, 180, 143, 0.35);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.hb-hero__link:hover {
+  color: var(--cream);
+  border-color: var(--cream);
+}
+.hb-hero__address {
+  display: none;
+}
+
+/* ---------------------------------------------------------- rail */
+/* Sticky, solid, scrollable sideways: the calendar's term rail with
+   one tab per chapter. js/handbook.js marks the chapter in view. */
+.hb-rail {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--cream-warm);
+  border-bottom: 1px solid var(--hb-rule);
+}
+.hb-rail__inner {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+.hb-rail__list {
+  list-style: none;
+  display: flex;
+  gap: 1.7rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+}
+.hb-rail__list::-webkit-scrollbar { display: none; }
+.hb-rail__list a,
+.hb-rail__pdf {
+  display: block;
+  white-space: nowrap;
+  padding: 1.05rem 0 0.95rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--hb-quiet);
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.hb-rail__list li:last-child {
+  padding-right: 2.5rem;
+}
+.hb-rail__no {
+  font-family: var(--serif);
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--accent-muted);
+  margin-right: 0.15rem;
+}
+.hb-rail__list a:hover,
+.hb-rail__pdf:hover {
+  color: var(--wine);
+}
+.hb-rail__list a.is-current {
+  color: var(--wine);
+  border-bottom-color: var(--accent);
+}
+.hb-rail__contents {
+  color: var(--wine) !important;
+}
+.hb-rail__pdf {
+  flex: 0 0 auto;
+  color: var(--accent-deep);
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--hb-rule);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------ contents */
+.hb {
+  background: var(--cream);
+  padding-bottom: 5rem;
+}
+.hb-contents {
+  padding: 3.5rem 0 1rem;
+}
+.hb-contents__head {
+  border-bottom: 2px solid var(--wine);
+  padding-bottom: 1.1rem;
+}
+.hb-contents__title {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.2;
+  margin: 0;
+}
+.hb-toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 3.5rem;
+}
+.hb-toc__ch {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  gap: 0 0.9rem;
+  padding: 1rem 0 1.05rem;
+  border-bottom: 1px solid var(--hb-rule-soft);
+  break-inside: avoid;
+}
+.hb-toc__no {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-muted);
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.hb-toc__link {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--wine);
+  text-wrap: pretty;
+  transition: color 0.2s ease;
+}
+.hb-toc__link:hover {
+  color: var(--accent-deep);
+}
+.hb-toc__subs {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+.hb-toc__subs li {
+  display: inline;
+}
+.hb-toc__subs li + li::before {
+  content: '·';
+  color: var(--accent-light);
+  margin: 0 0.45rem;
+}
+.hb-toc__subs a {
+  color: var(--text-body);
+  transition: color 0.2s ease;
+}
+.hb-toc__subs a:hover {
+  color: var(--wine);
+}
+
+/* ------------------------------------------------------ chapters */
+.hb-ch {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, var(--hb-measure));
+  gap: 0 3rem;
+  padding-top: 5rem;
+}
+.hb-ch__margin {
+  position: sticky;
+  top: calc(var(--hb-rail) + 1.4rem);
+  align-self: start;
+  padding-top: 0.2rem;
+}
+.hb-ch__margin::before {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 0.9rem;
+}
+.hb-ch__no {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--wine);
+  font-variant-numeric: lining-nums;
+}
+.hb-ch__short {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: var(--hb-quiet);
+}
+.hb-ch__body {
+  min-width: 0;
+}
+.hb-ch__head {
+  border-bottom: 2px solid var(--wine);
+  padding-bottom: 1.2rem;
+  margin-bottom: 2rem;
+}
+.hb-ch__title {
+  font-family: var(--serif);
+  font-size: clamp(1.55rem, 3vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--wine);
+  margin: 0;
+  text-wrap: balance;
+}
+/* the margin shows the number on wide screens; the heading keeps it
+   for screen readers and for narrow screens */
+.hb-ch__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+[id] {
+  scroll-margin-top: calc(var(--hb-rail) + 1.5rem);
+}
+
+/* ---------------------------------------------------- text flow */
+.hb-ch__body p,
+.hb-ch__body li,
+.hb-ch__body dd {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+.hb-ch__body p {
+  margin: 0 0 1.05rem;
+}
+.hb-ch__body strong {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.hb-ch__body h3 {
+  font-family: var(--serif);
+  font-size: 1.42rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--wine);
+  margin: 3.6rem 0 1.1rem;
+  text-wrap: balance;
+}
+.hb-ch__body h3::before {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 0.85rem;
+}
+.hb-ch__head + h3 {
+  margin-top: 2.2rem;
+}
+.hb-ch__body h4 {
+  font-family: var(--sans);
+  font-size: 1.04rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-dark);
+  margin: 2.3rem 0 0.6rem;
+}
+.hb-ch__body h5 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--accent-deep);
+  margin: 1.7rem 0 0.5rem;
+}
+.hb-ch__body .label {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  margin: 1.9rem 0 0.55rem;
+}
+.hb-ch__body h3 + h4,
+.hb-ch__body h4 + h5 {
+  margin-top: 1.2rem;
+}
+.hb-ch__body .signoff {
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 1.6rem 0 0;
+}
+.hb-ch__body .signoff + p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--text-body);
+}
+/* ------------------------------------- people: portraits and letters */
+/* The welcome signatories and each author of "Letters from Senior
+   Members" carry a small portrait that links to their page. */
+.hb-portrait {
+  display: block;
+  flex: none;
+  width: 4.75rem;
+  aspect-ratio: 1;
+  border: 0 !important;
+  background: var(--parchment);
+  box-shadow: 0 0 0 1px var(--hb-rule);
+  /* the faculty headshots are circular crops */
+  border-radius: 50%;
+  overflow: hidden;
+}
+.hb-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;
+}
+.hb-ch__body a.hb-person__link {
+  display: inline-block;
+  margin-top: 0.15rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.hb-ch__body a.hb-person__link::after {
+  content: '\00a0\2192';
+}
+.hb-letter + .hb-letter {
+  margin-top: 0.4rem;
+}
+.hb-letter__head {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin: 2.6rem 0 1.1rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--hb-rule);
+}
+.hb-ch__body h3 + .hb-letter .hb-letter__head {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 1.4rem;
+}
+.hb-letter__who h4 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--wine);
+}
+.hb-sign {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin: 1.8rem 0 0;
+}
+.hb-sign__text {
+  min-width: 0;
+}
+.hb-ch__body .hb-sign .signoff {
+  margin: 0;
+}
+.hb-ch__body .hb-sign .signoff + p {
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .hb-portrait { width: 3.9rem; }
+  .hb-letter__head,
+  .hb-sign { gap: 0.9rem; }
+}
+.hb-contact__name a {
+  color: inherit;
+}
+
+.runin {
+  font-weight: 600;
+  color: var(--wine);
+}
+.hb-ch__body .course-title {
+  font-family: var(--serif);
+  color: var(--wine);
+  margin-top: 1.8rem;
+}
+.hb-ch__body .course-title strong,
+.hb-ch__body .course-title em {
+  color: inherit;
+  font-weight: 700;
+}
+
+.hb-ch__body a:not(.fnref):not(.footnote-back) {
+  color: var(--accent-muted);
+  border-bottom: 1px solid rgba(168, 90, 50, 0.3);
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.hb-ch__body a:not(.fnref):not(.footnote-back):hover {
+  color: var(--wine);
+  border-color: var(--wine);
+}
+
+.hb-ch__body ul,
+.hb-ch__body ol {
+  margin: 0 0 1.2rem;
+  padding-left: 1.4rem;
+}
+.hb-ch__body li {
+  margin-bottom: 0.4rem;
+  padding-left: 0.3rem;
+}
+.hb-ch__body li > p {
+  margin-bottom: 0.4rem;
+}
+.hb-ch__body ul > li::marker {
+  color: var(--accent);
+  font-size: 0.9em;
+}
+.hb-ch__body ol > li::marker {
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--accent-muted);
+}
+.hb-ch__body ul ul,
+.hb-ch__body ol ul,
+.hb-ch__body ul ol {
+  margin: 0.4rem 0 0.4rem;
+}
+
+/* the events of the year, set as a ruled two-column index */
+.hb-ch__body .hb-runlist {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+  column-gap: 2.5rem;
+  margin: 0 0 1.6rem;
+  border-top: 1px solid var(--hb-rule);
+}
+.hb-ch__body .hb-runlist li {
+  break-inside: avoid;
+  padding: 0.5rem 0;
+  margin: 0;
+  border-bottom: 1px solid var(--hb-rule-soft);
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+/* --------------------------------------------------- footnotes */
+.fnref {
+  font-size: 0.72em;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 0 0.1em;
+  vertical-align: super;
+  line-height: 0;
+}
+.fnref sup {
+  vertical-align: baseline;
+  font-size: inherit;
+}
+.hb-notes {
+  margin-top: 2.8rem;
+  border-top: 1px solid var(--hb-rule);
+  padding-top: 1.1rem;
+}
+.hb-ch__body .hb-notes__title {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  margin: 0 0 0.6rem;
+}
+.hb-notes ol {
+  padding-left: 1.4rem;
+}
+.hb-ch__body .hb-notes li,
+.hb-ch__body .hb-notes p {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.hb-notes p {
+  display: inline;
+}
+.hb-ch__body .footnote-back {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-muted);
+  margin-left: 0.4rem;
+  border-bottom: 1px solid rgba(168, 90, 50, 0.3);
+}
+
+/* ------------------------------------------------------ ledgers */
+.ledger-wrap {
+  overflow-x: auto;
+  margin: 1.4rem 0 1.8rem;
+}
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-body);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.ledger th,
+.ledger td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.75rem 1.2rem 0.75rem 0;
+  border-top: 1px solid var(--hb-rule-soft);
+}
+.ledger caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--wine);
+  padding: 0 0 0.6rem;
+}
+.ledger--wide {
+  min-width: 36rem;
+}
+.ledger th:last-child,
+.ledger td:last-child {
+  padding-right: 0;
+}
+.ledger thead th {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  border-top: 0;
+  border-bottom: 1px solid var(--hb-rule);
+  padding-top: 0;
+}
+.ledger thead th strong,
+.ledger thead th em {
+  font-weight: inherit;
+  font-style: normal;
+  color: inherit;
+}
+.ledger tbody tr:last-child td {
+  border-bottom: 1px solid var(--hb-rule-soft);
+}
+.ledger td:first-child strong {
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.ledger p {
+  margin: 0 0 0.35rem !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+.ledger p:last-child {
+  margin-bottom: 0 !important;
+}
+.ledger em {
+  color: var(--text-body);
+}
+
+/* deadlines: the calendar's own event row */
+.hb-dates {
+  list-style: none;
+  padding: 0 !important;
+  margin: 1.4rem 0 1.8rem !important;
+}
+.hb-date {
+  display: grid;
+  grid-template-columns: 11rem 1fr auto;
+  gap: 0.2rem 1.2rem;
+  align-items: baseline;
+  padding: 0.85rem 0 !important;
+  margin: 0 !important;
+  border-top: 1px solid var(--hb-rule-soft);
+}
+.hb-date:first-child {
+  border-top-color: var(--hb-rule);
+}
+.hb-date:last-child {
+  border-bottom: 1px solid var(--hb-rule-soft);
+}
+.hb-date__when {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--wine);
+}
+.hb-date__what {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-body);
+}
+.hb-date__cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--wine);
+}
+.hb-date__cat::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--wine-mid);
+}
+.hb-date--sm .hb-date__cat { color: var(--accent-deep); }
+.hb-date--sm .hb-date__cat::before { background: var(--accent); }
+.hb-date--app .hb-date__cat { color: var(--teal-deep); }
+.hb-date--app .hb-date__cat::before { background: var(--teal); }
+
+/* lexicon */
+.hb-lexicon {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  margin: 1.4rem 0 0;
+}
+.hb-lexicon dt,
+.hb-lexicon dd {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--hb-rule-soft);
+  margin: 0;
+}
+.hb-lexicon dt {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--wine);
+  padding-right: 1.4rem;
+}
+.hb-ch__body .hb-lexicon dd {
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+/* contacts */
+.hb-contacts {
+  list-style: none;
+  padding: 0 !important;
+  margin: 1.4rem 0 0 !important;
+}
+.hb-contact {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: 0.15rem 1.4rem;
+  padding: 0.85rem 0 !important;
+  margin: 0 !important;
+  border-top: 1px solid var(--hb-rule-soft);
+}
+.hb-contact:last-child {
+  border-bottom: 1px solid var(--hb-rule-soft);
+}
+.hb-contact__role {
+  grid-row: span 3;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--accent-deep);
+  padding-top: 0.2rem;
+}
+.hb-contact__mail {
+  justify-self: start;
+  font-size: 0.9rem;
+}
+.hb-contact__name {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+.hb-contact__extra {
+  font-size: 0.86rem;
+  color: var(--hb-quiet);
+}
+
+/* forms: the calendar's lifted surface, one sheet per form */
+.hb-forms {
+  margin: 3rem 0 1rem;
+}
+.hb-forms > h3 {
+  margin-top: 0 !important;
+}
+.hb-forms .sheet-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--wine);
+  background: var(--cream-warm);
+  border: 1px solid var(--hb-rule-soft);
+  border-top: 3px solid var(--accent);
+  padding: 1rem 1.3rem;
+  margin: 2.2rem 0 0;
+}
+.ledger--form td,
+.ledger--form th {
+  height: 2.1rem;
+}
+.sheet-title--repeat {
+  display: none;
+}
+
+/* -------------------------------------------------- responsive */
+@media (max-width: 1024px) {
+  .hb-ch {
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 0 2rem;
+  }
+  .hb-ch__short {
+    display: none;
+  }
+}
+@media (max-width: 860px) {
+  .hb-toc {
+    columns: 1;
+  }
+}
+@media (max-width: 768px) {
+  .hb-hero {
+    padding: 3.25rem 0 3rem;
+  }
+  .hb-hero__logo {
+    height: 42px;
+    margin-bottom: 1.6rem;
+  }
+  .hb-rail__list {
+    gap: 1.3rem;
+  }
+  .hb-ch {
+    display: block;
+    padding-top: 3.75rem;
+  }
+  .hb-ch__margin {
+    display: none;
+  }
+  .hb-ch__label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    display: block;
+    font-size: 0.62em;
+    color: var(--accent-muted);
+    margin-bottom: 0.3rem;
+  }
+  .hb-ch__body h3 {
+    font-size: 1.28rem;
+    margin-top: 2.8rem;
+  }
+  .hb-date {
+    grid-template-columns: 1fr;
+  }
+  .hb-date__cat {
+    order: -1;
+  }
+  .hb-lexicon {
+    grid-template-columns: 1fr;
+  }
+  .hb-lexicon dt {
+    padding-bottom: 0.2rem;
+  }
+  .hb-lexicon dd {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .hb-contact {
+    grid-template-columns: 1fr;
+  }
+  .hb-contact__role {
+    grid-row: auto;
+  }
+  .ledger {
+    font-size: 0.84rem;
+  }
+}
+
+/* ============================================================
+   PRINT — the PDF
+   Printed by WeasyPrint (scripts/build-handbook.py --pdf), which
+   supports page counters, running heads and target-counter for
+   the contents. A browser's own print falls back gracefully:
+   the contents simply lose their page numbers.
+   ============================================================ */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.8in 0.85in 0.85in;
+    @bottom-left {
+      content: "Junior Member Handbook 2026–2027";
+      font-family: 'Outfit', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.06em;
+      color: #857E78;
+    }
+    @bottom-center {
+      content: string(chapter);
+      font-family: 'Outfit', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.06em;
+      color: #8E4A28;
+    }
+    @bottom-right {
+      content: counter(page);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #9B0D24;
+    }
+  }
+  @page cover {
+    margin: 0;
+    background: #7A0A1C;
+    @bottom-left { content: none; }
+    @bottom-center { content: none; }
+    @bottom-right { content: none; }
+  }
+  @page contents {
+    @bottom-center { content: "Contents"; }
+  }
+
+  html {
+    font-size: 10pt;
+  }
+  body {
+    background: #fff;
+    overflow: visible;
+  }
+  .hb {
+    background: #fff;
+    padding: 0;
+  }
+  .container {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+  .hb-rail,
+  .hb-hero__actions,
+  .site-footer,
+  .footnote-back {
+    display: none !important;
+  }
+
+  /* cover */
+  .hb-hero {
+    page: cover;
+    height: 11in;
+    padding: 1.4in 1in 1in;
+    background: #7A0A1C;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .hb-hero::before {
+    display: none;
+  }
+  .hb-hero::after {
+    height: 6pt;
+  }
+  .hb-hero__inner {
+    height: 100%;
+  }
+  .hb-hero__logo {
+    height: 1.1in;
+    margin-bottom: 2.4in;
+  }
+  .hb-hero__title {
+    font-size: 40pt;
+    line-height: 1.08;
+    max-width: 5.5in;
+  }
+  .hb-hero__year {
+    font-size: 22pt;
+    margin: 10pt 0 20pt;
+  }
+  .hb-hero .hero__sub {
+    font-size: 11pt;
+    line-height: 1.6;
+    max-width: 4.6in;
+  }
+  .hb-hero__address {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-style: normal;
+    font-size: 8.5pt;
+    line-height: 1.6;
+    color: #E8C2C2;
+    border-top: 0.5pt solid rgba(233, 180, 143, 0.5);
+    padding-top: 10pt;
+  }
+
+  /* contents */
+  .hb-contents {
+    page: contents;
+    padding: 0;
+    break-after: page;
+  }
+  .hb-contents__title {
+    font-size: 22pt;
+  }
+  .hb-toc {
+    columns: 1;
+  }
+  .hb-toc__ch {
+    grid-template-columns: 0.4in 1fr;
+    padding: 6pt 0 7pt;
+    display: grid;
+  }
+  .hb-toc__no,
+  .hb-toc__link {
+    font-size: 10.5pt;
+  }
+  .hb-toc__link {
+    display: block;
+  }
+  .hb-toc__link::after,
+  .hb-toc__subs a::after {
+    content: leader('.') target-counter(attr(href), page);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #8E4A28;
+  }
+  .hb-toc__subs {
+    margin-top: 2pt;
+    font-size: 8.5pt;
+  }
+  .hb-toc__subs li {
+    display: block;
+  }
+  .hb-toc__subs li + li::before {
+    content: none;
+  }
+  .hb-toc__subs a {
+    display: block;
+    color: #3A3330;
+  }
+
+  /* chapters */
+  .hb-ch {
+    display: block;
+    padding: 0;
+    break-before: page;
+    string-set: chapter attr(data-short);
+  }
+  .hb-ch__margin {
+    display: none;
+  }
+  .hb-ch__head {
+    margin-bottom: 16pt;
+    padding-bottom: 10pt;
+  }
+  .hb-ch__label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    display: block;
+    font-size: 0.5em;
+    color: #8E4A28;
+    margin-bottom: 4pt;
+  }
+  .hb-ch__title {
+    font-size: 21pt;
+  }
+  .hb-ch__body h3 {
+    font-size: 14pt;
+    margin: 22pt 0 7pt;
+    break-after: avoid;
+  }
+  .hb-ch__body h3::before {
+    margin-bottom: 6pt;
+  }
+  .hb-ch__body h4 {
+    font-size: 10.5pt;
+    margin: 14pt 0 4pt;
+    break-after: avoid;
+  }
+  .hb-ch__body h5 {
+    font-size: 10pt;
+    margin: 10pt 0 3pt;
+    break-after: avoid;
+  }
+  .hb-ch__body .label {
+    font-size: 7pt;
+  }
+  /* portraits */
+  .hb-portrait {
+    width: 0.72in;
+    box-shadow: 0 0 0 0.5pt rgba(155, 13, 36, 0.25);
+  }
+  .hb-letter__head,
+  .hb-sign {
+    break-inside: avoid;
+    break-after: avoid;
+    gap: 10pt;
+  }
+  .hb-letter__head {
+    margin: 20pt 0 8pt;
+    padding-top: 12pt;
+  }
+  .hb-ch__body h3 + .hb-letter .hb-letter__head {
+    margin-top: 8pt;
+  }
+  .hb-letter__who h4 {
+    font-size: 11.5pt;
+  }
+  .hb-ch__body a.hb-person__link {
+    font-size: 7.5pt;
+  }
+  .hb-ch__body a.hb-person__link::after {
+    content: none;
+  }
+  .hb-ch__body p,
+  .hb-ch__body li,
+  .hb-ch__body dd {
+    font-size: 10pt;
+    line-height: 1.55;
+    orphans: 3;
+    widows: 3;
+  }
+  .hb-ch__body p {
+    margin-bottom: 7pt;
+  }
+  .hb-ch__body a:not(.fnref):not(.footnote-back) {
+    color: #8E4A28;
+    border-bottom: 0;
+  }
+  .ledger {
+    font-size: 9pt;
+  }
+  .ledger tr,
+  .hb-date,
+  .hb-contact {
+    break-inside: avoid;
+  }
+  .ledger-wrap {
+    overflow: visible;
+  }
+  .hb-date {
+    grid-template-columns: 1.7in 1fr auto;
+  }
+  .hb-date__when,
+  .hb-date__what {
+    font-size: 9pt;
+  }
+  .hb-lexicon {
+    grid-template-columns: 1.6in 1fr;
+  }
+  .hb-ch__body .hb-lexicon dd,
+  .hb-lexicon dt {
+    font-size: 9.5pt;
+  }
+  .hb-forms {
+    break-before: page;
+    margin-top: 0;
+  }
+  .hb-forms .sheet-title {
+    break-before: page;
+    margin-top: 0;
+  }
+  .hb-forms > h3 + .sheet-title {
+    break-before: auto;
+    margin-top: 10pt;
+  }
+  .sheet-title--repeat {
+    display: block;
+    height: 0;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden;
+  }
+  .ledger--wide {
+    min-width: 0;
+  }
+  .ledger caption {
+    font-size: 10pt;
+  }
+  .hb-notes {
+    break-inside: avoid;
+  }
+  .hb-ch__body .hb-notes li,
+  .hb-ch__body .hb-notes p {
+    font-size: 8pt;
+  }
+}
