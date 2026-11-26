@@ -3,15 +3,23 @@
    Page-specific styles. Loaded AFTER css/styles.css.
 
    The handbook is set as the academic calendar's companion
-   volume: the same wine hero, the same cream-warm rail with
-   its copper underline, and the same ledger: numbers standing
+   volume: the same wine hero, the calendar's cream-warm rail
+   turned on its side as a contents sidebar with search, its
+   copper underline marking the chapter in view, and the same
+   ledger: numbers standing
    in a margin column, hairline-ruled rows, Baskerville for
    what is said and Outfit for what is stated. The PDF is
    printed from this page (see the print section at the end).
    ============================================================ */
 
 :root {
-  --hb-rail: 3.35rem;
+  /* height of whatever is stuck to the top: nothing on wide screens,
+     the bar on narrow ones (set below) */
+  --hb-rail: 0px;
+  --hb-side: 16rem;
+  --hb-bar: 3.25rem;
+  /* 3:1 against cream-warm, for the search field's edge */
+  --hb-field: #94807A;
   --hb-rule: rgba(155, 13, 36, 0.13);
   --hb-rule-soft: rgba(155, 13, 36, 0.07);
   --hb-measure: 42rem;
@@ -120,73 +128,498 @@
   display: none;
 }
 
-/* ---------------------------------------------------------- rail */
-/* Sticky, solid, scrollable sideways: the calendar's term rail with
-   one tab per chapter. js/handbook.js marks the chapter in view. */
-.hb-rail {
+/* ------------------------------------------------------- sidebar */
+/* The calendar's cream-warm rail turned on its side: search at the
+   top, one row per chapter, and the sections of the chapter in view.
+   js/handbook.js marks the place and runs the search; without it the
+   sidebar is plain anchor links and the search stays hidden. Below
+   1120px it becomes a drawer opened from the bar. */
+.hb-layout {
+  display: grid;
+  grid-template-columns: var(--hb-side) minmax(0, 1fr);
+  align-items: start;
+}
+.hb-main {
+  min-width: 0;
+}
+.hb-main .container {
+  max-width: 60rem;
+  padding: 0 2.5rem;
+}
+
+.hb-side {
   position: sticky;
   top: 0;
-  z-index: 20;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
   background: var(--cream-warm);
-  border-bottom: 1px solid var(--hb-rule);
+  border-right: 1px solid var(--hb-rule);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 13, 36, 0.22) transparent;
 }
-.hb-rail__inner {
-  display: flex;
-  align-items: stretch;
-  gap: 1.5rem;
+.hb-side::-webkit-scrollbar { width: 8px; }
+.hb-side::-webkit-scrollbar-thumb {
+  background: rgba(155, 13, 36, 0.22);
+  border: 2px solid var(--cream-warm);
 }
-.hb-rail__list {
-  list-style: none;
+
+.hb-side__head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
-  gap: 1.7rem;
-  overflow-x: auto;
-  scrollbar-width: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1.25rem 1rem;
+  background: var(--cream-warm);
+}
+.hb-side__head:has(.hb-search[hidden]) {
+  padding-bottom: 0;
+}
+
+/* search field */
+.hb-search {
   flex: 1 1 auto;
   min-width: 0;
   margin: 0;
-  padding: 0;
-  mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
 }
-.hb-rail__list::-webkit-scrollbar { display: none; }
-.hb-rail__list a,
-.hb-rail__pdf {
+.hb-search__field {
+  position: relative;
+}
+.hb-search__ic {
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--hb-quiet);
+  pointer-events: none;
+}
+.hb-search__input {
   display: block;
+  width: 100%;
+  height: 2.6rem;
+  min-height: 44px;
+  padding: 0 2.4rem 0 2.35rem;
+  font: 400 0.84rem/1 var(--sans);
+  color: var(--text-dark);
+  caret-color: var(--wine);
+  background: var(--cream);
+  border: 1px solid var(--hb-field);
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.hb-search__input::placeholder {
+  color: var(--hb-quiet);
+  opacity: 1;
+}
+.hb-search__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
+.hb-search__input:hover {
+  border-color: var(--text-body);
+}
+.hb-search__input:focus {
+  outline: none;
+  border-color: var(--wine);
+  box-shadow: 0 0 0 1px var(--wine);
+}
+.hb-search__clear,
+.hb-side__close,
+.hb-bar__search {
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  color: var(--wine);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.hb-search__clear {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2.4rem;
+  height: 100%;
+  color: var(--hb-quiet);
+}
+.hb-search__clear[hidden] {
+  display: none;
+}
+/* the drawer's own close button: narrow screens only */
+.hb-side__close {
+  display: none;
+}
+.hb-search__clear:hover {
+  color: var(--wine);
+}
+.hb-ic {
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+.hb-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
   white-space: nowrap;
-  padding: 1.05rem 0 0.95rem;
-  font-size: 0.74rem;
+}
+button:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: -2px;
+}
+
+/* chapter list */
+.hb-side__nav {
+  flex: 1 0 auto;
+  padding: 0.85rem 0 1.5rem;
+}
+.hb-side__nav[hidden] {
+  display: none;
+}
+.hb-side__contents {
+  display: block;
+  padding: 0.45rem 1.25rem 0.7rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--wine);
+}
+.hb-side__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hb-side__ch--app:not(.hb-side__ch--app ~ .hb-side__ch--app) {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--hb-rule-soft);
+}
+.hb-side__link {
+  display: grid;
+  grid-template-columns: 1.85rem 1fr;
+  align-items: baseline;
+  padding: 0.38rem 1.25rem;
+  color: var(--text-body);
+  transition: color 0.2s var(--ease);
+}
+.hb-side__no {
+  font-family: var(--serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-muted);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.hb-side__name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: underline 2px transparent;
+  text-underline-offset: 0.4em;
+  transition: text-decoration-color 0.3s var(--ease);
+}
+.hb-side__link:hover {
+  color: var(--wine);
+}
+.hb-side__ch.is-current > .hb-side__link {
+  color: var(--wine);
+}
+.hb-side__ch.is-current > .hb-side__link .hb-side__no {
+  color: var(--wine);
+}
+.hb-side__ch.is-current > .hb-side__link .hb-side__name {
+  font-weight: 600;
+  text-decoration-color: var(--accent);
+}
+.hb-side__subs {
+  display: none;
+  list-style: none;
+  margin: 0.15rem 0 0.5rem;
+  padding: 0 1.25rem 0 3.1rem;
+}
+.hb-side__ch.is-current > .hb-side__subs {
+  display: block;
+}
+.hb-side__subs a {
+  display: block;
+  padding: 0.28rem 0;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: var(--hb-quiet);
+  text-wrap: pretty;
+  transition: color 0.2s var(--ease);
+}
+.hb-side__subs a:hover,
+.hb-side__subs a.is-current {
+  color: var(--wine);
+}
+.hb-side__subs a.is-current {
+  font-weight: 500;
+}
+
+.hb-side__foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.9rem 1.25rem 1.4rem;
+  border-top: 1px solid var(--hb-rule);
+}
+.hb-side__foot a {
+  padding: 0.35rem 0;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--hb-quiet);
-  border-bottom: 2px solid transparent;
-  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+  transition: color 0.2s var(--ease);
 }
-.hb-rail__list li:last-child {
-  padding-right: 2.5rem;
-}
-.hb-rail__no {
-  font-family: var(--serif);
-  font-weight: 700;
-  letter-spacing: 0;
-  color: var(--accent-muted);
-  margin-right: 0.15rem;
-}
-.hb-rail__list a:hover,
-.hb-rail__pdf:hover {
-  color: var(--wine);
-}
-.hb-rail__list a.is-current {
-  color: var(--wine);
-  border-bottom-color: var(--accent);
-}
-.hb-rail__contents {
-  color: var(--wine) !important;
-}
-.hb-rail__pdf {
-  flex: 0 0 auto;
+.hb-side__foot .hb-side__pdf {
   color: var(--accent-deep);
-  padding-left: 1.2rem;
-  border-left: 1px solid var(--hb-rule);
+}
+.hb-side__foot a:hover {
+  color: var(--wine);
+}
+
+/* results */
+.hb-results {
+  flex: 1 0 auto;
+  padding: 0 0 1.5rem;
+}
+.hb-results[hidden] {
+  display: none;
+}
+.hb-results__meta {
+  margin: 0;
+  padding: 0.1rem 1.25rem 0.8rem;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--hb-quiet);
+}
+.hb-results__meta a {
+  color: var(--wine);
+  text-decoration: underline 1px var(--accent-light);
+  text-underline-offset: 0.2em;
+}
+.hb-results__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--hb-rule-soft);
+}
+.hb-res {
+  display: block;
+  padding: 0.75rem 1.25rem 0.8rem;
+  border-top: 1px solid var(--hb-rule-soft);
+  transition: background-color 0.2s var(--ease);
+}
+.hb-res:hover,
+.hb-res:focus-visible {
+  background: rgba(155, 13, 36, 0.035);
+}
+.hb-res:focus-visible {
+  outline-offset: -2px;
+}
+.hb-res__where {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+}
+.hb-res__t {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--serif);
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--wine);
+  text-wrap: pretty;
+  text-decoration: underline 2px transparent;
+  text-underline-offset: 0.3em;
+}
+.hb-res.is-active .hb-res__t {
+  text-decoration-color: var(--accent);
+}
+.hb-res__s {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+.hb-res mark,
+.hb-results mark {
+  background: var(--accent-pale);
+  color: var(--text-dark);
+  padding: 0 0.08em;
+}
+/* the words searched for, marked in the section a result opens */
+::highlight(hb-hit) {
+  background-color: rgba(200, 122, 82, 0.3);
+  color: var(--text-dark);
+}
+
+/* narrow screens: the bar, and the sidebar as a drawer */
+.hb-bar {
+  display: none;
+}
+.hb-scrim {
+  display: none;
+}
+@media (max-width: 1119px) {
+  .hb-layout {
+    display: block;
+  }
+  .hb-main .container {
+    max-width: 1200px;
+    padding: 0 2rem;
+  }
+  /* without JavaScript the drawer cannot open: the contents ledger
+     at the top of the page does the sidebar's job */
+  .hb-side {
+    display: none;
+  }
+  .hb-js {
+    --hb-rail: var(--hb-bar);
+  }
+  .hb-js .hb-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: stretch;
+    height: var(--hb-bar);
+    padding: 0 0.6rem 0 1.25rem;
+    background: var(--cream-warm);
+    border-bottom: 1px solid var(--hb-rule);
+  }
+  .hb-bar__menu {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    color: var(--wine);
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .hb-bar__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  .hb-bar__where {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--serif);
+    font-size: 0.84rem;
+    color: var(--hb-quiet);
+  }
+  .hb-bar__where:not(:empty)::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    margin: 0 0.6rem 0.25em 0;
+    vertical-align: middle;
+    background: var(--accent);
+  }
+  .hb-bar__search {
+    flex: 0 0 auto;
+    width: 2.9rem;
+  }
+  .hb-bar__search:hover,
+  .hb-side__close:hover {
+    background: rgba(155, 13, 36, 0.05);
+  }
+
+  .hb-js .hb-side {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 40;
+    width: min(22rem, 88vw);
+    height: auto;
+    border-right: 0;
+    box-shadow: 6px 0 32px rgba(46, 19, 24, 0.18);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.32s;
+  }
+  .hb-js .hb-side.is-open {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+  }
+  .hb-js .hb-side__head {
+    padding: 0.85rem 0.6rem 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--hb-rule-soft);
+  }
+  .hb-js .hb-side__close {
+    display: inline-grid;
+    flex: 0 0 auto;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .hb-js .hb-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: rgba(46, 19, 24, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s var(--ease), visibility 0s linear 0.3s;
+  }
+  .hb-js .hb-scrim.is-on {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s var(--ease), visibility 0s;
+  }
+  .hb-drawer-open,
+  .hb-drawer-open body {
+    overflow: hidden;
+  }
+}
+@media (max-width: 768px) {
+  .hb-main .container {
+    padding: 0 1.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hb-js .hb-side,
+  .hb-js .hb-side.is-open,
+  .hb-js .hb-scrim,
+  .hb-js .hb-scrim.is-on {
+    transition: none;
+  }
+}
+@media (hover: none) {
+  .hb-res:hover {
+    background: none;
+  }
 }
 
 a:focus-visible {
@@ -840,6 +1273,17 @@ a:focus-visible {
 }
 
 /* -------------------------------------------------- responsive */
+/* beside the sidebar the column is narrower: the sidebar names the
+   chapter, so the margin keeps only its number */
+@media (min-width: 1120px) and (max-width: 1359px) {
+  .hb-ch {
+    grid-template-columns: 5.5rem minmax(0, var(--hb-measure));
+    gap: 0 2rem;
+  }
+  .hb-ch__short {
+    display: none;
+  }
+}
 @media (max-width: 1024px) {
   .hb-ch {
     grid-template-columns: 6.5rem minmax(0, 1fr);
@@ -861,9 +1305,6 @@ a:focus-visible {
   .hb-hero__logo {
     height: 42px;
     margin-bottom: 1.6rem;
-  }
-  .hb-rail__list {
-    gap: 1.3rem;
   }
   .hb-ch {
     display: block;
@@ -969,12 +1410,18 @@ a:focus-visible {
     background: #fff;
     padding: 0;
   }
-  .container {
+  .hb-layout {
+    display: block;
+  }
+  .container,
+  .hb-main .container {
     max-width: none;
     padding: 0;
     margin: 0;
   }
-  .hb-rail,
+  .hb-bar,
+  .hb-side,
+  .hb-scrim,
   .hb-hero__actions,
   .site-footer,
   .footnote-back {
