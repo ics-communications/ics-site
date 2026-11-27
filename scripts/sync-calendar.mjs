@@ -110,7 +110,11 @@ function toRecords(rows) {
     date: (r[at('date')] || '').trim(),
     title: (r[at('event')] || '').trim(),
     category: (r[at('category')] || '').trim().toLowerCase(),
-    tentative: (r[at('tentative')] || '').trim() !== ''
+    tentative: (r[at('tentative')] || '').trim() !== '',
+    /* Optional "Link" column: a web address makes the event's title a link
+       (an application form, a registration page). Anything that isn't an
+       http(s) address is ignored. */
+    link: /^https?:\/\/\S+$/i.test((r[at('link')] || '').trim()) ? (r[at('link')] || '').trim() : ''
   })).filter(e => e.code && e.title);
 }
 
@@ -223,10 +227,17 @@ function renderEvent(e, termStart) {
     ? ' <abbr class="cal-ev__tentative" title="Tentative — this date may change">*</abbr>'
     : '';
 
+  /* target="_blank" is written into the markup, not left to extlinks.js:
+     inside the Google Sites embed it's the only navigation that works, and
+     it must work without JavaScript too. */
+  const title = e.link
+    ? `<a class="cal-ev__link" href="${esc(e.link)}" target="_blank" rel="noopener">${esc(e.title)}</a>`
+    : esc(e.title);
+
   return `        <li ${attrs}>
           <span class="cal-ev__day">${esc(displayDate(e.date))}</span>
           <span class="cal-ev__main">
-            <span class="cal-ev__title">${esc(e.title)}${mark}</span>
+            <span class="cal-ev__title">${title}${mark}</span>
             <span class="cal-ev__cat">${CATEGORIES[cat]}</span>
           </span>
         </li>`;
