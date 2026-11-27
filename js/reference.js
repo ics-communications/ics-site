@@ -182,6 +182,21 @@
 
   /* ── Draft (this device only; the file is never stored) ─────────────────── */
 
+  // A letter in progress is kept for 7 days after it was last changed. Every
+  // visit also clears other referee drafts on this device that have expired.
+  function expired(d) { return d && d.savedAt && Date.now() - d.savedAt > 7 * 86400000; }
+  function sweepDrafts() {
+    try {
+      for (var i = localStorage.length - 1; i >= 0; i--) {
+        var key = localStorage.key(i);
+        if (!key || key.indexOf('ics-reference-') !== 0) continue;
+        var old = null;
+        try { old = JSON.parse(localStorage.getItem(key)); } catch (e) { /* unreadable: drop it */ }
+        if (!old || expired(old)) localStorage.removeItem(key);
+      }
+    } catch (e) { /* storage unavailable */ }
+  }
+  sweepDrafts();
   function loadDraft() {
     try { return JSON.parse(localStorage.getItem(draftKey)) || {}; } catch (e) { return {}; }
   }
@@ -189,7 +204,7 @@
   function saveDraft() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function () {
-      var data = {};
+      var data = { savedAt: Date.now() };
       $all('input[name], textarea[name], select[name]', form).forEach(function (el) {
         if (el.disabled || el.type === 'file') return;
         if (el.type === 'radio') { if (el.checked) data[el.name] = el.value; }
