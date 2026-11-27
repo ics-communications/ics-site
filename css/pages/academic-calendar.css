@@ -350,6 +350,18 @@
   flex: 1 1 18rem;
 }
 
+/* An event with a link in the sheet's Link column (an application form). */
+.cal-ev__link {
+  color: var(--wine);
+  text-decoration: underline;
+  text-decoration-color: rgba(155, 13, 36, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.cal-ev__link:hover,
+.cal-ev__link:focus-visible { text-decoration-color: currentColor; }
+.cal-ev.is-past .cal-ev__link { color: inherit; }
+
 .cal-ev__tentative {
   text-decoration: none;
   border: none;
